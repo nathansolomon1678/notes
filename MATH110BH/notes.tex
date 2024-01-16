@@ -1,0 +1,155 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\usepackage{tikz-cd}
+\renewcommand{\d}{\mathrm{d}}
+
+\begin{document}
+
+\title{Math 110BH Notes}
+\author{Nathan Solomon}
+\maketitle
+
+\tableofcontents
+
+\section{Rings}
+\subsection{1/8/2024 lecture}
+\subsubsection{Definition of a ring}
+A \textit{ring} is a set $R$ with two operations, \textit{addition} and \textit{multiplication}, such that
+\begin{itemize}
+    \item $(R,+)$ is an abelian group
+    \item \textit{Left \& right distibutivity} -- For any $a,b,c \in R$, $(a+b)c = ac+bc$ and $c(a+b)=ca+cb$
+    \item \textit{Associativity} -- $(ab)c=a(bc)$
+    \item \textit{Unitarity} -- There exists an element called $1$ such that $1a=a=a1$ for any $a\in R$
+\end{itemize}
+Sometimes people leave of those last two criteria, but in this class, we will only talk about associative, unital ring.
+\par
+A ring $R$ is called \textit{commutative} iff $ab=ba$ for any $a,b \in R$.
+\par
+
+\subsubsection{Examples of rings}
+The simplest ring is the zero ring, which is the zero group with $1=0$.
+\par
+$ \mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}$, and $ \mathbb{Z}/n \mathbb{Z}$ are all commutative rings.
+\par
+If $R$ is a ring, then $M_n(R)$, the set of $n \times n$ rings over $R$ where $n \in \mathbb{N}$, is a ring. If $R$ is not the zero ring and $n>1$, then $M_n(R)$ is noncommutative.
+\par
+If $(A,+)$ is an abelian group and $R=\operatorname{End}(A)=\{f:A \rightarrow A \text{ is a homomorphism}\}$ is the set of endomorphisms of $A$, then $R$ becomes a ring when you define addition by $(f+g)(a)=f(a)+g(a)$ and define multiplication to be composition of endomorphisms.
+\par
+For any ring $R = (R,+,\cdot)$, there exists another ring, $R^{op}=(R,+,*)$, defined by $a*b:=b \cdot a$.
+\par
+If $R$ is a ring, then $R[x]$ (the set of polynomials in the variable $x$ over $R$) is also a ring. If $R$ is commutative, then so is $R[x]$. In this case, ``polynomials" are essentially lists of coefficients, with addition and multiplication defined the way you would expect for polynomials. This can be generalized to a finite set $X$ of variables -- in that case, $R[X]$ is the set of polynomials over the variables in $X$, which are assumed to commute with each other.
+\par
+If $R$ is a ring and $X$ is a set, then $S:=\{f:X \rightarrow R\}$ with the operations defined by $(f+g)(x)=f(x)+g(x)$ and $(f \cdot g)(x) = f(x) \cdot g(x)$ forms a ring. If $|X|=1$, then $R=S$.
+
+\subsubsection{Properties of rings}
+\begin{itemize}
+    \item $0a=0=a0$
+    \item $(-a)(b)=-(ab)=(a)(-b)$
+    \item A nonzero element $a$ of a commutative ring is called \textit{invertible} iff there exists a nonzero element $b \in R$ such that $ab=1=ba$. If $b$ exists, it is unique, and it is called the \textit{inverse} of $a$.
+    \item If $a$ and $b$ are both invertible, then $(ab)^{-1} = b^{-1}a^{-1}$.
+\end{itemize}
+
+\subsubsection{The multiplicative group}
+If $R$ is a commutative ring, let $R^\times$ be the set of invertible elements in $R$. Then $R^\times$ is a multiplicative group. $R$ is called a \textit{field} iff it is commutative, $R$ is not the zero ring, and $R^\times = R \backslash \{0\}$. $ \mathbb{Q}$ and $ \mathbb{R}$ are examples of fields.
+\par
+\begin{itemize}
+    \item $ \mathbb{Z}^\times = \{-1, 1\}$
+    \item $M_n(R)^\times = GL_n(R)$ is called the general linear group (of $n \times n$ matrices over $R$.
+    \item $( \mathbb{Z}/n \mathbb{Z})^\times = \{[a]: \operatorname{gcd}(a,n)=1\}$ has $\varphi(n)$ elements
+    \item If $(A,+)$ is an abelian group, then $\operatorname{End}(A)^\times = \operatorname{Aut}(A)$
+    \item A nonzero element $a$ of a commutative ring $R$ is called a \textit{zero divisor} iff there exists a nonzero element $b$ in $R$ such that $ab=0$
+\end{itemize}
+
+\subsection{1/10/2024 lecture}
+\subsubsection{Integral domains \& subrings}
+If $R$ is a nonzero commutative ring with no (nonzero) zero divisors, we call it an \textit{integral domain} (or sometimes just \textit{domain} for short). In an integral domain, mulltiplication by any nonzero element is an injection. If $R$ is finite, an injection from $R$ to itself is invertible, so $R$ is a field. However, not every integral domain is a field -- for example, $ \mathbb{Z} $ is a domain but not a field.
+\par
+A subset $S$ of a ring $R$ is called a \textit{subring} iff
+\begin{itemize}
+    \item For any $a,b \in S$, $a+b, ab$, and $-a$ are also in $S$
+    \item $S$ contains 1, and $1_S=1_R$.
+\end{itemize}
+If $S$ is a subring of $R$, then $(S,+)$ is a subgroup of $(R,+)$.
+\par
+$ \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$ is a sequence of subrings.
+\par
+The set of $n \times n$ matrices of the form
+
+\[ \begin{bmatrix}
+    * & 0 \\
+    0 & 0 \\
+\end{bmatrix} \]
+is a ring and is also a subset of $M_2( \mathbb{R})$, but is not a subring of $M_2( \mathbb{R})$, because they do not have the same multiplicative identity element.
+
+\subsubsection{Ring homomorphisms}
+If $R$ and $S$ are rings, a map $f: R \rightarrow S$ is called a \textit{ring homomorphism} iff
+\begin{itemize}
+    \item $f(a+b)=f(a)+f(b)$ (that is, $f$ is a group homomorphism)
+    \item $f(ab)=f(a)f(b)$
+    \item $f(1_R)=1_S$
+\end{itemize}
+If $S$ is a subring of $R$, then the inclusion map from $S$ to $R$ is a ring homomorphism.
+\par
+A ring homomorphism is called a \textit{ring isomorphism} iff it is bijective.
+\par
+In $\mathbf{Ring}$, $\mathbb{Z}$ is the initial object and $0$ is the terminal object.
+\par
+The map from $ \mathbb{Z} \rightarrow \mathbb{Z}/n \mathbb{Z}$ (for $n \in \mathbb{N}, n>1$) which takes $a$ to $[a]_n$ is a ring homomorphism.
+\par
+One can show that there is no ring homomorphism from $ \mathbb{Q}$ to $ \mathbb{Z}$.
+
+\subsubsection{Ideals}
+If $I$ is a subset of a ring $R$, we call $I$ a \textit{left ideal} iff
+\begin{itemize}
+    \item $I$ is closed under addition ($I+I\subset I$)
+    \item For any $a\in I, x \in R$, $xa$ is also in $I$ ($I$ is closed under left multiplication by any element of $R$, so $R\cdot I \subset I$)
+    \item $I \neq \emptyset$ (we can use this to show that $0 \in I$)
+\end{itemize}
+The definition for a \textit{right ideal} is the same, but with left multiplication replaced by right multiplication. A two-sided ideal is simply called an \textit{ideal}.
+\par
+Every ring has at least two ideals (itself, which is called the ``unit ideal", and the zero ring), except for the zero ring (in which case those are the same). If $R$ is a field, those are the only ideals. Conversely, if $R$ is a commutative ring whose only ideals are $0$ and $R$, then $R$ is a field.
+\par
+For any $a \in R$, $Ra$ is a left ideal and $aR$ is a ring ideal. These are called the \textit{principal left and right (respectively) ideals generated by $a$}. Every ideal of $ \mathbb{Z}$ is principal, so we say that $ \mathbb{Z}$ is a \textit{principal ideal domain (PID)}.
+\par
+In $M_n( \mathbb{R})$, the set of $n \times n$ real matrices with zeros everywhere except the first column is a left ideal.
+\par
+If a left or right ideal $I$ of $R$ contains 1, then $I=R$. This is why we call $I$ the ``unit ideal". More generally, if $I$ contains any invertible element (that is, $\exists u \in I \cap R^\times$), then $I=R$.
+\par
+If $I_\alpha$ is a (possibly infinite) set of left (right) ideals, then $\cap_\alpha I_\alpha$ is a left (right) ideal. Also,
+\[ \sum_\alpha I_\alpha = \left\{ \sum_\alpha x_\alpha : x_\alpha \in I_\alpha, \text{ all except finitely many $x_\alpha$ are zero} \right\} \]
+(the subgroup generated by $I_\alpha$) is the smallest ideal containing all $I_\alpha$.
+\par
+For any elements $a_1, a_2, \dots, a_n \in R$, we call $Ra_1 + Ra_2 + \cdots + Ra_n$ the \textit{left ideal generated by $a_1, \dots, a_n$}. Replacing $Ra_i$ by $a_iR$, we get the \textit{right ideal generated by the $a_i$s}.
+\par
+For any ring homomorphism $f: R \rightarrow S$, the kernel of $f$ is an ideal of $R$, and the image of $f$ is a subring of $S$.
+
+\subsection{1/12/2024 lecture}
+\subsubsection{Quotient rings}
+If $I \subset R$ is an ideal and $a, b \in R$, then we say that $a$ and $b$ are \textit{congruent} ($a \cong b \pmod{I}$) iff $b-a \in I$. If $a_1 \cong b_1 \pmod{I}$ and $a_2 \cong b_2 \pmod{I}$, then $a_1 + a_2 \cong b_1 + b_2 \pmod{I}$ and $a_1a_2 \cong b_1b_2 \pmod{I}$.
+\par
+The set of cosets of $I$, $\{a+I\in R/I:a\in R\}$, is also a ring, called the \textit{quotient ring} or the \textit{factor ring}. $ \mathbb{Z}/n \mathbb{Z}$ (for some natural number $n>1$) is a classic example of a quotient ring.
+\par
+For any ideal $I \subset R$, we can show that the canonical map $\pi: R \rightarrow R/I$ given by $\pi(a)=a+I$ is a surjective ring homomorphism, with $\operatorname{Ker}(\pi)=I$.
+\par
+If $f: R \rightarrow S$ is a ring homomorphism, then we know that $\operatorname{Im}(f)$ is a subring of $S$ and $\operatorname{Ker}(f)$ is an ideal of $R$. The \textit{first isomorphism theorem for rings} says that the map $\overline{f}:R/\operatorname{Ker}(f) \rightarrow \operatorname{Im}(f)$ defined by $\overline{f}(a+\operatorname{Ker}(f))=f(a)$ is not only a group homomorphism, but also a ring homomorphism.
+\par
+Consider the function $f: \mathbb{R}[x] \rightarrow \mathbb{C}$ defined by $f(h)=h(i)$. This is a surjective ring homomorphism, and the kernel of $f$ is the set of polynomials for which $i$ is a root. Since $f$ is real, it is invariant under complex conjugation, so a real polynomial $h$ is in $\operatorname{Ker}(f)$ iff it is divisible by both $x-i$ and $x+i$. Therefore $\operatorname{Ker}(f) = (x^2 + 1) \mathbb{R}[x]$, so $ \mathbb{R}[x] / (x^2 + 1) \mathbb{R}[x] \cong \mathbb{C}$.
+\subsubsection{Product of rings}
+An element $e$ in any ring $S$ is called \textit{idempotent} iff $e^2=e$. For example, 0 and 1 are idempotent in any ring.
+\par
+For a ring $R$ that is defined as the product of rings, $R := R_1 \times R_2 \times \cdots \times R_n$, the 0 element in $R$ is $(0_{R_1}, \dots, 0_{R_n})$, and similarly, $1_R = (1_{R_1}, \dots, 1_{R_n})$. If $e_1 \in R_1, e_2 \in R_2, \dots, e_n \in R_n$ are idempotents, the $e_i$s are orthogonal (meaning $e_i e_j =0$ when $i \neq j$), the $e_i$s are all central ($e_ix=xe_i$ for any $x \in R$), and their sum is $1_R$, then let the function $f: R \rightarrow Re_1 \times Re_2 \times \cdots \times Re_n$ be defined by $f(a)=(ae_1, \dots, ae_n)$. We can prove that $f$ is an isomorphism.
+\par
+Fun example: the quotient ring $ \mathbb{Z}/10^n\mathbb{Z}$ is isomorphic to $\mathbb{Z}/2^n\mathbb{Z} \times \mathbb{Z}/5^n\mathbb{Z}$. By Bézout's identity, $\mathbb{Z}/2^n\mathbb{Z} \times \mathbb{Z}/5^n\mathbb{Z}$ contains the elements $(0,0$, $(1,0)$, $(0,1)$, and $(1,1)$, which are all idempotent -- in fact, these are the only idempotent elements. Since that group is isomorphic to $ \mathbb{Z}/10^n\mathbb{Z}$, we know that for any $n$, there are exactly 4 integers between 1 and $10^n$ whose square has the last same $n$ digits as the original number. Those are precisely the 4 numbers which are conguent to either 0 or 1 in both $ \mathbb{Z}/2^n\mathbb{Z}$ and $ \mathbb{Z}/5^n\mathbb{Z}$. Two of those numbers are boring (zero and one), but the other cases are interesting.
+
+\subsubsection{Chinese remainder theorem}
+Let $I$ and $Y$ be ideals of $R$. We say that they are \textit{coprime} iff $I+Y=R$. For example, if $n$ and $m$ are relatively prime, then $n \mathbb{Z}$ and $m \mathbb{Z}$ are coprime.
+\par
+If $I_1, I_2, \dots, I_n$ are pairwise coprime ideals of a ring $R$, then for every tuple $(a_1, \dots, a_n) \in R^n$, there exists $a \in R$ such that $a\cdot a_i = e_i$ (for each $i$), where $e_i$ is an idempotent element of $I_i$ (NOT SURE THIS IS CORRECT).
+
+\end{document}

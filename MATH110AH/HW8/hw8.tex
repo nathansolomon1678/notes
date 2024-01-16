@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\usepackage{tikz-cd}
+\renewcommand{\d}{\mathrm{d}}
+
+\begin{document}
+
+\title{Math 110AH Homework 8}
+\author{Nathan Solomon}
+\maketitle
+
+\textbf{Assignment due November 29th at 11:59 pm.}
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Let $G$ act on a set $X$. Prove that if $x,y \in X$ satisfy $ax=y$ for some $a \in G$ then $G_y = a \cdot G_x \cdot a^{-1}$.
+}}}\bigskip
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Let $G$ be a group, $a \in G$. Show that the number of elements in the conjugacy class $\{ bab^{-1}, b \in G \}$ divides $|G|$.
+}}}\bigskip
+
+Let $H$ be the conjugacy class of $a$. Since $H$ is normal in $G$, the quotient $G/H$ is a group. By Lagrange's theorem,
+FIND A SOLUTION THAT WORKS FOR INFINITE GROUPS TOO
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            An action of a group $G$ on a set $X$ is called \textit{double transitive} if for any two pairs $(x_1, x_2)$ and $(y_1, y_2)$ of elements of $X$ such that $x_1 \neq x_2$ and $y_1 \neq y_2$ there is $a \in G$ such that $ax_1 = y_1$ and $ax_2 = y_2$. Prove that $|G| \geq |X|^2 - |X|$. (Hint: Consider an action of $G$ on $X \times X$.)
+}}}\bigskip
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            \begin{itemize}
+                \item (a) Let $H$ be a subgroup of a finite group $G$. Prove that the number of different conjugate subgroups $xHx^{-1}, x \in G$, is at most $[G:H]$.
+                \item (b) Let $H$ be a subgroup of a finite group $G$. Prove that if $G$ is the union of $xHx^{-1}$ over all $x \in G$, then $H = G$.
+                \item (c) Let a finite group $G$ act transitively on a set $X$ consisting of at least two elements. Prove that there exists a $g \in G$ fixing no element of $X$.
+            \end{itemize}
+}}}\bigskip
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Determine all Sylow $p$-subgroups of $A_5$.
+}}}\bigskip
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Find the number of all Sylow $p$-subgroups of $S_p$ ($p$ is prime).
+}}}\bigskip
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Prove the following Useful Counting Result. Let $H$ be a \textit{proper} subgroup of a finite group $G$. Suppose that $|G|$ does not divide $[G:H]!$. Then $G$ contains a nontrivial normal subgroup $N$ such that $N$ is a subgroup of $H$. In particular, $G$ is not simple.
+}}}\bigskip
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Prove that all groups of order $2p^n$ ($p$ is prime, $n \geq 1$) are not simple.
+}}}\bigskip
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            \begin{itemize}
+                \item (a) Let $H \subset G$ be a subgroup. Prove that if $H$ is contained in the center of $G$ and the quotient group $G/H$ is cyclic, then $G$ is abelian.
+                \item (b) Prove that any group of order $p^2$ is abelian ($p$ is prime).
+            \end{itemize}
+}}}\bigskip
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Prove that $\{e\}$, $S_n$, and $A_n$ are the only normal subgroups in $S_n$ if $n \geq 5$.
+}}}\bigskip
+
+\end{document}

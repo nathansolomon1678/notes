@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\usepackage{tikz-cd}
+\renewcommand{\d}{\mathrm{d}}
+
+\begin{document}
+
+\title{Math 180 homework 1}
+\author{Nathan Solomon}
+\maketitle
+
+\textbf{Due January 19th}
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            For a set $X$, let $\mathrm{id}_X: X \rightarrow X$ denote the function defined by $\mathrm{id}_X(x)=x$ for all $x \in X$ (the \textit{identity function}). Let $f: X \rightarrow Y$ be some function. Prove:
+            \begin{itemize}
+                \item (a) A function $g: Y \rightarrow X$ such that $g \circ f = \mathrm{id}_X$ exists if and only if $f$ is one-to-one.
+                \item (b) A function $g: Y \rightarrow X$ such that $f \circ g = \mathrm{id}_X$ exists if and only if $f$ is onto.
+                \item (c) A function $g: Y \rightarrow X$ such that both $f \circ g = \mathrm{id}_X$ and $g \circ f = \mathrm{id}_X$ exists if and only if $f$ is a bijection.
+                \item (d) If $f: X \rightarrow Y$ is a bijection, then the following three conditions are equivalent for a function $g: Y \rightarrow X$:
+                    \begin{itemize}
+                        \item (i) $g = f^{-1}$
+                        \item (ii) $g \circ f = \mathrm{id}_X$
+                        \item (iii) $f \circ g = \mathrm{id}_Y$
+                    \end{itemize}
+            \end{itemize}
+}}}\bigskip\par
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Prove that that following two statements about a function $f: X \rightarrow Y$ are equivalent ($X$ and $Y$ are some arbitrary sets):
+            \begin{itemize}
+                \item (i) $f$ is one-to-one
+                \item (ii) For any set $Z$ and any two distinct functions $g_1: Z \rightarrow X$ and $g_2: Z \rightarrow X$, the composed functions $f \circ g_1$ and $f \circ g_2$ are also distinct.
+            \end{itemize}
+            (First, make sure you understand what it means that two functions are equal and what it means that they are distinct.)
+}}}\bigskip\par
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Let $f: A \rightarrow B$ be a surjective function. Let use define a relation on $A$ by setting $a_1 \sim a_2$ if $f(a_1)=f(a_2)$.
+            \begin{itemize}
+                \item (a) Show that $\sim$ is an equivalence relation.
+                \item (b) Show that there is a bijective correspondence between the set of equivalence classes in $A$ and the set $B$.
+            \end{itemize}
+}}}\bigskip\par
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Describe all the relations on a set $X$ that are equivalences and orderings at the same time.
+}}}\bigskip\par
+Equivalences are reflexive, symmetric, and transitive. Orderings are the same except they're required to be antisymmetric instead of symmetric, so these relations on $X$ must be both.
+\par
+Let $R$ be a of relation on $X$ which is an equivalence and an ordering. For any two elements $a,b \in X$, if $a \neq b$, then $(a,b) \not\in R$. That's because if $(a,b)$ were in $R$, by symmetry, $(b,a)$ would be in $R$, but by antisymmetry, $(b,a)$ could not be in $R$, which is a contradiction. If $a=b$, then by reflexivity, $(a,b) \in R$.
+\par
+There is only one relation $R$ which satisfies those criteria:
+\[ R=\{(x,x): x\in X\} \]
+(that is, the relation where elements of $X$ are only related to themselves)
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Determine the number of ways to distribute 10 orange drinks, 1 lemon drink, and 1 lime drink to 4 thirsty students so that each student gets at least 1 drink, and the lemon and lime drinks go to different students.
+}}}\bigskip\par
+First, distribute the lemon and lime drinks. The lemon drink can go to of the 4 students, then the lime drink can go to any of the 3 remaining students, so there are 12 options for those.
+\par
+Next, distribute the 10 orange drinks. The students that did not get the lemon or lime drinks must receive at least one orange drink, so there are only 8 left to distibute.
+\par
+To figure out how many ways 8 drinks can be distributed among 4 students, consider a ``stars and bars" diagram, where you write a string starting with a number of stars equal to the number of drinks you give to the first person, then a bar, then a number of stars equal to the number of drinks given to the second person, and so on. For example, giving everyone 2 orange drinks would be denoted as
+\[ \star \star | \star \star | \star \star | \star \star. \]
+Each possible string corresponds to a unique way to distribute the eight drinks, and the number of ways to choose such a string (with 11 characters, where 3 are bars and 8 are stars) is
+\[ \binom{11}{3} = \binom{11}{8} = \frac{11!}{3!8!} = 165. \]
+This is independent of our choice of who to give the lemon and lime drinks to, so the total number of options is
+\[ 12 \times 165 = 1980. \]
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Use the binomial theorem to show that
+    \[ 3^n=\sum_{k=0}^n \binom{n}{k} 2^k. \]
+    Give a combinatorial proof of this identity.
+}}}\bigskip\par
+
+\[ 3^n= (1+2)^n=\sum_{k=0}^n \binom{n}{k} 1^k2^k = \sum_{k=0}^n \binom{n}{k} 2^k\]
+Combinatorial proof: $3^n$ is the number of ways to put $n$ distinguishable items in 3 distinguishable barrels. That's equivalent to first choosing the number of items ($n-k$) to put into the first barrel, then choosing which $k$ items to not put in the first barrel, and out of those $k$ items, choosing any subset of them to go into the second barrel, then putting the remaining items in the third barrel.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Prove the formula
+            \[ \binom{r}{r} + \binom{r+1}{r} + \binom{r+2}{r} + \cdots + \binom{n}{r} = \binom{n+1}{r+1} \]
+            by induction on $n$ (for $r$ arbitrary but fixed). Note what the formula says for $r=1$.
+}}}\bigskip\par
+When $r=1$, this is equivalent to the formula
+\[ 1+2+3+\cdots +n = \binom{n+1}{2} = \frac{n^2+n}{2}. \]
+
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            In how many ways can we choose an ordered pair $(A, B)$ of subsets of $[n]$ so that $A \cap B = \emptyset$?
+}}}\bigskip\par
+Let $C=[n]-(A \cup B)$. Then every integer from 1 to $n$ is in $A$ or $B$ or $C$, but cannot be in more than one. Therefore each natural number up to $n$ can be put in one of those three sets, and those choices are all independent, so there are $3^n$ such ordered pairs.
+\par
+Equivalently, that is the number of $n$-letter words where each word is A, B, or C.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            How many $k$-element subsets of $\{1,2,\dots,n\}$ exist containing no two consecutive numbers? \textit{Hint:} Use the idea used to count compositions.
+}}}\bigskip\par
+
+\end{document}

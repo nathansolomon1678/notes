@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\usepackage{tikz-cd}
+\renewcommand{\d}{\mathrm{d}}
+
+\begin{document}
+
+\title{Math 110BH homework 1}
+\author{Nathan Solomon}
+\maketitle
+
+\textbf{Due Tuesday, January 16th}
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Show that if $1=0$ in a ring $R$, then $R$ is the zero ring.
+}}}\bigskip
+\par
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Find an example of a subring of $ \mathbb{Q}$ different from $ \mathbb{Z}$ and $ \mathbb{Q}$.
+}}}\bigskip
+\par
+set of rational numbers where the denominator is a power of 2???
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Find all zero divisors in $ \mathbb{Z}/m \mathbb{Z}$.
+}}}\bigskip
+\par
+the set of integers which are not coprime to $m$???
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Prove that the ring $\operatorname{End}( \mathbb{Z} )$ is isomorphic to $ \mathbb{Z} $.
+}}}\bigskip
+\par
+Every endomorphism in Z is multiplication by an integer Z
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Show that a subring of an integral domain is an integral domain. Is it true that a subring of a field is a field?
+}}}\bigskip
+\par
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Prove that a finite integral domain is a field.
+}}}\bigskip
+\par
+For any nonzero element $b$ of a finite integral domain $R$, let $m_b:R \rightarrow R$ be the function defined by $m_b(a)=ab$. If $a$ and $a'$ are nonzero elements of $R$ for which $m_b(a)=m_b(a')$, then $0=m_b(a)-m_b(a')=ab-a'b=(a-a')b$. Since $b$ is nonzero, $a-a'$ is also nonzero. We have shown that $m_b(a)=m_b(a')$ implies $a=a'$, meaning that $m_b$ is injective.
+\par
+Since $m_b$ is an injective function from a finite set to itself, it must also be a bijection.
+HOW DOES THIS PROVE EVERY ELEMENT IS INVERTIBLE??? PIGEONHOLE SOMETHING??? WHAT IS A FIELD???
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            \begin{itemize}
+                \item (a) Find a ring $A$ such that for any ring $R$ there is exactly one ring homomorphism $A \rightarrow R$.
+                \item (b) Find a ring $B$ such that for any ring $R$ there is exactly one ring homomorphism $R \rightarrow B$.
+    \end{itemize}
+}}}\bigskip
+\par
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    By ``an ideal", in this problem, we mean left (respectively, right or two-sided) ideal. Let $f: R \rightarrow S$ be a ring homomorphism.
+    \begin{itemize}
+        \item (a) Let $J$ be an ideal of $S$. Show that $f^{-1}(J)$ is an ideal of $R$ that contains $\operatorname{Ker}(f)$.
+        \item Prove that if $f$ is surjective and $I$ is an ideal of $R$, then $f(I)$ is an ideal of $S$. Show that the correspondence $I \mapsto f(I)$ yields a bijection between the set of all ideals of $R$ that contain $\operatorname{Ker}(f)$ and the set of all ideals of $S$. Determine the inverse bijection.
+    \end{itemize}
+}}}\bigskip
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            \begin{itemize}
+                \item (a) An element $a$ of a ring $R$ is called \textit{nilpotent} if $a^n=0$ for some $n \in \mathbb{N}$. Show that if $R$ is a commutative ring, then the set $\operatorname{Nil}(R)$ of all nilpotent elements in $R$ is an ideal (called the \textit{nilradical} of $R$).
+                \item (b) Prove that a polynomial $f(X) = a_0 + a_1X + \cdots +a_nX^n \in R[X]$ over a commutative ring $R$ is nilpotent if and only if all $a_i$ are nilpotent in $R$.
+    \end{itemize}
+}}}\bigskip
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            \begin{itemize}
+                \item (a) Prove that if $a$ is a nilpotent element of a ring $R$, then the element $1+a$ is invertible. (Hint: Use the identity $1-X^n=(1-X)(1+X+\cdots X^{n-1})$.)
+                \item (b) Prove that a polynomial $f(X) = a_0 + a_1X + \cdots +a_nX^n \in R[X]$ over a commutative ring $R$ is invertible in $R[X]$ if and only if $a_0$ is invertible in $R$ and all $a_i$ are nilpotent in $R$ for $i \geq 1$. (Hint: Let $g(X)=b_0+b_1X+\cdots +b_mX^m \in R[X]$ be the inverse of $f(X)$. Prove first that $a_n^{m+1}=0$. Then use induction.)
+    \end{itemize}
+}}}\bigskip
+
+
+\end{document}
