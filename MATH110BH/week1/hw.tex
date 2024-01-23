@@ -23,32 +23,55 @@
 }}}\bigskip
 \par
 
+Let $a$ be any element of $R$. Then
+\[ a=1a=0a=(1-1)a=a-a=0. \]
+Since every element of $R$ is zero, $R$ is the zero ring.
+
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
             Find an example of a subring of $ \mathbb{Q}$ different from $ \mathbb{Z}$ and $ \mathbb{Q}$.
 }}}\bigskip
 \par
-set of rational numbers where the denominator is a power of 2???
+Let $ \mathbb{Z}[ \frac{1}{2} ]$ denote the set of rational numbers which are equal to an integer divided by a power of two, called the ``dyadic rationals":
+\[ \mathbb{Z}[ \frac{1}{2} ] := \left\{ \frac{x}{2^m} : x,m \in \mathbb{Z} \right\} \]
+The multiplicative identity in this group is clearly the same as the multiplicative identity in $ \mathbb{Q}$, so to prove that $ \mathbb{Z}[ \frac{1}{2} ]$ is a subring of $ \mathbb{Q}$, we just need to show that for any dyadic rationals $a$ and $b$, $a+b$, $ab$, and $-a$ are also dyadic rationals.
+\par
+Let $x,y,m,n$ be integers such that $a=x/2^m$ and $b=y/2^n$. Then the following are all dyadic rationals, so $ \mathbb{Z}[ \frac{1}{2} ]$ is a subring of $ \mathbb{Q}$.
+\begin{align*}
+    a+b &= \frac{2^nx+2^my}{2^{m+n}} \\
+    ab &= \frac{xy}{2^{m+n}} \\
+    -a &= -\frac{x}{2^m}
+\end{align*}
+\par
+$ \mathbb{Z}[ \frac{1}{2} ]$ is not equal to $ \mathbb{Z}$ because $ \mathbb{Z}[ \frac{1}{2} ]$ contains $ \frac{1}{2} $, and $ \mathbb{Z}[ \frac{1}{2} ]$ is not equal to $ \mathbb{Q}$ because $ \mathbb{Z}[ \frac{1}{2} ]$ does not contain $ \frac{1}{3} $ (there is no integer $x$ such that $2^x/3$ is an integer).
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
     Find all zero divisors in $ \mathbb{Z}/m \mathbb{Z}$.
 }}}\bigskip
 \par
-the set of integers which are not coprime to $m$???
+Let $a$ be an integer which is not divisible by $m$. If $a$ is coprime to $m$, $b$ is an integer, and $ab$ is an integer multiple of $m$, then $b$ must also be an integer multiple of $m$. If $a$ is not coprime to $m$, then $b=m/\operatorname{gcd}(a,m)$ is an integer which is not divisible by $m$ and which makes $ab$ an integer multiple of $m$. Therefore $[a]$ is a zero divisor in $ \mathbb{Z}/m\mathbb{Z}$ if and only if $a$ and $m$ are coprime, so the set of (nonzero) zero divisors in $ \mathbb{Z}/m\mathbb{Z}$ is
+\[ \{ [a]_m : \operatorname{gcd}(a,m)=1 \}. \]
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
             Prove that the ring $\operatorname{End}( \mathbb{Z} )$ is isomorphic to $ \mathbb{Z} $.
 }}}\bigskip
 \par
-Every endomorphism in Z is multiplication by an integer Z
+Let $f$ be any endomorphism of $ \mathbb{Z}$. Using the properties of homomorphisms and of rings, we see that $f(2)=f(1)+f(1)=2f(1)$, and that $f(3)=3f(1)$, and $f(-1)=-f(1)$, and so on. By induction, $f$ is uniquely determined by $f(1)$, and $f$ is the function which multiplies any integer by $f(1)$.
+\par
+Let $h: \operatorname{End}( \mathbb{Z} ) \rightarrow \mathbb{Z}$ be the map which takes $f$ to $f(1)$. This is a homomorphism, because $h(f+g)=h(\text{multiplication by $(f+g)(1)$}) = h(\text{multiplication by $f(1)+g(1)$}) = f(1)+g(1)$, and it's invertible because for any integer $x$, multiplication by $x$ is an endomorphism of $ \mathbb{Z}$.
+\par
+Therefore $h$ is an isomorphism between $\operatorname{End}( \mathbb{Z})$ and $ \mathbb{Z}$.
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
             Show that a subring of an integral domain is an integral domain. Is it true that a subring of a field is a field?
 }}}\bigskip
 \par
+Let $R$ be an integral domain, and let $S$ be a subring of $R$. Since $R$ contains no nonzero zero divisors, and every element in $S$ is in $R$, $S$ also has no nonzero zero divisors. Therefore $S$ is an integral domain.
+\par
+It is not true that a subring of a field is a field -- for example, the set $ \mathbb{Z}[ \frac{1}{2} ]$ (the dyadic rationals, defined in problem 2) is a subring of the field $ \mathbb{Q}$. However, $ \mathbb{Z}[ \frac{1}{2} ]$ is not a field, since it contains $3/2$ but not $2/3$.
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
@@ -57,8 +80,9 @@ Every endomorphism in Z is multiplication by an integer Z
 \par
 For any nonzero element $b$ of a finite integral domain $R$, let $m_b:R \rightarrow R$ be the function defined by $m_b(a)=ab$. If $a$ and $a'$ are nonzero elements of $R$ for which $m_b(a)=m_b(a')$, then $0=m_b(a)-m_b(a')=ab-a'b=(a-a')b$. Since $b$ is nonzero, $a-a'$ is also nonzero. We have shown that $m_b(a)=m_b(a')$ implies $a=a'$, meaning that $m_b$ is injective.
 \par
-Since $m_b$ is an injective function from a finite set to itself, it must also be a bijection.
-HOW DOES THIS PROVE EVERY ELEMENT IS INVERTIBLE??? PIGEONHOLE SOMETHING??? WHAT IS A FIELD???
+Since $m_b$ is an injective function from a finite set to itself, it must also be a bijection, so $m_b^{-1}(1)$ is well-defined. In fact, $m_b^{-1}(1)$ is $b^{-1}$, because $b m_b^{-1}(1) = m_b(m_b^{-1}(1)) = 1$.
+\par
+We have shown that every nonzero element $b$ of a finite integral domain $R$ is invertible. Since we already know integral domains are commutative and nonzero, this proves that every finite integral domain is a field.
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
@@ -68,15 +92,40 @@ HOW DOES THIS PROVE EVERY ELEMENT IS INVERTIBLE??? PIGEONHOLE SOMETHING??? WHAT 
     \end{itemize}
 }}}\bigskip
 \par
+\begin{itemize}
+    \item (a) For any ring $R$, suppose $f$ is a ring homomorphism from $ \mathbb{Z}$ to $R$. Using the properties of ring homomorphisms, we know that $f(1)=1_R$, and also that
+        \[ f(0)=f(0)+f(0)-f(0)=f(0+0)-f(0)=f(0)-f(0)=0. \]
+        Now that we know $f(1)$ and $f(0)$, we can use the fact that $f$ is an additive group homomorphism to see that for any nonnegative integer $n$, $f(n)$ is equal to $1_R$ added to $0_R$ $n$ times, and $f(-n)$ is equal to $1_R$ subtracted from $0_R$ $n$ times. The morphism $f$ which is defined this way is unique, so it is the only ring homomorphism from $ \mathbb{Z}$ to $R$.
+    \item (b) For any ring $R$, the only homomorphism from $R$ to the zero ring is the one which maps every element to zero.
+\end{itemize}
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
     By ``an ideal", in this problem, we mean left (respectively, right or two-sided) ideal. Let $f: R \rightarrow S$ be a ring homomorphism.
     \begin{itemize}
         \item (a) Let $J$ be an ideal of $S$. Show that $f^{-1}(J)$ is an ideal of $R$ that contains $\operatorname{Ker}(f)$.
-        \item Prove that if $f$ is surjective and $I$ is an ideal of $R$, then $f(I)$ is an ideal of $S$. Show that the correspondence $I \mapsto f(I)$ yields a bijection between the set of all ideals of $R$ that contain $\operatorname{Ker}(f)$ and the set of all ideals of $S$. Determine the inverse bijection.
+        \item (b) Prove that if $f$ is surjective and $I$ is an ideal of $R$, then $f(I)$ is an ideal of $S$. Show that the correspondence $I \mapsto f(I)$ yields a bijection between the set of all ideals of $R$ that contain $\operatorname{Ker}(f)$ and the set of all ideals of $S$. Determine the inverse bijection.
     \end{itemize}
 }}}\bigskip
+\par
+\begin{itemize}
+    \item (a) (Left) ideal are, by definition, subsets of rings which contain zero, are closed under addition, and are closed under (left) multiplication by elements of the original ring. Therefore $J$ contains zero, and so
+        \[ \operatorname{Ker}(f) = f^{-1}(0) \subset f^{-1}(J). \]
+        For any homomorphism $f$, $f(0)=0$, so $0 \in \operatorname{Ker}(f)$. For any two elements $a, b \in f^{-1}(J)$,
+        \[ f(a+b)=f(a)+f(b)\in J+J \subset J \]
+        and, assuming we are considering left ideals for now, for any $x \in R, a \in f^{-1}(J)$,
+        \[ f(xa) = f(x)f(a) \in f(x) J \subset J \]
+        which implies $xa \in f^{-1}(J)$. That last step can easily be changed to work for right or two-sided ideals instead.
+        \par
+        This proves that $f^{-1}(J)$ is a (left) ideal of $R$ which contains $\operatorname{Ker}(f)$.
+    \item (b) $f(I)$ clearly contains zero, so we only need to show that $a+b$ and $xa$ are in $f(I)$ for any $a,b \in f(I), x \in S$.
+        \par
+        For any $a, b \in f(I)$, there exist elements $a', b' \in f^{-1}(f(I))= I + \operatorname{Ker}(f)$ such that $f(a')=a$ and $f(b')=b$. Then $a' + b' \in I + \operatorname{Ker}(f)$, which implies $f(a'+b')=a+b$. Also, for any $x \in S$, since $f$ is surjective, there exists an element $x' \in R$ such that $f(x')=x$, so $xa=f(x')f(a')=f(x'a') \in f(I)$. Therefore $f(I)$ is an ideal.
+        \par
+        For any 2 ideals $I_1, I_2 \subset R$ which contain $\operatorname{Ker}(f)$, suppose $I_1 \neq I_2$. This implies $I_1 / \operatorname{Ker}(f) \neq I_2 / \operatorname{Ker}(f)$, so $f(I_1) \neq f(I_2)$, meaning that this map ($I \mapsto f(I)$, $\operatorname{Ker}(f) \subset I$) is injective. Also, it's surjective, because for any ideal $J \in f(I)$, $f^{-1}(J)$ is an ideal of $R$ which contains $\operatorname{Ker}(f)$.
+        \par
+        The inverse of the map $I \mapsto f(I)$ (for any $I$ which contains $\operatorname{Ker}(f)$) is the function which takes any ideal of $S$ to its preimage.
+\end{itemize}
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
@@ -85,6 +134,17 @@ HOW DOES THIS PROVE EVERY ELEMENT IS INVERTIBLE??? PIGEONHOLE SOMETHING??? WHAT 
                 \item (b) Prove that a polynomial $f(X) = a_0 + a_1X + \cdots +a_nX^n \in R[X]$ over a commutative ring $R$ is nilpotent if and only if all $a_i$ are nilpotent in $R$.
     \end{itemize}
 }}}\bigskip
+\par
+\begin{itemize}
+    \item (a) For any $a, b \in \operatorname{Nil}(R)$, let $m$ and $n$ be natural numbers such that $a^m=0=b^n$. Then every term in the expansion of $(a+b)^{m+n}$ can be rewritten as $a^xb^y$ where $x$ is at least $m$ or $y$ is at least $n$, so those terms are all zero, meaning $a+b\in \operatorname{Nil}(R)$.
+        \par
+        For any $x \in R, a \in \operatorname{Nil}(R)$, let $n$ be a natural number such that $a^n=0$. Then $(xa)^n=x^na^n=0$, so $xa \in \operatorname{Nil}(R)$.
+        \par
+        Lastly, $\operatorname{Nil}(R)$ contains 0, so it is an ideal.
+    \item (b) If all $a_i$s are nilpotent, then let $m$ be a natural number such that $a_i^m=0$ for every $a_i$. Then $f(X)^{mn}$ is a polynomial where every coefficient is the product of $mn$ $a_i$s (allowing the $a_i$s to be repeated). By pigeonholing, for each coefficient, there is some $a_i$ that is repeated at least $m$ times in that product, so that coefficient is zero. Therefore $f(X)^{mn}=0$, so $f(X)$ is nilpotent.
+        \par
+        If $f(X)$ is nilpotent, then there is a natural number $m$ such that $f(X)^m=0$. That implies the contant term of $f(X)^m$, which is $a_0^m$, is zero, so $a_0$ is nilpotent. If the degree of $f(X)$ is not zero, then consider the polynomial $(f(X)-a_0)/X$. This new polynomial has degree $n-1$, and if it is nilpotent, then the constant term, $a_1$, is nilpotent. Repeating this process $n$ times, we see that every coefficient in $f(X)$ has to be nilpotent.
+\end{itemize}
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
@@ -93,6 +153,12 @@ HOW DOES THIS PROVE EVERY ELEMENT IS INVERTIBLE??? PIGEONHOLE SOMETHING??? WHAT 
                 \item (b) Prove that a polynomial $f(X) = a_0 + a_1X + \cdots +a_nX^n \in R[X]$ over a commutative ring $R$ is invertible in $R[X]$ if and only if $a_0$ is invertible in $R$ and all $a_i$ are nilpotent in $R$ for $i \geq 1$. (Hint: Let $g(X)=b_0+b_1X+\cdots +b_mX^m \in R[X]$ be the inverse of $f(X)$. Prove first that $a_n^{m+1}=0$. Then use induction.)
     \end{itemize}
 }}}\bigskip
-
+\par
+\begin{itemize}
+    \item (a) Let $n$ be a natural number such that $a^n=0$. Then $(1+a)(1-a+a^2-a^3+\cdots + (-1)^{n-1} a^{n-1})=1 \pm a^n=1$, so $1+a$ has a multiplicative inverse.
+    \item (b) Base case (n=0): if $f(X)$ is a degree-zero polynomial, then it is invertible if and only if there is a polynomial $g(X)$ such that $f(X)g(X)=1$. Since $f(X)=a_0$, that's equivalent to $g(X) = a_0^{-1}$, so in this case, $f(X)$ is invertible if and only if $a_0$ is invertible.
+        \par
+        Inductive step: suppose that every degree-$n$ polynomial over $R$ is invertible if and only if $a_0$ is invertible and all other $a_i$s are nilpotent. Then let $g(X)=b_0 + b_1X + b_2 X^2 + \cdots + b_mX^m$ be the inverse of $f(X)$. STILL NEED TO FINISH THIS PROBLEM.
+\end{itemize}
 
 \end{document}

@@ -22,8 +22,8 @@
             For a set $X$, let $\mathrm{id}_X: X \rightarrow X$ denote the function defined by $\mathrm{id}_X(x)=x$ for all $x \in X$ (the \textit{identity function}). Let $f: X \rightarrow Y$ be some function. Prove:
             \begin{itemize}
                 \item (a) A function $g: Y \rightarrow X$ such that $g \circ f = \mathrm{id}_X$ exists if and only if $f$ is one-to-one.
-                \item (b) A function $g: Y \rightarrow X$ such that $f \circ g = \mathrm{id}_X$ exists if and only if $f$ is onto.
-                \item (c) A function $g: Y \rightarrow X$ such that both $f \circ g = \mathrm{id}_X$ and $g \circ f = \mathrm{id}_X$ exists if and only if $f$ is a bijection.
+                \item (b) A function $g: Y \rightarrow X$ such that $f \circ g = \mathrm{id}_Y$ exists if and only if $f$ is onto.
+                \item (c) A function $g: Y \rightarrow X$ such that both $f \circ g = \mathrm{id}_Y$ and $g \circ f = \mathrm{id}_X$ exists if and only if $f$ is a bijection.
                 \item (d) If $f: X \rightarrow Y$ is a bijection, then the following three conditions are equivalent for a function $g: Y \rightarrow X$:
                     \begin{itemize}
                         \item (i) $g = f^{-1}$
@@ -32,6 +32,18 @@
                     \end{itemize}
             \end{itemize}
 }}}\bigskip\par
+\begin{itemize}
+    \item (a) If $f$ is one-to-one, then the function $f: X \rightarrow \operatorname{Im}(f)$ is a bijection, so we can define $g: \operatorname{Im}(f) \rightarrow X$ to be it's inverse. Then $f \circ f = \mathrm{id}_X$.
+        \par
+        If $f$ is not one-to-one, there exist elements $a,b \in X$ such that $a \neq b$ but $f(a)=f(b)$. Then $g(f(a))=g(f(b))$, so $g \circ f$ is not one-to-one, and therefore is not $\mathrm{id}_X$.
+    \item (b) If $f: X \rightarrow Y$ is surjective, then let $g: Y \rightarrow X$ be any function which takes $y \in Y$ to some element in the preimage $f^{-1}(y)$. Then $f \circ g = \mathrm{id}_Y$.
+        \par
+        If $f$ is not surjective, then there exists some $y \in Y$ which is not in the image of $f$, and therefore not in the image of $f \circ g$. But since the image of $\mathrm{id}_Y$ is $Y$, that means $f \circ g \neq \mathrm{id}_Y$.
+    \item (c) This follows from parts (a) and (b). A function is a bijection if and only if it is both injective and surjective.
+    \item (d) If statement (i) is true, then $f^{-1}(f(x))=x$ for any $x \in X$, so (ii) is true. Also, statement (i) is equivalent to saying $g^{-1}=f$, so by the same logic, (i) implies (iii).
+        \par
+        If (ii) is true, then $f \circ g \circ f = f \circ \mathrm{id}_X = f$, and since bijections are invertible, we can compose with $f^{-1}$ on the right to get $f \circ g = \mathrm{id}_Y$, o (iii). By the exact same logic, (iii) implies (ii), and by the definition of inverse functions, (ii) and (iii) together imply (i). Therefore each of the three statements implies the other two.
+\end{itemize}
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
@@ -42,6 +54,9 @@
             \end{itemize}
             (First, make sure you understand what it means that two functions are equal and what it means that they are distinct.)
 }}}\bigskip\par
+If (i) is true, let $Z$ be a set and let $g_1, g_2$ be distinct functions from $Z$ to $X$. Since $g_1 \neq g_2$, there exists at least one $z \in Z$ such that $g_1(z) \neq g_2(z)$. Then, because $f$ is injective, $f(g_1(z)) \neq f(g_2(z))$, so (ii) is true.
+\par
+If (ii) is true, then let $x_1, x_2$ be any distinct elements of $X$, let $Z = \{0\}$, and let $g_1, g_2$ be the functions such that $g_1(0)=x_1$ and $g_2(0)=x_2$. Since $f \circ g_1 \neq f \circ g_2$, there has to be at least one $z \in Z$ such that $f(g_1(z)) \neq f(g_2(z))$. But because $z$ has to be zero, that means $f(x_1) \neq f(x_2)$, so (i) is true.
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
@@ -51,18 +66,18 @@
                 \item (b) Show that there is a bijective correspondence between the set of equivalence classes in $A$ and the set $B$.
             \end{itemize}
 }}}\bigskip\par
+\begin{itemize}
+    \item (a) Reflexivity: $a \sim a$ for any $a \in A$ because $f(a)=f(a)$. Symmetry: If $f(a_1)=f(a_2)$, then we also know $f(a_2)=f(a_1)$, so $a_1 \sim a_2$ implies $a_2 \sim a_1$. Transitivity: If $a_1 \sim a_2$ and $a_2 \sim a_3$, then $f(a_1) = f(a_2) = f(a_3)$, so $a_1 \sim a_3$.
+    \item (b) Let $f'$ be the function which takes the equivalence class $[a]$ to $f(a)$ for any $a \in A$. This map is well-defined because $f(a_1)=f(a_2)$ for any $a_1, a_2 \in [a]$. It's surjective, because for any $b \in B$, there exists $a \in A$ such that $f(a)=b$, which implies $f'([a])=b$. And it's also injective, because if $f'([a_1])=f'([a_2])$, then $f(a_1)=f(a_2)$, which means $a_1$ and $a_2$ are in the same equivalence class.
+\end{itemize}
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
-            Describe all the relations on a set $X$ that are equivalences and orderings at the same time.
+            Find the number of strictly increasing three-digit strings that use digits from $\{0,1,2,\dots,9\}$. In other words, count strings $abc$ in which $a<b<c$.
 }}}\bigskip\par
-Equivalences are reflexive, symmetric, and transitive. Orderings are the same except they're required to be antisymmetric instead of symmetric, so these relations on $X$ must be both.
-\par
-Let $R$ be a of relation on $X$ which is an equivalence and an ordering. For any two elements $a,b \in X$, if $a \neq b$, then $(a,b) \not\in R$. That's because if $(a,b)$ were in $R$, by symmetry, $(b,a)$ would be in $R$, but by antisymmetry, $(b,a)$ could not be in $R$, which is a contradiction. If $a=b$, then by reflexivity, $(a,b) \in R$.
-\par
-There is only one relation $R$ which satisfies those criteria:
-\[ R=\{(x,x): x\in X\} \]
-(that is, the relation where elements of $X$ are only related to themselves)
+Any such string can be formed uniquely by choosing 3 distinct digits from 0 to 9, then letting $a$ be the smallest one, $b$ be the middle one, and $c$ be the largest. There are
+\[ \binom{10}{3}=120 \]
+ways to do that.
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
@@ -70,7 +85,7 @@ There is only one relation $R$ which satisfies those criteria:
 }}}\bigskip\par
 First, distribute the lemon and lime drinks. The lemon drink can go to of the 4 students, then the lime drink can go to any of the 3 remaining students, so there are 12 options for those.
 \par
-Next, distribute the 10 orange drinks. The students that did not get the lemon or lime drinks must receive at least one orange drink, so there are only 8 left to distibute.
+Next, distribute the 10 orange drinks. The students that did not get the lemon or lime drinks must receive at least one orange drink, so there are only 8 left to distribute (and no restrictions on whom those 8 drinks can go to).
 \par
 To figure out how many ways 8 drinks can be distributed among 4 students, consider a ``stars and bars" diagram, where you write a string starting with a number of stars equal to the number of drinks you give to the first person, then a bar, then a number of stars equal to the number of drinks given to the second person, and so on. For example, giving everyone 2 orange drinks would be denoted as
 \[ \star \star | \star \star | \star \star | \star \star. \]
@@ -91,25 +106,33 @@ Combinatorial proof: $3^n$ is the number of ways to put $n$ distinguishable item
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
-            Prove the formula
-            \[ \binom{r}{r} + \binom{r+1}{r} + \binom{r+2}{r} + \cdots + \binom{n}{r} = \binom{n+1}{r+1} \]
-            by induction on $n$ (for $r$ arbitrary but fixed). Note what the formula says for $r=1$.
+            Prove that for all natural numbers $n$, the equality
+            \[ \sum_{k=1, k \text{ odd}}^n \binom{n}{k} 5^k = \frac{6^n-(-4)^n}{2} \]
+            holds.
 }}}\bigskip\par
-When $r=1$, this is equivalent to the formula
-\[ 1+2+3+\cdots +n = \binom{n+1}{2} = \frac{n^2+n}{2}. \]
-
+\begin{align*}
+    \frac{6^n-(-4)^n}{2} &= \frac{(1+5)^n - (1-5)^n}{2} \\
+                         &= \left( \frac{1}{2} \sum_{k=0}^n \binom{n}{k} 5^k \right) - \left( \frac{1}{2} \sum_{k=0}^n \binom{n}{k} (-5)^k \right) \\
+                         &= \sum_{k=0}^n \binom{n}{k} 5^k \cdot \frac{1-(-1)^k}{2} \\
+                         &= \sum_{k=0}^n \binom{n}{k} 5^k \cdot \left(\text{1 if $k$ is odd, 0 if $k$ is even}\right) \\
+                         &= \sum_{k=0,k \text{ odd}}^n \binom{n}{k} 5^k
+\end{align*}
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
             In how many ways can we choose an ordered pair $(A, B)$ of subsets of $[n]$ so that $A \cap B = \emptyset$?
 }}}\bigskip\par
-Let $C=[n]-(A \cup B)$. Then every integer from 1 to $n$ is in $A$ or $B$ or $C$, but cannot be in more than one. Therefore each natural number up to $n$ can be put in one of those three sets, and those choices are all independent, so there are $3^n$ such ordered pairs.
+Let $C=[n]-(A \cup B)$. Then every integer from 1 to $n$ is in $A$ or $B$ or $C$, but cannot be in more than one. Therefore each natural number up to $n$ can be put in any one of those three sets, and those choices are all independent, so there are $3^n$ such ordered pairs.
 \par
-Equivalently, that is the number of $n$-letter words where each word is A, B, or C.
+Equivalently, that is the number of $n$-letter words where each letter is `A', `B', or `C'.
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
             How many $k$-element subsets of $\{1,2,\dots,n\}$ exist containing no two consecutive numbers? \textit{Hint:} Use the idea used to count compositions.
 }}}\bigskip\par
+
+Any subset of $[n]$ can be written as an $n$-bit string, with the $i$th bit being a 1 if $i$ is in the subset of $[n]$, and being 0 otherwise. The only additional restriction here is that every `1' in that $n$-bit string must be followed by a `0'. This restriction can be represented by adding a zero to the end of the string and then considering `10' to be a single letter, so the possible choices are now uniquely represented by strings with $n+1-k$ characters, or which $k$ characters are `10' and the remaining $n+1-2k$ characters are all `0'. Therefore there are
+\[ \binom{n+1-k}{k} \]
+ways to do this.
 
 \end{document}

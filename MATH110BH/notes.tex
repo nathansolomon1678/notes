@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \newtheorem{thm}{Theorem}[section]
@@ -145,11 +146,37 @@ An element $e$ in any ring $S$ is called \textit{idempotent} iff $e^2=e$. For ex
 \par
 For a ring $R$ that is defined as the product of rings, $R := R_1 \times R_2 \times \cdots \times R_n$, the 0 element in $R$ is $(0_{R_1}, \dots, 0_{R_n})$, and similarly, $1_R = (1_{R_1}, \dots, 1_{R_n})$. If $e_1 \in R_1, e_2 \in R_2, \dots, e_n \in R_n$ are idempotents, the $e_i$s are orthogonal (meaning $e_i e_j =0$ when $i \neq j$), the $e_i$s are all central ($e_ix=xe_i$ for any $x \in R$), and their sum is $1_R$, then let the function $f: R \rightarrow Re_1 \times Re_2 \times \cdots \times Re_n$ be defined by $f(a)=(ae_1, \dots, ae_n)$. We can prove that $f$ is an isomorphism.
 \par
-Fun example: the quotient ring $ \mathbb{Z}/10^n\mathbb{Z}$ is isomorphic to $\mathbb{Z}/2^n\mathbb{Z} \times \mathbb{Z}/5^n\mathbb{Z}$. By Bézout's identity, $\mathbb{Z}/2^n\mathbb{Z} \times \mathbb{Z}/5^n\mathbb{Z}$ contains the elements $(0,0$, $(1,0)$, $(0,1)$, and $(1,1)$, which are all idempotent -- in fact, these are the only idempotent elements. Since that group is isomorphic to $ \mathbb{Z}/10^n\mathbb{Z}$, we know that for any $n$, there are exactly 4 integers between 1 and $10^n$ whose square has the last same $n$ digits as the original number. Those are precisely the 4 numbers which are conguent to either 0 or 1 in both $ \mathbb{Z}/2^n\mathbb{Z}$ and $ \mathbb{Z}/5^n\mathbb{Z}$. Two of those numbers are boring (zero and one), but the other cases are interesting.
+Fun example: the quotient ring $ \mathbb{Z}/10^n\mathbb{Z}$ is isomorphic to $\mathbb{Z}/2^n\mathbb{Z} \times \mathbb{Z}/5^n\mathbb{Z}$. By Bézout's identity, $\mathbb{Z}/2^n\mathbb{Z} \times \mathbb{Z}/5^n\mathbb{Z}$ contains the elements $(0,0)$, $(1,0)$, $(0,1)$, and $(1,1)$, which are all idempotent -- in fact, these are the only idempotent elements. Since that group is isomorphic to $ \mathbb{Z}/10^n\mathbb{Z}$, we know that for any $n$, there are exactly 4 integers between 1 and $10^n$ whose square has the last same $n$ digits as the original number. Those are precisely the 4 numbers which are congruent to either 0 or 1 in both $ \mathbb{Z}/2^n\mathbb{Z}$ and $ \mathbb{Z}/5^n\mathbb{Z}$. Two of those numbers are boring (zero and one), but the other cases are interesting.
 
 \subsubsection{Chinese remainder theorem}
 Let $I$ and $Y$ be ideals of $R$. We say that they are \textit{coprime} iff $I+Y=R$. For example, if $n$ and $m$ are relatively prime, then $n \mathbb{Z}$ and $m \mathbb{Z}$ are coprime.
 \par
 If $I_1, I_2, \dots, I_n$ are pairwise coprime ideals of a ring $R$, then for every tuple $(a_1, \dots, a_n) \in R^n$, there exists $a \in R$ such that $a\cdot a_i = e_i$ (for each $i$), where $e_i$ is an idempotent element of $I_i$ (NOT SURE THIS IS CORRECT).
 
+\subsection{LECTURE NOTES FROM JANUARY 17TH and 18TH!!!}
+
+\subsection{1/22/2024 lecture}
+A domain $R$ is called a \textit{principal ideal domain (PID)} iff every ideal in $R$ is principal. Every Euclidean domain is a PID. Proof: Let $I$ be an ideal of $R$, and assume $I \neq 0$. There exists a Euclidean function $\varphi: R-\{0\} \rightarrow \mathbb{Z}^{\geq 0}$. Let $a \in I$ be a value of $I - \{0\}$ which minimizes $\varphi(a)$. Now suppose $I=aR$. Since $I$ is  PID, we know $aR \subset I$, so for every $x \in I$, there exist $q,r \in R$ such that $x=aq+r$ and either $r=0$ or $\varphi(r) < \varphi(a)$. If $r \neq 0$, then $=aq \in I$, so $r$ is a nonzero element of $I$ such that $\varphi(r) < \varphi(a)$. This is a contradiction, so every Euclidean domain is a PID.
+\par
+$ \mathbb{Z}$ and $F[x]$ (for some field $F$) and $ \mathbb{Z}[i]$ are examples of PIDs.
+\subsubsection{Factorization in integral domains}
+Let $a,b$ be elements of a domain $R$ such that $b \neq 0$. We say that $b$ \textit{divides} $a$ (written $b|a$) iff $a=bc$ for some $c \in R$. This is equivalent to saying $aR \subset bR$. $a$ and $b$ are called \textit{associate} iff $a|b$ and $b|a$ (in other words, $aR=bR$). This is an equivalence relation.
+\par
+This is an example of a ``good" property". A \textit{good property} is any property that can be written in terms of ideals.
+\par
+If $a$ and $b$ are associate elements of a domain $R$, then $a=bc$ for some $c \in R$, and $b=ad$ for some $d \in R$. Then $a=adc$, so $dc=1$. This means there exists a unit $u \in R^\times$ (either $u=c$ or $u=d$) such that $a=bu$ and $b=au^{-1}$.
+\par
+Also, note that multiplying any two elements $a,b$ by a unit (an invertible element) does not change whether one divides the other.
+\subsubsection{Irreducible elements}
+An element $c \in R$ ($R$ is a domain???) is called \textit{irreducible} iff $c \neq 0$, $c \not\in R^\times$, and any $a,b \in R$ such that $c=ab$, either $a \in R^\times$ or $b \in R^\times$.
+\par
+Equivalently, an element $c \in R$ is irreducible iff $cR$ is maximal in the set of principal ideals which are not $R$. Proof: suppose there exists $a \in R$ such that $cR \subsetneq aR \neq R$. Then $a$ is not invertible, and since $c \in cR$, we can write $c=ab$, which implies $b$ is invertible. This is a contradiction, because we could write $cR=abR$, and since $b$ is invertible, that implies $cR=aR$. REMEMBER TO ADD THE PROOF GOING THE OTHER WAY, SINCE THE STATEMENT WAS ``IF AND ONLY IF".
+\subsubsection{Prime elements}
+An element $p \in R$ is called \textit{prime} iff $p \neq 0$, $p \not\in R^\times$, and if $p|ab$, then either $p|a$ or $p|b$.
+\par
+Now we want to make this a good property. An element $\ in R$ is prime if and only if $p \neq 0$ and $pR$ is a prime ideal. Proof: the definition of a prime element can be rewritten as ``for any elements $a,b \in R$, if $ab\in pR$, then $a \in pR$ or $b \in pR$".
+\par
+Every prime element is irreducible (but the converse is not true). Proof: Let $p$ be a prime element of $R$ such that $p=ab$. Then without loss of generality, we can say $p$ divides $a$, so let $c$ be the element such that $a=pc$. This implies $p=pcb$, so $b$ is invertible.
+\par
+Example: let $R = \mathbb{Z}[\sqrt{-5}] \subset \mathbb{C}$. Since $2\cdot 3=6=(1+\sqrt{-5})(a-\sqrt{-5})$ but 2 does not divide $1 \pm \sqrt{-5}$, 2 is not prime in $R$. However, we can show that 2 is irreducible in $R$ (TODO: ADD PROOF OF THAT).
 \end{document}
