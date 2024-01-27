@@ -2,3 +2,6 @@
 *.toc
 *.log
 *.synctex
+*.synctex.gz
+*.fls
+*.fdb_latexmk

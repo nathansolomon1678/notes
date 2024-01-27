@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\usepackage{tikz-cd}
+\renewcommand{\d}{\mathrm{d}}
+
+\begin{document}
+
+\title{Conversion from SI to natural units}
+\author{Nathan Solomon}
+\maketitle
+
+The dimensions for any quantity can be written as a column vector in $ \mathbb{Z}^3$ by listing the powers of mass, length, and time (in that order) as a column vector.
+\[ [M] = \begin{bmatrix}
+    1 \\
+    0 \\
+    0
+\end{bmatrix} \hspace{1cm}
+[L] = \begin{bmatrix}
+    0 \\
+    1 \\
+    0
+\end{bmatrix} \hspace{1cm}
+[T] = \begin{bmatrix}
+    0 \\
+    0 \\
+    1
+\end{bmatrix}\]
+Then energy, the reduced Planck constant, and the speed of light have dimensions represented by the following vectors:
+\[ [E] = \begin{bmatrix}
+    1 \\
+    2 \\
+    -2
+\end{bmatrix} \hspace{1cm}
+[\hbar] = \begin{bmatrix}
+    1 \\
+    2 \\
+    -1
+\end{bmatrix} \hspace{1cm}
+[c] = \begin{bmatrix}
+    0 \\
+    1 \\
+    -1
+\end{bmatrix}\]
+However, we could also write the dimensions for any quantity in another basis. When using natural units, it's convenient to work in the basis where
+\[ [E] = \begin{bmatrix}
+    1 \\
+    0 \\
+    0
+\end{bmatrix} \hspace{1cm}
+[\hbar] = \begin{bmatrix}
+    0 \\
+    1 \\
+    0
+\end{bmatrix} \hspace{1cm}
+[c] = \begin{bmatrix}
+    0 \\
+    0 \\
+    1
+\end{bmatrix}\]
+To convert from the $([E], [\hbar], [c])$ basis to the $([M], [L], [T])$ basis, all we need to do is left multiply by a change-of-basis matrix, which I'll call $A$.
+\[A := \begin{bmatrix}
+    1 & 1 & 0 \\
+    2 & 2 & 1 \\
+    -2 & -1 & -1
+\end{bmatrix} \]
+The inverse of that is
+\[ A^{-1} = \begin{bmatrix}
+    1 & -1 & -1 \\
+    0 & 1 & 1 \\
+    -2 & 1 & 0
+\end{bmatrix} \]
+so to convert from the $([M], [L], [T])$ basis to the $([E], [\hbar], [c])$ basis, multiply by $A^{-1}$.
+\par
+By looking at the entries of $A^{-1}$, we can read off the following conversions:
+\begin{align*}
+    [M] &= [E/c^2] \\
+    [L] &= [\hbar c / E] \\
+    [T] &= [\hbar / E]
+\end{align*}
+
+\end{document}
