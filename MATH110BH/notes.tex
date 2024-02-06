@@ -18,9 +18,8 @@
 
 \tableofcontents
 
-\section{Rings}
-\subsection{1/8/2024 lecture}
-\subsubsection{Definition of a ring}
+\section{1/8/2024 lecture}
+\subsection{Definition of a ring}
 A \textit{ring} is a set $R$ with two operations, \textit{addition} and \textit{multiplication}, such that
 \begin{itemize}
     \item $(R,+)$ is an abelian group
@@ -33,7 +32,7 @@ Sometimes people leave of those last two criteria, but in this class, we will on
 A ring $R$ is called \textit{commutative} iff $ab=ba$ for any $a,b \in R$.
 \par
 
-\subsubsection{Examples of rings}
+\subsection{Examples of rings}
 The simplest ring is the zero ring, which is the zero group with $1=0$.
 \par
 $ \mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}$, and $ \mathbb{Z}/n \mathbb{Z}$ are all commutative rings.
@@ -48,28 +47,31 @@ If $R$ is a ring, then $R[x]$ (the set of polynomials in the variable $x$ over $
 \par
 If $R$ is a ring and $X$ is a set, then $S:=\{f:X \rightarrow R\}$ with the operations defined by $(f+g)(x)=f(x)+g(x)$ and $(f \cdot g)(x) = f(x) \cdot g(x)$ forms a ring. If $|X|=1$, then $R=S$.
 
-\subsubsection{Properties of rings}
+\subsection{Properties of rings}
 \begin{itemize}
     \item $0a=0=a0$
     \item $(-a)(b)=-(ab)=(a)(-b)$
-    \item A nonzero element $a$ of a commutative ring is called \textit{invertible} iff there exists a nonzero element $b \in R$ such that $ab=1=ba$. If $b$ exists, it is unique, and it is called the \textit{inverse} of $a$.
+    \item A nonzero element $a$ of a commutative ring is called \textit{invertible} (or is sometimes called a \textit{unit}) iff there exists a nonzero element $b \in R$ such that $ab=1=ba$. If $b$ exists, it is unique, and it is called the \textit{inverse} of $a$.
     \item If $a$ and $b$ are both invertible, then $(ab)^{-1} = b^{-1}a^{-1}$.
 \end{itemize}
 
-\subsubsection{The multiplicative group}
+\subsection{The multiplicative group}
 If $R$ is a commutative ring, let $R^\times$ be the set of invertible elements in $R$. Then $R^\times$ is a multiplicative group. $R$ is called a \textit{field} iff it is commutative, $R$ is not the zero ring, and $R^\times = R \backslash \{0\}$. $ \mathbb{Q}$ and $ \mathbb{R}$ are examples of fields.
 \par
+Here are some otehr examples of multiplicative groups:
 \begin{itemize}
     \item $ \mathbb{Z}^\times = \{-1, 1\}$
-    \item $M_n(R)^\times = GL_n(R)$ is called the general linear group (of $n \times n$ matrices over $R$.
-    \item $( \mathbb{Z}/n \mathbb{Z})^\times = \{[a]: \operatorname{gcd}(a,n)=1\}$ has $\varphi(n)$ elements
+    \item $M_n(R)^\times = GL_n(R)$ is called the \textit{general linear group} (of $n \times n$ matrices over $R$).
+    \item $( \mathbb{Z}/n \mathbb{Z})^\times = \{[a]: \operatorname{gcd}(a,n)=1\}$ is a group with $\varphi(n)$ elements
     \item If $(A,+)$ is an abelian group, then $\operatorname{End}(A)^\times = \operatorname{Aut}(A)$
-    \item A nonzero element $a$ of a commutative ring $R$ is called a \textit{zero divisor} iff there exists a nonzero element $b$ in $R$ such that $ab=0$
 \end{itemize}
 
-\subsection{1/10/2024 lecture}
-\subsubsection{Integral domains \& subrings}
-If $R$ is a nonzero commutative ring with no (nonzero) zero divisors, we call it an \textit{integral domain} (or sometimes just \textit{domain} for short). In an integral domain, mulltiplication by any nonzero element is an injection. If $R$ is finite, an injection from $R$ to itself is invertible, so $R$ is a field. However, not every integral domain is a field -- for example, $ \mathbb{Z} $ is a domain but not a field.
+\section{1/10/2024 lecture}
+A nonzero element $a$ of a commutative ring $R$ is called a \textit{zero divisor} iff there exists a nonzero element $b$ in $R$ such that $ab=0$.
+\subsection{Integral domains \& subrings}
+If $R$ is a nonzero commutative ring with no zero divisors, we call it an \textit{integral domain} (or sometimes just \textit{domain} for short). In an integral domain, multiplication by any nonzero element is an injection.
+\par
+If $R$ is finite, an injection from $R$ to itself is also surjective and therefore invertible, so $R$ is a field. However, not every integral domain is a field -- for example, $ \mathbb{Z} $ is a domain but not a field.
 \par
 A subset $S$ of a ring $R$ is called a \textit{subring} iff
 \begin{itemize}
@@ -88,7 +90,7 @@ The set of $n \times n$ matrices of the form
 \end{bmatrix} \]
 is a ring and is also a subset of $M_2( \mathbb{R})$, but is not a subring of $M_2( \mathbb{R})$, because they do not have the same multiplicative identity element.
 
-\subsubsection{Ring homomorphisms}
+\subsection{Ring homomorphisms}
 If $R$ and $S$ are rings, a map $f: R \rightarrow S$ is called a \textit{ring homomorphism} iff
 \begin{itemize}
     \item $f(a+b)=f(a)+f(b)$ (that is, $f$ is a group homomorphism)
@@ -99,13 +101,13 @@ If $S$ is a subring of $R$, then the inclusion map from $S$ to $R$ is a ring hom
 \par
 A ring homomorphism is called a \textit{ring isomorphism} iff it is bijective.
 \par
-In $\mathbf{Ring}$, $\mathbb{Z}$ is the initial object and $0$ is the terminal object.
+In $\mathbf{Ring}$ (the category of unital rings), $\mathbb{Z}$ is the initial object and $0$ is the terminal object.
 \par
 The map from $ \mathbb{Z} \rightarrow \mathbb{Z}/n \mathbb{Z}$ (for $n \in \mathbb{N}, n>1$) which takes $a$ to $[a]_n$ is a ring homomorphism.
 \par
 One can show that there is no ring homomorphism from $ \mathbb{Q}$ to $ \mathbb{Z}$.
 
-\subsubsection{Ideals}
+\subsection{Ideals}
 If $I$ is a subset of a ring $R$, we call $I$ a \textit{left ideal} iff
 \begin{itemize}
     \item $I$ is closed under addition ($I+I\subset I$)
@@ -114,9 +116,9 @@ If $I$ is a subset of a ring $R$, we call $I$ a \textit{left ideal} iff
 \end{itemize}
 The definition for a \textit{right ideal} is the same, but with left multiplication replaced by right multiplication. A two-sided ideal is simply called an \textit{ideal}.
 \par
-Every ring has at least two ideals (itself, which is called the ``unit ideal", and the zero ring), except for the zero ring (in which case those are the same). If $R$ is a field, those are the only ideals. Conversely, if $R$ is a commutative ring whose only ideals are $0$ and $R$, then $R$ is a field.
+Every ring has at least two ideals (itself, which is called the ``unit ideal", and the zero ring), except for the zero ring (in which case the unit ideal is the zero ideal). If $R$ is a field, those are the only ideals. Conversely, if $R$ is a commutative ring whose only ideals are $0$ and $R$, then $R$ is a field. PROVE THIS.
 \par
-For any $a \in R$, $Ra$ is a left ideal and $aR$ is a ring ideal. These are called the \textit{principal left and right (respectively) ideals generated by $a$}. Every ideal of $ \mathbb{Z}$ is principal, so we say that $ \mathbb{Z}$ is a \textit{principal ideal domain (PID)}.
+For any $a \in R$, $Ra$ is a left ideal and $aR$ is a ring ideal. These are called the \textit{principal left and right (respectively) ideals generated by $a$}.
 \par
 In $M_n( \mathbb{R})$, the set of $n \times n$ real matrices with zeros everywhere except the first column is a left ideal.
 \par
@@ -130,9 +132,9 @@ For any elements $a_1, a_2, \dots, a_n \in R$, we call $Ra_1 + Ra_2 + \cdots + R
 \par
 For any ring homomorphism $f: R \rightarrow S$, the kernel of $f$ is an ideal of $R$, and the image of $f$ is a subring of $S$.
 
-\subsection{1/12/2024 lecture}
-\subsubsection{Quotient rings}
-If $I \subset R$ is an ideal and $a, b \in R$, then we say that $a$ and $b$ are \textit{congruent} ($a \cong b \pmod{I}$) iff $b-a \in I$. If $a_1 \cong b_1 \pmod{I}$ and $a_2 \cong b_2 \pmod{I}$, then $a_1 + a_2 \cong b_1 + b_2 \pmod{I}$ and $a_1a_2 \cong b_1b_2 \pmod{I}$.
+\section{1/12/2024 lecture}
+\subsection{Quotient rings}
+If $I \subset R$ is an ideal and $a, b \in R$, then we say that $a$ and $b$ are \textit{congruent modulo $I$} ($a \equiv b \pmod{I}$) iff $b-a \in I$. If $a_1 \equiv b_1 \pmod{I}$ and $a_2 \equiv b_2 \pmod{I}$, then $a_1 + a_2 \equiv b_1 + b_2 \pmod{I}$ and $a_1a_2 \equiv b_1b_2 \pmod{I}$.
 \par
 The set of cosets of $I$, $\{a+I\in R/I:a\in R\}$, is also a ring, called the \textit{quotient ring} or the \textit{factor ring}. $ \mathbb{Z}/n \mathbb{Z}$ (for some natural number $n>1$) is a classic example of a quotient ring.
 \par
@@ -140,47 +142,137 @@ For any ideal $I \subset R$, we can show that the canonical map $\pi: R \rightar
 \par
 If $f: R \rightarrow S$ is a ring homomorphism, then we know that $\operatorname{Im}(f)$ is a subring of $S$ and $\operatorname{Ker}(f)$ is an ideal of $R$. The \textit{first isomorphism theorem for rings} says that the map $\overline{f}:R/\operatorname{Ker}(f) \rightarrow \operatorname{Im}(f)$ defined by $\overline{f}(a+\operatorname{Ker}(f))=f(a)$ is not only a group homomorphism, but also a ring homomorphism.
 \par
-Consider the function $f: \mathbb{R}[x] \rightarrow \mathbb{C}$ defined by $f(h)=h(i)$. This is a surjective ring homomorphism, and the kernel of $f$ is the set of polynomials for which $i$ is a root. Since $f$ is real, it is invariant under complex conjugation, so a real polynomial $h$ is in $\operatorname{Ker}(f)$ iff it is divisible by both $x-i$ and $x+i$. Therefore $\operatorname{Ker}(f) = (x^2 + 1) \mathbb{R}[x]$, so $ \mathbb{R}[x] / (x^2 + 1) \mathbb{R}[x] \cong \mathbb{C}$.
-\subsubsection{Product of rings}
+Consider the function $f: \mathbb{R}[x] \rightarrow \mathbb{C}$ defined by $f(h)=h(i)$. This is a surjective ring homomorphism, and the kernel of $f$ is the set of polynomials for which $i$ is a root. Since $f$ is real, it is invariant under complex conjugation, so a real polynomial $h$ is in $\operatorname{Ker}(f)$ iff it is divisible by both $x-i$ and $x+i$. Therefore $\operatorname{Ker}(f) = (x^2 + 1) \mathbb{R}[x]$, so
+\[ \mathbb{R}[x] / ((x^2 + 1) \mathbb{R}[x]) \cong \mathbb{C}. \]
+\subsection{Product of rings}
 An element $e$ in any ring $S$ is called \textit{idempotent} iff $e^2=e$. For example, 0 and 1 are idempotent in any ring.
 \par
 For a ring $R$ that is defined as the product of rings, $R := R_1 \times R_2 \times \cdots \times R_n$, the 0 element in $R$ is $(0_{R_1}, \dots, 0_{R_n})$, and similarly, $1_R = (1_{R_1}, \dots, 1_{R_n})$. If $e_1 \in R_1, e_2 \in R_2, \dots, e_n \in R_n$ are idempotents, the $e_i$s are orthogonal (meaning $e_i e_j =0$ when $i \neq j$), the $e_i$s are all central ($e_ix=xe_i$ for any $x \in R$), and their sum is $1_R$, then let the function $f: R \rightarrow Re_1 \times Re_2 \times \cdots \times Re_n$ be defined by $f(a)=(ae_1, \dots, ae_n)$. We can prove that $f$ is an isomorphism.
 \par
 Fun example: the quotient ring $ \mathbb{Z}/10^n\mathbb{Z}$ is isomorphic to $\mathbb{Z}/2^n\mathbb{Z} \times \mathbb{Z}/5^n\mathbb{Z}$. By Bézout's identity, $\mathbb{Z}/2^n\mathbb{Z} \times \mathbb{Z}/5^n\mathbb{Z}$ contains the elements $(0,0)$, $(1,0)$, $(0,1)$, and $(1,1)$, which are all idempotent -- in fact, these are the only idempotent elements. Since that group is isomorphic to $ \mathbb{Z}/10^n\mathbb{Z}$, we know that for any $n$, there are exactly 4 integers between 1 and $10^n$ whose square has the last same $n$ digits as the original number. Those are precisely the 4 numbers which are congruent to either 0 or 1 in both $ \mathbb{Z}/2^n\mathbb{Z}$ and $ \mathbb{Z}/5^n\mathbb{Z}$. Two of those numbers are boring (zero and one), but the other cases are interesting.
 
-\subsubsection{Chinese remainder theorem}
-Let $I$ and $Y$ be ideals of $R$. We say that they are \textit{coprime} iff $I+Y=R$. For example, if $n$ and $m$ are relatively prime, then $n \mathbb{Z}$ and $m \mathbb{Z}$ are coprime.
-\par
-If $I_1, I_2, \dots, I_n$ are pairwise coprime ideals of a ring $R$, then for every tuple $(a_1, \dots, a_n) \in R^n$, there exists $a \in R$ such that $a\cdot a_i = e_i$ (for each $i$), where $e_i$ is an idempotent element of $I_i$ (NOT SURE THIS IS CORRECT).
+\section{1/17/2024 lecture}
+Let $I$ and $J$ be ideals of $R$. We say that they are \textit{coprime} iff $I+J=R$. For example, integers $n$ and $m$ are relatively prime if and only if $n \mathbb{Z}$ and $m \mathbb{Z}$ are coprime.
 
-\subsection{LECTURE NOTES FROM JANUARY 17TH and 18TH!!!}
-
-\subsection{1/22/2024 lecture}
-A domain $R$ is called a \textit{principal ideal domain (PID)} iff every ideal in $R$ is principal. Every Euclidean domain is a PID. Proof: Let $I$ be an ideal of $R$, and assume $I \neq 0$. There exists a Euclidean function $\varphi: R-\{0\} \rightarrow \mathbb{Z}^{\geq 0}$. Let $a \in I$ be a value of $I - \{0\}$ which minimizes $\varphi(a)$. Now suppose $I=aR$. Since $I$ is  PID, we know $aR \subset I$, so for every $x \in I$, there exist $q,r \in R$ such that $x=aq+r$ and either $r=0$ or $\varphi(r) < \varphi(a)$. If $r \neq 0$, then $=aq \in I$, so $r$ is a nonzero element of $I$ such that $\varphi(r) < \varphi(a)$. This is a contradiction, so every Euclidean domain is a PID.
+\subsection{Chinese remainder theorem}
+The \textit{Chinese Remainder Theorem (CRT)} says that if $I_1, I_2, \dots, I_n$ are pairwise coprime ideals of a ring $R$, then for every tuple $(a_1, \dots, a_n) \in R^n$, there exists $a \in R$ such that $a \equiv a_j \pmod{I_j}$ for every index $j$. We prove this by induction on $n \geq 2$.
 \par
-$ \mathbb{Z}$ and $F[x]$ (for some field $F$) and $ \mathbb{Z}[i]$ are examples of PIDs.
-\subsubsection{Factorization in integral domains}
-Let $a,b$ be elements of a domain $R$ such that $b \neq 0$. We say that $b$ \textit{divides} $a$ (written $b|a$) iff $a=bc$ for some $c \in R$. This is equivalent to saying $aR \subset bR$. $a$ and $b$ are called \textit{associate} iff $a|b$ and $b|a$ (in other words, $aR=bR$). This is an equivalence relation.
+If $n=2$, then for any $a_1, a_2 \in R$, since $I_1+I_2=R$ and $a_1-a_2$ is in $R$, there must be some $x_1 \in I_1, x_2 \in I_2$ such that $x_1+x_2=a_1-a_2$. Then it is easy to show that $a-a_j \in I_j$, which implies $a \equiv a_j \pmod{I_j}$ (for either $j=1$ or $j=1$).
+\par
+If the CRT is true for some $n-1$, then $I_1 \cap I_2 \cap \cdots \cap I_{n-1}$ and $I_n$ are coprime, so we can use the same method that we used to prove it works when $n=2$ to show that (if it works for $n-1$) it also works for $n$, so by induction, it works for any $n \geq 2$.
+\par
+An equivalent statement to CRT is that if $I_1, I_2, \dots, I_n$ are pairwise coprime ideals of a ring $R$, then the function
+\[ f: R \rightarrow (R/I_1) \times (R/I_2) \times \cdots \times (R/I_n) \]
+defined by
+\[ a \mapsto (a+I_1, a+I_2, \dots, a+I_n) \]
+is surjective. If that function $f$ is surjective, then $\operatorname{Ker}(f)=I_1\cap I_2 \cap \cdots \cap I_n$, which implies
+\[ R/(I_1 \cap \cdots \cap I_n) \cong (R/I_1) \times \cdots \times (R/I_n). \]
+
+\subsection{Prime ideals}
+Let $R$ be a commutative ring. An ideal $P \subsetneq R$ is called \textit{prime} iff $ab \in P$ implies $a \in P$ or $b \in P$ (for any $a,b \in R$).
+\par
+An ideal $P \subsetneq R$ is prime if and only if $R/P$ is a domain. NEED TO PROVE THIS.
+\par
+Example: the following statements are all equivalent:
+\begin{itemize}
+    \item $n \mathbb{Z}$ is a prime ideal of $\mathbb{Z}$
+    \item $\mathbb{Z}/n\mathbb{Z}$ is a domain
+    \item $n$ is either prime or zero
+\end{itemize}
+
+\subsection{Maximal ideals}
+Let $R$ be a commutative ring. An ideal $M \subsetneq R$ is called \textit{maximal} iff there is no ideal between $M$ and $R$ (that is, there is no ideal $I$ such that $M$ is a proper subset of $I$ and $I$ is a proper subset of $R$).
+\par
+An ideal $M \subsetneq R$ is maximal if and only if $R/M$ is a field. Proof: STILL NEED TO WRITE THIS PROOF.
+\par
+Every maximal ideal is prime.
+
+\subsection{Posets and chains}
+Let $X$ be a set with a relation denoted by $\preceq$. We call $X$ a \textit{partially-ordered set (poset)} iff for any $x, y, z \in X$,
+\begin{itemize}
+    \item $x \preceq x$
+    \item If $x \preceq y$ and $y \preceq x$, then $x=y$
+    \item If $x \preceq y$ and $y \preceq z$, then $x \preceq z$
+\end{itemize}
+A \textit{chain} in a poset $X$ is a subset $S \subset X$ such that for any $x, y \in S$, $x \preceq y$ or $y \preceq x$ (equivalently, $S$ is \textit{totally ordered}).
+\par
+An element $x \in X$ is called an \textit{upper bound} of a chain $S$ iff $s \preceq x$ for every $s \in S$. A \textit{maximal element} of $X$ is any element $x \in X$ such that if $x \preceq y$, then $x=y$.
+\par
+\textit{Zorn's lemma} states that if $X$ is a nonempty poset such that every chain in $X$ has an upper bound in $X$, then $X$ has a maximal element (possibly multiple). This statement is logically equivalent to the axiom of choice, which we assume to be true for the purpose of this class.
+\par
+We can use this to prove that every nonzero commutative ring $R$ has a maximal ideal (if every chain of non-unit ideals of $R$ has an upper bound). Proof: Define an order relation on the set $X$ of all ideals $I \subsetneq R$ (excluding the zero ideal) by saying $I \preceq J$ if and only if $I \subset J$. Then $X$ has at least one maximal element, which is a maximal ideal of $R$.
+\par
+Simple corollary of that: every nonzero commutative ring has a prime ideal.
+
+\section{1/19/2024 lecture}
+\subsection{Field of fractions}
+Let $R$ be a domain. Then let $\mathcal{F}(R)$ be the \textit{field of fractions over $R$}, defined as the quotient of
+\[ \left\{ (a,b): a,b \in R, b \neq 0 \right\} \]
+by the equivalence relation that $(a,b) \sim (a',b')$ iff $a'b=ab'$. We can easily prove that the operations in $\mathcal{F}(R)$ are well-defined (addition and multiplication are defined exactly how you expect), and that the notation you would expect you can use for fractions is indeed valid here.
+\par
+If $R$ is a subring of a field $K$ such that every $x \in K$ can be written as $x = ab^{-1}$, for some $a,b \in R, b \neq 0$. Then $K$ is isomorphic to $\mathcal{F}(R)$. Proof: we can show that the mapping from $x$ to $\frac{a}{b}$ is a ring isomorphism, taking advantage of the fact that every ring homomorphism from a field to a nonzero ring is injective (WHY IS THIS TRUE???).
+
+\subsection{Euclidean rings}
+A \textit{Euclidean ring} is a domain $R$ such that there exists a function $\varphi : R \backslash \left\{ 0 \right\} \rightarrow \mathbb{Z}^{\geq 0}$ satisfying the following property: for any $a,b \in R, b\neq 0$, there exist $q,r \in R$ such that $a=bq+r$ and either $\varphi(r) < \varphi(b)$ or $r=0$.
+\par
+Examples:
+\begin{itemize}
+    \item $\mathbb{Z}$ is a Euclidean domain because we can define a Euclidean function $\varphi(a) = |a|$.
+    \item If $\mathbb{F}$ is a field, then $R= \mathbb{F}[x]$ is a Euclidan domain because we can define $\varphi(f) = \operatorname{deg}(f)$.
+    \item The \textit{Gauss integers}, $R = \mathbb{Z}[i] \subset \mathbb{C}$, are a Euclidean domain because we can define $\varphi(a+bi)=a^2+b^2$. Proving that this works is kind of a pain, but you can use a super similar method to show some domains like $\mathbb{Z}[\sqrt{2}]$ are also Euclidean.
+\end{itemize}
+
+\section{1/22/2024 lecture}
+A domain $R$ is called a \textit{principal ideal domain (PID)} iff every ideal in $R$ is principal.
+\par
+Every Euclidean domain is a PID. Proof: Let $I$ be an ideal of $R$, and assume $I \neq 0$. There exists a Euclidean function $\varphi: R-\{0\} \rightarrow \mathbb{Z}^{\geq 0}$. Let $a \in I$ be a value of $I - \{0\}$ which minimizes $\varphi(a)$. Now suppose $I=aR$. Since $I$ is  PID, we know $aR \subset I$, so for every $x \in I$, there exist $q,r \in R$ such that $x=aq+r$ and either $r=0$ or $\varphi(r) < \varphi(a)$. If $r \neq 0$, then $=aq \in I$, so $r$ is a nonzero element of $I$ such that $\varphi(r) < \varphi(a)$. This is a contradiction, so every Euclidean domain is a PID. REDO THIS PROOF BECAUSE IT IS A HUGE MESS.
+\par
+$ \mathbb{Z}$ and $\mathbb{F}[x]$ (for some field $\mathbb{F}$) and $ \mathbb{Z}[i]$ are examples of PIDs.
+
+\begin{center}
+    \resizebox{0.5\textwidth}{!}{ 
+        \begin{tikzpicture}
+            \draw (0,-1) circle(2);
+            \draw (0,0) circle(4);
+            \draw (0,1) circle(6);
+            \draw (0,2) circle(8);
+            \draw (0,3) circle(10);
+            \draw (0,4) circle(12);
+            \node at (0,-1) {\large\textbf{Fields}};
+            \node at (0,2) {\large\textbf{Euclidean domains}};
+            \node at (0,5) {\large\textbf{PIDs}};
+            \node at (0,8) {\large\textbf{UFDs}};
+            \node at (0,11) {\large\textbf{Integral domains}};
+            \node at (0,14) {\large\textbf{Commutative rings}};
+        \end{tikzpicture}
+    }
+\end{center}
+TODO: move that figure to the point in the notes where we prove which of those are subsets of which others
+
+\subsection{Factorization in integral domains}
+Let $a,b$ be elements of a domain $R$ such that $b \neq 0$. We say that $b$ \textit{divides} $a$ (written $b|a$) iff $a=bc$ for some $c \in R$. This is equivalent to saying $aR \subset bR$. $a$ and $b$ are called \textit{associate} iff $a|b$ and $b|a$ (in other words, $aR=bR$). Sometimes we write $a \sim b$ to denote that $a$ and $b$ are associate, because being associate is an equivalence relation.
 \par
 This is an example of a ``good" property". A \textit{good property} is any property that can be written in terms of ideals.
 \par
 If $a$ and $b$ are associate elements of a domain $R$, then $a=bc$ for some $c \in R$, and $b=ad$ for some $d \in R$. Then $a=adc$, so $dc=1$. This means there exists a unit $u \in R^\times$ (either $u=c$ or $u=d$) such that $a=bu$ and $b=au^{-1}$.
 \par
-Also, note that multiplying any two elements $a,b$ by a unit (an invertible element) does not change whether one divides the other.
-\subsubsection{Irreducible elements}
-An element $c \in R$ ($R$ is a domain???) is called \textit{irreducible} iff $c \neq 0$, $c \not\in R^\times$, and any $a,b \in R$ such that $c=ab$, either $a \in R^\times$ or $b \in R^\times$.
+Also, note that multiplying any two elements $a,b$ by a unit does not change whether one divides the other.
+\subsection{Irreducible elements}
+An element $c$ of a domain $R$ is called \textit{irreducible} iff $c \neq 0$, $c \not\in R^\times$, and any $a,b \in R$ such that $c=ab$, either $a \in R^\times$ or $b \in R^\times$.
 \par
 Equivalently, an element $c \in R$ is irreducible iff $cR$ is maximal in the set of principal ideals which are not $R$. Proof: suppose there exists $a \in R$ such that $cR \subsetneq aR \neq R$. Then $a$ is not invertible, and since $c \in cR$, we can write $c=ab$, which implies $b$ is invertible. This is a contradiction, because we could write $cR=abR$, and since $b$ is invertible, that implies $cR=aR$. REMEMBER TO ADD THE PROOF GOING THE OTHER WAY, SINCE THE STATEMENT WAS ``IF AND ONLY IF".
-\subsubsection{Prime elements}
+\subsection{Prime elements}
 An element $p \in R$ is called \textit{prime} iff $p \neq 0$, $p \not\in R^\times$, and if $p|ab$, then either $p|a$ or $p|b$.
 \par
 Now we want to make this a good property. An element $\ in R$ is prime if and only if $p \neq 0$ and $pR$ is a prime ideal. Proof: the definition of a prime element can be rewritten as ``for any elements $a,b \in R$, if $ab\in pR$, then $a \in pR$ or $b \in pR$".
 \par
 Every prime element is irreducible (but the converse is not true). Proof: Let $p$ be a prime element of $R$ such that $p=ab$. Then without loss of generality, we can say $p$ divides $a$, so let $c$ be the element such that $a=pc$. This implies $p=pcb$, so $b$ is invertible.
 \par
-Example: let $R = \mathbb{Z}[\sqrt{-5}] \subset \mathbb{C}$. Since $2\cdot 3=6=(1+\sqrt{-5})(a-\sqrt{-5})$ but 2 does not divide $1 \pm \sqrt{-5}$, 2 is not prime in $R$. However, we can show that 2 is irreducible in $R$ (TODO: ADD PROOF OF THAT).
+Example: let $R = \mathbb{Z}[\sqrt{-5}] \subset \mathbb{C}$. Since $2\cdot 3=6=(1+\sqrt{-5})(1-\sqrt{-5})$ but 2 does not divide $1 \pm \sqrt{-5}$, 2 is not prime in $R$. However, we can show that 2 is irreducible in $R$ (TODO: ADD PROOF OF THAT).
 
-\subsection{1/24/2024 lecture}
+\section{1/24/2024 lecture}
+REDO ALL NOTES FROM THIS LECTURE.
+\par
 In a PID, every irreducible element is prime. Proof: Suppose $c$ is an irreducible element of a PID $R$. Then $cR$ is maximal in the set of all principal ideals, but $R$ is a PID, so $cR$ is a maximal ideal, therefore it's a prime ideal, so $c$ is prime.
 \par
 If $I,J$ are ideals in a commutative ring $R$, define
@@ -195,12 +287,60 @@ Let $R$ be a domain, and suppose that $R$ \textit{admits factorization} (meaning
 \[ \prod x_i \prod y_j = c \prod z_l \]
 which means $c$ divides either some $x_i$ or some $y_j$, so $c$ divides either $a$ or $b$. Proof going the other direction: Let $a=c_1 c_2 \cdots c_n = d_1 d_2 \cdots d_m$ be two factorizations of $a$ where each $c_i, d_j$ is irreducible (and therefore prime).
 
-\subsubsection{Nifty trick}
+\subsection{Nifty trick}
 If $(xR)(cR)=(yR)(cR)$, then $xcR=ycR$, so $xc=ycu$ for some $u \in R^times$. Somehow we cancel the $c$ out (WHAT PROPERTY OF $c$ ARE WE USING TO DO THIS???) and we get that $xR=yR$.
 
-\subsubsection{Unique factorization domains}
+\subsection{Unique factorization domains}
 A domain $R$ is a \textit{unique factorization domain (UFD)} iff $R$ admits factorization and the factorization is unique. As we just proved, every irreducible element in a UFD is prime -- equivalently, a domain is a UFD iff it admits factorizatin and every irreducible element in that domain is prime.
 \par
 We will prove later on that every PID generated by finitely many elements is a UFD. A ring generated by finitely many elements is called a \textit{Noetherian ring}.
+
+\section{1/26/2024 lecture}
+\subsection{Noetherian rings}
+Let $R$ be a commutative ring. Then the following are equivalent:
+\begin{itemize}
+    \item Every ideal in $R$ is finitely generated (meaning there is a finite set of elements $a_1, \dots, a_n$ such that $I=a_1R+a_2R+ \cdots +a_nR$)
+    \item Every chain of ideals terminates, meaning if there is a sequence of ideals $I_1 \subset I_2 \subset I_3 \subset \cdots$, then there exists $N$ such that for any $N' \geq N$, $I_N \subset I_{N'}$
+    \item Every nonempty set of ideals of $R$ has a maximal element
+\end{itemize}
+We call $R$ \textit{Noetherian} iff it satisfies those properties.
+\par
+Every PID is Noetherian.
+\par
+The \textit{Hilbert basis theorem} states that if $R$ is a Noetherian ring, then so is $R[x]$. We can extend this by induction to show that if $R$ is Noetherian, then the set of polynomials in finitely many variables ($R[X_1, x_2, \dots, X_n]$) is Noetherian as well.
+\par
+Every Noetherian domain admits factorization. Proof: let $A$ be the set of principal ideals $aR$ which do not admit factorization, and suppose $A$ is nonempty. Then let $aR$ be a maximal element of $A$. Since $a$ is not irreducible, there exist noninvertible elements $b,c \in R \backslash R^\times$ such that $a=bc$ FINISH TYPING UP THIS PROOF
+\par
+Example: the ring $R=\mathbb{Z}[i]$ contains the element $2$ which is the product of irreducible elements $1+i$ and $1-i$, so $2=i \cdot (1-i)^2$, which implies $2R = \left( (1-i)R \right)^2$. Therefore $2R$ can be factored (which we know is true because $2R$ is a PID). WHAT WAS THIS SUPPOSED TO BE AN EXAMPLE OF?
+
+
+
+\section{1/29/2024 lecture}
+Let $R$ be a Noertherian domain. Then it is a UFD if and only if every irreducible is prime (that is, if it admits factorization)
+\par
+The GCD of a and b in a ring R is the element c such that cR is a subset of aR and of bR and the cR is minimal
+\section{1/31/2024 lecture}
+
+\section{2/5/2024 lecture}
+If $R$ is a UFD, then so is $R[x]$. We are especially interested in the case where $R$ is a field.
+\subsection{Factorization of polynomials over fields}
+Let $\mathbb{F}$ be a field and let $f \in \mathbb{F}[x]$. Then $a \in \mathbb{F}$ is a \textit{root} of $f$ if and only if $f(a)=0$. Proposition: $a$ is a root of $f$ if and only if $f$ is divisible by $x-a$ in $\mathbb{F}[x]$. Proof: since $\mathbb{F}[x]$ is a Euclidean domain, there exist polynomials $g$ and $r$ such that $f=(x-a)\cdot g + r$, where $r$ is degree 0 and the degree of $g$ is at most $\operatorname{deg}(f)-1$. If $r=0$, then $f(a)=g(a)(a-a)=0$, and if $r \neq 0$, then $f(a)=r(a)\neq0$.
+\par
+If $f = (x-a_1)(x-a_2)\cdots (x-a_m) \ell$, where $\ell \in \mathbb{F}[x]$ has no roots, then the roots of $f$ are $ \left\{ a_1, a_2, \dots, a_m \right\}$. Corollary: a nonzero $f \in \mathbb{F}[x]$ has at most $\operatorname{deg}(f)$ roots in $\mathbb{F}$.
+\par
+Formally, the ring of polynomials $R[x]$ is a sequence of coefficients in $R$, but we also interpret a polynomial in $R[x]$ as a function from $R$ to $R$. However, this doesn't always work -- in $\mathbb{Z}/2\mathbb{Z}$, for example, the polynomials $x$ and $x^2$ (and any $x^n, n \in \mathbb{N}$) would be the same function, because they are both the identity map on $\mathbb{Z}/2\mathbb{Z}$.
+\par
+However, if $\mathbb{F}$ is an infinite field and $f,g \in \mathbb{F}[x]$ and $f(a)=g(a)$ for every $a \in \mathbb{F}$, then $f=g$. Proof: If $f(a)-g(a)=(f-g)(a)=0$, then $f-g$ is a polynomial with infinitely many roots, so it must be zero.
+\par
+If $\operatorname{deg}(f)=1$, then $f$ can be written as $ax+b$. Assuming $a \neq 0$, $f$ has exactly one root, which is $-b/a$, and $f$ is irreducible. If $\operatorname{deg}(f) > 1$ and $f$ has a root $a$, then $f$ is reducible. Corollary: any degree 2 or 3 polynomial which is reducible must have a root, but this does not work for degree 4, because the polynomial $(x^2+1)(x^2+2) \in \mathbb{R}[x]$ is reducible but does not have any roots.
+\par
+\textit{Eisenstein's criterion:} Let $R$ be a UFD, and let $\mathbb{F}$ be the field of fractions of $R$. Let $f = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0 \in R[x]$. Assume that for some prime $p \in R$ (since $R$ is a UFD, $p$ is irreducible), we have
+\begin{itemize}
+    \item $p \nmid a_n$ ($p$ does not divide $a_n$)
+    \item $p|a_i$ for all $i < n$
+    \item $p^2 \nmid a_0$
+\end{itemize}
+If $f$ satisfies all those criteria, then $f$ is irreducible in $\mathbb{F}[x]$. Proof: Suppose $f$ satisfies all those criteria but is reducible. Then there exist lower degree polynomials $g,h \in \mathbb{F}[x]$ such that $=g \cdot h$. For some unit $\alpha \in \mathbb{F}^\times$, $\alpha g$ is primitive in $R[x]$, so without loss of generality, we can assume $g$ is primitive in $R[x]$ (by replacing $g$ with $\alpha g$ and $h$ with $\alpha^{-1} h$). Since $g|f$ in $\mathbb{F}[x]$, $g|f$ in $R[x]$ as well, so $h \in R[x]$. Now define the domain $\overline{R} = R/pR$, and let $\overline{a}$ be the value which the induced map takes $a \in R$ to. Similarly, there is an induced map which takes any $f \in R[x]$ to $\overline{f} \in \overline{R}[x]$. Since $\overline{f} = \overline{a_n} x^n \neq 0$,
+FINISH PROOF OF THAT AND INCLUDE THE TWO EXAMPLES FROM CLASS
 
 \end{document}

@@ -1,0 +1,142 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\usepackage{tikz-cd}
+\renewcommand{\d}{\mathrm{d}}
+
+\begin{document}
+
+\title{Math 180 midterm note sheet}
+\author{Nathan Solomon}
+\maketitle
+
+\textbf{The addition principle:}
+\[ \#(A \sqcup B) = \#A + \#B. \]
+(In this context, ``disjoint union" means union of sets which are disjoint.)
+\par
+\textbf{The multiplication principle:}
+\[ \#(A \times B) = \#A \times \#B. \]
+More generally, the multiplication principle says that if every object in $A$ can be uniquely constructed from a series of $k$ choices, with $n_i$ options for the $i$th choice, then $\#A = \prod n_i$.
+\par
+\textbf{The subtraction principle:}
+If $A$ is a finite set and $B \subset A$, then
+\[ \# (A \backslash B) = \# A - \# B. \]
+\par
+\textbf{Relations:} A relation between $X$ and $Y$ is any subset of $X \times Y$, and a (binary) relation on $X$ is any subset of $X \times X$. Sometimes $(x,y) \in R$ is denoted by $xRy$. A binary relation $R \subset X \times X$ is called
+\begin{itemize}
+    \item \textit{Reflexive} iff $(x,x) \in R$ for any $x \in X$
+    \item \textit{Symmetric} iff $(x,y) \in R$ implies $(y,x) \in R$
+    \item \textit{Transitive} iff $(x,y),(y,z) \in R$ implies $(x,z) \in R$
+    \item \textit{Weakly antisymmetric} iff $(x,y), (y,x) \in R$ implies $x=y$.
+    \item \textit{Strongly antisymmetric} iff $(x,y) \in R$ implies $(y,x) \not\in R$.
+\end{itemize}
+Some special types of relations: an \textbf{equivalence relation} is reflexive, symmetric, and transitive. A \textbf{partial ordering} is reflexive, antisymmetric, and transitive. A partial ordering $R$ on $X$ is also called a total order iff $R \cup R^{-1} = X \times X$, where $R^{-1}$ denotes the swizzled version of $R$.
+\par
+A \textbf{partition} of a set $A$ is a set of disjoint subsets of $A$ whose union is $A$ (e.g. equivalence classes in $A$)
+\par
+\textbf{The division principle:} If $f: A \rightarrow B$ is a surjection between finite sets such that $\# f^{-1}(b) = d$ for every $b \in B$, then
+\[ \# B = \frac{\#A}{d} \]
+\par
+\textbf{Falling factorials:} The notation for a ``falling factorial" is $(n)_k := \frac{n!}{(n-k)!}$.
+\par
+\textbf{Pascal's identity} states that
+\[ \binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}. \]
+\par
+A \textbf{composition} of $n$ into $k$ parts is a sequence of $k$ positive integers which sum to $n$, and a \textbf{weak composition} of $n$ into $k$ parts is a sequence of $k$ nonnegative integers which sum to $n$. There are $\binom{n-1}{k-1}$ compositions and $\binom{n_k-1}{k-1}$ weak compositions (of $n$ into $k$ parts).
+\par
+\textbf{Binomial theorem:} If $n$ is a nonnegative integer, then
+\[ (x+y)^n = \sum_{k=0}^n \binom{n}{k} x^ky^{n-k}. \]
+You can derive a bunch of useful variations of that formula by plugging in values for $x$ or $y$, or by differentiating both sides with respect to $x$ or $y$.
+\par
+A \textbf{finite, undirected, unweighted graph} is $G=(V,E,\varphi)$ consists of a nonempty finite set $V$ of vertices, a finite set $E$ of edges, and a map $\varphi: E \rightarrow \left\{ \left\{ u,v \right\}: u,v \in V \right\}$ from edges to their endpoints.
+\par
+A \textbf{simple graph} is a graph that contains no loops (edges from a vertex to itself) or multiple edges (meaning $\varphi$ is injective). Sometimes, we just call these ``graphs" and instead call graphs which are not simple ``multigraphs".
+\par
+The \textbf{path graph} $P_n$ (where $n \geq 0$) has $n+1$ vertices connected in a line.
+\par
+The \textbf{cycle graph} $C_n$ (where $n \geq 2$, although $C_2$ is not simple) has $n$ vertices connected in a circle.
+\par
+The \textbf{complete graph} $K_n$ has $n$ vertices, where every pair of vertices share an edge.
+\par
+The \textbf{complete bipartite graph} $K_{n,m}$ has vertices that can be split into a pair of disjoint subsets of sizes $n$ and $m$, such that a pair of vertices share an edge if and only if they are not in the same one of those subsets.
+\par
+A \textbf{subgraph} of $G=(V,E)$ is a graph $G' = (V', E')$ such that $V' \subset V$ and $E' \subset E$. $G'$ is called an \textbf{induced subgraph} if and only if every edge in $G$ between vertices in $V'$ is in $E'$.
+\par
+A \textbf{path} in $G$ is a subgraph of $G$ which is a path graph, and a \textbf{cycle} in $G$ is a subgraph of $G$ which is a cycle graph.
+\par
+A \textbf{graph isomorphism} between $G=(V,E,\varphi)$ and $G'=(V',E',\varphi')$ is a bijection $\theta: V \rightarrow V'$ such that vertices $u,v \in V$ share an edge if and only if $\theta(u)$ and $\theta(v)$ share an edge.
+\par
+Two graphs are \textbf{isomorphic} iff there exists a graph isomorphism between them. This is an equivalence relation.
+\par
+An \textbf{automorphism} on a graph $G$ is an isomorphism from $G$ to itself.
+\par
+The number of isomorphic graphs with $n$ vertices is less than or equal to $2^{\binom{n}{2}}$ but greater than or equal to $\frac{2^{\binom{n}{2}}}{n!}$.
+\par
+A \textbf{walk of length $t\geq0$} in $G=(V,E)$ is a sequence of $t+1$ vertices (which are zero-indexed) and $t$ edges such that the $i$th edge connects the $i-1$th and $i$th vertices.
+\par
+Two vertices are called \textbf{connected} in a graph iff there exists a walk between them. This is an equivalence relation, and the equivalence classes are called \textbf{connected components}.
+\par
+The \textbf{degree of a vertex} in a simple graph is the number of edges incident to it. In a multigraph, the degree of a vertices is the number of edges incident to it plus the number of loops incident to it (so loops are counted twice).
+\par
+The \textbf{handshaking lemma} says that for a graph $G=(V,E)$,
+\[ \sum_{v \in V} \operatorname{deg}(v) = 2 \cdot |E|. \]
+\par
+The \textbf{distance between two vertices}, denoted $d(x,y)$ (where $x,y \in V$), is the infimum of the lengths of all walks between $x$ and $y$.
+\par
+The \textbf{adjacency matrix} of a graph $G=(V=[n],E)$ is the $n\times n$ matrix $A$ such that $A_{i,j}$ is 1 if vertices $i$ and $j$ share an edge, and 0 otherwise. This is always symmetric, so it has an orthonormal basis of eigenvectors, and all of its eigenvalues are real. The number of walks of length $k$ from $i$ to $j$ is $\left( A^k \right)_{i,j}$.
+\par
+The \textbf{degree sequence}, sometimes called \textbf{score}, of a graph $G=(V,E)$ is the multiset
+\[ \left\{ \operatorname{deg}v_1, \operatorname{deg}v_2, \dots, \operatorname{deg}v_n \right\} \]
+which is usually written in nondecreasing order.
+\par
+The \textbf{score theorem} states that if $D=(d_1, d_2, \dots, d_n)$ is a chain of natural numbers, then $D$ is the score of a (simple) graph if and only if $D':=(d_1', \dots, d_{n-1}')$ (defined by the following formula) is a (simple) graph score:
+\[ d_i' = \begin{cases}
+    d_i & i < n-d_n \\
+    d_i-1 & i \geq n-d_n
+\end{cases} \]
+The proof of that is equivalent to the Havel-Hakimi algorithm for finding such a graph.
+\par
+An \textbf{Eulerian walk} is a walk that traverses every edge of a graph exactly once (and can use each vertex any number of times). \textbf{Hierholzer's theorem} states that a connected graph has a closed Eulerian walk if and only if all of its vertices have even degree. A graph which contains a closed Eulerian walk is called \textbf{Eulerian}. More generally, a connected graph has an Eulerian walk if and only if there are either 0 or 2 vertices with odd degree.
+\par
+A \textbf{Hamiltonian cycle} in a graph is a cycle that visits every vertex at least once, and a \textbf{Hamiltonian path} is a path which visits every vertex at least once. A \textbf{Hamiltonian graph} is a graph which contains a Hamiltonian cycle.
+\par
+A \textbf{Gray code (of degree $d$)} is a hamiltonian cycle of the \textbf{cube graph} of degree $d$, which is the skeleton of the $d$-dimensional cube. Alternatively, the Gray code of degree $d$ is a sequence of all $2^d$ binary strings with $d$ bits, such that the \textbf{Hamming distance} between adjacent strings is 1. For example, the Gray codes of degree 3 are
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        0 & 000 \\
+        1 & 001 \\
+        2 & 011 \\
+        3 & 010 \\
+        4 & 110 \\
+        5 & 111 \\
+        6 & 101 \\
+        7 & 100 \\
+        \hline
+    \end{tabular}
+\end{center}
+\par
+A graph is called \textbf{$k$-connected} iff it has at least $k+1$ vertices and it remains connected after removing ANY $k-1$ vertices. In general,
+\begin{itemize}
+    \item $G-e$ is the graph obtained by removing edge $e$
+    \item $G-v$ is the graph obtained by removing vertex $v$ and all edges incident to $v$
+    \item $G+e$ is the graph obtained by adding a new edge $e$
+    \item $G\%e$ is the graph obtained by subdividing $e$ and adding a new vertex on $e$.
+\end{itemize}
+\par
+A graph is 2-connected if and only if for any two vertices in that graph, there is a cycle containing those two vertices.
+\par
+A \textbf{graph subdivision} of a graph $G$ is a graph that can be obtained by repeatedly subdividing edges of $G$.
+\par
+\textbf{Whitney's theorem} says that $G$ is 2-connected if and only if $G$ can be constructed from $K_3 \cong C_3$ by a sequence of subdivisions and edge additions.
+\par
+The \textbf{complement} of a graph $G=(V,E)$ is
+\[ \overline{G} = \left( V, \binom{V}{2}-E \right) \]
+
+\end{document}

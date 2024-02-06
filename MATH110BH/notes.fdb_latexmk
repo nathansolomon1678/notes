@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1706125775 "notes.tex" "notes.pdf" "notes" 1706125775
+["pdflatex"] 1707163141 "notes.tex" "notes.pdf" "notes" 1707163141
   "/etc/texmf/web2c/texmf.cnf" 1624860389 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/nathan/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1636064342 14040 a7fafee830db212d3e239b25fc342e7f ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -38,6 +38,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1248133631 32587 1788b0c1c5b39540c96f5e42ccd6dae8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1248133631 36118 fad905eba93cff5bce1e185fe980a177 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1248133631 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
@@ -141,11 +142,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1652220508 128028 f533b797fba58d231669ea19e894e23e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1686184227 4791331 1cfa45453f50f2adfaa6785477a5978a ""
-  "notes.aux" 1706125775 2505 36a237b96208657e597f631ee282938f "pdflatex"
-  "notes.tex" 1706125775 18138 a6e525a5e92ac8920133fa60ce4133dc ""
-  "notes.toc" 1706125775 1595 27219a7950053b0a2f4f2f4530687827 "pdflatex"
+  "notes.aux" 1707163141 3579 6b86bdcbc6b86a4cce1abffefd11002d "pdflatex"
+  "notes.tex" 1707163141 29658 04f517371fc5b195770e21c593eb3e35 ""
+  "notes.toc" 1707163141 2218 a069536ca9dd9ae8354c24b6c7bfbc48 "pdflatex"
   (generated)
+  "notes.toc"
   "notes.aux"
   "notes.log"
-  "notes.toc"
   "notes.pdf"
