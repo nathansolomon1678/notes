@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\usepackage{tikz-cd}
+\renewcommand{\d}{\mathrm{d}}
+
+\begin{document}
+
+\title{Midterm 1 solutions}
+\author{Nathan Solomon}
+\maketitle
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Every Hamiltonian graph is 2-connected. True or False?
+}}}\bigskip\par
+True, because there is a subgraph which is a cycle. So whenever you remove an edge, either that edge is in a Hamiltonian cycle, in which case the Hamiltonian cycle becomes a path which still connects all vertices, or the edge was not in the Hamiltonian cycle, in which case the same Hamiltonian cycle still connects all vertices.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Every Eulerian simple graph with an even number of vertices has an even number of edges. True or False?
+}}}\bigskip\par
+False. One example is the graph formed by taking $C_3$ and $C_4$ and joining them at a vertex.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    If a graph has a closed Eulerian walk, then it has a Hamiltonian cycle. True or False?
+}}}\bigskip\par
+False. Consider any bipartite graph with an odd number of vertices, each of which has even degree.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            There exists a (not necessarily simple) graph $G$ with no loops and more than one vertex such that its degree sequence contains no repetitions. True or False?
+}}}\bigskip\par
+True. For example, take the path graph $P_2$ and replace one of the edges with a double edge. Then we have a multigraph with degree sequence $(1,2,3)$.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    If two simple graphs have the same degree sequence, then they are isomorphic. True or False?
+}}}\bigskip\par
+False. For example, the disjoint union of two 3-cycles has degree sequence $(2,2,2,2,2,2)$, which is the same as the degree sequence of $C_6$.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            How many simple graphs are there with vertex set $[n]$ (where $[n]= \left\{ 1,2,\dots,n \right\}$) and $m$ edges (not up to isomorphism)?
+}}}\bigskip\par
+If there are $n$ labeled nodes, there are $\binom{n}{2}$ places where an edge could go, therefore
+\[ \binom{\binom{n}{2}}{m} \]
+ways to choose which $m$ edges to put in.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            How many functions are there from $[n]$ to $[n]$ (where $[n]= \left\{ 1,2,\dots,n \right\}$) for which there is exactly one $i$ such that $f(i)=i$?
+}}}\bigskip\par
+First, choose any $i \in [n]$ to be the one such that $f(i)=i$. Then for each $j \in [n] \backslash \left\{ i \right\}$, choose some $f(j) \in [n] \backslash \left\{ j \right\}$ ($n-1$ options for each $j$). In total, there are $n \cdot (n-1)^{n-1}$ such functions.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            How many four-digit odd numbers are there that do not contain any digit more than once? (The first digit cannot be zero, so for example, 0123 is not considered a four-digit number).
+}}}\bigskip\par
+\begin{itemize}
+    \item The last digit can be 1, 3, 5, 7, or 9, so the first choice we make has 5 options
+    \item Second, choose the first digit. It can be any integer between 1 and 9, except the one we chose for the last digit, so there are 8 options
+    \item Next, choose the second digit. It can be any integer 0-9 except the two we've already chosen, so there are 8 options
+    \item Lastly, choose the third digit, which can be any integer 0-9 except the 3 we've already chosen, so there are 7 options.
+\end{itemize}
+In total, there are $5 \times 8 \times 8 \times 7 = 2240$ options.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Which of the following are degree sequences of simple graphs? Provide a construction or a proof of impossibility for each.
+    \begin{enumerate}
+        \item $(1,1,1,2,2,3,5,5)$
+        \item $(1,1,1,2,4,5,5,5)$
+    \end{enumerate}
+}}}\bigskip\par
+For number (1):
+\begin{center}
+    \includegraphics[width=\textwidth]{"midterm 1 problem 9.png"}
+\end{center}
+\par
+For number (2): $11124555 \rightarrow 0111344 \rightarrow 000123 \rightarrow (-1)0001$ so it is not a degree sequence.
+
+\end{document}

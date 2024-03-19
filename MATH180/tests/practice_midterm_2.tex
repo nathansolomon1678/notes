@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\usepackage{tikz-cd}
+\renewcommand{\d}{\mathrm{d}}
+
+\begin{document}
+
+\title{Practice midterm 2 answers}
+\author{Nathan Solomon}
+\maketitle
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    There is a planar graph with 5 faces such that for any pair of faces
+$F_1$, $F_2$, there is an edge incident to both $F_1$ and $F_2$. True or False?
+}}}\bigskip\par
+
+False. This would imply the dual graph contains $K_5$ as a subgraph, but that would force it to not be planar (WHY?), so the original graph also couldn't be planar.
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Suppose $G$ is a simple connected graph and $e$ is an edge of $G$. There
+is a spanning tree of $G$ containing $e$. True or False?
+}}}\bigskip\par
+
+True, it can be constructed using Kruskal's algorithm if you give $e$ a lower weight than all other edges.
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Let $G$ be a connected simple graph. An edge $e$ is called a \textit{bridge} if $G - e$ is disconnected. Suppose every spanning tree of $G$ contains an edge $e$. Then $e$ is a bridge. True or False?
+}}}\bigskip\par
+True. Suppose $e$ is not a bridge. Then $G-e$ is connected. Let $T$ be a
+spanning tree in $G-e$. It is also a spanning tree of $G$ but does not contain $e$, a contradiction.
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    If a simple connected graph $G$ on 7 vertices has degree sequence
+$(4, 2, 2, 1, 1, 1, 1)$, then $G$ is a tree. True or False?
+}}}\bigskip\par
+True. By the degree score theorem, if you remove the degree 4 vertex and all its adjacent edges, you would get two isolated vertices and 2 copies of $P_2$. For the original graph to have been connected, the degree 4 vertex must be connected to each of those components, so it must have been a tree.
+\par
+Alternate solution: $|E| = 6 = |V | - 1$. By the characterization of trees, $G$ is a tree.
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            A graph is \textit{bipartite} if it can be colored using two colors. There is a simple planar bipartite graph with 8 vertices and 13 edges. True or False?
+}}}\bigskip\par
+Suppose there is such a graph. It must be obtainable by removing either 3 of the 16 edges from $K_{4,4}$ or by removing 2 of the 15 edges from $K_{3,5}$. In either case, the result is a connected planar graph, so
+\[ |V|-|E|+|F|=2 \]
+which implies there are 7 faces. But in bipartite graphs, every face has degree at least 4 (that is, there are no triangles), so $2|E|\geq 4|F|$. 26 is not less than 28, so the statement is false.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Suppose $G = (V, E)$ is a simple graph with $|V | \geq 3$. If $|E| \leq 3|V |-6$, then $G$ is planar. True or False?
+}}}\bigskip\par
+False. $G$ could be $K_5$ plus a million isolated vertices. We know $K_5$ isn't planar, so then $G$ isn't either.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+\begin{center}
+    \includegraphics[width=\textwidth]{"problem_7.png"}
+\end{center}
+}}}\bigskip\par
+If $n>1$, then you can remove any leaf and along with the other leaf that shared the same parent. Doing so will reduce the number of leaves by 1 (since the parent becomes a leaf) and reduce $n$ by 2, leaving a new binary tree. If $n=1$ then there is 1 leaf, so by induction, the number of leaves is $(n+1)/2$.
+
+\section{}
+
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            \begin{center}
+                \includegraphics[width=\textwidth]{"problem 8.png"}
+            \end{center}
+}}}\bigskip\par
+
+If $G$ is unicyclic, then $|F|=2$ and $G$ is planar. If it's also connected, then $|V|-|E|+|F|=2$. So (1) and (2) implies (3). Similarly, if (2) and (3) are true, then $|F|=2$ which means it is unicyclic. If (1) and (3) are true, then $|V|-|E|+|F|=2$, which implies it is connected (since it is homeomorphic to  circle, which has Euler characteristic 0, and we know that $b_2=0$ and $b_1=1$, so $b_0=1$).
+
+\end{document}

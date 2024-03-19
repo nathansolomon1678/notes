@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\usepackage{tikz-cd}
+\renewcommand{\d}{\mathrm{d}}
+
+\begin{document}
+
+\title{Math 180 Homework 5}
+\author{Nathan Solomon}
+\maketitle
+
+\textbf{Due February 23rd.}
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    \textbf{Section 5.2, Problem 2.} Find two nonisomorphic trees with the same score.
+}}}\bigskip\par
+Consider the tree formed by taking a copy of $P_2$ and two copies of $P_3$, then gluing together one leaf of each to form a tree. This has degree sequence $(1,1,1,2,2,3)$. If we instead used 2 copies of $P_2$ and one copy of $P_4$, we would get the same degree sequence.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    \textbf{Section 5.2, Problem 6.} Prove that there exist at most $4^n$ pairwise nonisomorphic trees on $n$ vertices.
+}}}\bigskip\par
+\begin{itemize}
+    \item There is an injection from the set of unlabeled trees with $n$ vertices to the set of unlabeled planted trees with $n$ vertices, defined by first choosing one of the leaves to be the root, so we obtain an unlabeled rooted tree, and then choosing an order of the branches (such as the ``canonical planting" defined by a lexicographical ordering).
+    \item There is an injection from the set of unlabeled planted trees to the set of strings of length $2n$ whose characters are all either -1 or +1, defined by taking the code of the tree.
+\end{itemize}
+Composing those two functions, we get an injection from the set of trees on $n$ vertices to a set which we know has $2^{2n}$ elements. This implies the number of (nonisomorphic) tree with $n$ vertices is at most $4^n$.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Let $P$ be a convex polyhedron whose faces are all $a$-gons or $b$-gons, and whose vertices are each adjacent to three edges. Let $p_a$, $p_b$, and $n$ denote the number of $a$-gonal faces, $b$-gonal faces, and vertices of $P$, respectively. Express the number of edges of $P$ in two different ways, and use this to prove that
+            \[ p_a \cdot (6-a) + p_b \cdot (6-b) = 12. \]
+}}}\bigskip\par
+By the handshaking lemma, the sum of the degrees of each vertex is $2|E|$, and since every vertex has degree 3, $2 \cdot |E|=3 \cdot |V|$. If we take the dual graph, then we get a polyhedron with $|E|$ edges and $p_a + p_b$ vertices. Specifically, there are $p_a$ vertices of degree $a$, and $p_b$ vertices of degree $b$, so applying the same trick as earlier, we get $2 \cdot |E| = a \cdot p_a + b \cdot p_b$. Now we have the following equations:
+\begin{align*}
+    |V|-|E|+|F| &=2 \\
+    2 \cdot |E| &=3 \cdot |V| \\
+    2 \cdot |E| &= a \cdot p_a + b \cdot p_b
+\end{align*}
+Now rearranging those, we get
+\begin{align*}
+    2 &= |V| - |E| + \left( p_a + p_b \right) \\
+      &= \left( \frac{2}{3} \cdot |E| \right) - |E| + \left( p_a + p_b \right) \\
+      &= \left( \frac{-1}{3} \cdot |E| \right) + \left( p_a + p_b \right) \\
+      &= - \frac{1}{6} \left( a \cdot p_a + b \cdot p_b \right) + (p_a + p_b) \\
+    \therefore 12 &= (6 - a) \cdot p_a + (6 - b) \cdot p_b
+\end{align*}
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Show that if a $G$ is a planar graph with no vertices of degree less than 3 or cycles with length less than 4, then $G$ must have at least 8 vertices and at least 12 edges. Give an example to show that these bounds cannot be improved.
+}}}\bigskip\par
+
+Since there's no cycles with length less than 4, there's no triangles in the graph, meaning all of the faces have at least 4 edges. Applying the handshaking lemma to the dual graph, that implies $4\cdot |F| \geq 2 \cdot |E|$ (every vertex in the dual graph has degree at least 4). Applying the handshaking lemma to the original graph, we see that $3 \cdot |V| \geq 2 \cdot |E|$ (since very vertex in the original graph has degree at least 3). Putting those inequalities together, we have
+\[ 2 = |V| - |E| + |F| \geq \frac{|E|}{2} - |E| + \frac{2}{3} \cdot |E| = \frac{|E|}{6}. \]
+Therefore there are at least 12 edges, which implies there are at least 8 vertices.
+\par
+The cube graph (stereographically projected onto a plane) has 8 vertices and 12 edges, and if you modify it to have fewer vertices or fewer edges, you will either create a cycle of length less than 4 or make a vertex of degree less than 3.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Prove than any simple planar graph has \textit{two} vertices of degree at most 5.
+}}}\bigskip\par
+Suppose every vertex but one of a planar graph $G$ has degree at least 6. Then $2 \cdot |E|  = \sum_{v \in V} \operatorname{deg}(v) \geq 6(|V|-1)+1 = 6 \cdot |V| - 5$. For any planar graph, $|V|-|E|+|F|=b_0+1 \geq 2$, so
+\begin{align*}
+    2 &\leq |V|-|E|+|F| \\
+      &\leq |V| - \left( 3 \cdot |V|- \frac{5}{2} \right) + |F| \\
+    \implies 2 \cdot |V| &\leq \frac{1}{2} + |F|
+\end{align*}
+But for planar graphs, every face has at least 3 edges, meaning in the dual graph, every vertex has degree at least 3, so $3 \cdot |F| \leq 2 \cdot |E|$, which implies
+\[ 2 \cdot |V| \leq \frac{1}{2} + \frac{2\cdot|E|}{3} \]
+which implies
+\[ 2 \cdot |V| \leq |E| = \frac{1}{2} \cdot \sum_{v \in V} \operatorname{deg}(v) \]
+and by the handshaking lemma, that means there is a vertex of degree less than or equal to 4. This is a contradiction. Therefore every simple planar graph has at least 2 vertices of degree $\leq 5$.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            \textbf{Section 6.3, Exercise 2.} \begin{itemize}
+                \item (a) Show that a topological planar graph with $n \geq 3$ vertices has at most $2n-4$ faces.
+                \item (b) Show that a topological planar graph without triangles has at most $n-2$ faces.
+    \end{itemize}
+}}}\bigskip\par
+\begin{itemize}
+    \item (a) Since $|E| \leq 3 |V|-6$, $|F|=2-|V|+|E|\leq 2 - |V| + 3|V|-6=2|V|-4$.
+    \item (b) There are no triangles, so $2|E| \geq 4|F|$, which means $|F| \leq n-2$.
+\end{itemize}
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    \textbf{Section 6.3, Exercise 3.} Prove that a planar graph in which each vertex has degree at least 5 must have at least 12 vertices.
+}}}\bigskip\par
+Since there is at least one connected component with at least 5 vertices, we can use the formula $|E| \leq 3 |V| - 6$. We also know by the handshaking lemma that $5|V|\leq 2|E|$, so we have $5|V| \leq 2 |E| \leq 6|V|-12$, which implies $|V| \geq 12$.
+
+\end{document}

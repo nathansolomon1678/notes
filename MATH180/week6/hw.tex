@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\usepackage{tikz-cd}
+\renewcommand{\d}{\mathrm{d}}
+
+\begin{document}
+
+\title{Math 180 Homework 6}
+\author{Nathan Solomon}
+\maketitle
+
+\textbf{Due March 1}
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Prove that the sum of coefficients of $p_G(k)$ is equal to 0, unless $G$ has no edges. \textit{Hint: How do you find the sum of coefficients of a polynomial?}
+}}}\bigskip\par
+
+For any polynomial $p$, the sum of the coefficients of $p$ is $p(1)$. By the definition of $p_G$, $p_G(1)$ is the number of ways to color the vertices of $G$ with one color, so that adjacent vertices aren't the same color. If there are no edges, there is one way to do that, since we can make all vertices the one color. But if there is even one edge, it becomes impossible to find a $1$-coloring for $G$, so $p_G(1)=0$.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Prove by induction on $m$ that the coefficient of $k^{n-1}$ in $p_G(k)$ for a simple graph $G$ on $n$ vertices with $m$ edges is $-m$.
+}}}\bigskip\par
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+        Show that a graph $G$ has at least $\binom{\chi(G)}{2}$ edges.
+}}}\bigskip\par
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Verify Stanley's theorem when $G=(V,E)$ is a tree and a complete graph.
+}}}\bigskip\par
+\textit{The question wants us to consider trees and complete graphs separately, even though it says ``and"}
+Stanley's theorem says that
+\[ \operatorname{ao}(G)=(-1)^{|V|} p_G(-1). \]
+If $G$ is a tree, $ \operatorname{ao}(G)=2^{|E|}=2^{n-1}$, and we know that $p_G(k)=k(k-1)^{n-1}$ for trees. Plugging in $k=-1$, we get $p_G(-1)=(-1)(-2)^{n-1}=(-1)^{2n}2^{n-1}=2^{n-1}$, so we have verified that the theorem is correct for trees.
+\par
+IF $G$ is a complete graph, then we have the formula $p_{K_n}(k)= k (k-1) (k-2) \cdots (k-n+1)$, so $p_{K_n}(-1)=(-1)(-2)(-3)\cdots(-n)=(-1)^nn!$. We also know that the number of acyclic orderings of $K_n$ is $n!$, which matches $(-1)^{|V|}p_{K_n}(-1)$.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Show that the chromatic polynomial of the cycle graph $C_n$ on $n$ vertices is given by
+    \[ p_{C_n}(k)=(k-1)^n+(-1)^n(k-1). \]
+}}}\bigskip\par
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Show that $p_G(k) \leq k(k-1)^{n-1}$ for any positive integer $k$, if $G$ is connected with $n$ vertices.
+}}}\bigskip\par
+???
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Prove that the signs of the coefficients of the chromatic polynomial alternate.
+}}}\bigskip\par
+Let $n$ be the number of vertices of a graph $G$, and let $m$ be the number of edges.
+\par
+\textbf{Base case:} If $m=1$, then there are $k^n-k^{n-1}$ ways to color $G$ with $k$ colors (because every vertex can be any color except the two vertices which share an edge cannot be the same color). Therefore when $m=1$, the coefficients of $p_G(k)$ alternate.
+\par
+\textbf{Inductive step:} Assume the coefficients of the chromatic polynomial alternate for any graph with fewer than $m$ edges. For any edge $e$ of $G$, $G-e$ is a graph with $m$ edges and $n$ vertices, and $G/e$ is a graph with fewer than $m$ edges and $n-1$ vertices. We know that chromatic polynomials are always monic, so for some nonnegative coefficients $a_0 \dots a_{n-1}, b_0 \dots b_{n-2}$, we have
+\begin{align*}
+    p_{G-e}(k) &= k^n-a_{n-1}k^{n-1}+a_{n-2}k^{n-2}\cdots \pm a_1k \mp a_0 \\
+    p_{G/e}(k) &= k^{n-1}-b^{n-2}k^{n-2}+\cdots\mp b_1k \pm b_0 \\
+    p_G(k)=p_{G-e}(k)-p_{G/e}(k) &= k^n-(a_{n-1}+1)k^{n-1}+\cdots \pm (a_1+b_1)k \mp (a_0+b_0)
+\end{align*}
+Therefore the coefficients of $p_G(k)$ alternate for this graph $G$, and by induction, this is true for any graph with $m \in \mathbb{N}$ edges (that is, it works for any graph). \textit{Note that if a coefficient is zero, we call it either positive or negative depending on which is most convenient for us. But other than that, the statement is true.}
+
+\end{document}

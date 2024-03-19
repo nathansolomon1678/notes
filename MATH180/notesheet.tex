@@ -1,9 +1,10 @@
-\documentclass[12pt]{article}
-\usepackage[margin=1in]{geometry}
+\documentclass[10pt]{article}
+\usepackage[margin=.5in]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amsthm}
+\usepackage{enumitem}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{cor}[thm]{Corollary}
 \newtheorem{lem}[thm]{Lemma}
@@ -29,11 +30,11 @@ If $A$ is a finite set and $B \subset A$, then
 \[ \# (A \backslash B) = \# A - \# B. \]
 \par
 \textbf{Relations:} A relation between $X$ and $Y$ is any subset of $X \times Y$, and a (binary) relation on $X$ is any subset of $X \times X$. Sometimes $(x,y) \in R$ is denoted by $xRy$. A binary relation $R \subset X \times X$ is called
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item \textit{Reflexive} iff $(x,x) \in R$ for any $x \in X$
     \item \textit{Symmetric} iff $(x,y) \in R$ implies $(y,x) \in R$
     \item \textit{Transitive} iff $(x,y),(y,z) \in R$ implies $(x,z) \in R$
-    \item \textit{Weakly antisymmetric} iff $(x,y), (y,x) \in R$ implies $x=y$.
+    \item \textit{(Weakly) antisymmetric} iff $(x,y), (y,x) \in R$ implies $x=y$.
     \item \textit{Strongly antisymmetric} iff $(x,y) \in R$ implies $(y,x) \not\in R$.
 \end{itemize}
 Some special types of relations: an \textbf{equivalence relation} is reflexive, symmetric, and transitive. A \textbf{partial ordering} is reflexive, antisymmetric, and transitive. A partial ordering $R$ on $X$ is also called a total order iff $R \cup R^{-1} = X \times X$, where $R^{-1}$ denotes the swizzled version of $R$.
@@ -48,13 +49,13 @@ A \textbf{partition} of a set $A$ is a set of disjoint subsets of $A$ whose unio
 \textbf{Pascal's identity} states that
 \[ \binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}. \]
 \par
-A \textbf{composition} of $n$ into $k$ parts is a sequence of $k$ positive integers which sum to $n$, and a \textbf{weak composition} of $n$ into $k$ parts is a sequence of $k$ nonnegative integers which sum to $n$. There are $\binom{n-1}{k-1}$ compositions and $\binom{n_k-1}{k-1}$ weak compositions (of $n$ into $k$ parts).
+A \textbf{composition} of $n$ into $k$ parts is a sequence of $k$ positive integers which sum to $n$, and a \textbf{weak composition} of $n$ into $k$ parts is a sequence of $k$ nonnegative integers which sum to $n$. There are $\binom{n-1}{k-1}$ compositions and $\binom{n-k-1}{k-1}$ weak compositions (of $n$ into $k$ parts).
 \par
 \textbf{Binomial theorem:} If $n$ is a nonnegative integer, then
 \[ (x+y)^n = \sum_{k=0}^n \binom{n}{k} x^ky^{n-k}. \]
 You can derive a bunch of useful variations of that formula by plugging in values for $x$ or $y$, or by differentiating both sides with respect to $x$ or $y$.
 \par
-A \textbf{finite, undirected, unweighted graph} is $G=(V,E,\varphi)$ consists of a nonempty finite set $V$ of vertices, a finite set $E$ of edges, and a map $\varphi: E \rightarrow \left\{ \left\{ u,v \right\}: u,v \in V \right\}$ from edges to their endpoints.
+A \textbf{(finite, undirected, unweighted) graph} $G=(V,E,\varphi)$ consists of a nonempty finite set $V$ of vertices, a finite set $E$ of edges, and a map $\varphi: E \rightarrow \left\{ \left\{ u,v \right\}: u,v \in V \right\}$ from edges to their endpoints.
 \par
 A \textbf{simple graph} is a graph that contains no loops (edges from a vertex to itself) or multiple edges (meaning $\varphi$ is injective). Sometimes, we just call these ``graphs" and instead call graphs which are not simple ``multigraphs".
 \par
@@ -78,7 +79,7 @@ An \textbf{automorphism} on a graph $G$ is an isomorphism from $G$ to itself.
 \par
 The number of isomorphic graphs with $n$ vertices is less than or equal to $2^{\binom{n}{2}}$ but greater than or equal to $\frac{2^{\binom{n}{2}}}{n!}$.
 \par
-A \textbf{walk of length $t\geq0$} in $G=(V,E)$ is a sequence of $t+1$ vertices (which are zero-indexed) and $t$ edges such that the $i$th edge connects the $i-1$th and $i$th vertices.
+A \textbf{walk of length $t\geq0$} in $G=(V,E)$ is a sequence of $t+1$ vertices (which are zero-indexed) and $t$ edges such that the $i$th edge connects the $i-1$th and $i$th vertices. A \textbf{tour} is a walk whose start and end vertices are the same, and a \textbf{trail} is a walk in which no edges are repeated (but vertices can be repeated).
 \par
 Two vertices are called \textbf{connected} in a graph iff there exists a walk between them. This is an equivalence relation, and the equivalence classes are called \textbf{connected components}.
 \par
@@ -87,7 +88,7 @@ The \textbf{degree of a vertex} in a simple graph is the number of edges inciden
 The \textbf{handshaking lemma} says that for a graph $G=(V,E)$,
 \[ \sum_{v \in V} \operatorname{deg}(v) = 2 \cdot |E|. \]
 \par
-The \textbf{distance between two vertices}, denoted $d(x,y)$ (where $x,y \in V$), is the infimum of the lengths of all walks between $x$ and $y$.
+The \textbf{distance between two vertices}, denoted $d(x,y)$ (where $x,y \in V$), is the minimum of the lengths of all walks between $x$ and $y$.
 \par
 The \textbf{adjacency matrix} of a graph $G=(V=[n],E)$ is the $n\times n$ matrix $A$ such that $A_{i,j}$ is 1 if vertices $i$ and $j$ share an edge, and 0 otherwise. This is always symmetric, so it has an orthonormal basis of eigenvectors, and all of its eigenvalues are real. The number of walks of length $k$ from $i$ to $j$ is $\left( A^k \right)_{i,j}$.
 \par
@@ -95,7 +96,7 @@ The \textbf{degree sequence}, sometimes called \textbf{score}, of a graph $G=(V,
 \[ \left\{ \operatorname{deg}v_1, \operatorname{deg}v_2, \dots, \operatorname{deg}v_n \right\} \]
 which is usually written in nondecreasing order.
 \par
-The \textbf{score theorem} states that if $D=(d_1, d_2, \dots, d_n)$ is a chain of natural numbers, then $D$ is the score of a (simple) graph if and only if $D':=(d_1', \dots, d_{n-1}')$ (defined by the following formula) is a (simple) graph score:
+The \textbf{score theorem} states that if $D=(d_1, d_2, \dots, d_n)$ is a nondecreasing chain of natural numbers, then $D$ is the score of a (simple) graph if and only if $D':=(d_1', \dots, d_{n-1}')$ (defined by the following formula) is a (simple) graph score:
 \[ d_i' = \begin{cases}
     d_i & i < n-d_n \\
     d_i-1 & i \geq n-d_n
@@ -106,28 +107,25 @@ An \textbf{Eulerian walk} is a walk that traverses every edge of a graph exactly
 \par
 A \textbf{Hamiltonian cycle} in a graph is a cycle that visits every vertex at least once, and a \textbf{Hamiltonian path} is a path which visits every vertex at least once. A \textbf{Hamiltonian graph} is a graph which contains a Hamiltonian cycle.
 \par
-A \textbf{Gray code (of degree $d$)} is a hamiltonian cycle of the \textbf{cube graph} of degree $d$, which is the skeleton of the $d$-dimensional cube. Alternatively, the Gray code of degree $d$ is a sequence of all $2^d$ binary strings with $d$ bits, such that the \textbf{Hamming distance} between adjacent strings is 1. For example, the Gray codes of degree 3 are
+A \textbf{Gray code (of degree $d$)} is a Hamiltonian cycle of the \textbf{cube graph} of degree $d$, which is the skeleton of the $d$-dimensional cube. Alternatively, the Gray code of degree $d$ is a sequence of all $2^d$ binary strings with $d$ bits, such that the \textbf{Hamming distance} between adjacent strings is 1. For example, the Gray codes of degree 3 are
 \begin{center}
-    \begin{tabular}{|c|c|}
+    \begin{tabular}{|c| c| c| c| c| c| c| c|}
         \hline
-        0 & 000 \\
-        1 & 001 \\
-        2 & 011 \\
-        3 & 010 \\
-        4 & 110 \\
-        5 & 111 \\
-        6 & 101 \\
-        7 & 100 \\
+        0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+        \hline
+        000 & 001 & 011 & 010 & 110 & 111 & 101 & 100 \\
         \hline
     \end{tabular}
 \end{center}
 \par
-A graph is called \textbf{$k$-connected} iff it has at least $k+1$ vertices and it remains connected after removing ANY $k-1$ vertices. In general,
-\begin{itemize}
+A graph is called \textbf{$k$-connected} iff it has at least $k+1$ vertices and it remains connected after removing ANY $k-1$ vertices.
+\par
+\begin{itemize}[noitemsep]
     \item $G-e$ is the graph obtained by removing edge $e$
     \item $G-v$ is the graph obtained by removing vertex $v$ and all edges incident to $v$
     \item $G+e$ is the graph obtained by adding a new edge $e$
     \item $G\%e$ is the graph obtained by subdividing $e$ and adding a new vertex on $e$.
+    \item $G/e$ is the graph obtained by contracting $e$ (gluing its 2 vertices and then removing just enough edges to get a simple graph)
 \end{itemize}
 \par
 A graph is 2-connected if and only if for any two vertices in that graph, there is a cycle containing those two vertices.
@@ -138,5 +136,133 @@ A \textbf{graph subdivision} of a graph $G$ is a graph that can be obtained by r
 \par
 The \textbf{complement} of a graph $G=(V,E)$ is
 \[ \overline{G} = \left( V, \binom{V}{2}-E \right) \]
+\par
+A \textbf{tree} is a connected graph with no cycles.
+\par
+A \textbf{leaf} or \textbf{end-vertex} is a vertex with degree 1.
+\par
+The \textbf{leaf lemma} says every tree with at least 2 vertices contains at least two leaves.
+\par
+The \textbf{tree-growing lemma} says $G$ is a tree iff for any leaf $v$ of $G$, $G-v$ is a tree.
+\par
+The \textbf{0th Betti number} $b_0$ is the number of connected components of a graph, and the \textbf{1st Betti number} $b_1$ is the maximum number of edges that can be removed without changing $b_0$.
+\par
+A \textbf{forest} is a graph whose connected components are all trees. $G$ is a forest iff $b_1=0$. Then $b_0=|V|-|E|$. In particular, trees have $|V|-|E|=1$.
+\par
+For any simple graph, the Euler characteristic (of the 1-skeleton) is $\chi(G)=|V|-|E|=b_0-b_1$.
+\par
+A \textbf{rooted tree} is a tree in which one vertex is specified as the root. The terms \textbf{parent} and \textbf{child} are defined as you'd expect in a rooted tree.
+\par
+An \textbf{isomorphism of rooted trees} is a graph isomorphism between rooted trees which preserves the root.
+\par
+A \textbf{planted tree} is a rooted tree with a linear ordering on the children of each vertex. An \textbf{isomorphism of planted trees} preserves that ordering.
+\par
+The \textbf{code} of a planted tree $P$ with $n$ vertices (drawn with the root at the top and children ordered left-to-right) is a sequence of $2(n-1$ characters on the alphabet $\{\pm 1\}$ (or $\{-,1\}$), defined by tightly looping counterclockwise around the edges, starting and ending at the root, writing ``1" every time you go down and ``-" every time you go up. A string that is the code of a planted tree is called a \textbf{ballot sequence}. All partial sums of a ballot sequence are nonnegative.
+\par
+The \textbf{$n$th Catalan number $C_n$} is the number of ballot sequences of length $2n$ (equivalently, the number of unlabeled planted trees):
+\[ C_n = \frac{1}{n+1} \binom{2n}{n}=\binom{2n}{n}-\binom{2n}{n+1}. \]
+\par
+The \textbf{eccentricity} $ \operatorname{ex}_G(v)$ of a vertex $v$ in a connected graph is the maximum distance to any other vertex. The \textbf{center} $C(G)$ is the set of vertices in a graph with the minimum eccentricity. The center of any tree is either one vertex or two, and if it's two vertices, those two share an edge.
+\par
+A graph is \textbf{planar} iff it can be embedded in a plane or sphere so that edges don't intersect. Embeddings are called \textbf{distinct} iff they are not isotopic. The connected components of the complement of an embedding of a graph in $\mathbb{R}^2$ are called \textbf{faces}. Every planar graph has at least one unbounded face, called an \textbf{outer face}.
+\par
+The number of faces in an embedded planar graph is $|F|=b_1+1$, so for any planar graph, $|V|-|E|+|F|=b_0+1$, and for any connected planar graph, $|V|-|E|+|F|=2$.
+\par
+The \textbf{degree of a face} is the degree of the dual vertex. The sum of the degrees of all faces is equal to $2 |E|$.
+\par
+IF $G$ has a subgraph that is a subdivision of a nonplanar graph, then $G$ is nonplanar.
+\par
+\textbf{Kuratowski's theorem} says that a graph is planar iff it does not have any subgraph isomorphic to either $K_5$ or $K_{3,3}$.
+\par
+Any connected planar graph with $|V|\geq3$ has $|E|\leq 3|V|-6$.
+\par
+If every vertex has degree $d$ and every face has degree $k$ in a connected graph, it must be one of the following:
+\begin{center}
+\begin{tabular}{ |c c | c | c c c | c | c|}
+    \hline
+    $d$ &  $k$ & \textbf{Convex polyhedron name} & $|V|$ & $|E|$ & $|F|$ & $\chi=|V|-|E|+|F|$ & Name of dual \\ 
+    \hline
+    \hline
+    3 & 3 & \textbf{Tetrahedron} & 4 & 6 & 4 & 2 & Tetrahedron \\
+    \hline
+    3 & 4 & \textbf{Cube} & 8 & 12 & 6 & 2 & Octahedron \\
+    4 & 3 & \textbf{Octahedron} & 6 & 12 & 8 & 2 & Cube \\
+    \hline
+    3 & 5 & \textbf{Dodecahdron} & 20 & 30 & 12 & 2 & Icosahdron \\
+    5 & 3 & \textbf{Icosahedron} & 12 & 30 & 20 & 2 & Dodecahdron \\
+    \hline
+\end{tabular}
+\end{center}
+\par
+A \textbf{proper vertex coloring} is a vertex coloring (assignment of a color to each vertex) which is proper (meaning adjacent vertices are not the same color). A graph is \textbf{$k$-colorable} iff it has a proper vertex coloring with $\leq k$ colors. A graph is \textbf{bipartite} iff it is 2-colorable. The \textbf{4 color theorem} says that every planar graph is 4-colorable.
+\par
+The \textbf{chromatic number} $\chi(G)$ of a graph $G$ is the smallest $k$ such that $G$ is $k$-colorable.
+\par
+A \textbf{clique} is a subgraph isomorphic to $K_n$, and the \textbf{clique number} $\omega(G)$ is the number of vertices in the largest clique of $G$. The clique number is always les than or equal to the chromatic number.
+\par
+An \textbf{independent set} is a subset of the vertices in the graph such that no two vertices share an edge (equivalently, it is a clique in the complement of the graph). The \textbf{independence number} $\alpha(G)$ is the size of the largest independent set in $G$.
+\par
+For any graph $G=(V,E)$, $|V|\leq \chi(G) \alpha(G)$. Also, $\chi(G) \leq \operatorname{max}_{v\in V}( \operatorname{deg}(v))+1$.
+\par
+The \textbf{chromatic polynomial} $p_G(k)$ is the polynomial function $p_G: \mathbb{Z}_{\geq 0} \rightarrow \mathbb{Z}$ such that $p_G(k)$ is the number of proper vertex colorings of $G$ in $k$ colors. Then $\chi(G)$ is the smallest $k$ such that $p_G(k) \neq 0$.
+\par
+If $G=K_n$ then $p_G(k)=k(k-1)\cdots(k-n+1)$. If $G$ is a tree with $n$ vertices, then $p_G(k)=k(k-1)^{n-1}$. If $G$ is a forest with $c$ connected components, $p_G(k)=k^c(k-1)^{n-c}$.
+\par
+The \textbf{deletion-contraction formula} says that
+\[ p_G(k) = p_{G-e}(k)-p_{G/e}(k) \]
+\par
+The chromatic polynomial is always monic and always has degree equal to the number of vertices. This is because for $k$ much larger than $|V|$, ``almost all" colorings are proper, meaning $\lim_{k \rightarrow \infty} \frac{p_G(k)}{k^{|V|}}=1$.
+\par
+An \textbf{acyclic orientation} of $G$ is a \textbf{directed graph} obtained by orienting edges of $G$ without creating a cycle. The number of acyclic orientations of $G$ is denoted $ \operatorname{ao}(G)$.
+\par
+If $G$ is a tree, then $ \operatorname{ao}(G)=2^{|E|}$. If $G=C_n$, then $ \operatorname{ao}(G)=2^n-2$. If $G=K_n$, then $ \operatorname{ao}(G)=n!$.
+\par
+\textbf{Stanley's theorem} says that
+\[ \operatorname{ao}(G)=(-1)^{|V|}\cdot p_G(-1). \]
+\par
+The \textbf{deletion-contraction formula for edges} says that
+\[ \operatorname{ao}(G)= \operatorname{ao}(G-e)+ \operatorname{ao}(G/e). \]
+\par
+A \textbf{spanning tree} of $G$ is a subgraph which is a tree and which contains all vertices of $G$.
+\par
+A \textbf{weight} is a function $ \operatorname{wt}$ from the edges of a graph $G$ to $\mathbb{R}_{\geq 0}$. A \textbf{weighted graph} is a pair $(G, \operatorname{wt})$. The weight of a graph or subgraph is the sum of the weights of all the edges.
+\par
+A \textbf{minimal spanning tree (MST)} of a connected weighted graph is a spanning tree $T$ such that $ \operatorname{wt}(T)$ is minimized.
+\par
+\textbf{Kruskal's algorithm} for finding an MST requires iterating through the edges in order by increasing weight, and appending edges to the list iff doing so doesn't create a cycle.
+\par
+\textbf{Cayley's formula} says the number of spanning trees in $K_n$ is $n^{n-2}$. \textbf{Joyal's proof} counts the number of \textbf{vertebrates}, which are trees with a specified head vertex and a specified tail vertex. \textbf{Prüfer's proof} instead counts the number of \textbf{Prüfer codes}, which are sequences in $[n]^{n-2}$. A Prüfer code for an MST is constructed by repeatedly removing the smallest-numbered leaf from the tree and then appending the number of its neighbor to the sequence, stopping when exactly two vertices remain.
+\par
+The number of times a vertex appears in a Prüfer sequence is one less than the degree of that vertex in corresponding MST.
+\par
+A \textbf{finite probability space} $(\Omega, p)$ is a finite set $\Omega$ (called the \textbf{sample space}) and a function $p: \Omega \rightarrow [0,1]$ such that $\sum_{\omega \in \Omega} p(\omega) = 1$. The values $p(\omega)$ are called \textbf{elementary probabilities}, a subset $A \subset \Omega$ is called an \textbf{event}, $\mathbb{P}[A] := \sum_{\omega \in A} p(\omega)$ is called the \textbf{probability of $A$}, a function $X: \omega \rightarrow \mathbb{R}$ is called a \textbf{random variable}, and the \textbf{expected value} or \textbf{mean} of $X$ is $\mathbb{E}[X] := \sum{\omega \in \Omega} X(\omega) p(\omega)$.
+\par
+A \textbf{uniform probability distribution} is a probability space $(\Omega, p)$ for which all elementary events have probability $\frac{1}{|\Omega|}$.
+\par
+The probability space of \textbf{random graphs} is $(\Omega, p)$ where $\Omega$ is the set of (labeled) graphs with vertex set $[n]$ and the probability of each graph is $2^{- \binom{n}{2}}$.
+\par
+The \textbf{union bound} says that for any two events $A, B$, $\mathbb{P}[A \cup B] \leq \mathbb{P}[A] + \mathbb{P}[B]$.
+\par
+Events $A_1, \dots, A_k$ are \textbf{mutually independent} iff for any $I \subset[k]$, $\mathbb{P}[\cap_{i \in I} A_i] = \prod_{i \in I} \mathbb{P}[A_i]$.
+\par
+The probability space $\mathcal{G}(n,p)$ (where $n \in \mathbb{N}, p \in [0,1]$) of \textbf{Erdős-Renyi random graphs} is the set of (simple, labeled) graphs $G=([n],E)$ for which the elementary probability of each $G$ is $p^{|E|}$. Intuitively, this means every edge has probability $p$ of existing.
+\par
+\textbf{Linearity of expectation} says that if $X,Y$ are random variables, and $a,b \in \mathbb{R}$, then $\mathbb{E}[aX+bY]=a\mathbb{E}[X]+b\mathbb{E}[Y]$.
+\par
+If $A \subset \Omega$ is an event, then the \textbf{indicator random variable} $\mathbf{1}_A: \Omega \rightarrow \{0,1\}$ is a function such that $\mathbf{1}_A(\omega)$ is 1 if $\omega \in A$ and $0$ otherwise.
+\par
+The \textbf{pigeonhole principle for expectation} says that if $\mathbb{E}[X]>a$, then $\mathbb{P}[X>a]>0$.
+\par
+A \textbf{tournament} $T$ is an orientation of the edges of $K_n$. For any $n \in \mathbb{N}$, there is a tournament with at least $\frac{n!}{2^{n-1}}$ Hamiltonian paths.
+\par
+The \textbf{probabilistic method} is to ``show that a combinatorial object with certain properties exists by showing that if we choose a random object from an appropriate probability space of objects, there is a nonzero probability that we get an object with the desired properties".
+\par
+The \textbf{Ramsey number} $R(k,l)$ is the largest $n$ such that every graph on $n$ vertices has clique number $\omega(G)\geq k$ or independence number $\alpha(G)\geq l$. Erdős showed in 1947 that $R(k,k) > 2^{ \frac{k}{2}-1}$.
+\par
+A \textbf{$k$-uniform hypergraph} is a pair $H=(V,E)$ where $V$ is a set of vvertices and $E \subset \binom{V}{k}$ is a set of \textbf{(hyper)edges}.
+\par
+A \textbf{proper $c$-coloring} of $H$ is a function from $V$ to $[c]$ such that there is no hyperedge in $H$ whose vertices are all the same color. $m(k)$ is the function defined as
+\[ m(k) := \operatorname{min} \left( \left\{ m' \in \mathbb{N}: \text{there exists a $k$-uniform hypergraph with $m'$ edges which is not 2-colorable} \right\} \right). \]
+By the probabilistic method, $m(k) \geq 2^{k-1}$.
 
 \end{document}

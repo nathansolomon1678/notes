@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\usepackage{tikz-cd}
+\renewcommand{\d}{\mathrm{d}}
+
+\begin{document}
+
+\title{Math 180 Homework 4}
+\author{Nathan Solomon}
+\maketitle
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    \textbf{Section 4.6, Exercise 1.} Prove that for any two edges of a 2-connected graph, a cycle exists containing both of them. \textit{Hint: Subdivide the edges.}
+}}}\bigskip\par
+For any two edges of a 2-connected graph, subdivide those edge, so the first edge now contains a vertex we'll call $a$ and the second edge now contains a vertex we'll call $b$. This new graph with subdivided edges is also 2-connected, and theorem 4.6.3 (which is a special case of Menger's theorem) implies there is a cycle containing $a$ and $b$. By replacing $a$ and its two adgacent edges with the edge that was subdivided to obtain $a$ (and doing the same for $b$, we turn that cycle into a cycle in the original graph which contains both of the edges we chose at the beginning.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            \textbf{Section 4.6, Exercise 2, (a) and (b).} Let $G$ be a \textit{critical 2-connected graph}; this means that $G$ is 2-connected but no graph $G-e$ for $e \in E(G)$ is 2-connected.
+            \begin{itemize}
+                \item (a) Prove that at least one vertex of $G$ has degree 2.
+                \item (b) For each $n$, find an example of a critical 2-connected graph with a vertex of degree at least $n$.
+            \end{itemize}
+}}}\bigskip\par
+\begin{itemize}
+    \item (a) Any such $G$ can be constructed by starting with $C_3$ and then repeatedly adding paths between any two points. To begin with, every vertex in $C_3$ has degree 2, and every time we add a path, if that path has length greater than one, we must also be adding a vertex with degree 2. If the path has length one, it is just an edge, and removing that edge would bring us back to the 2-connected graph we had before adding it.
+        \par
+        Therefore every critically 2-connected graph can be constructed by starting with $C_3$ and repeatedly adding paths of length at least 2 between any 2 points. That process guarantees there will always be at least one vertex of degree 2.
+    \item (b) Consider the complete bipartite graph $K_{2,n}$, where $n$ is assumed to be at least $2$. For convenience, we can also assume $n \neq 2$, since $K_{2,2} \cong C_4$, which we know is critically 2-connected.
+        \par
+        Every edge in this graph is connected to a vertex of degree 2 and a vertex of degree $n$. If you remove any edge $e$, the graph remains connected, because the degree $n$ vertex which is not incident to $e$ still shares an edge with every degree 2 vertex, and the degree $n$ vertex which is incident to $e$ still shares an edge with at least one of the other degree 2 vertices. The degree 2 vertex that was incident to $e$ has degree 1 now that $e$ is removed, and no graph containing an end-vertex is 2-connected, because the end-vertex would become isolated if you remove the only edge incident to it, making the graph disconnected. This is why I assume the question is only asking about $n>1$ -- it wouldn't be possible if $n=1$. With that assumption, we see that $K_{2,n}$ is critically 2-connected.
+\end{itemize}
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    \textbf{Section 4.6, Exercise 3.} \textit{Hint: The following observation might be useful. In the ear-addition algorithm, you can add the ears that are edges are the very end.}
+    \begin{itemize}
+        \item (a) Is it true that any critical 2-connected graph (see Exercise 2) can be obtained from a cycle by successive gluing of ``ears" (paths) of length at least 2?
+        \item (b) Is it true that any critical 2-connected graph can be obtained from a cycle by a successive gluing of ``ears" in such a way that each of the intermediate graphs created along the way is also critical 2-connected?
+    \end{itemize}
+}}}\bigskip\par
+\begin{itemize}
+    \item (a) Yes, as I proved in question 2(a). Any 2-connected graph can be obtained from a cycle by successively adding ``ears", but if we ever add an ear of length 1 (which is just an edge), then the graph is no longer critically 2-connected (because removing that edge would give the 2-connected graph we had before adding it), and adding more ears does not change that.
+    \item (b) Yes. As I explained in part (a), adding more ears to a graph that is not critically 2-connected cannot turn it into a critically 2-connected graph. Since any 2-connected graph can be obtained by gluing ears to a cycle, this implies that the graphs obtained after each step (that is, each ear addition) must also be critically 2-connected.
+\end{itemize}
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    \textbf{Section 5.1, Exercise 5.} Suppose that a tree contains a vertex of degree $k$. Show that it has at least $k$ end-vertices.
+}}}\bigskip\par
+Let $G$ be a tree containing a vertex $v$ of degree $k$. Since trees are defined as connected graphs with no cycles, $G-v$ must have at least $k$ connected components (because if any of the $k$ vertices connected to that shared an edge with $v$ in $G$ remain connected to each other in $G-v$, they would have shared a cycle in $G$), all of which are trees. By the ``end-vertex lemma", each of those trees must have at least 2 end-vertices, only one of which became an end-vertex by removing $v$. Therefore, each connected component of $G-v$ contains at least one end-vertex that was also an end-vertex before $v$ was removed, so $G$ has at least $k$ end-vertices.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    \textbf{Section 5.1, Exercise 6.} Let $T$ be a tree with $n$ vertices, $n \geq 2$. For a positive integer $i$, let $p_i$ be the number of vertices of $T$ of degree $i$. Prove
+    \[ p_1 - p_3 - 2p_4 - \cdots - (n-3)p_{n-1}=2 \]
+    (This provides an alternate proof of the end-vertex lemma.)
+}}}\bigskip\par
+By the tree-growing lemma, for any end-vertex $v$ of a nontrivial graph $T$, $T-v$ is a tree. Removing an end-vertex $v$ of $T$ will decrease $p_1$ by 1, decrease $p_i$ by 1, and increase $p_{i-1}$ by 1, where $i$ is the degree of the vertex which shares and edge with $v$ (and we assume $i > 1$).
+\par
+Therefore, every time we remove an edge joining an end-vertex to a vertex of degree $i>2$, the quantity $p_1 - p_3 - 2p_4 - \cdots - (n-3)p_{n-1}$ increases by $(-1)+(i-2)-(i-3)=0$. Since that quantity is conserved every time we remove an end-vertex, and we can repeatedly remove end-vertices until we get a path graph, for which that quantity is 2, that quantity for $T$ must have been 2 before removing any end-vertices.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Prove or disprove: Every graph with fewer edges than vertices has a component that is a tree.
+}}}\bigskip\par
+For each connected component of a graph, $|E| \geq |V|-1$. Summing that equation over all connected components, we see that the total number of edges in a graph is greater than or equal to the total number of vertices minus the number of connected components. If the graph has fewer edges than vertices, then by the pigeonhole principle, there must be at least one connected component with fewer edges than vertices. That component is a tree.
+
+\end{document}

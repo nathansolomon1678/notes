@@ -64,7 +64,7 @@ However, we could also write the dimensions for any quantity in another basis. W
     0 \\
     1
 \end{bmatrix}\]
-To convert from the $([E], [\hbar], [c])$ basis to the $([M], [L], [T])$ basis, all we need to do is left multiply by a change-of-basis matrix, which I'll call $A$.
+To convert from the $([E], [\hbar], [c])$ basis to the $([M], [L], [T])$ basis, all we need to do is left-multiply by a change-of-basis matrix, which I'll call $A$.
 \[A := \begin{bmatrix}
     1 & 1 & 0 \\
     2 & 2 & 1 \\
@@ -84,5 +84,69 @@ By looking at the entries of $A^{-1}$, we can read off the following conversions
     [L] &= [\hbar c / E] \\
     [T] &= [\hbar / E]
 \end{align*}
+\par
+This is super cool because it immediately tells us how many times we need to multiply or divide by $\hbar$ and $c$ to get a quantity that's a power of energy. For example, viscosity ($\mu$) has units of
+\[ [\mu] = [M] \cdot [L]^{-1} \cdot [T]^{-1} = [E/c^2] \cdot [\hbar c / E]^{-1} \cdot [\hbar / E]^{-1} = [E]^3 \cdot [\hbar]^{-2} \cdot [c]^{-3} \]
+so to get $\mu$ from SI units to natural units, we need to multiply by $\hbar^2c^3$.
+\par
+Suppose the quantity we want to convert to natural units is $\mu = 3 \, \mathrm{kg} \, \mathrm{m}^{-1} \, \mathrm{s}^{-1}$. Multiplying by $\hbar^2 c^3$ is annoying because we would still need to do a lot of math, but there is another way to do this.
+\par
+First, take the logarithm of the quantity we want to convert. \textit{Note that we're using the base 10 log here instead of the natural log, since this will make it easier to convert between $eV$, $keV$, $MeV$, and $GeV$ later on.}
+\[ \log (\mu) = \log(3) + \log (\mathrm{kg}) - \log(\mathrm{m}) - \log(\mathrm{s}) \in \operatorname{span}_\mathbb{R} \left( \left\{ 1, \log(\mathrm{kg}), \log(\mathrm{m}), \log(\mathrm{s}) \right\} \right) \]
+can be written in the $(1, \log(\mathrm{kg}), \log(\mathrm{m}), \log(\mathrm{s}))$ basis as
+\[ \begin{bmatrix}
+    \log 3 \\
+    1 \\
+    -1 \\
+    -1
+\end{bmatrix} = \begin{bmatrix}
+    0.477121 \\
+    1 \\
+    -1 \\
+    -1
+\end{bmatrix} \]
+and we can convert that to the $(1, \log(\mathrm{eV}), \log(\mathrm{\hbar}), \log(\mathrm{c}))$ basis by left-multiplying by the inverse of some matrix $B$, where $B$ is the matrix we left-multiply by to convert from the $(1, \log(\mathrm{eV}), \log(\hbar), \log(c))$ basis to the $(1, \log(\mathrm{kg}), \log(\mathrm{m}), \log(\mathrm{s}))$ basis.
+\begin{align*}
+    B &= \begin{bmatrix}
+    1 & -18.795290 & -33.976924 & 8.476821 \\
+    0 & 1 & 1 & 0 \\
+    0 & 2 & 2 & 1 \\
+    0 & -2 & -1 & -1
+\end{bmatrix} \\
+    B^{-1} &= \begin{bmatrix}
+        1 & 35.748931 & 6.704814 & 15.181634 \\
+        0 & 1 & -1 & -1 \\
+        0 & 0 & 1 & 1 \\
+        0 & -2 & 1 & 0
+    \end{bmatrix}
+\end{align*}
+The matrix $B$ was derived by writing out 1, $\mathrm{eV}$, $\hbar$, and $c$ in SI units and taking the base 10 log of both sides to obtain a system of equations. For example,
+\begin{align*}
+    c &= 299792458 \, \mathrm{m} / \mathrm{s} \\
+    \log(c) &= 8.476821 + 0 \cdot \log(\mathrm{kg}) + 1 \cdot \log(\mathrm{m}) + (-1) \cdot \log(\mathrm{s})
+\end{align*}
+Note that if we leave off the ``real component" (in that case, the 8.476821 term), this process is equivalent to deriving the matrix $A$ that we used earlier, which is why the bottom-right $3 \times 3$ submatrix of $B$ is $A$, and the bottom-right $3 \times 3$ submatrix of $B^{-1}$ is $A^{-1}$.
+\par
+If we left-multiply the vector we wrote for $\log(\mu)$ (in the $(1, \log(\mathrm{kg}), \log(\mathrm{m}), \log(\mathrm{s}))$ basis) by $B^{-1}$, we get
+\[ \begin{bmatrix}
+        1 & 35.748931 & 6.704814 & 15.181634 \\
+        0 & 1 & -1 & -1 \\
+        0 & 0 & 1 & 1 \\
+        0 & -2 & 1 & 0
+    \end{bmatrix} \cdot \begin{bmatrix}
+    0.477121 \\
+    1 \\
+    -1 \\
+    -1
+\end{bmatrix} = \begin{bmatrix}
+    14.339605 \\
+    3 \\
+    -2 \\
+    -3
+\end{bmatrix} \]
+which means that
+\[ \mu = 3 \, \mathrm{kg} \, \mathrm{m}^{-1} \, \mathrm{s}^{-1} = 10^{14.339605} \, \mathrm{eV}^3 \, \hbar^{-2} \, c^{-3} \]
+so in natural units (the unit system where $\hbar=1=c$), $\mu$ is
+\[ 10^{14.339605} \, \mathrm{eV}^3 = 2.185770247 \times 10^{14} \, \mathrm{eV}^3. \]
 
 \end{document}

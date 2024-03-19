@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\usepackage{tikz-cd}
+\renewcommand{\d}{\mathrm{d}}
+
+\begin{document}
+
+\title{Practice Midterm 1}
+\author{Nathan Solomon}
+\maketitle
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            There is a subgraph of $K_{4,4}$ that is isomorphic to $K_4$. True or False?
+}}}\bigskip\par
+
+False, because $K_4$ contains an 3-cycle, and $K_{4,4}$ doesn't.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    There are exactly two (nonempty) nonisomorphic regular trees. True
+    or False? (A graph is \textit{regular} if every vertex has the same degree.)
+}}}\bigskip\par
+True, they'e the isolated vertex $P_0$ and the graph $P_1$. Since every tree has at least one leaf, this implies all vertices are leaves.
+\par
+A more elegant method is to use the handshaking lemma, which gives $2(n-1)=dn$, where $d$ is the degree of each vertex and $n$ is the number of vertices. Then the only valid solutions are $(n,d)=(2,1)$ and $(n,d)=(1,0)$.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    The relation $x \preceq y$ if $|x| \leq |y|$ is an ordering on the set
+    \[ \left\{ -4,-3,-2,-1,0,1,2,3,4 \right\}. \]
+    True or False?
+}}}\bigskip\par
+False. $1 \preceq -1$ and $-1 \preceq 1$, but $1 \neq -1$. Since the relation is not antisymmetric, it's not an ordering.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    Suppose that there exist two connected graphs $G$ and $H$ and a bijection from $f : V (G) \rightarrow V (H)$ such that $d_G(u, v) = d_H (f (u), f (v))$ for every two vertices $u$ and $v$ of $G$. Then, $G$ and $H$ are isomorphic. True or False?
+}}}\bigskip\par
+True. This means $u$ and $v$ are distance 1 apart iff $f(u)$ and $f(v)$ are distance 1 apart. Being distance 1 apart is the same as sharing an edge, so this is equivalent to the definition of a graph isomorphism.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Let $G=(V,E)$ be a graph with $|V|=n$. If for every two nonadjacent vertices $u$ and $v$ of $G$,
+            \[ \operatorname{deg}_G(u)+ \operatorname{deg}_G(v) \geq n-1, \]
+            then show that any two vertices are connected by a path of length $\leq 2$.
+}}}\bigskip\par
+If $u$ and $v$ are adjacent, we're done. Otherwise, consider the set of vertices adjacent to $u$ and the set of vertices adjacent to $v$. The sum of the size of those two sets is at least $n-1$, but there are only $n-2$ vertices in $G$ which aren't either $u$ or $v$. By pigeonhole, those sets have a nonempty union, and any of the vertices in that union will share an edge with both $u$ and $v$, so there is a path of length 2 from $u$ to $v$.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            The \textit{complement} of a graph $G=(V,E)$ is the graph $\overline{G}=(V,\binom{V}{2}-E)$. Find all trees $T$ such that $\overline{T}$ is also a tree.
+            \textit{Hint:} How many vertices can $T$ have?
+}}}\bigskip\par
+$T$ and $\overline{T}$ are both trees with $|V|$ vertices, so they must both have $|V|-1$ edges, so $\binom{V}{2}=2|V|-2$. Therefore $|V|$ is either 1 or 4. Now we just gotta go through all cases, which I'm not gonna do here.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+    How many compositions of $n$ into $k$ parts of size 1 and 2 are there?
+}}}\bigskip\par
+There must be $n-k$ parts of size 2 and $2k-n$ parts of size 1, so the answer is $\binom{n}{n-k}$.
+
+\section{}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            Let $G = (V, E)$ be a connected graph. An edge $e \in E$ is a \textit{cut-edge} if $G - e$ is disconnected. Show that if $G$ is Eulerian, then there exist no cut-edges in $G$.
+}}}\bigskip\par
+
+Every vertex in $G$ has even degree, so every vertex in $G-e$ except for exactly two have even degree. That means $G$ has an Eulerian walk, so $G-e$ is connected, meaning no edge $e$ is a cut-edge.
+
+\end{document}

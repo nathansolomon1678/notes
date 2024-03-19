@@ -33,8 +33,8 @@ Suppose there exists a (simple) graph $G$ in which $u$ and $v$ are the only vert
             \end{itemize}
 }}}\bigskip\par
 \begin{itemize}
-    \item (1) $m$ and $n$ must both be even
-    \item (2) IDK
+    \item (1) $m$ and $n$ must both be even, since every vertex in an Eulerian graph has even degree.
+    \item (2) Exactly 0 or 2 vertices can have odd degree. Therefore $(m,n)$ must be either $(1,1)$, or $(2,\text{any odd number}$, or $(\text{any odd number},2)$, or both $m$ and $n$ can be even.
 \end{itemize}
 
 \section{}
@@ -104,6 +104,7 @@ Every edge in this graph connects a red and a blue node. Since a Hamiltonian cyc
 \noindent\fbox{\fbox{\parbox{6.5in}{
             Prove that if an edge $e$ appears an odd number of times in a closed walk $W$, then $W$ contains the edges of a cycle through $e$. \textit{Hint: Use induction on the length of $W$}.
 }}}\bigskip\par
+If $W$ doesn't repeat any vertices, this is clearly true. Otherwise, we can split it into to shorter walks, one of which uses $e$ an odd number of times. If $|W|=1$, this statement is true, so by induction, it's always true.
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
@@ -112,5 +113,9 @@ Every edge in this graph connects a red and a blue node. Since a Hamiltonian cyc
         \includegraphics[width=\textwidth]{Screenshot from 2024-01-29 07-28-21.png}
     \end{center}
 }}}\bigskip\par
+\begin{center}
+    \includegraphics[width=\textwidth]{"problem 6.png"}
+\end{center}
+
 
 \end{document}

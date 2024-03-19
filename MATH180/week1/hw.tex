@@ -33,9 +33,9 @@
             \end{itemize}
 }}}\bigskip\par
 \begin{itemize}
-    \item (a) If $f$ is one-to-one, then the function $f: X \rightarrow \operatorname{Im}(f)$ is a bijection, so we can define $g: \operatorname{Im}(f) \rightarrow X$ to be it's inverse. Then $f \circ f = \mathrm{id}_X$.
+    \item (a) If $f$ is one-to-one, then the function $f: X \rightarrow \operatorname{Im}(f)$ is a bijection, so we can define $g': \operatorname{Im}(f) \rightarrow X$ to be it's inverse, and $g: Y \rightarrow X$ be any function such that the restriction of $g$ to $ \operatorname{Im}(f)$ is $g'$. Then $g \circ f = \mathrm{id}_X$.
         \par
-        If $f$ is not one-to-one, there exist elements $a,b \in X$ such that $a \neq b$ but $f(a)=f(b)$. Then $g(f(a))=g(f(b))$, so $g \circ f$ is not one-to-one, and therefore is not $\mathrm{id}_X$.
+        If $f$ is not one-to-one, there exist elements $a,b \in X$ such that $a \neq b$ but $f(a)=f(b)$. Then $g'(f(a))=g'(f(b))$, so $g \circ f$ is not one-to-one, and therefore is not $\mathrm{id}_X$.
     \item (b) If $f: X \rightarrow Y$ is surjective, then let $g: Y \rightarrow X$ be any function which takes $y \in Y$ to some element in the preimage $f^{-1}(y)$. Then $f \circ g = \mathrm{id}_Y$.
         \par
         If $f$ is not surjective, then there exists some $y \in Y$ which is not in the image of $f$, and therefore not in the image of $f \circ g$. But since the image of $\mathrm{id}_Y$ is $Y$, that means $f \circ g \neq \mathrm{id}_Y$.
