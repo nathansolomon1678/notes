@@ -1,0 +1,110 @@
+\documentclass[class=article, crop=false]{standalone}
+\input{../preamble.tex}
+
+
+\fancyhf{}
+\lhead{Nathan Solomon}
+\rhead{Page \thepage}
+\pagestyle{fancy}
+
+\begin{document}
+\section{4/3/2024 lecture}
+
+\subsection{Syllabus}
+The instructor's email is \url{ryan.thorngren@physics.ucla.edu} and his office hours will probably be Fridays from 1-2pm. The TA, Yanyan Li, can be reached at \url{yanyanli@ucla.edu}
+\par
+Grading is based on weekly problem sets, which will be due Fridays. To get an A, you need to put in a good effort on all of them.
+\par
+There course topics and textbooks are:
+\begin{itemize}
+    \item Group theory and representation theory of finite group (Artin's \emph{Algebra})
+    \item Crystallographic groups (Sternberg's \emph{Group Theory and Physics})
+    \item Lie groups (Hall's \emph{Lie Groups, Lie Algebras, and Representations} and Georgi's \emph{Lie Algebras in Particle Physics})
+    \item If we have spare time, we can cover bector bundles and characteristic classes (Nakahara's \emph{Geometry, Topology, and Physics})
+\end{itemize}
+
+\subsection{Intro to groups}
+A \emph{group} is a pair $(G, \cdot)$ where $G$ is a set and $\cdot: G \times G \rightarrow G$ is a binary operator, such that the following are all true.
+\begin{itemize}
+    \item (Unital axiom) There is some $e \in G$, called the \emph{identity element}, such that for any $g \in G$, $eg=g=ge$.
+    \item (Associative axiom) For any 3 elements $a,b,c \in G$, $(ab)c=a(bc)$.
+    \item (Invertible axiom) For any $g \in G$, there exists some element $g^{-1} \in G$ such that $g g^{-1}=e=g^{-1}g$.
+\end{itemize}
+\par
+A group is called \emph{abelian} iff $ab=ba$ for any two elements $a,b$ in the group. It is called \emph{nonabelian} iff it is not abelian.
+\begin{note}
+    Depending on context, the operator $\cdot$ can be called ``addition", ``multiplication", ``composition", or just ``the group operation". It is often written as $+$, $\times$, $*$, or $\circ$. Repeated multiplication is denoted by $g^n$, where $g \in G$ and $n \in \N$, and repeated addition is denoted by $ng=g+g+\cdots +g$ ($n$ times). Additive notation is pretty much only used for abelian groups, but not every abelian group is written additively.
+\end{note}
+Physicist generally care about groups because they represent symmetries. For example, if you multiply every electric charge in the universe by a complex number with magnitude 1 (that is, by an element of $U(1)$), the Lagrangian doesn't change.
+\begin{example}
+    The set of transformations of a regular polyhedron forms a group, when you define the group operation to be composition of transformations. Note that no matter which of the 5 regular polyhedra we choose, this is not a commutative group.
+\end{example}
+\begin{prop}
+    The rotational group of a tetrahedron is $A_4$, the rotational group of a cube or octahedron is $S_4$, and the rotational group of a dodecahedron or icosahedron is $A_5$. We will not prove this, for now.
+\end{prop}
+For any integer $n > 0$, we define the \emph{symmetric group} $S_n$ to be the set of permutations of $n$ elements, with the group operation being composition. Alternatively, we can define $S_n$ to be the set of bijections $\sigma: \left\{ 1, \dots, n \right\} \rightarrow \left\{ 1, \dots, n \right\}$.
+\par
+\begin{lem}
+    Every permutation is a product of disjoint cyclic permutations.
+\end{lem}
+\begin{cor}
+    Since every cyclic permutation is a product of transpositions, we can also say that every permutation is a product of transpositions.
+\end{cor}
+\par
+The \emph{order} of a finite group $G$, denoted $|G|$, is the number of elements in $G$. For example, the order of $S_n$ is $|S_n|=n!$. The \emph{order} of an element $g \in G$ is the smallest integer $n>0$ such that $g^n=e$.
+\begin{note}
+    It's easy to get confused between the terms ``symmetry group" and ``symmetric group. The symmetry group of something is the set of transformations that preserve some property of it. The symmetric group of a set is the group of permutations of elements in that set.
+\end{note}
+
+\subsection{Group homomorphisms}
+Let $G,H$ be groups. A map $\varphi: G \rightarrow H$ is called a \emph{(group) homomorphism} iff for every $g_1, g_2 \in G, \varphi(g_1g_2)=\varphi(g_1)\varphi(g_2)$. Furthermore, a group homomorphism $\varphi$ is called a \emph{(group) isomorphism} iff it is also bijective.
+\par
+Group isomorphism is an equivalence relation, which we denote with $\cong$.
+\begin{example}
+    The map $\exp: \R \rightarrow \R_{\neq 0}$ is a group isomorphism (from $(\R, +)$ to $(\R_{\neq 0}, \times)$), because $e^{a+b}=e^ae^b$ for any $a,b \in \R$ and it is bijective.
+\end{example}
+One helpful trick for proving that a homomorphism is an isomorphism is to note that a group homomorphism $\varphi: G \rightarrow H$ is injective iff $\varphi(g)=e_H$ implies $g=e_G$. This is fairly easy to prove.
+\begin{thm}
+    Let $T$ be the set of symmetries of a regular tetrahedron. Then $T \cong S_4$.
+\end{thm}
+\begin{proof}
+    Label the edges of a regular tetrahedron as $ \left\{ 1,2,3,4 \right\}$ and let $\varphi: T \rightarrow S_4$ be the map which takes a transformation of the tetrahedron to the corresponding permutation of its vertices. This is clearly an injective homomorphism, so we just need to show that it's also surjective.
+    \bigskip
+    \par
+    For any two vertices of a regular tetrahedron, consider the pependicular bisector of the edge that joins them. Reflection across that plane is an element of $T$, and $\varphi$ takes that element to a transposition in $S_4$. We can obtain every transposition in $S_4$ this way, and we know that every element of $S_4$ is a product of transpositions, so $\varphi$ is surjective.
+\end{proof}
+\begin{prop}
+    More generally, the symmetry group of an $n$-simplex is $S_{n+1}$.
+\end{prop}
+\begin{proof}
+    The proof of this is exactly the same as it is for a 3-simplex (tetrahedron), except the perpendicular bisector is now an $(n-1)$ dimensional hyperplane instead of a plane, and the number of vertices to be permuted is now $n+1$ instead of 4.
+\end{proof}
+
+\subsection{Generators and relations}
+A subset $S \subset G$ is said to \emph{generate} $G$ iff every element of $G$ can be written as a finite product of the elements of $S$ and the inverses of the elements of $S$. Elements of the generating set $S$ are called \emph{generators}.
+\par
+A \emph{word} in a group $G$ is an expression of the form $g_{i_1}^{\pm 1} g_{i_2}^{\pm 1} \cdots g_{i_n}^{\pm 1}$. Two words are considered different if they are written differently, even if the expressions they represent are equal. A word which represents an expression equal to the identity is called a \emph{relation}.
+\begin{example}
+    The symmetric group $S_n$ is generated by the transpositions $ \left\{ s_1, s_2, \dots, s_{n-1} \right\}$, where $s_i = (i, i+1)$. Since every transposition has order 2, we have the relation $s_i^2=e$. We also have the relation $s_is_j=s_js_i$ whenever $|i-j|>1$, because $s_i$ and $s_j$ are disjoint -- this can also be written as $s_is_js_i^{-1}s_j^{-1}$. Lastly, we have the relation that $(s_is_{i+1})^3=e$ (whenever $i<n-1$), because $s_is_{i+1}$ is a 3-cycle.
+\end{example}
+Given a set $S$ of symbols and a set $R$ of relations in $S$, we define the \emph{group presentation} $ \braket{S}{R}$ to be the group of equivalence classes of words in $S$ (with the equivalence relation making every element of $R$ equal to the identity, and with the group operation being concatenation).
+\par
+The \emph{cyclic group (of $n$ elements)} is the group $C_n := \braket{s}{s^n}$. $C_n$ is an abelian group of order $n$, in which $s$ has order $n$.
+\begin{prop}
+    \[ S_n \cong \braket{s_1, \dots, s_{n-1}}{ \left\{ s_i^2 \right\} \cup \left\{ s_is_js_i^{-1}s_j^{-1} : |i-j|>1 \right\} \cup \left\{ (s_is_{i+1})^3 \right\}} \]
+\end{prop}
+\begin{proof}
+    The proof of this is a painful exercise. You would need to show that there is a map from the right hand side to $S_n$ which is an injective and surjective homomorphism.
+\end{proof}
+\begin{thm}
+    Good news: every group has a presentation. Bad news: given a finite presentation, there is no algorithm to determine any of the following.
+    \begin{itemize}
+        \item Whether two words are equal
+        \item Whether the group is finite
+        \item Whether the group is \emph{trivial} (meaning isomorphic to the \emph{trivial group} $\{e\}=1$)
+    \end{itemize}
+    \par
+    This is because simplifying a word often requires expanding it before simplifying it, and there is no upper bound on how much you need to expand it before you can start simplifying. Therefore, even a brute force algorithm for any of those three problems could take arbitrarily long to run.
+\end{thm}
+
+\end{document}

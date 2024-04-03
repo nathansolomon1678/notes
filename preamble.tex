@@ -1,0 +1,195 @@
+\usepackage[margin=1in]{geometry}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{multicol}
+\usepackage{pdfpages}
+\usepackage{standalone}
+\usepackage[many]{tcolorbox}
+\usepackage{tikz-cd}
+\usepackage{transparent}
+\usepackage{xcolor}
+% \tcbuselibrary{minted}
+
+\author{Nathan Solomon}
+
+\newcommand{\fig}[1]{
+    \begin{center}
+        \includegraphics[width=\textwidth]{#1}
+    \end{center}
+}
+
+% Math commands
+\renewcommand{\d}{\mathrm{d}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\tr}{tr}
+
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\H}{\ensuremath{\mathbb{H}}}
+\newcommand{\F}{\ensuremath{\mathbb{F}}}
+
+\newcommand{\E}{\ensuremath{\mathbb{E}}}
+\renewcommand{\P}{\ensuremath{\mathbb{P}}}
+
+\newcommand{\es}{\ensuremath{\varnothing}}
+\newcommand{\inv}{\ensuremath{^{-1}}}
+\newcommand{\eps}{\ensuremath{\varepsilon}}
+\newcommand{\del}{\ensuremath{\partial}}
+\renewcommand{\a}{\ensuremath{\alpha}}
+
+\newcommand{\abs}[1]{\ensuremath{\left\lvert #1 \right\rvert}}
+\newcommand{\norm}[1]{\ensuremath{\left\lVert #1\right\rVert}}
+\newcommand{\mean}[1]{\ensuremath{\left\langle #1 \right\rangle}}
+\newcommand{\floor}[1]{\ensuremath{\left\lfloor #1 \right\rfloor}}
+\newcommand{\ceil}[1]{\ensuremath{\left\lceil #1 \right\rceil}}
+\newcommand{\bra}[1]{\ensuremath{\left\langle #1 \right\rvert}}
+\newcommand{\ket}[1]{\ensuremath{\left\lvert #1 \right\rangle}}
+\newcommand{\braket}[2]{\ensuremath{\left.\left\langle #1\right\vert #2 \right\rangle}}
+
+% Custom environments
+\newtheorem{thm}{Theorem}[section]
+
+\definecolor{probBackgroundColor}{RGB}{250,240,240}
+\definecolor{probAccentColor}{RGB}{140,40,0}
+\newenvironment{prob}{
+    \stepcounter{thm}
+    \begin{tcolorbox}[
+        boxrule=.5pt,
+        sharp corners,
+        colback=probBackgroundColor,
+        colframe=probAccentColor,
+        borderline west={4pt}{0pt}{probAccentColor},
+        breakable
+    ]
+    \color{probAccentColor}\textbf{Problem \thethm.} \color{black}
+} {
+    \end{tcolorbox}
+}
+
+\definecolor{exampleBackgroundColor}{RGB}{212,232,246}
+\newenvironment{example}{
+    \stepcounter{thm}
+    \begin{tcolorbox}[
+      boxrule=.5pt,
+      sharp corners,
+      colback=exampleBackgroundColor,
+      breakable
+    ]
+    \textbf{Example \thethm.}
+} {
+    \end{tcolorbox}
+}
+
+\definecolor{propBackgroundColor}{RGB}{255,245,220}
+\definecolor{propAccentColor}{RGB}{150,100,0}
+\newenvironment{prop}{
+    \stepcounter{thm}
+    \begin{tcolorbox}[
+        boxrule=.5pt,
+        sharp corners,
+        colback=propBackgroundColor,
+        colframe=propAccentColor,
+        breakable
+    ]
+    \color{propAccentColor}\textbf{Proposition \thethm. }\color{black}
+} {
+    \end{tcolorbox}
+}
+
+\definecolor{thmBackgroundColor}{RGB}{235,225,245}
+\definecolor{thmAccentColor}{RGB}{50,0,100}
+\renewenvironment{thm}{
+    \stepcounter{thm}
+    \begin{tcolorbox}[
+        boxrule=.5pt,
+        sharp corners,
+        colback=thmBackgroundColor,
+        colframe=thmAccentColor,
+        breakable
+    ]
+    \color{thmAccentColor}\textbf{Theorem \thethm. }\color{black}
+} {
+    \end{tcolorbox}
+}
+
+\definecolor{corBackgroundColor}{RGB}{240,250,250}
+\definecolor{corAccentColor}{RGB}{50,100,100}
+\newenvironment{cor}{
+    \stepcounter{thm}
+    \begin{tcolorbox}[
+        enhanced,
+        boxrule=0pt,
+        frame hidden,
+        sharp corners,
+        colback=corBackgroundColor,
+        borderline west={4pt}{0pt}{corAccentColor},
+        breakable
+    ]
+    \color{corAccentColor}\textbf{Corollary \thethm. }\color{black}
+} {
+    \end{tcolorbox}
+}
+
+\definecolor{lemBackgroundColor}{RGB}{255,245,235}
+\definecolor{lemAccentColor}{RGB}{250,125,0}
+\newenvironment{lem}{
+    \stepcounter{thm}
+    \begin{tcolorbox}[
+        enhanced,
+        boxrule=0pt,
+        frame hidden,
+        sharp corners,
+        colback=lemBackgroundColor,
+        borderline west={4pt}{0pt}{lemAccentColor},
+        breakable
+    ]
+    \color{lemAccentColor}\textbf{Lemma \thethm. }\color{black}
+} {
+    \end{tcolorbox}
+}
+
+\definecolor{proofBackgroundColor}{RGB}{255,255,255}
+\definecolor{proofAccentColor}{RGB}{80,80,80}
+\renewenvironment{proof}{
+    \begin{tcolorbox}[
+        enhanced,
+        boxrule=.25pt,
+        sharp corners,
+        colback=proofBackgroundColor,
+        colframe=proofAccentColor,
+        borderline west={4pt}{0pt}{proofAccentColor},
+        breakable
+    ]
+    \color{proofAccentColor}\emph{\textbf{Proof. }}\color{black}
+} {
+    \qed \end{tcolorbox}
+}
+
+\definecolor{noteBackgroundColor}{RGB}{240,250,240}
+\definecolor{noteAccentColor}{RGB}{30,130,30}
+\newenvironment{note}{
+    \begin{tcolorbox}[
+        enhanced,
+        boxrule=0pt,
+        frame hidden,
+        sharp corners,
+        colback=noteBackgroundColor,
+        borderline west={4pt}{0pt}{noteAccentColor},
+        breakable
+    ]
+    \color{noteAccentColor}\textbf{Note. }\color{black}
+} {
+    \end{tcolorbox}
+}

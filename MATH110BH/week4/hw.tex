@@ -25,11 +25,14 @@
 \noindent\fbox{\fbox{\parbox{6.5in}{
             Determine whether the ring $\mathbb{Z}[\sqrt{5}]$ is a PID.
 }}}\bigskip\par
+We can prove that it's not a UFD
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
             Let $R=\mathbb{Z}[i]$ be the ring of Gauss integers and let $p$ be a prime integer such that $p \equiv 3 \pmod{4}$. Prove that $p$ is prime in $R$.
 }}}\bigskip\par
+Suppose there exist $a+bi, c+di \in R$ such that $p=(a+bi)(c+di)$. Then
+\[ p=(ac-bd)+(bc+ad)i \]
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
@@ -64,10 +67,15 @@
 \noindent\fbox{\fbox{\parbox{6.5in}{
             Prove that the polynomial ring $\mathbb{Z}[x_1,x_2,x_3,\dots]$ in countably many variables is a UFD but not a Noetherian ring.
 }}}\bigskip\par
+It's not a Noetherian ring because we have a chain of infinitely many ideals:
+\[ \mathbb{Z} \subset \mathbb{Z}[x_1] \subset \mathbb{Z}[x_1,x_2] \subset \cdots \]
+but it's a UFD because every polynomial in that ring belongs to an ideal of the form
+\[ \mathbb{Z}[x_1,x_2,\dots,x_n] \]
+and we can use induction to prove that all ideals of that form are UFDs.
 
 \section{}
 \noindent\fbox{\fbox{\parbox{6.5in}{
-            Let $R=\mathbb{Z}[\sqrt{-5}]$. Prove that the product of the two ideals $2R+(a+\sqrt{-5})R$ and $3R+(1+\sqrt{-5})$ in $R$ is the principal ideal $(1+\sqrt{-5})R$.
+            Let $R=\mathbb{Z}[\sqrt{-5}]$. Prove that the product of the two ideals $2R+(1+\sqrt{-5})R$ and $3R+(1+\sqrt{-5})$ in $R$ is the principal ideal $(1+\sqrt{-5})R$.
 }}}\bigskip\par
 
 \end{document}

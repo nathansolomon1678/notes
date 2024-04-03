@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1707163141 "notes.tex" "notes.pdf" "notes" 1707163141
+["pdflatex"] 1709769484 "notes.tex" "notes.pdf" "notes" 1709769484
   "/etc/texmf/web2c/texmf.cnf" 1624860389 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/nathan/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1636064342 14040 a7fafee830db212d3e239b25fc342e7f ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -12,9 +12,11 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm" 1246382020 908 2921f8a10601f252058503cc6570e581 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm" 1246382020 940 75ac932a52f80982a9f8ea75d03a34cf ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1246382020 940 228d6584342e91276bf566bcf9716b83 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm" 1136768653 1332 f817c21a1ba54560425663374f1b651a ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm" 1136768653 1344 8a0be4fe4d376203000810ad4dc81558 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm" 1136768653 1336 3125ccb448c1a09074e3aa4a9832f130 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm" 1136768653 1332 1fde11373e221473104d6cc5993f046e ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmex10.tfm" 1136768653 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -142,11 +144,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1652220508 128028 f533b797fba58d231669ea19e894e23e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1686184227 4791331 1cfa45453f50f2adfaa6785477a5978a ""
-  "notes.aux" 1707163141 3579 6b86bdcbc6b86a4cce1abffefd11002d "pdflatex"
-  "notes.tex" 1707163141 29658 04f517371fc5b195770e21c593eb3e35 ""
-  "notes.toc" 1707163141 2218 a069536ca9dd9ae8354c24b6c7bfbc48 "pdflatex"
+  "notes.aux" 1709769484 6627 510b680be9598e18fc51b61cd11f2c8d "pdflatex"
+  "notes.tex" 1709769484 54638 5901203d9fcf3262b9e4ad27d13b99ce ""
+  "notes.toc" 1709769484 3832 f584db4b72b2b87d35b57d64ab423cb5 "pdflatex"
   (generated)
   "notes.toc"
-  "notes.aux"
   "notes.log"
   "notes.pdf"
+  "notes.aux"
