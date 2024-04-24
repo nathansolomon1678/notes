@@ -20,7 +20,7 @@ There course topics and textbooks are:
     \item Group theory and representation theory of finite group (Artin's \emph{Algebra})
     \item Crystallographic groups (Sternberg's \emph{Group Theory and Physics})
     \item Lie groups (Hall's \emph{Lie Groups, Lie Algebras, and Representations} and Georgi's \emph{Lie Algebras in Particle Physics})
-    \item If we have spare time, we can cover bector bundles and characteristic classes (Nakahara's \emph{Geometry, Topology, and Physics})
+    \item If we have spare time, we can cover vector bundles and characteristic classes (Nakahara's \emph{Geometry, Topology, and Physics})
 \end{itemize}
 
 \subsection{Intro to groups}
@@ -40,13 +40,13 @@ Physicist generally care about groups because they represent symmetries. For exa
     The set of transformations of a regular polyhedron forms a group, when you define the group operation to be composition of transformations. Note that no matter which of the 5 regular polyhedra we choose, this is not a commutative group.
 \end{example}
 \begin{prop}
-    The rotational group of a tetrahedron is $A_4$, the rotational group of a cube or octahedron is $S_4$, and the rotational group of a dodecahedron or icosahedron is $A_5$. We will not prove this, for now.
+    The rotational group of a tetrahedron is $T_3\cong A_4$, the rotational group of a cube or octahedron is $S_4$, and the rotational group of a dodecahedron or icosahedron is $A_5$. We will not prove this, for now.
 \end{prop}
 For any integer $n > 0$, we define the \emph{symmetric group} $S_n$ to be the set of permutations of $n$ elements, with the group operation being composition. Alternatively, we can define $S_n$ to be the set of bijections $\sigma: \left\{ 1, \dots, n \right\} \rightarrow \left\{ 1, \dots, n \right\}$.
 \par
 \begin{lem}
     Every permutation is a product of disjoint cyclic permutations.
-\end{lem}
+\end{lem}\label{disjointcycleslemma}
 \begin{cor}
     Since every cyclic permutation is a product of transpositions, we can also say that every permutation is a product of transpositions.
 \end{cor}
@@ -65,13 +65,13 @@ Group isomorphism is an equivalence relation, which we denote with $\cong$.
 \end{example}
 One helpful trick for proving that a homomorphism is an isomorphism is to note that a group homomorphism $\varphi: G \rightarrow H$ is injective iff $\varphi(g)=e_H$ implies $g=e_G$. This is fairly easy to prove.
 \begin{thm}
-    Let $T$ be the set of symmetries of a regular tetrahedron. Then $T \cong S_4$.
+    Let $\widetilde{T_3}$ be the set of symmetries of a regular tetrahedron. Then $\widetilde{T_3} \cong S_4$.
 \end{thm}
 \begin{proof}
-    Label the edges of a regular tetrahedron as $ \left\{ 1,2,3,4 \right\}$ and let $\varphi: T \rightarrow S_4$ be the map which takes a transformation of the tetrahedron to the corresponding permutation of its vertices. This is clearly an injective homomorphism, so we just need to show that it's also surjective.
+    Label the edges of a regular tetrahedron as $ \left\{ 1,2,3,4 \right\}$ and let $\varphi: \widetilde{T_3} \rightarrow S_4$ be the map which takes a transformation of the tetrahedron to the corresponding permutation of its vertices. This is clearly an injective homomorphism, so we just need to show that it's also surjective.
     \bigskip
     \par
-    For any two vertices of a regular tetrahedron, consider the pependicular bisector of the edge that joins them. Reflection across that plane is an element of $T$, and $\varphi$ takes that element to a transposition in $S_4$. We can obtain every transposition in $S_4$ this way, and we know that every element of $S_4$ is a product of transpositions, so $\varphi$ is surjective.
+    For any two vertices of a regular tetrahedron, consider the pependicular bisector of the edge that joins them. Reflection across that plane is an element of $\widetilde{T_3}$, and $\varphi$ takes that element to a transposition in $S_4$. We can obtain every transposition in $S_4$ this way, and we know that every element of $S_4$ is a product of transpositions, so $\varphi$ is surjective.
 \end{proof}
 \begin{prop}
     More generally, the symmetry group of an $n$-simplex is $S_{n+1}$.

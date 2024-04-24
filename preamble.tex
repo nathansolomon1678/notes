@@ -31,6 +31,11 @@
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\proj}{proj}
 \DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\ord}{ord}
+%%%%%%%%%%%%%%% \DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Out}{Out}
 
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
@@ -58,6 +63,11 @@
 \newcommand{\ket}[1]{\ensuremath{\left\lvert #1 \right\rangle}}
 \newcommand{\braket}[2]{\ensuremath{\left.\left\langle #1\right\vert #2 \right\rangle}}
 
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+
+\newcommand{\up}{\ensuremath{\uparrow}}
+\newcommand{\down}{\ensuremath{\downarrow}}
+
 % Custom environments
 \newtheorem{thm}{Theorem}[section]
 
@@ -66,7 +76,7 @@
 \newenvironment{prob}{
     \stepcounter{thm}
     \begin{tcolorbox}[
-        boxrule=.5pt,
+        boxrule=1pt,
         sharp corners,
         colback=probBackgroundColor,
         colframe=probAccentColor,
@@ -82,7 +92,7 @@
 \newenvironment{example}{
     \stepcounter{thm}
     \begin{tcolorbox}[
-      boxrule=.5pt,
+      boxrule=1pt,
       sharp corners,
       colback=exampleBackgroundColor,
       breakable
@@ -97,7 +107,7 @@
 \newenvironment{prop}{
     \stepcounter{thm}
     \begin{tcolorbox}[
-        boxrule=.5pt,
+        boxrule=1pt,
         sharp corners,
         colback=propBackgroundColor,
         colframe=propAccentColor,
@@ -113,7 +123,7 @@
 \renewenvironment{thm}{
     \stepcounter{thm}
     \begin{tcolorbox}[
-        boxrule=.5pt,
+        boxrule=1pt,
         sharp corners,
         colback=thmBackgroundColor,
         colframe=thmAccentColor,
@@ -165,7 +175,7 @@
 \renewenvironment{proof}{
     \begin{tcolorbox}[
         enhanced,
-        boxrule=.25pt,
+        boxrule=1pt,
         sharp corners,
         colback=proofBackgroundColor,
         colframe=proofAccentColor,

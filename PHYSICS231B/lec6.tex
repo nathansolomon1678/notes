@@ -1,0 +1,86 @@
+\documentclass[class=article, crop=false]{standalone}
+\input{../preamble.tex}
+
+
+\fancyhf{}
+\lhead{Nathan Solomon}
+\rhead{Page \thepage}
+\pagestyle{fancy}
+
+\begin{document}
+\section{4/19/2024 lecture}
+
+\subsection{Affine transformations of $\R^d$}
+
+Recall that there are 32 finite subgroups of $O(3)$ which act on a lattice. Since a lattice in 3 dimensions can be defined by 3 basis vectors, the image of any representation in that basis will have only integer entries.
+\par
+\begin{note}
+    Any repeating pattern repeats according to translations which define a lattice group.
+\end{note}
+Let $G$ be the group of all translations and orthogonal transformations in $\R^d$, with the group operation being composition. The subgroup of translations (the Lie group $\R^d$) is normal in $G$.
+\par
+Let $\R^d \rtimes O(d) = \left\{ (u, M) \in \R^d \times O(d) \right\}$ be the set with the group operation $(u_1, M_1) \circ (u_2, M_2) = (u_1 + M_1 u_2, M_1 M_2)$.
+\begin{prob}
+    Verify that $\R^d \rtimes O(d)$ is a group.
+\end{prob}
+\begin{prop}
+    There is an isomorphism $\varphi: \R^d \times O(d) \rightarrow G$.
+\end{prop}
+An \emph{automorphism} of $G$ is an isomorphism $\varphi: G \rightarrow G$. The \emph{automorphism group} $\Aut (G)$ is the set of automorphisms of $G$ with the group operation being composition.
+\par
+An \emph{action} of a group $H$ on a group $G$ is a homomorphism from $H$ to $\Aut(G)$.
+\par
+Given two groups $G, H$ and an action $\alpha: H \rightarrow \Aut (G)$, define the \emph{semi-direct product} $\rtimes_\alpha$ so that $G \rtimes_\alpha H$ is the set $G \times H$ with the group operation $(g_1, h_1) \circ (g_2, h_2) = (g_1 \alpha(h_1)(g_2), h_1 h_2)$.
+\begin{prob}
+    Show that for any two groups $G$ and $H$ and any action $\alpha: H \rightarrow \Aut(G)$, the semi-direct product $G \rtimes_\alpha H$ is a group. Also show that $G \trianglelefteq G \rtimes_\alpha H$.
+\end{prob}
+\begin{prob}
+    Show that $\Z_3 \rtimes \Z_2 \cong S_3$.
+\end{prob}
+
+\subsection{Crystallographic groups}
+A group $G$ is called a \emph{$d$-dimensional crystallographic group} iff $G <( \R^d \rtimes O(d))$ is discrete and $G \cap ( \R^d \times \left\{ I \right\})$ is a $d$-dimensional lattice group $L = \mean{v_1, v_2, \dots, v_d} < \R^d$.
+\begin{prop}
+    $L \trianglelefteq G$. The proof of this is an exercise.
+\end{prop}
+\begin{prob}
+    Show that $G/L$ is a finite subgroup of $O(d)$, and if $d=3$, then $G/L$ is one of the 32 groups we classified.
+\end{prob}
+We sometimes call $G/L$ the ``point group", and denote it by $G_{pt}$. There is an exact sequence
+\begin{center}
+\begin{tikzcd}[column sep=small]
+    L \arrow[hookrightarrow]{r} & G \arrow[twoheadrightarrow]{r} & G/L.
+\end{tikzcd}
+\end{center}
+Alternatively, given $G_{pt}$ and the lattice group $L$ on which it acts, we can define $G$ as $L \rtimes G_{pt}$. In $G$, the stabilizer of the origin is $G_{pt}$, and the stabilizer of any other point in $L$ is conjugate to $G_{pt}$.
+\par
+If $d=2$, these groups are called ``wallpaper groups".
+\par
+TALK ABOUT NON-SYMMORPHIC GROUPS AND GLIDE/SCREW GROUPS, ALSO EXPLAIN WHAT THE 32 POINT GROUPS (IN 3D) ARE
+
+\subsection{Recognizing semi-direct products}
+Given an extension
+\begin{center}
+\begin{tikzcd}[column sep=small]
+    0 \arrow[hookrightarrow]{r} & L \arrow[hookrightarrow]{r} & G \arrow[twoheadrightarrow, "\pi"]{r} & G_{pt} \arrow[twoheadrightarrow]{r} & 0,
+\end{tikzcd}
+\end{center}
+a \emph{section} is a map $s: G_{pt} \rightarrow G$ (not necessarily a homomorphism) such that $s(e_{G_{pt}}) = e_G$ and $\pi \circ s = \id_G$.
+\begin{thm}
+    Thee exists a section $s$ which is a homomorphism iff $G = L \rtimes G_{pt}$.
+\end{thm}
+\begin{proof}
+    REDO THIS PROOF
+\end{proof}
+\begin{prop}
+    A $d$-dimensional space group is symmorphic iff it is a semi-direct product. JUSTIFY WHY THIS IS TRUE AND DEFINE WHAT IT MEANS TO BE SYMMORPHIC
+\end{prop}
+
+\subsection{Group cohomology}
+SEE PAGE 91 OF BROWN'S ``COHOMOLOGY OF GROUPS"
+\par
+There is a technique that can be used to measure how far a group is from being a semidirect product. GET NOTES FROM CLASSMATES ABOUT THIS, AND INCLUDE THE 2-COCYCLE EQUATION. THE LINEARITY OF THAT EQUATION CAN BE USED TO CLASSIFY AND ENUMERATE THE 230 SPACE GROUPS.
+\par
+WHAT IS THE DIFFERENCE BETWEEN A CRYSTALLOGRAPHIC GROUP AND A SPACE GROUP?
+
+\end{document}

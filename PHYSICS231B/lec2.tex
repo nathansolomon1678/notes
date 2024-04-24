@@ -1,0 +1,103 @@
+\documentclass[class=article, crop=false]{standalone}
+\input{../preamble.tex}
+
+
+\fancyhf{}
+\lhead{Nathan Solomon}
+\rhead{Page \thepage}
+\pagestyle{fancy}
+
+\begin{document}
+\section{4/5/2024 lecture}
+
+\subsection{Matrix groups}
+Matrix groups are groups whose elements are matrices. For any field $\F$ and any $n \in \N$, we define the \emph{general linear group $GL(n,\F)$} to be the multiplicative group of invertible (nonsingular) $n \times n$ matrices whose entries are elements of $\F$. $GL(n, \F)$ is a subset of $M(n,\F)$ (the set of $n \times n$ matrices over $\F$). $M(n,\F)$ is an algebra over $\F$ but is not a group.
+\begin{note}
+    In this class, we will always let $\F$ be either $\R$ or $\C$.
+\end{note}
+The determinant is a homomorphism $\det: GL(n,\F) \rightarrow \F^\times$. Here, $\F^\times$ is the group of invertible elements in $\F$. More generally, we can define the multiplicative group $R^\times$ of any ring $R$ to be the group of invertible elements (AKA units), but if $R$ is a field, then every element except 0 is invertible, so $\F^\times = \F \backslash \left\{ 0 \right\}$.
+
+\subsection{Subgroup}
+A \emph{subgroup} $H$ of a group $G$ is a subset of the elements of $G$ which contains the identity, is closed under inversion, and is closed under composition. In other words, $H$ is a subgroup of $G$ if and only if for any $h_1, h_2 \in H$,
+\begin{itemize}
+    \item $e_G \in H$
+    \item $h_1^{-1} \in H$
+    \item $h_1 h_2 \in H$
+\end{itemize}
+Every subgroup is a group. The notation for ``$H$ is a subgroup of $G$" is $H \leq G$. If $H$ is a \emph{proper subgroup} of $G$, meaning $H \leq G$ and $H \neq G$, then we write $H < G$.
+\par
+If $H$ is a group, we can say that $H \leq G$ if and only if there is an injective homomorphism $i: H \rightarrow G$.
+
+\subsection{Subgroups of the general linear group}
+We define the \emph{orthogonal group $O(n)$} to be the set of orthogonal matrices in $GL(n,\R)$. Since every orthogonal matrix $A$ satisfies $A^TA=1$, the determinant of $A$ must be $\pm 1$. Therefore we define the \emph{special orthogonal group $SO(n)$} to be the set of matrices in $O(n)$ with determinant 1.
+\[ SO(n) < O(n) < GL(n,\R) \]
+The \emph{special linear group $SL(n,\F)$} is the group of matrices in $GL(n,\F)$ with determinant 1.
+\par
+Similarly, we define the \emph{unitary group $U(n)$} to be the subgroup of unitary matrices in $GL(n,\C)$, and we define the \emph{special unitary group $SU(n,\C)$} to be $U(n) \cap SL(n,\C)$ -- that is, the set of $n \times n$ complex unitary matrices with determinant 1.
+\begin{example}
+    Let $T_3$ be the group of rotational symmetries of a tetrahedron, and let $\widetilde{T_3}$ be the group of all symmetries (rotations plus reflections) of a tetrahedron. Then $T_3 < \widetilde{T_3} < O(3)$, and $T_3 < SO(3)$.
+\end{example}
+\begin{prop}
+    $GL(n,\C)$ is a proper subgroup of $GL(2n,\R)$.
+\end{prop}
+\begin{proof}
+    The map which takes every entry $a+bi$ to the $2 \times 2$ block $\begin{bmatrix}
+        a & -b \\
+        b & a
+    \end{bmatrix}$ is an isomorphism between $GL(n,\C)$ and a proper subgroup of $GL(2n,\R)$.
+\end{proof}
+
+\subsection{Representations}
+A \emph{representation} of $G$ is a homomorphism from $G$ to $GL(n,\F)$. This allows us to make groups slightly more intuitive, since we can see them as linear transformations on $\F^n$. A representation is called \emph{faithful} iff it is injective.
+
+\subsection{Cosets and quotient groups}
+If $H \leq G$, then for any $g \in G$, define the \emph{left coset} $gH$ to be $\left\{ gh: h \in H \right\}$, and let the \emph{right coset} $Hg$ be $ \left\{ hg: h \in H \right\}$. Note that cosets are not necessariy subgroups -- for example, the set of odd integers is not a subgroup of $\Z^+$ (the additive group of integers).
+\begin{example}
+    There are only two distinct cosets of $SO(n)$ in $O(n)$: those with determinant 1, and those with determinant $-1$.
+\end{example}
+If $H$ is a subgroup of $G$, we define the \emph{quotient $G/H$} to be the set of left $H$-cosets.
+\par
+The \emph{index of $H$ in $G$}, denoted $[G:H]$, is defined as $|G/H|$ (the number of left cosets of $H$ in $G$).
+\begin{thm}
+    \textbf{Lagrange's theorem:} If $H$ is a subgroup of a finite group $G$, then
+    \[ |G/H| = |G|/|H|. \]
+\end{thm}
+
+\begin{proof}
+    Every element of $G$ is in at least one coset, because $g \in gH$. For any $g$, $|gH|=|H|$. Therefore the number of cosets ($|G/H|$) times the number of elements per coset ($|H|$) is equal to the total number of elements in the group $G$.
+\end{proof}
+
+\begin{cor}
+    The order of a finite group is divisible by the order of any element.
+\end{cor}
+A subgroup $H \leq G$ is called a \emph{normal subgroup}, and denoted by $H \trianglelefteq G$ iff $g^{-1}hg \in H$ for any $g \in G, h \in H$ -- that is, iff $H$ is invariant under \emph{conjugation} by any $g \in G$.
+\begin{thm}\label{permutationconjugation}
+    For any cycle $(x_1\ \ x_2 \ \ \dots \ \ x_k) \in S_n$, the conjugate of that cycle by some permutation $\sigma \in S_n$ is
+    \[ \sigma^{-1} (x_1\ \ x_2 \ \ \dots \ \ x_k) \sigma = (\sigma(x_1)\ \ \sigma(x_2) \ \ \dots \ \ \sigma(x_k)). \]
+\end{thm}
+\begin{thm}
+    $G/H$ is a group iff $H \trianglelefteq G$. In this case, $G/H$ is called the \emph{quotient group}.
+\end{thm}
+\begin{proof}
+    If $H \trianglelefteq G$, then we can define the product of two cosets $g_1H, g_2H \in G/H$ to be $g_1 g_2 H$. If $H$ were not a normal subgroup of $H$, than $G/H$ would not be closed under multiplication.
+\end{proof}
+
+\subsection{First isomorphism theorem}
+If $\varphi:G \rightarrow K$ is a homomorphism, then define the \emph{kernel of $\varphi$}, denote $\ker \varphi$, to be the set of elements in $G$ which $\varphi$ maps to $e_K$. The kernel of any homomorphism forms a normal subgroup of the codomain. REMEMBE TO PROVE THIS TOO. ALSO DEFINE THE IMAGE AND USE A COMMUTATIVE DIAGRAM TO PROVE THE FIRST ISOMORPHISM THEOREM
+\bigskip
+\par
+\begin{center}
+\begin{tikzcd}[column sep=small]
+    G/H \arrow[dr, ""] \arrow[hookrightarrow, "i"] & H \\
+        & \arrow[u, "\varphi"]
+        & G
+\end{tikzcd}
+    
+\end{center}
+
+\subsection{Product of groups}
+If $G,H$ are groups, then the group $G \times H$ is the group of pairs $(g,h)$ where composition is given by componentwise composition. If $G$ and $H$ are finite, then $|G \times H|=|G| \times |H|$. ISNT THIS CALLED THE DIRECT SUM??
+\par
+ALSO INCLUDE NOTES ON SHORT EXACT SEQUENCES, SIMPLE GROUPS (note that integers modulo a prime are a simple group), AND EXTENSIONS
+
+\end{document}

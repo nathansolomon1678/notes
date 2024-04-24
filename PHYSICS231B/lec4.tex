@@ -1,0 +1,66 @@
+\documentclass[class=article, crop=false]{standalone}
+\input{../preamble.tex}
+
+
+\fancyhf{}
+\lhead{Nathan Solomon}
+\rhead{Page \thepage}
+\pagestyle{fancy}
+
+\begin{document}
+\section{4/12/2024 lecture}
+
+\subsection{Group actions}
+A \emph{(left) group action} (of a group $G$ on a set $M$) is a map $\cdot: G \times M \rightarrow M$ which is
+\begin{enumerate}
+    \item Unital, meaning $e \cdot m = m$ for any $M \in M$, and
+    \item Associative, meaning $(gh)\cdot m = g \cdot (h \cdot m)$ for any $g \in G, m \in M$.
+\end{enumerate}
+For any group $G$, there is an obvious (left) group action of $G$ on itself, given by (left) multiplication.
+
+GET NOTES ON LEFT/RIGHT GROUP ACTION, CAYLEY'S THEOREM, ORBITS (define conjugacy classes as orbits of the conjugation action), STABILIZER SUBGROUP, CENTER, DIHEDRAL GROUP, ORBIT-STABILIZER THEOREM, etc.
+
+\subsection{Dihedral group}
+We can define the action of this group on the elements of the $xy$-plane in terms of reflections and rotations. ALSO GIVE GROUP PRESENTATION
+\begin{note}
+    W use $D_n$ to mean the set of symmetries of a regular $n$-gon, which is a group with $2n$ elements, but some people use $D_{2n}$ to mean that same group.
+\end{note}
+
+\subsection{Orbit-stabilizer theorem}
+\begin{thm}
+    If $G$ acts on $M$, then
+    \[ \abs{G \cdot m} \times \abs{G_m} = \abs{G} \]
+    for any $m \in M$.
+    \par
+    If $G$ acts on $M$ via a right group action instead of a left group action, then replace $G \cdot m$ with $m \cdot G$.
+\end{thm}
+\begin{proof}
+    Let $f: G/G_m \rightarrow G \cdot m$ be a homomorphism defined by $f(gG_m) = g \cdot m$. This is well-defined because for any two representative elements $gG_m$ and $ghG_m$ of $G/G_m$,
+    \[ f(gG_m)=g\cdot m = g \cdot (h \cdot m) = (gh) \cdot m = f(ghG_m). \]
+    Also, $f$ is surjective because every element of the orbit has the form $g \cdot m$. It's injective because if $g \cdot m = g' \cdot m$, then
+    \[ \left( g' \right)^{-1} \cdot (g \cdot m) = \left( g' \right)^{-1} \cdot (g' \cdot m) = m, \]
+    which implies $ \left( g' \right)^{-1} g \in G_m$, so $gG_m=g'G_m$.
+\end{proof}
+
+\begin{prop}
+    Let $C(g)$ be the conjugacy class of some element $g$ of a group. If that group is $S_n$, then $C(g)$ can also be denoted as $C(a_1,\dots,a_n)$, where $a_i$ is the number of $i$-cycles in $g$. Then
+    \[ \abs{C(a_1,\dots,a_n)} = \frac{n!}{\prod_{j=1}^n j^{a_j} \left( a_j! \right) }. \]
+    INCLUDE PROOF OF THIS
+\end{prop}
+
+\subsection{Fixed point theorem}
+Let $G$ be a finite group acting on a set $M$ such that for any $g \in G, g \neq e$, only finitely many $m$ are fixed by $g$.
+\par
+Let $Y = \left\{ (m,g): g \neq e, g \cdot m = m \right\}$. Then
+\[ \sum_{g \neq e} \abs{ \left\{ m\in M:g \cdot m=m \right\}} = \abs{Y} = \sum_{m \in M} \left( \abs{G_m}-1 \right) . \]
+This is also equal to
+\[ \sum_\text{orbits} \abs{ \frac{G}{G_m}} \left( \abs{G_m}-1 \right) . \]
+where $m$ is any element of the orbit.
+\begin{cor}
+    If $G$ is a finite subgroup of $SO(3)$ which acts on the unit sphere $M=S^2$, then
+    \[ 2 \left( 1 - \frac{1}{n} \right) = r - \sum{i=1}^r \frac{1}{n_i}, \]
+    where $r$ is the number of group orbits of ???
+    FINISH THIS PROOF AND EXPLAIN INTUITION FOR IT
+\end{cor}
+
+\end{document}

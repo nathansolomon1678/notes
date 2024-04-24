@@ -1,0 +1,91 @@
+\documentclass[class=article, crop=false]{standalone}
+\input{../preamble.tex}
+
+
+\fancyhf{}
+\lhead{Nathan Solomon}
+\rhead{Page \thepage}
+\pagestyle{fancy}
+
+\begin{document}
+\section{4/10/2024 lecture}
+
+\subsection{Quotient groups}
+\begin{example}
+    $SO(n)$ is a normal subgroup of $O(n)$, so we can define the quotient group $O(n)/SO(n)$, which is isomorphic to $C_2 := \braket{x}{x^2=e} \cong \left\{ \pm 1 \right\}^\times$.
+\end{example}
+
+Let $n \Z$ be the subgroup $ \left\{ nm:m \in \Z \right\}$. Since $\Z$ is an additive group, be sure not to confuse $n\Z$ with the coset $n+\Z$. We know that $n\Z$ is a normal subgroup of $\Z$ -- it's easy to prove that every subgroup of an abelian group is normal.
+\par
+Now we can define the \emph{group of integers modulo $n$} to be $\Z/n\Z$. Some people write this as $\Z_n$, because that's shorter.
+\begin{thm}
+    For any $N \in \N$, the cyclic group $C_n := \braket{x}{x^n=e}$ is isomorphic to $\Z/n\Z$. Therefore, we can use $C_n$ and $\Z_n$ interchangeably.
+\end{thm}
+\begin{proof}
+    Let $\varphi: C_n \rightarrow \Z/n\Z$ be the homomorphism which maps $x$ to the coset $1+n\Z$ (and thus, also maps $x^m$ to $m+n\Z$). You can easily shows that $\varphi$ is an injective and surjective homomorphism.
+\end{proof}
+
+\subsection{Exact sequences and extensions}
+A path in a commutative diagram is called an \emph{exact sequence} iff the kernel of each morphism (except the first one) is equal to the image of the previous one. Right now, we only care about the category $\catname{Grp}$, in which morphisms are group homomorphism. For example, if $H \trianglelefteq G$, then
+\begin{center}
+\begin{tikzcd}[column sep=small]
+    0 \arrow[hookrightarrow]{r} & H \arrow[hookrightarrow, "i"]{r} & G \arrow[twoheadrightarrow, "\pi"]{r} & G/H \arrow[twoheadrightarrow]{r} & 0
+\end{tikzcd}
+\end{center}
+is an exact sequence because $\ker \pi = \im i$.
+\par
+A group $G$ is called an \emph{extension of $Q$ by $K$} iff there is an exact sequence
+\begin{center}
+\begin{tikzcd}[column sep=small]
+    0 \arrow[hookrightarrow]{r} & K \arrow[hookrightarrow, "i"]{r} & G \arrow[twoheadrightarrow, "\pi"]{r} & Q \arrow[twoheadrightarrow]{r} & 0.
+\end{tikzcd}
+\end{center}
+\begin{example}
+    The \emph{Klein 4-group $K_4 := \Z_2 \times \Z_2$} and the group $\Z_4$ are distinct extensions of $\Z_2$ by $\Z_2$.
+\end{example}
+
+\subsection{Conjugacy classes}
+Two elements $g_1, g_2 \in G$ are called \emph{conjugate} iff there exists some $h \in G$ such that $hg_1h^{-1}=g_2$. Conjugacy is an equaivalence relation, and the equivalence classes of that relation are called the \emph{conjugacy classes}. The conjugacy class of $g \in G$ is written as
+\[ C(g) := \left\{ h \in G: \text{ $h$ and $g$ are conjugate} \right\}. \]
+\par
+For matrices, conjugacy is the same as similarity, meaning two matrices are conjugate iff they represent the same linear transformation in different bases.
+\par
+Since every permutation $\sigma \in S_n$, $\sigma$ can be written as the product of disjoint cycles (by lemma \ref{disjointcycleslemma} WHY IS THIS NUMBER OFF?), we can define the \emph{cycle type} of a permutation to be the multiset of the lengths of those cycles (CHECK THAT THIS IS UNIQUELY DEFINED).
+\begin{thm}
+    The conjugacy class of some permutation $\sigma \in S_n$ is the set of permutations in $S_n$ with the same cycle type as $\sigma$.
+\end{thm}
+\begin{proof}
+    By \ref{permutationconjugation}. FINISH THIS PROOF.
+\end{proof}
+\begin{prob}
+    How many conjugacy classes does $S_n$ have? If this is too hard, just consider the $n=4$ case.
+\end{prob}
+Any permutation which is conjugate to $\sigma \in S_n$ must have the same number of 1-cycles as $\sigma$, the same number of 2-cycles, etc. Therefore each conjugacy class of $S_n$ can be uniquely determined by a partition of $n$ of the form $n=a_1+a_2+\cdots+a_m$, where $a_1>a_2>\cdots>a_m$. So if $n=4$, there are 5 conjugacy classes of $S_n$:
+\begin{itemize}
+    \item $4=4$
+    \item $4=3+1$
+    \item $4=2+2$
+    \item $4=2+1+1$
+    \item $4=1+1+1+1$
+\end{itemize}
+IS THERE A GENERAL FORMULA FOR THE NUMBER OF CONJUGACY CLASSES OF THE SYMMETRIC GROUP
+
+\subsection{The alternating group}
+The \emph{sign of a permutation} is 1 if it can be written as a product of an even number of permutations, and $-1$ otherwise.
+\par
+Let \emph{the permutation matrix $P(\sigma)$} of some permutation $\sigma \in S_n$ be the orthogonal matrix which permutes the basis vectors $e_i \in \R^n$. Then we can define the sign of $\sigma$ to be $\det (P(\sigma))$. Note that the sign of any transposition is $-1$.
+\begin{center}
+\begin{tikzcd}[column sep=small]
+    S_n \arrow[hookrightarrow, "P"]{r} & O(n) \arrow[twoheadrightarrow, "\det"]{r} & \Z_2.
+\end{tikzcd}
+\end{center}
+Now we can define \emph{the alternating group $A_n$} to be the kernel of $\det \circ P$. By Lagrange's theorem (CITE THAT), $\abs{A_n}=n!/2$.
+\begin{prop}
+    For $n \geq 5$, $A_5$ is simple. In fact, every group of order less than 60 is \emph{solvable}. This is not really relevant to us, but in Galois theory, this is used to prove the Abel-Ruffini theorem.
+\end{prop}
+
+TO PROVE THAT $A_5$ IS SIMPLE, FIND THE SIZES OF ALL CONJUGACY CLASSES SINCE EVERY SUBGROUP OF $A_5$ CONTAINS EITHER AN ENTIRE CONJUGACY CLASS OF ITS ELEMENTS, THE SIZE OF ANY SUBGROUP OF $A_5$ IS THE SUM OF SOME SUBSET OF $( 1, 15, 20,12,12) $ BUT THAT SUM CAN ONLY DIVIDE 60 IF IT IS EITHER 1 OR 60.
+\par
+ALSO TALK ABOUT THE SYLOW THEOREMS
+
+\end{document}
