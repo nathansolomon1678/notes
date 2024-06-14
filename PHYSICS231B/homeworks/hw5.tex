@@ -1,0 +1,175 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 231B Homework \#5}
+
+\begin{document}
+\maketitle
+
+\bigskip
+\begin{prob}
+    \begin{itemize}
+        \item (a) Let $A$ be an $n \times n$ matrix. Prove that $F(t)=\exp(tA)$, defined via power series, satisfies the differential equations
+            \begin{align*}
+                \frac{dF}{dt}&=AF(t) \\
+                \frac{dF}{dt}&=F(t)A
+            \end{align*}
+        \item (b) Prove $\det(\exp(A))=\exp(\Tr(A))$.
+        \item (c) Prove $\frac{d}{dt}\det(F(t)) |_{t=0} = \Tr(A)$.
+    \end{itemize}
+\end{prob}
+\begin{itemize}
+    \item (a)
+        \begin{align*}
+            \frac{dF}{dt} &= \frac{d}{dt} \left( I + At + \frac{A^2t^2}{2!} + \frac{A^3t^3}{3!} \cdots \right) \\
+                          &= A + \frac{A^2t}{1!} + \frac{A^3t^2}{2!} + \cdots \\
+                          &= A \left( \frac{At}{1!} + \frac{A^2t^2}{2!} + \cdots \right) = AF(t) \\
+                          &= \left( \frac{At}{1!} + \frac{A^2t^2}{2!} + \cdots \right) A = F(t)A
+        \end{align*}
+    \item (b) Since every matrix is similar to a Jordan normal form matrix, there exist matricwes $P, J$ such that $J$ is in Jordan normal form and $A=P^{-1}JP$. Let $\lambda_1, \lambda_2, \dots, \lambda_n$ be the main diagonal of $J$.
+        \par
+        Since $J$ is triangular, the main diagonal of $\exp(J)$ is $\exp(\lambda_1), \exp(\lambda_2), \dots, \exp(\lambda_n)$. Therefore
+        \[ \det(\exp(J)) = \prod_i \exp(\lambda_i) = \exp \left( \sum_i \lambda_i \right) = \exp(\Tr(J)). \]
+        Since similar matrices have the same determinant and trace, that also means $\det(\exp(A))=\exp(\Tr(A))$.
+    \item (c)
+        \begin{align*}
+            \left[ \frac{d}{dt} \det(F(t)) \right]_{t=0} &= \left[ \frac{d}{dt} \det(\exp(tA)) \right]_{t=0} \\
+                                                         &= \left[ \frac{d}{dt} \exp(\Tr(tA)) \right]_{t=0} \\
+                                                         &= \left[ \left( \frac{d}{dt} \Tr(tA) \right) \exp(\Tr(tA)) \right]_{t=0} \\
+                                                         &= \left( \frac{d}{dt} \Tr(tA) \right)_{t=0} \cdot \exp(\Tr(0)) \\
+                                                         &= \left( \frac{d}{dt} \left(t \Tr(a) \right) \right)_{t=0} \cdot \exp(0) \\
+                                                         &= \Tr(A).
+        \end{align*}
+\end{itemize}
+
+\bigskip
+\begin{prob}
+    Consider the action of $SU(n)$ on $\C^n$. Show that this gives a transitive action of $SU(n)$ on $S^{2n-1}$ and find the stabilizer of a particular point, showing $S^{2n-1}=SU(n)/SU(n-1)$.
+\end{prob}
+For any $x, y \in S^{2n-1}$, let $A\in SU(n)$ be a matrix whose first column is $x$ and let $B \in SU(n)$ be a matrix whose first column is $y$. Such matrices exist because you can take an the vector $x$, then repeatedly choose $n-1$ unit vectors orthogonal to all the ones you've already chosen. Putting those in order, you get an orthonormal basis of $\C^n$. Then you can put those vectors side-by-side in order to get the columns of $A$, and divide the last column by the determinant so $A$ becomes an element of $SU(n)$. Repeat the process used to obtain $A$ from $x$ in order to obtain $B$ from $y$.
+\par
+Then $(ABA^{-1})x=y$, so $SU(n)$ acts transitively on $S^{2n-1}$.
+\par
+We can use that same matrix $A$ to find the stabilizer of an arbitrary point $x \in S^{2n-1}$. For any $C \in SU(n)$, $ACA^{-1}x=x$ if and only if the first column of $C$ is $e_1$, because if that is true, then $ACA^{-1}x=ACe_1=Ae_1=x$. Therefore the stabilizer of $x$ is similar to the group of matrices in $SU(n)$ whose first column is $e_1$, which means any element of that stabilizer is uniquely determined by the other $n-1$ columns. Those columns can be $n-1$ orthonormal vectors in $\C^n$ whose first entry is 0, so choosing them is equivalent to choosing $n-1$ orthonormal vectors in $\C^{n-1}$, which implies
+\[ \stab x \cong SU(n-1). \]
+By the orbit-stabilizer theorem, the orbit of $x$ is isomorphic to $SU(n)/SU(n-1)$, and since $SU(n)$ acts transitively on $S^{2n-1}$, we know the orbit of $x$ is $S^{2n-1}$.
+
+\begin{note}
+    Sanity check: $\dim S^{2n-1}=2n-1$ and $\dim SU(n) - \dim SU(n-1) = (n^2-1)-((n-1)^2-1)=2n-1$, so this is a reasonable result.
+\end{note}
+
+\bigskip
+\begin{prob}
+    Let $G(k,n)$ be the set of all $k$-dimensional subspaces of $\R^n$ (aka the Grassmanian). Show that $O(n)$ acts transitively on $G(k,n)$ and identify it with a coset space of $O(n)$.
+\end{prob}
+Let $A,B$ be any two $k$-dimensional hyperplanes through the origin in $\R^n$. Then there exist orthonormal bases $(a_1 \dots a_n)$ and $(b_1 \dots b_n)$ of $\R^n$ such that $(a_1 \dots a_k)$ is an orthonormal basis of $A$ and $(b_1 \dots b_k)$ is an orthonormal basis of $B$. Let $L$ be the linear transformation which maps $a_i$ to $b_i$ for any $i \in \left\{ 1 \dots n \right\}$. Then $L \in O(n)$, and $LA=B$.
+\par
+For every $k$-dimensional hyperplane in $G(k,n)$, the subgroup of $O(n)$ which fixes that hyperplane is isomorphic to $O(k)$. Specifically, the stabilizer of each element in $G(k,n)$ is a unique element of $O(k) \subset O(n)$, so each element of $G(k,n)$ can be uniquely identified with the corresponding coset in $O(n)/O(k)$.
+
+\bigskip
+\begin{prob}
+    \begin{itemize}
+    \item (a) Consider the Lie group $SL(2, \R)$ of $2 \times 2$ real matrices of determinant 1. Prove this group is path connected, i.e. that we can continuously deform each such matrix to the identity. (You may recall from problem set 1, Artin chapter 2 problem 4.8.)
+    \item (b) Show however that
+        \[ \begin{pmatrix}
+            -1 & -1 \\
+            0 & -1
+        \end{pmatrix} \]
+        is in $SL(2, \R)$ but not in the image of its exponential map.
+    \item (c) (bonus) What is the image of the exponential map in this group?
+    \end{itemize}
+\end{prob}
+\begin{itemize}
+    \item (a) The result from homework 1 says that every element of $SL(2,\R)$ can be written as a finite product of triangular matrices. For any matrix $A \in SL(2,\R)$, write $A$ as a product of triangular matrices, and continuously deform all of the off-diagonal entries to zero. This will induce a continuous deformation from $A$ to $I_2$.
+    \item (b) That matrix is in $SL(2,\R)$ because it's determinant is one. However, there is no $A \in SL(2,\R)$ such that that matrix is $\exp(A)$, because if there were, then we would have
+        \[ A = \log(\exp(A)) = \log \left( \begin{bmatrix}
+            -1 & -1 \\
+            0 & -1
+    \end{bmatrix} \right), \]
+        but that is not possible because
+        \begin{align*}
+            \log \begin{bmatrix}
+                -1 & -1 \\
+                0 & -1
+                \end{bmatrix} &= \sum_{n=1}^\infty \frac{(-1)^{n+1}}{n} \left( I - \begin{bmatrix}
+                -1 & -1 \\
+                0 & -1
+            \end{bmatrix} \right)^n \\
+            &= \sum_{n=1}^\infty \frac{(-1)^{n+1}}{n} \begin{bmatrix}
+                2 & 1 \\
+                0 & 2
+            \end{bmatrix}^n \\
+            &= \sum_{n=1}^\infty \frac{(-1)^{n+1}}{n} \begin{bmatrix}
+                2^n & 2^{n-1}n \\
+                0 & 2^n
+            \end{bmatrix}
+        \end{align*}
+        does not converge.
+    \item (c) IDK
+\end{itemize}
+
+\bigskip
+\begin{prob}
+    \begin{itemize}
+        \item (a) Consider the set $H$ of $2 \times 2$ Hermitian matrices. Show that $H$ is a four dimensional real vector space with a basis consisting of the identity matrix $I$ and the three Pauli matrices $\sigma^x,\sigma^y,\sigma^z$.
+        \item (b) Show that for $X,Y \in H$,
+            \[ \frac{1}{2} \Tr (X^\dag Y) \]
+            gives a real inner product on $H$ for which the basis above is orthonormal.
+        \item (c) Show there is an action of $(g,h)\in SU(2) \times SU(2)$ on $X \in W := \Span_\R \left\{ I, i\sigma^x, i\sigma^y, i\sigma^z \right\}$ via
+            \[ X \mapsto gX h^{-1}. \]
+        \item (d) Combine these two to produce a Lie homomorphism $SU(2) \times SU(2) \rightarrow SO(4)$.
+        \item (e) Show that the kernel of this map is the diagonal $\Z_2$ subgroup $(-I,-I) \in SU(2) \times SU(2)$.
+    \end{itemize}
+\end{prob}
+\begin{itemize}
+    \item (a) The set of Hermitian $2 \times 2$ matrices is
+        \[ H = \left\{ \begin{bmatrix}
+                a & b+ic \\
+                b-ic & d
+        \end{bmatrix} : a,b,c,d \in \R \right\}. \]
+        Since there are 4 real degrees of freedom, $H$ is 4 dimensional (over $\R$). Since $(I_2, \sigma^x, \sigma^y, \sigma^z)$ is a linearly independent tuple of 4 Hermitian matrices, it is a basis of $H$.
+    \item (b) The real inner product
+        \[ \braket{X}{Y} = \Tr (X^\dag Y) \]
+        is valid because it is clearly bilinear, it has conjugate symmetry (because $ \braket{X}{Y} = \Tr(X^\dag Y) = \overline{\Tr(Y^\dag X)} = \overline{ \braket{Y}{X} }$), and it is positive definite (because $ \braket{x}{x} >0$ whenever $x$ is a basis element, which implies $ \braket{x}{x} $ is also positive for any other nonzero $x$, by linearity).
+        \par
+        The given basis is orthonormal because the inner product of each element with itself is one and the inner product of each element with any other element is zero. I won't write out all of those 6 checks, but trust me, it works out.
+    \item (c) The function which takes $X$ to $gXh^{-1}$ can be expressed as a matrix. In the $(I,i\sigma^x,i\sigma^y,i\sigma^z)$ basis, the columns of that matrix, in order, are $(gIh^{-1}, gi\sigma^xh^{-1}, gi\sigma^yh^{-1},gi\sigma^zh^{-1})$. Those columns are orthonormal, so $gXh^{-1}$ is a rotation (and maybe reflection) of vectors in the space $\R^4 \cong \Span_\R \left\{ I, i\sigma^x, i\sigma^y, i\sigma^z \right\}$. Therefore, we can define a map from $(g,h)$ to the corresponding rotation of $\R^4$.
+    \item (d) \begin{note}
+        I'm gonna assume the question is asking for a surjective Lie homomorphism, because otherwise I could just give the zero map.
+    \end{note}
+    The map given in part (c) works.
+\item (e) I'm not entirely sure how to do this, but I think it involves writing the elements of $SU(2)$ in terms of sines and cosines of angles. We can at least see pretty clearly that the kernel will contain $(-I,-I)$, and we also know that the kernel cannot be infinite, because then the dimensions wouldn't add up:
+    \[ \dim(SO(4)) = 6 = 3+3 = \dim(SU(2) \times SU(2)). \]
+    
+\end{itemize}
+
+\bigskip
+\begin{prob}
+    \begin{itemize}
+        \item (a) Show that the determinant of matrices in $H$ defines a Lorentz inner product of signature $+---$.
+        \item (b) Consider the action of $g \in SL(2,\C)$ on $X\in H$ by
+            \[ X \mapsto gXg^\dag. \]
+            Use this to construct a Lie homomorphism $SL(2,\C) \rightarrow SO(1,3)$.
+        \item (c) Show that this has kernel generated by $-I \in SL(2,\C)$.
+    \end{itemize}
+\end{prob}
+\begin{itemize}
+    \item (a)
+        \begin{align*}
+            \det \left( aI+b\sigma^x+c\sigma^y+d\sigma^z \right) &= \det \left( \begin{bmatrix}
+                    a+d & b-ic \\
+                    b+ic & a-d
+            \end{bmatrix} \right) \\
+                                                                 &= (a+d)(a-d)-(b-ic)(b+ic) \\
+                                                                 &= (a^2-d^2)-(b^2+c^2) \\
+                                                                 &= a^2 - b^2 - c^2 - d^2,
+        \end{align*}
+        so taking the determinant of a matrix in $A$ returns the same result as taking the respective coefficients of the basis vectors $(I, \sigma^x, \sigma^y, \sigma^z)$, putting those coefficients in an $\R^4$ vector, and taking the Lorentz inner product (with signature $+---$) of that vector with itself.
+    \item (b) $H$ is closed under the action of $g$, because if $X \in H$, then $(gXg^\dag)^\dag = gX^\dag g^\dag = gXg^\dag$, so $gXg^\dag$ is also Hermitian. Also, the determinant of $X$ is the same as the determinant of $gXg^\dag$, because $\det(gXg^\dag)=\det(g)\det(X)\det(g^\dag)=1\cdot \det(X) \cdot 1 = \det(X)$. Therefore we have an action of $SL(2,\C)$ on $H$ which preserves the norm with signature $+---$, so we can consider elements of $SL(2,\C)$ to be elements of $SO(1,3)$ acting on $H$.
+    \item (c) Once again, I'm not sure how to prove this elegantly, but we can clearly see that $-I$ is in the kernel, and that the kernel has to be finite in order for the dimensions to match.
+\end{itemize}
+\end{document}
