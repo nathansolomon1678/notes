@@ -1,0 +1,196 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 231B Homework \#4}
+
+\begin{document}
+\maketitle
+
+\bigskip
+\begin{prob}
+    \textbf{Artin Chapter 10 Problem 2.1, page 314.} Prove that the standard three-dimensional representation of the tetrahedral group $T$ is irreducible as a complex representation.
+\end{prob}
+The best way to approach this problem is to imagine a regular tetrahedron whose vertices are in a unit sphere, and think of $T$ is the set of rotations preserving that tetrahedron.
+\par
+Suppose $T$ is reducible, meaning there is a nontrivial subspace of $\R^3$ which is invariant under the action of $T$. Such a subspace must be either a line through the origin or a plane through the origin. Since a plane is the orthogonal complement of a line in $\R^3$, finding a $T$-invariant plane and finding a $T$-invariant line are the same problem. Therefore I will only consider a $T$-invariant line.
+\par
+A $T$-invariant line could not exist because the group of rotations which fixes that line is $O(2)$. Every finite subgroup of $O(2)$ is the trivial group, a cyclic group, or a dihedral group. $T$ is none of those, so the line is not $T$-invariant.
+\par
+This is a contradiction, so $T$ is irreducible.
+
+\bigskip
+\begin{prob}
+    \textbf{Artin Chapter 10 Problem 3.1, page 315.} Let $G$ be a cyclic group of order 3. The matrix $A= \begin{bmatrix}
+        -1 & -1 \\
+        1 & 0
+    \end{bmatrix}$ has order 3, so it defines a matrix representation of $G$. Use the averaging process to produce a $G$-invariant form from the standard Hermitian product $X * Y$ on $\C^2$.
+\end{prob}
+\begin{note}
+    ``$*$" denotes elementwise matrix multiplication, just like in Python.
+\end{note}
+The elements of $G$ are
+\[ G = \left\{ \begin{bmatrix}
+        1 & 0 \\
+        0 & 1
+\end{bmatrix}, \begin{bmatrix}
+        -1 & -1 \\
+        1 & 0
+\end{bmatrix}, \begin{bmatrix}
+        0 & 1 \\
+        -1 & -1
+\end{bmatrix} \right\}. \]
+The average of the Hermitian norm squared of each element of $G$ is
+\begin{align*}
+    \frac{1}{3} \sum_{g \in G} g^\dag g &= \frac{1}{3} \left( I_2^\dag I_2 + A^\dag A + (A^2)^\dag (A^2) \right) \\
+                                       &= \frac{1}{3} \left( \begin{bmatrix}
+                                               1 & 0 \\
+                                               0 & 1
+                                       \end{bmatrix} \begin{bmatrix}
+                                               1 & 0 \\
+                                               0 & 1
+                                       \end{bmatrix} + \begin{bmatrix}
+                                               -1 & 1 \\
+                                               -1 & 0
+                                       \end{bmatrix} \begin{bmatrix}
+                                               -1 & -1 \\
+                                               1 & 0
+                                       \end{bmatrix} + \begin{bmatrix}
+                                               0 & -1 \\
+                                               1 & -1
+                                       \end{bmatrix} \begin{bmatrix}
+                                               0 & 1 \\
+                                               -1 & -1
+                                       \end{bmatrix} \right) \\
+                                       &= \frac{1}{3} \left( \begin{bmatrix}
+                                               1 & 0 \\
+                                               0 & 1
+                                       \end{bmatrix} + \begin{bmatrix}
+                                               2 & 1 \\
+                                               1 & 1
+                                       \end{bmatrix} + \begin{bmatrix}
+                                               1 & 1 \\
+                                               1 & 2
+                                       \end{bmatrix} \right) \\
+                                       &= \frac{2}{3} \left( \begin{bmatrix}
+                                               2 & 1 \\
+                                               1 & 2
+                                       \end{bmatrix} \right) 
+\end{align*}
+Therefore we can define an inner product form which maps $v \in \C^2$ to $v^\dag \left( \frac{2}{3} \begin{bmatrix}
+        2 & 1 \\
+        1 & 2
+\end{bmatrix} \right) v$. This is $G$ invariant because
+\begin{align*}
+    \braket{Au}{Av} &= (Au)^\dag \left( \frac{2}{3} \begin{bmatrix}
+        2 & 1 \\
+        1 & 2
+\end{bmatrix} \right) (Av) \\
+&= u^\dag A^\dag \left( \frac{2}{3} \begin{bmatrix}
+        2 & 1 \\
+        1 & 2
+\end{bmatrix} \right) Av \\
+&= u^\dag \left( \frac{2}{3} \begin{bmatrix}
+        -1 & 1 \\
+        -1 & 0
+\end{bmatrix} \begin{bmatrix}
+        2 & 1 \\
+        1 & 2
+\end{bmatrix} \begin{bmatrix}
+        -1 & -1 \\
+        1 & 0
+\end{bmatrix} \right) v \\
+&= u^\dag \left( \frac{2}{3} \begin{bmatrix}
+        2 & 1 \\
+        1 & 2
+\end{bmatrix} \right) v \\
+&= \braket{u}{v},
+\end{align*}
+meaning the action of $I_2$, $A$, or $A^2$ on any vectors $u, v \in \C^2$ will not change the inner product $ \braket{u}{v} $.
+\bigskip
+\begin{prob}
+    \textbf{Artin Chapter 10 Problem 3.2, page 315.} Let $\rho: G \rightarrow GL(V)$ be a representation of a finite group on a real vector space $V$. Prove the following:
+    \begin{itemize}
+        \item (a) There exists a $G$-invariant, positive-definite symmetric form $\mean{,}$ on $V$.
+        \item (b) $\rho$ is a direct sum of irreducible representations.
+        \item (c) Every finite subgroup of $GL_n(\R)$ is conjugate to a subgroup of $O(n)$.
+    \end{itemize}
+\end{prob}
+\begin{itemize}
+    \item (a) We can use the same averaging process as in the above problem. Define a matrix $M$ to be
+        \[ M := \sum_{g \in G} \rho(g)^T \rho(g) \]
+        and define a symmetric form $ \braket{x}{y} = x^TMy$. This is bilinear, symmetric, positive-definite, and $G$-invariant.
+    \item (b) Assume $V$ is finite dimensional. If there is some nontrivial subspace $U$ of $V$, then $V = U \oplus U^\perp$. Every action $\rho(g)$ will map elements of $U$ to elements of $U$ and elements of $U^\perp$ to elements of $U^\perp$. Therefore the image of $\rho$ is contained in $GL(U) \oplus GL(U^\perp)$.
+        \par
+        This shows that any reducible finite-dimensional representation of $G$ can be rewritten as a direct sum of representations with strictly smaller dimensions. Every one-dimensional representation is trivially irreducible, so by induction, $\rho$ is a direct sum of irreducible representations.
+    \item (c)
+\end{itemize}
+
+\bigskip
+\begin{prob}
+    Given a representation $R = \bigoplus_i n_iR_i$ decomposed into irreps $R_i$, prove that the operator
+    \[ P_i = \frac{\dim(R_i)}{|G|} \sum_{g \in G} \chi_i(g)^*R_g \]
+    is a projector onto the subspace $n_iR_i$ of $R$.
+\end{prob}
+There are a few ways to show that $P_i$ is a projection operator -- one method is to show that both $P_i^2=P_i$ and $\Tr(P_i) = \dim(P_i)$.
+\par
+\begin{align*}
+    \Tr(P_i) &= \frac{\dim(P_i)}{|G|} \sum{g \in G} \chi_i^*(g) \chi_i(g) \\
+             &= \dim(R_i).
+\end{align*}
+Showing that $P_i^2=P_i$ is a bit harder because it requires re-indexing:
+\begin{align*}
+    P_i^2 &= \frac{\dim(R_i)^2}{\abs{G}^2} \sum_{g_1 \in G} \sum_{g_2 \in G} \chi_i^*(g_1) \chi_i^*(g_2) R_{g_1} R_{g_2} \\
+          &= \frac{\dim(R_i)}{\abs{G}^2} \sum_{g_1 \in G} \sum_{g_1g_2 \in G} \chi_i^*(g_1) \chi_i^*(g_1g_2) R_{g_1g_2} \\
+          &= \frac{\dim(R_i)}{\abs{G}^2} \sum_{g_1 \in G} \chi_i^{reg}(g_1) \sum_{g_1g_2 \in G} \chi_i^*(g_1g_2) R_{g_1g_2} \\
+          &= \frac{\dim(R_i)}{\abs{G}} \sum_{(g_1g_2) \in G} \chi_i^*(g_1g_2) R_{(g_1g_2)} \\
+          &= P_i.
+\end{align*}
+
+\bigskip
+\begin{prob}
+    \begin{itemize}
+        \item (a) Given a representation $R$, prove that the following defines a representation:
+            \[ R_g^\vee = \left( R_g^{-1} \right)^T. \]
+            ($R^\vee$ is called the dual representation.)
+        \item (b) Show there is a $G$-equivariant linear map $R \otimes R^\vee \rightarrow \C$.
+        \item (c) Prove that if $M$ is the vector space of matrices on $R$, conjugation of these matrices endows $M$ with a $G$ representation isomorphic to $R \otimes R^\vee$.
+    \end{itemize}
+\end{prob}
+\begin{itemize}
+    \item (a) Let $R$ be a representation which maps $g \in G$ to $R_g \in GL(V)$. Then let $\varphi$ be the function which maps $R_g$ to $R_g^\vee := (R_g^{-1})^T$. Then $\varphi \circ R$ is also a representation, because
+        \[ (\varphi \circ R)(g) (\varphi \circ R) (g') = (R_g^{-1})^T (R_{g'}^{-1})^T = (R_{g'}^{-1}R_g^{-1})^T = ((R_gR_{g'})^{-1})^T = (\varphi \circ R)(gg'). \]
+    \item (b) Let $R'$ be shorthand for $R \otimes R^\vee$. We want to find some linear map $A: R' \rightarrow \C$ such that 
+    \item (c)
+\end{itemize}
+
+\bigskip
+\begin{prob}
+    For each pair $R_i$, $R_j$ of irreps of $S_3$, compute the decomposition of $R_i \otimes R_j$ into irreps. (Together with direct sum, this gives irreps of $G$ the structure of a ring called the ``representation ring".)
+\end{prob}
+The 3 irreps of $S_3$ are the trivial representation $R_1$, the sign representation $R_2$, and the faithful representation $R_3$.
+\begin{center}
+    \begin{tabular}{c|ccc}
+        Conjugacy class & Trivial permutation & 2-cycle & 3-cycle \\
+        \hline
+        Character in $R_1$ & 1 & 1 & 1 \\
+        Character in $R_2$ & 1 & -1 & 1 \\
+        Character in $R_3$ & 2 & 0 & -1 \\
+        \hline
+        \# of elements & 1 & 3 & 2
+    \end{tabular}
+\end{center}
+Now that we have the character table, we can simply use the rules $\chi(R_i \otimes R_j)=\chi(R_i)\chi(R_j)$ and $\chi(R_i \oplus R_j) = \chi(R_i) + \chi(R_j)$ to decompose all the pairs $R_i \otimes R_j$ into irreps.
+\begin{align*}
+    R_1 \otimes R_1 &= R_1 \\
+    R_1 \otimes R_2 &= R_2 \\
+    R_1 \otimes R_3 &= R_3 \\
+    R_2 \otimes R_2 &= R_1 \\
+    R_2 \otimes R_3 &= R_3 \\
+    R_3 \otimes R_3 &= R_1 \oplus R_2 \oplus R_3 \\
+\end{align*}
+
+\end{document}
