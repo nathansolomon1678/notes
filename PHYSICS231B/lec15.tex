@@ -1,0 +1,86 @@
+\documentclass[class=article, crop=false]{standalone}
+\input{../preamble.tex}
+
+
+\fancyhf{}
+\lhead{Nathan Solomon}
+\rhead{Page \thepage}
+\pagestyle{fancy}
+
+\begin{document}
+\section{5/22/2024 lecture}
+A Lie group representation is a smooth group homomorphism $\rho: G \rightarrow GL(n, \F)$. This induces a map $\rho_*: \mathfrak{g} \rightarrow \mathfrak{gl}(n, \F)$. Lets define a \textit{Lie algebra representation} as a Lie algebra homomorphism $R: \mathfrak{g} \rightarrow \mathfrak{gl}(n,\F)$.
+\par
+Note that in order for $R$ to be a Lie algebra homomorphism, it must satisfy the criterion that $R([A,B])=R(A)R(B)-R(B)R(A)$.
+\begin{prop}
+    If $G$ is connected and simply connected, then a Lie group representation of $G$ is equivalent to a Lie algebra representation of $\mathfrak{g}$.
+\end{prop}
+\begin{proof}
+    Use the structure theorems.
+\end{proof}
+In general, if $G$ is a finite-dimensional matrix Lie group, we can consider $G$ as a subgroup of $GL(n, \F)$ (where $\F$ is either $\R$ or $\C$) and define its Lie group $\mathfrak{g}$ as
+\[ \mathfrak{g} = \left\{ A \in \mathfrak{gl}(n, \F) : \forall t \in \F, e^{tA} \in G \right\}. \]
+\begin{example}
+    $\mathfrak{sl}(n, \F)$ is the set of $n \times n$ matrices over $\F$ with zero trace.
+\end{example}
+\begin{example}
+    $\mathfrak{sl}(2,\C)$ is the set of matrices of the form $ \begin{bmatrix}
+        a & b \\
+        c & -a
+    \end{bmatrix}$, which has dimension 6 over $\R$. We can define the following basis vectors:
+    \[ h=\begin{bmatrix}
+        1 & 0 \\
+        0 & -1
+    \end{bmatrix}, e=\begin{bmatrix}
+        0 & 1 \\
+        0 & 0
+    \end{bmatrix}, f=\begin{bmatrix}
+        0 & 0 \\
+        1 & 0
+    \end{bmatrix} \]
+    so that $[h,e]=2e$ and $[e,f]=h$ and $[f,h]=2f$. You can think of this as a two state system where the lower state has $h$-eigenvalue $-1$ and the higher state has $h$-eigenvalue $1$. Then $e$ behaves as a raising operator and $f$ behaves as a lowering operator.
+\end{example}
+In general, a Lie algebra can be defined by basis vectors $ \left\{ A_i \right\}$ and ``structure constants" $t_{ij}$ satisfying $t_{ij}=-t_{ji}$ and $[A_i,A_j]=\sum_k t_{ij}^k A_k$
+\begin{thm}
+    In general, a Lie group and its corresponding Lie algebra will have the same dimension. PROVE THIS STATEMENT, ALSO FIND ANY EXCEPTIONS
+\end{thm}
+\begin{example}
+    $\mathfrak{u}(n)$ is the set of complex-valued matrices $A$ such that $ \left( \exp(sA) \right)^\dag \left( \exp(sA) \right)=I_n$ for all $s \in \R$ (COULD WE HAVE SAID $s \in \C$ INSTEAD??? WHY NOT, WOULD IT IMPLY THAT $\mathfrak{u}(n)$ IS A COMPLEX MANIFORLD, WHICH IT ISNT??) Then we can write this as a formal power series in $s$ and use that to find that $A^\dag=-A$ ($A$ is ``anti-Hermitian"). In other words, $A$ is $i$ times some Hermitian matrix. Counting the degrees of freedom for a Hermitian matrix, we see that $\dim_\R \mathfrak{u}(n) = \dim_\R \left( U(n) \right) =n^2$.
+    \par
+    $\mathfrak{su}(n)$ is the Lie algebra of traceless anti-Hermitian matrices, so it has dimension $n^2-1$ over $\R$. Every $A \in \mathfrak{u}(n)$ can be written as $B+ \frac{\Tr(A)}{n} \cdot I$ for some $B \in \mathfrak{su}(n)$, which implies $\mathfrak{u}(n) = \mathfrak{su}(n) \oplus \R$.
+\end{example}
+A Lie subalgebra is a subalgebra of a Lie algebra which is closed under the Lie bracket (e.g. $\mathfrak{su}(n) \subset \mathfrak{u}(n)$).
+\par
+The set of $2 \times 2$ Hermitian matrices is a real vector space with basis vectors $ \left\{ I, \sigma_x, \sigma_y, \sigma_z \right\}$, where the Pauli spin matrices are
+\[ \sigma_x = \begin{bmatrix}
+    0 & 1 \\
+    1 & 0
+\end{bmatrix}, \sigma_y = \begin{bmatrix}
+    0 & -i \\
+    i & 0
+\end{bmatrix}, \sigma_z = \begin{bmatrix}
+    1 & 0 \\
+    0 & -1
+\end{bmatrix}. \]
+Then the set of anti-Hermitian matrices is $\mathfrak{u}(2)=\Span_\R \left\{ iI, i \sigma_x, i\sigma_y, i \sigma_z \right\}$ and the set of traceless anti-Hermitian matrices is $\mathfrak{su}(2)=\Span_\R \left\{ i \sigma_x, i \sigma_y, i \sigma_z \right\}$.
+\par
+Define the Levi-Cevita symbol $\varepsilon^{ijk}$ to be $+1$ if $ijk$ is an even permutation of $123$ (or $xyz$, or $abc$), $-1$ if $ijk$ is an odd permutation of $123$, and $0$ if any indices are repeated (e.g. if $i=j$). It is implicitly summed over all $i,j,k$. Then
+\[ \sigma_a \sigma_b = i \varepsilon^{abc} \sigma_c \]
+and
+\[ [i \sigma_a, i \sigma_b] = -2i \varepsilon^{abc} \sigma_c. \]
+\subsection{Complexification}
+The \textit{complexification} of a real Lie algebra $\mathfrak{g}$ is a complex Lie algebra $\mathfrak{g}^\C$ of elements of the form $A+iB$, where $A,B \in \mathfrak{g}$. The Lie bracket for $\mathfrak{g}^\C$ is then defined such that
+\[ [A+iB,C+iD]=[A,C]+i[A,D]+i[B,C]-[B,D]. \]
+\begin{prop}
+    $\mathfrak{su}(n)^\C \cong \mathfrak{sl}(n,\C)$
+\end{prop}
+\begin{proof}
+    Define $\varphi: \mathfrak{su}(n)^\C \rightarrow \mathfrak{sl}(n,\C)$ to be the Lie algebra homomorphism which takes $A+iB$ to FINISH THIS PROOF, AND USE THE SAME TRICK TO SHOW THAT $\mathfrak{u}(n)^\C \cong \mathfrak{gl}(n,\R)$ AND THAT $\mathfrak{gl}(n,\R)^\C = \mathfrak{gl}(n, \C)$.
+\end{proof}
+
+GET NOTES FROM RYAN ABOUT RELATING COMPLEX REPRESENTATIONS OF SU2 TO COMPLEX REPRESENTATIONS OF SL(2,C).
+
+\subsection{Highest weight vectors}
+
+
+\end{document}

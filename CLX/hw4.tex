@@ -1,0 +1,67 @@
+\documentclass{article}
+\input{../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Complex Analysis Homework \#4}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+    prob 1
+\end{prob}
+(a)
+\[ \sin(i) = \frac{e^{i*i}-e^{-i*i}}{2i} = \frac{1/e-e}{2i} = \frac{ie}{2}- \frac{i}{2e}. \]
+Alternatively, we could use the identity $\sin(ix)=i \sinh(x)$ to get
+\[ \sin(i) = i \sinh(1) = i \left( \frac{e}{2} - \frac{1}{2e} \right).  \]
+(b) The following equations are equivalent:
+\begin{align*}
+    \sin(z) &= 0 \\
+    \frac{e^{iz}-e^{-iz}}{2i} &= 0 \\
+    e^{iz} &= e^{-iz}
+\end{align*}
+Let $a$ and $b$ be the real and imaginary components of $z$, respectively. Then
+\[ e^{iz}=e^{-b}e^{ia}. \]
+This is the polar form of $e^{iz}$ -- the magnitude is $e^{-b}$ and the argument is $a$. Similarly, $e^{-iz}$ has magnitude $e^b$ and argument $-a$. For $e^{iz}$ and $e^{-iz}$ to have the same magnitude, we must have $e^{-b}=e^b$ (which means $b=0$), and for them to have the same angle, we must have $e^{ia}=e^{-ia}$. That second criterion means $e^{2ia}=1$, so $a$ is an integer multiple of $\pi$.
+\par
+We have shown that $z=a+bi$ satisfies $\sin(z)=0$ iff $z$ is a (real) integer multiple of $\pi$.
+
+\begin{prob}
+    prob 2
+\end{prob}
+(a) The coefficients of this power series are
+\[ \left\{ a_n \right\}_{n \in \N_0} = \left\{ 1,0,1,0,1,\dots \right\}, \]
+so we can use the formula for radius of convergence, which gives
+\[ R = \frac{1}{\limsup |a_n|^{1/n}} = \frac{1}{1} = 1. \]
+That means that within the open disc of radius 1 about the origin, $D_1(0)$, the sum converges absolutely. Because it converges absolutely, we can rearrange it as much as we want.
+\[ (1+z^2+z^4+\cdots)(1-z^2)=(1+z^2+z^4+\cdots)-(z^2+z^4+z^6+\cdots)=1 \]
+\[ 1+z^2+z^4+\cdots= \frac{1}{1-z^2} \]
+That sum does not converge anywhere on the boundary of the disc of convergence, because if $|z|=1$, then each term in that power series has magnitude 1, so the partial sums are not a Cauchy sequence.
+\bigskip
+\par
+(b) The coefficients of this new power series are
+\[ \left\{ a_n \right\}_{n \in \N_0} = \left\{ \frac{1}{4}, \frac{1}{16}, \frac{1}{64}, \cdots \right\}. \]
+so the radius of convergence is
+\[ R = \frac{1}{\limsup \sqrt[n]{|a_n|}} = \frac{1}{\limsup \left\{ \sqrt[n]{4^{-n-1} } \right\}} = \frac{1}{\limsup \left\{ \frac{1}{4\sqrt[n]{ \frac{1}{4}}}  \right\} } = \frac{1}{ \frac{1}{4}} = 4.\]
+Within that radius of convergence, we have
+\[ \sum_{n=0}^\infty \frac{z^n}{4^{n+1}} = \frac{1}{4} \sum_{n=0}^\infty \left( \frac{z}{4} \right)^n = \frac{1}{4} \cdot \frac{1}{1- \left( \frac{z}{4} \right) }  = \frac{1}{4-z}. \]
+On the boundary of the disc of convergence, every term of the power series will have magnitude $ \frac{1}{4}$, so the partial sums are not a Cauchy sequence, meaning there is no point on that boundary where the power series converges.
+
+\begin{prob}
+    prob 3
+\end{prob}
+
+\begin{prob}
+    prob 4
+\end{prob}
+
+\begin{prob}
+    prob 5
+\end{prob}
+Let $b_0$ be any complex number, and for every positive integer $n$, let $b_n= \frac{a_{n-1}}{n}$. Then define another power series
+\[ g(z) := \sum_{n=0}^\infty b_n(z-a)^n. \]
+
+\end{document}

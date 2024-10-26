@@ -1,0 +1,102 @@
+\documentclass[class=article, crop=false]{standalone}
+\input{../preamble.tex}
+
+
+\fancyhf{}
+\lhead{Nathan Solomon}
+\rhead{Page \thepage}
+\pagestyle{fancy}
+
+\begin{document}
+\section{5/15/2024 lecture}
+Last lecture, we discussed how any open neighborhood of the identity in a connected Lie group generates the whole group.
+
+\subsection{The exponential map}
+The exponential function $\exp: \C \rightarrow \C$ is defined by
+\[ \exp(x) = \sum_{n=0}^\infty \frac{x^n}{n!}. \]
+Since it's defined as a power series, it is an \textit{entire} function.
+\par
+Alternatively, the exponential function on $\C$ can be defined as the unique solution to
+\[ f'(x)=x, \hspace{1cm} f(0)=1. \]
+For any $n \times n$ matrix over either $\R$ or $\C$, we can define $\exp$ with the same power series.
+\begin{prop}
+    For any $A \in \C^{n \times n}$, the following power series is absolutely convergent:
+    \[ \exp(A) := \sum_{k=0}^\infty \frac{A^k}{k!}. \]
+\end{prop}
+\begin{proof}
+    \begin{align*}
+        \abs{\exp(A)_{i,j}} &= \abs{\left( \sum_{k=0}^\infty \frac{A^k}{k!} \right)_{i,j}} \\
+                            &\leq \sum_{k=0}^\infty \frac{1}{k!} n^{k-1} \max_{p,q} \abs{A_{p,q}}^k
+    \end{align*}
+    So every entry of $\exp(A)$ is bounded by an absolutely convergent series.
+\end{proof}
+\begin{example}
+    Let $A$ be any 2 by 2 complex matrix such that $A^2=I$. Then $\exp(tA)= \left( \cosh t \right) I + \left( \sinh t \right) A$. Notably, if $t=i \theta$, then $\exp(i \theta A) = I \cdot \cos \theta + A \cdot i \sin \theta$.
+\end{example}
+\subsection{The matrix logarithm}
+The matrix logarithm of $A$ can be defined by the following formula:
+\[ \log (I+A) = \sum_{k=1}^\infty \frac{A^k}{k} (-1)^{k+1}. \]
+We say that the log of a matrix exists iff that series is absolutely convergent -- for example, if the largest eigenvalue of $A$ has magnitude less than 1, then the matrix log exists.
+\begin{thm}
+    \begin{enumerate}
+    \item If the log of a (real or complex) matrix exists (meaning $\log A$ is an absolutely convergent power series), then
+    \begin{align*}
+        \log(\exp(A))&=A \text{    and} \\
+        \exp(\log(A))&=A.
+    \end{align*}
+\item $\exp(0)=I$ and $\log(I)=0$.
+\item The following statements are equivalent:
+    \begin{itemize}
+        \item $AB=BA$
+        \item $\exp(A+B)=\exp(A)\exp(B)$
+        \item $\log(AB)=\log(A)+\log(B)$
+    \end{itemize}
+    DOES THAT STILL WORK EVEN IF THE LOG DOESNT CONVERGE??? ARE THOSE THREE STATEMENTS REALLY ALL EQUIVALENT???
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    The proofs of these are an exercise.
+    \par
+    \[ \exp(A+B)=\sum_{k=0}^\infty \frac{1}{k!} \sum_{\ell=o}^\infty \binom{k}{\ell} A^\ell B^{k-\ell} \]
+    compare that to $\exp(A)\exp(B)$.
+\end{proof}
+\begin{thm}
+    The exponential of any $A \in \C^{n \times n}$ is invertible, and its inverse is the exponential of $-A$.
+\end{thm}
+\begin{proof}
+    \[ \exp(A)\exp(-A)=\exp(0)=I \]
+\end{proof}
+\begin{prob}
+    Is the matrix exponential from the set of complex $n \times n$ matrices a surjection onto the set of invertible complex $n \times n$ matrices?
+\end{prob}
+\begin{prop}
+    For any complex $n \times n$ matrices $A$ and $B$, there exists a matrix $C$ such that
+    \[ \exp(A) \exp(B) = \exp(C). \]
+\end{prop}
+\begin{proof}
+    For some very small $t \in \C$,
+    \[ \exp(tA)\exp(tB)-\exp(t(A+B))= \frac{t^2}{2} [A,B]+O(t^3). \]
+\end{proof}
+INCLUDE THE BAKER CAMPBELL HAUSDORFF FORMULA. It gives a formal power series in $t$ (not necessarily convergent) for $\log(\exp(tA)\exp(tB))$ in terms of iterated commutators of $A$ and $B$
+SEE MCGREEVYS NOTES ABOUT HOW TO DERIVE THAT USING A DIFFERENTIAL EQUATION AND AN ANSATZ
+\subsection{Suzuki-Trotter formula}
+\begin{thm}
+    \[ e^{A+B}=\lim_{n \rightarrow \infty} \left( e^{A/n}e^{B/n} \right)^n. \]
+\end{thm}
+\begin{proof}
+    \begin{align*}
+        e^{tA/n}e^{tB/n}&=\exp \left( \frac{t}{n} (A+B)+ \frac{t^2}{2n^2} [A,B] + O\left( \frac{t^3}{n^3}\right) \right)
+    \end{align*}
+    FINISH THIS PROOF
+\end{proof}
+\subsection{Lie algebras}
+If $G$ is a topologically closed subgroup of $GL(n,\F)$ (where $\F$ is either $\R$ or $\C$), let $\mathfrak{G}= \left\{ A \in \F^{n \times n}: e^{tA} \in G \forall t \right\}$. Then
+\begin{enumerate}
+    \item $\mathfrak{G}$ is a vector space
+    \item $\mathfrak{G}$ is closed under the Lie bracket (which for matrix Lie algebras is always the commutator, I think??? IS THAT TRUE?)
+    \item $\mathfrak{G}$ is the tangent space to $G$ at the identity
+    \item $G$ is a Lie group
+\end{enumerate}
+To prove statements (1), you can use the Suzuki-Trotter formula. THE REST OF THESE STATEMENTS ARE EXERCISES
+
+\end{document}

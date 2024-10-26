@@ -1,0 +1,67 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 245 Homework \#3}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+Every qubit can be written as some global phase factor times
+\[ \ket{\Psi} = \cos(\varphi/2) \ket{0} + e^{i \phi} \sin(\varphi/2) \ket{1}, \]
+which is uniquely represented in the Bloch sphere by the coordinates
+\begin{align*}
+    x &= \sin \varphi \cos \phi \\
+    y &= \sin \varphi \sin \phi \\
+    z &= \cos \varphi.
+\end{align*}
+Normally, we would use $\theta$ in place of $\varphi$ to represent the polar angle, but I want to reserve $\theta$ to represent the angle of the rotation matrices.
+
+\begin{enumerate}[label=(\alph*)]
+    \item This is going to map our original state to
+        \begin{align*}
+            \hat{R}_x(\theta) \ket{\Psi} &= \begin{bmatrix}
+                \cos \frac{\theta}{2} & -i \sin \frac{\theta}{2} \\
+                -i \sin \frac{\theta}{2} & \cos \frac{\theta}{2}
+            \end{bmatrix} \begin{bmatrix}
+            \cos \frac{\varphi}{2} \\
+            e^{i \phi} \sin \frac{\varphi}{2}
+            \end{bmatrix} \\
+                                         &= \begin{bmatrix}
+                                             \cos \frac{\theta}{2} \cos \frac{\varphi}{2} - i e^{i \phi} \sin \frac{\theta}{2} \sin \frac{\varphi}{2} \\
+                                             -i \sin \frac{\theta}{2} \cos \frac{\varphi}{2} + e^{i \phi} \cos \frac{\theta}{2} \sin \frac{\varphi}{2}
+                                         \end{bmatrix}
+        \end{align*}
+        
+    \item
+    \item
+    \item
+    \item
+\end{enumerate}
+
+\begin{prob}
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item
+    \item
+    \item
+\end{enumerate}
+
+\begin{prob}
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item
+    \item
+    \item
+    \item
+\end{enumerate}
+
+\includepdf[pages=-]{assignment.pdf}
+\includepdf[pages=-]{notebook.pdf}
+
+\end{document}

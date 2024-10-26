@@ -1,0 +1,50 @@
+\documentclass{article}
+\input{../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Complex Analysis Homework \#5}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+Calculate
+$$ 
+\int\limits_{|z|=R}{\overline z}\,^n \,dz
+$$
+ for $R>0$ and all $n\geq 1$ integers. \\
+ \textit{(Hint: Orient the circle counterclockwise.)}
+\end{prob}
+
+Let $\gamma: [0, 2\pi] \rightarrow \C$ be the closed curve defined by $\gamma(t)= R e^{it}$. Then the integral we want to find is
+\[ \int_\gamma \overline{z}^n \d z = \int_{t=0}^{2\pi} \left( e^{-it} \right)^n \gamma'(t) \d t = \int_{t=0}^{2\pi} i e^{(1-n)t} \d t \]
+
+
+\begin{prob}
+ Let $\gamma$ be the unit circle with positive orientation: $\{z : |z|=1\}$. Find
+\begin{enumerate} 
+\item
+ \[ 
+ \int\limits_{\gamma} \frac{e^{z}}{z^4} dz 
+ \]
+\item
+ \[ 
+ \int\limits_{\gamma} \frac{\sin z} {z^2} dz
+ \] 
+\end{enumerate}
+\textit{(Hint: Find their antiderivatives.)}
+\end{prob}
+
+\begin{prob}
+Show that $$\left |\int\limits_\gamma e^{\sin z}\, dz\right |\leq 1$$ where
+$\gamma$ is the straight line segment from $z=0$ to $z=i$.
+\end{prob}
+
+\begin{prob}
+    Suppose f is continuously complex differentiable on $\Omega$, and $T \subset \Omega$ is a triangle whose interior is also contained in $\Omega$. Apply Green’s theorem (and the CR equations) to show that $\int_T f=0$. \\
+(This provides a proof of Goursat’s theorem under the additional assumption that $f'$ is continuous.)
+\end{prob}
+\end{document}

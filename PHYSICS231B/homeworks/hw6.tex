@@ -1,0 +1,68 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 231B Homework \#6}
+
+\begin{document}
+\maketitle
+Most of the facts about manifolds we discussed and used, and things about the fundamental group can be found in Nakahara's book ``Geometry, Topology, and Physics". The structure theorems on Lie groups and algebras can be found in Kirillov Ch 3 and Hall Ch 5.
+
+\bigskip
+\begin{prob}
+    Suppose $G$ is a closed subgroup of $GL(n,\R)$, and $\gamma(t):(-1,1) \rightarrow G$ is a smooth map with $\gamma(0)=I$. Show that
+    \[ \frac{d}{dt}\gamma(t) |_{t=0} \in \mathfrak{g}, \]
+    that is, that if $A= \frac{d}{dt}\gamma(t) |_{t=0}$, then $\exp(tA) \in G$ for all $t$. (This gives an identification of the tangent space of $G$ at $I$ with its Lie algebra.)
+\end{prob}
+
+\bigskip
+\begin{prob}
+    On the last homework you constructed a map $SU(2) \times SU(2) \rightarrow SO(4)$. Now show explicitly a Lie algebra isomorphism between $\mathfrak{su}(2) \oplus \mathfrak{su}(2)$ and $\mathfrak{so}(4)$.
+\end{prob}
+
+\bigskip
+\begin{prob}
+    \begin{itemize}
+        \item (a) Classify the representations of $SO(4)$ in terms of representations of $SU(2) \times SU(2)$.
+        \item (b) What $SU(2) \times SU(2)$ representation corresponds to the vector representation of $SO(4)$?
+        \item (c) (bonus) What $SO(4)$ representation corresponds to the $SU(2) \times SU(2)$ representation $(1,0)$?
+    \end{itemize}
+\end{prob}
+
+\bigskip
+\begin{prob}
+    There is an invertible $\R$-linear map $F: \C^n \rightarrow \R^{2n}$ given by
+    \[ f(x_1+iy_1, \dots, x_n + iy_n) = (x_1, \dots, x_n, y_1, \dots, y_n). \]
+    \begin{itemize}
+        \item (a) Prove that $F(iz)=JF(z)$ where $J$ is the matrix
+            \[ \begin{pmatrix}
+                0 & I_n \\
+                -I_n & 0
+            \end{pmatrix}. \]
+        \item (b) Prove that a $2n \times 2n$ real matrix $N$ is the image of an $n \times n$ complex matrix $M$ if and only if $NJ=JN$.
+        \item (c) Given such a pair of matrices $(M,N)$ as above, show that there is a basis of $\C^n$ where $M$ has real entries if and only if there is a $2n \times 2n$ real matrix $T$ (called a real structure) satisfying $T^2=I$, $TJ=-JT$, and $TN=NT$.
+    \end{itemize}
+\end{prob}
+
+\bigskip
+\begin{prob}
+    A representation (of a group of Lie algebra) on $\C^n$ has a real structure if there is a matrix $T$ as above commuting with each of the representation matrices. In this case, problem 3 implies that these matrices are real in a certain basis, and define also a real representation.
+    \begin{itemize}
+        \item (a) Show that the spin 1 representation of $SU(2)$ has a real structure but the spin 1/2 representation does not.
+        \item (b) Show that the spin-1/2 representation has a ``pseudoreal structure", meaning a matrix $T$ as above satisfying $T^2=-1$ instead of $T^2=1$.
+    \end{itemize}
+\end{prob}
+
+\bigskip
+\begin{prob}
+    Any real Lie algebra $\mathfrak{g}$ has an associated complex Lie algebra $\mathfrak{g}^\C$ (called its complexification) whose elements are complex linear combinations of elements of $\mathfrak{g}$. We extend the Lie bracket on $\mathfrak{g}$ to $\mathfrak{g}^\C$ by linearity: $[iA,B]:= i[A,B]$, $[iA,iB]:=-[A,B]$ for $A,B \in \mathfrak{g}$.
+    \begin{itemize}
+        \item (a) Show that for each $n$, the real Lie algebras $\mathfrak{so}(p,q)$ for $p+q=n$ all have isomorphic complexifications.
+        \item (b) For $n=4$, use this to construct the Lorentz algebra $\mathfrak{so}(3,1)$ matrices acting on a 4-vector.
+    \end{itemize}
+\end{prob}
+
+\end{document}

@@ -1,0 +1,69 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 231B Homework \#7}
+
+\begin{document}
+\maketitle
+
+Consider the $n$-fold tensor product
+\[ \C^{2^n} = \bigotimes_{i=1}^n \C^2 \]
+and define the Pauli matrices $X_i, Y_i, Z_i$ as acting on the $i$th factor via
+\begin{align*}
+    X_1 &= X \otimes I \otimes \cdots \otimes I, \\
+    X_2 &= I \otimes X \otimes I \cdots \otimes I, \\
+        & \cdots \\
+    X_n &= I \otimes I \otimes \cdots X,
+\end{align*}
+and so on (using the shorthand $\sigma^x = X, \sigma^y=Y, \sigma^z=Z$). With these, we define $2n$ ``Majorana" operators via $\gamma_1=X_1, \gamma_2=Y_1$, and for $1 \leq k < n$:
+\begin{align*}
+    \gamma_{2k+1} &= \left( \prod_{i=1}^k Z_i \right) X_i \\
+    \gamma_{2k+2} &= \left( \prod_{i=1}^k Z_i \right) Y_i. \\
+\end{align*}
+This is called the Jordan-Wigner transformation. The next few problems will develop spinor representations from these variables.
+
+\bigskip
+\begin{prob}
+    Prove that these satisfy the Clifford algebra relations:
+    \[ \begin{cases}
+        \gamma_i^2=1 & \text{for any $i$} \\
+        \gamma_i\gamma_j = -\gamma_j\gamma_i & \text{whenever $i \neq j$}
+    \end{cases} \]
+\end{prob}
+
+\bigskip
+\begin{prob}
+    Recall $\mathfrak{so}(2)$ is the Lie algebra of anti-symmetric real matrices. Prove that
+    \[ A_{\mu \nu} \mapsto \frac{1}{4} A_{\mu \nu} \gamma_\mu \gamma_\nu \]
+    defines a Lie algebra representation of $\mathfrak{so}(2n)$ on $\C^{2^n}$. In other words, prove
+    \[ \frac{1}{16} A_{ij}B_{kl} [\gamma_i\gamma_j,\gamma_k,\gamma_l] = \frac{1}{4} [A,B]_{ab} \gamma_a \gamma_b. \]
+\end{prob}
+
+\bigskip
+\begin{prob}
+    We define the group $Spin(2n)$ by exponentiating these operators inside $U(2^n)$:
+    \[ \exp \left( \frac{1}{2} A_{\mu \nu} \gamma_\mu \gamma_\nu \right). \]
+    Show that the conjugation action of these operators on the Clifford algebra acts on $\gamma_i$ according to the $2n$-dimensional representation on the index $i$, thus giving a surjective map $Spin(2n) \rightarrow SO(2n)$.
+\end{prob}
+
+\bigskip
+\begin{prob}
+    Show that the representation of $Spin(2n)$ on $\C^{2^n}$ we have obtained from this construction does not define an $SO(2n)$ representation. Decompose this representations into irreducibles of $Spin(4) = SU(2) \times SU(2)$ in the case $n=2$.
+\end{prob}
+
+\bigskip
+\begin{prob}
+    The action of $Spin(2n)$ on $\C^{2^n}$ is reducible because of the commuting element $\gamma_c := \prod_{i=1}^n Z_i$. Prove that this element satisfies
+    \begin{align*}
+        \gamma_c^2 &= 1 \\
+        \gamma_i \gamma_c = -\gamma_c \gamma_i.
+    \end{align*}
+    Thus we get a $2^n$ dimensional representation of $\mathfrak{so}(2n+1)$ and a corresponding double cover group $Spin(2n+1)$. Verify for $n=1$ we get the identification $Spin(3)=SU(2)$.
+    
+\end{prob}
+
+\end{document}

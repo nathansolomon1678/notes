@@ -1,0 +1,65 @@
+\documentclass[class=article, crop=false]{standalone}
+\input{../preamble.tex}
+
+
+\fancyhf{}
+\lhead{Nathan Solomon}
+\rhead{Page \thepage}
+\pagestyle{fancy}
+
+\begin{document}
+\section{5/24/2024 lecture}
+\subsection{Haar measure}
+\subsection{Peter-Weyl theorem}
+\subsection{Highest weight representation of $\mathfrak{su}(2)$}
+Spin is one half of the highest weight. WHAT DOES THIS MEAN? ALSO, WHAT IS THE MEANING OF CHARGE IN THIS CONTEXT?
+\subsection{Adjoint representations}
+Relate adjoint representation of a Lie algebra to conjugation in the corresponding Lie group.
+\par
+Also, note that the fundamental representation can also be called the defining representation or the vector representation
+\subsection{Simple Lie algebras}
+Prove that $\mathfrak{su}(2)$ is simple
+\subsection{$SU(2)$ is a double cover of $SO(3)$}
+Discuss the adjoint spin-1 representation of $SU(2)$.
+\par
+Consequence of that: $\pi_1 \left( SO(3), I \right) = \Z_2$
+\subsection{Universal covering maps}
+\subsection{Lie algebra $\mathfrak{so}(n)$}
+\begin{note}
+    Since an anti-Hermitian real matrix must have zeros on the diagonal, $SO(n)$ and $O(n)$ have the same Lie algebra. We call it $\mathfrak{so}(n)$ instead of $\mathfrak{o}(n)$, because that way the exponential of $\mathfrak{so}(n)$ is $SO(n)$.
+\end{note}
+$\mathfrak{so}(3)$ is the algebra spanned (over $\R$) by $ \left\{ i,j,k \right\}$ with the Lie bracket being the cross product.
+\par
+Define the following matrices as a basis for $\mathfrak{so}(3)$:
+\[ J_z = \begin{bmatrix}
+    0 & 1 & 0 & 0 \\
+    -1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0
+\end{bmatrix}, J_x = \begin{bmatrix}
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1 \\
+    0 & 0 & -1 & 0
+\end{bmatrix}, J_y = \begin{bmatrix}
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\
+    -1 & 0 & 0 & 0
+\end{bmatrix} \]
+Then there is a Lie algebra iisomorphism from $\mathfrak{so}(3)$ to $\mathfrak{su}(2)$ which maps $J_i$ to $\frac{i\sigma_i}{2}$.
+\par
+Prove that $SO(3)$ is not simply connected, but $SU(2)$ is.
+\subsection{The Lie group $U(2)$}
+\begin{prob}
+    Use Schur's lemma to show that irreps of $U(1) \times SU(2)$ can be characterized by a spin $s \in \frac{1}{2}\Z$ and a charge $q \in \Z$.
+\end{prob}
+\begin{thm}
+    $U(2)$ representations are those with $\frac{q}{2}+s \in \Z$.
+\end{thm}
+\begin{cor}
+    $U(2)=U(1) \times SU(2)/\Z_2$
+\end{cor}
+TALK ABOUT HOW TO VISUALIZE $SO(3)$ AS $\mathbb{RP}^3$.
+
+\end{document}

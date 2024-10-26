@@ -1,0 +1,37 @@
+\documentclass[class=article, crop=false]{standalone}
+\input{../preamble.tex}
+
+
+\fancyhf{}
+\lhead{Nathan Solomon}
+\rhead{Page \thepage}
+\pagestyle{fancy}
+
+\begin{document}
+\section{5/3/2024 lecture}
+Talk about orthogonality theorem for characters. Note that an ``irrep" is an irreducible representation, and also talk about how the word ``representation" can be used in a few different ways. Define what it means to take the direct sum and tensor product of representations.
+\subsection{Schur's lemma}
+There are two theorems which we call ``Schur's lemma".
+\begin{lem}
+    If $R_g$ is an $n$-dimensional irrep and $R'_g$ is an $m$-dimensional irrep and $A$ is an $m \times n$ matrix such that
+    \[ R'_g A = A R_g, \]
+    then either $A=0$ or FINISH COPYING DOWN THE STATEMENT
+\end{lem}
+\begin{proof}
+    Suppose $v \in \ker A$. Then $\ker A$ is a $G$-invariant subspace of $\F^n$, so ???
+    \par
+    Suppose $w \in \im A$.
+\end{proof}
+Here's the other version of Schur's lemma:
+\begin{lem}
+    Suppose $A$ is an $n \times n$ matrix over $\C$ (or some other algebraically-closed field) and let $R$ be an irrep which commutes with $A$. Then $A$ is a scalar multiple of the identity matrix.
+\end{lem}
+\begin{proof}
+    Since we're working in $\C$, $A$ must have at least one eigenvector, which we will call $v$. Then $Av=\lambda v$ for some $v \in \C$. The $\lambda$-eigenspace of $A$ is a non-trivial $G$-invariant subspace, and since $R$ is irreducible, that means it must be all of $\C^n$.
+\end{proof}
+Consider a quantum mechanical system with $n$ states and some symmetry. Then there is a hamiltonian $H$ acting on $\C^n$ and a representation $R$ (which is probably unitary, but doesn't need to be) of a group $G$ on $\C^n$ such that $R$ commutes with $H$. Then all states have the same energy. For example, in a spin-$ \frac{1}{2}$ system, with $G=SU(2)$ symmetry, there is double degeneracy.
+
+\subsection{Sum of two irreps}
+Suppose $R = R_1 \oplus R_2$, where $R_1$ and $R_2$ are irreducible representations. Then any matrix $A$ which commutes with $R$ is a block-diagonal matrix where the top left block is $\lambda_1 I$ and the bottom right block is $\lambda_2 I$.
+
+\end{document}

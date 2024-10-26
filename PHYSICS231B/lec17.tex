@@ -1,0 +1,46 @@
+\documentclass[class=article, crop=false]{standalone}
+\input{../preamble.tex}
+
+
+\fancyhf{}
+\lhead{Nathan Solomon}
+\rhead{Page \thepage}
+\pagestyle{fancy}
+
+\begin{document}
+\section{5/29/2024 lecture}
+\begin{itemize}
+    \item Casimir element
+    \item Spin groups
+    \item Lenz vector
+    \item Use Frobenius theorem to show that only 0, 1, and 3 dimensional spheres are Lie groups
+    \item Review universal covers
+    \item See Sakurai "Modern QM" chapter 4 and Kirillov Chapter 7
+    \item Show that $\mathfrak{so}(3) \oplus \mathfrak{so}(3) = \mathfrak{so}(4)$
+    \item Root spaces
+\end{itemize}
+
+\subsection{Cartan subalgebras}
+REVIEW ADJOINT REPRESENTATION
+\par
+Let $G$ be a real, $n$-dimensional, compact Lie group, and $\mathfrak{g}$ be it's Lie algebra. For any $x \in \mathfrak{g}$, define the function
+\[ \ad_x : \mathfrak{g}^\C \rightarrow g^\C, \hspace{1cm} \ad_x(y)=[x,y]. \]
+and let $\mathfrak{h} \subset \mathfrak{g}$ be a maximal abelian subalgebra, called the ``Cartan subalgebra".
+\par
+For any linear map $\alpha: \mathfrak{h} \rightarrow \C$, which we call a ``root", we can define a ``root space" $\mathfrak{g}_\alpha$, which is the set of elements $x \in \mathfrak{g}^\C$ such that $\ad_h(x)=[h,x]=\alpha(h)x$ for any $h \in \mathfrak{h}$.
+\par
+If $W$ is the set of weights of the representation $\mathfrak{g}^\C$, then
+\[ \mathfrak{g}^\C = \mathfrak{h}\oplus \left( \bigoplus_{\alpha \in W} \mathfrak{g}_\alpha \right) \]
+is called the ``root space decomposition".
+
+\subsection{Killing form}
+An inner product $ \braket{\cdot}{\cdot} $ is called degenerate iff the statement ``$ \braket{x}{y} =0$ for every $y$" implies $x=0$.
+\par
+In the coordinate system that we talked about, we can define an inner product $(x, y)$ called the ``Killing form" as
+\[ (x,y) = \Tr_\mathfrak{g} \left( \ad_x \ad_y \right). \]
+The Lie algebra $\mathfrak{g}$ is called ``semisimple" iff the Killing form is non-degenerate.
+\begin{thm}
+    $\mathfrak{g}$ is semisimple iff (1) it has no center and (2) it is a direct sum of simple Lie algebras.
+\end{thm}
+
+\end{document}

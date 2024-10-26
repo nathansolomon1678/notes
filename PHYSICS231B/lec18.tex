@@ -1,0 +1,54 @@
+\documentclass[class=article, crop=false]{standalone}
+\input{../preamble.tex}
+
+
+\fancyhf{}
+\lhead{Nathan Solomon}
+\rhead{Page \thepage}
+\pagestyle{fancy}
+
+\begin{document}
+\section{5/31/2024 lecture}
+Define charge in terms of weights, and talk about the spin-charge relation:
+\[ S + \frac{Q}{2} \in \Z. \]
+
+\subsection{$\mathfrak{sl}(3,\C)$}
+The complexification of $\mathfrak{so}(3)$ is $\mathfrak{sl}(3,\C)$ (PROVE THIS, AND NOTE THAT COMPLEXIFYING IT HAS MORE THAN DOUBLED THE DIMENSION??).
+\par
+the Cartan subalgebra $\mathfrak{h}$ of that algebra is the set of traceless diagonal real matrices, which is spanned (over the reals) by
+\[ h_{12} = \begin{bmatrix}
+    1 & & \\
+      & -1 & \\
+      & & 0
+\end{bmatrix}, h_{23}= \begin{bmatrix}
+    0 & & \\
+      & 1 & \\
+      & & -1
+\end{bmatrix}, h_{31} = \begin{bmatrix}
+    -1 & & \\
+      & 0 & \\
+      & & 1
+\end{bmatrix}. \]
+In this context, the weights of the adjoint representation are called roots.
+\par
+Let $\alpha_{ij} : \mathfrak{h} \rightarrow \R$ be the function which puts an element of $\mathfrak{h}$ in the $(h_{12}, h_{23}, h_{31})$ basis, and returns the $i,i$ entry minus the $j,j$ entry. The roots $\alpha_{ij}$ are elements of the dual vector space $\mathfrak{h}^*$.
+\par
+DRAW THE EIGHT ROOTS OF SL(2,C) IN A HEXAGON WITH TWO ROOTS AT THE CENTER AND USE THAT TO EXPLAIN WHY IT IS EIGHT DIMENSIONAL. Then relate that picture to Gell-Mann's eightfold way.
+\subsection{Weyl group}
+The Weyl group is the set of symmetries which preserves the weight diagram. For example, in the hexagon described above (earlier this lecture), it would be $S_3$. In general, any weight diagram is symmetric under reflection actross some hyperplane perpendicular to any root.
+\par
+DESCRIBE THE GENERAL ALGORITHM FOR DRAWING ROOT DIAGRAMS
+\par
+DOES A LIE ALGEBRA ALWAYS HAVE THE SAME DIMENSION AS ITS ROOT SPACE???
+\par
+TALK ABOUT HOW TO COMPUTE THINGS LIKE $\frac{1}{2} \oplus \frac{1}{2} = 0 \oplus 1$.
+\par
+USE ROOT DIAGRAM TO SHOW THAT the tensor product of the 3D fundamental representation of SL(3,C) with itself is the antifundamental representation plus some 6D irrep.
+\par
+Define $PSU(3)=SU(3)/\Z_3$ just for fun.
+\par
+TALK ABOUT BREAKING DOWN THE 3 QUARK STATES (U,D,S) INTO A TRIVIAL REP PLUS TWO 8D REPS PLUS ONE 10D REP
+\par
+In week 10, we will classify semi-simple Lie algebras using Dynkin diagrams, and learn how to use Young tableaux. The last problem set will be optional. Be sure to get all homeworks in by the end of finals week.
+
+\end{document}

@@ -1,0 +1,72 @@
+\documentclass{article}
+\input{../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 105B Lecture Notes, Fall 2024}
+
+\begin{document}
+\maketitle
+
+The class textbook is \textit{Classical Mechanics of Particles and Systems, 5th edition} by Marion \& Thornton. These notes are a supplement for the textbook, not a replacement, so I won't cover everything from the course
+
+\tableofcontents
+\section{Review of Lagrangian mechanics}
+\subsection{Calculus of variations}
+Use catenary and brachiostrome as examples
+\subsection{Least action principle}
+\subsection{Generalized momenta}
+\subsection{Lagrange multipliers, forces from constraints}
+
+\section{Phase diagrams}
+The state of many systems can be described by generalized positions ($q_1, q_2, \dots$) and generalized velocities ($\dot{q_1}, \dot{q_2}, \dots$). For example, the state of a pendulum at any time can be described by the vector
+\[ \begin{bmatrix}
+    \theta \\
+    \dot{\theta}
+\end{bmatrix}, \]
+and if we know the state, we can calculate the rate of change of the state. That is,
+\[ \begin{bmatrix}
+    \dot{\theta} \\
+    \ddot{\theta}
+\end{bmatrix} \]
+is a function of the state. We can visualize this as a vector field, where $x = \theta$ and $y = \dot{\theta}$. One amazing tool for drawing vector fields is
+\url{https://anvaka.github.io/fieldplay/}
+\par
+For the pendulum example, copy this code:
+\begin{lstlisting}[language=C]
+// p.x and p.y are current coordinates
+// v.x and v.y is a velocity at point p
+vec2 get_velocity(vec2 p) {
+  vec2 v = vec2(0., 0.);
+  v.x = p.y;
+  v.y = cos(p.x);
+  return v;
+}
+\end{lstlisting}
+\fig{pendulum.png}
+
+For a Van der Pol oscillator, copy in this code, and experiment with changing $\mu$ (mu):
+\begin{lstlisting}[language=C]
+float mu = 1.;
+vec2 get_velocity(vec2 p) {
+  vec2 v = vec2(0., 0.);
+  v.x = p.y;
+  v.y = mu * (1. - p.x * p.x) * p.y - p.x;
+  return v;
+}
+\end{lstlisting}
+Here is a Van der Pol oscillator with $\mu = 1$:
+\fig{VanDerPol.png}
+
+\section{Rotating reference frames}
+Chapter 10 in the textbook. Copy example 10.5 (Foucault pendulum) to these notes
+
+\section{Synchronized oscillators}
+Include links to and screenshots of synchronizing oscillators from the ``Explorable explanations" website (although that's different from the oscillators we are talking about here).
+
+\section{Moment of inertia tensor}
+Compare the off-diagonal elements (``products of inertia") to the formula for Pearson's correlation coefficient, which measures how much stuff is on a diagonal line between the $x$ and $y$ axes. Use this to give an intuitive explanation of what diagonalizing $I$ represents.
+
+\end{document}
