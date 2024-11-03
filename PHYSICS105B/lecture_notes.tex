@@ -10,10 +10,10 @@
 \begin{document}
 \maketitle
 
-The class textbook is \textit{Classical Mechanics of Particles and Systems, 5th edition} by Marion \& Thornton. These notes are a supplement for the textbook, not a replacement, so I won't cover everything from the course
+The class textbook is \textit{Classical Mechanics of Particles and Systems, 5th edition} by Marion \& Thornton. These notes are a supplement for the textbook, not a replacement, so I won't cover everything from the course.
 
 \tableofcontents
-\section{Review of Lagrangian mechanics}
+\section{Review of Lagrangian mechanics (physics 105A)}
 \subsection{Calculus of variations}
 Use catenary and brachiostrome as examples
 \subsection{Least action principle}
@@ -21,7 +21,7 @@ Use catenary and brachiostrome as examples
 \subsection{Lagrange multipliers, forces from constraints}
 
 \section{Phase diagrams}
-The state of many systems can be described by generalized positions ($q_1, q_2, \dots$) and generalized velocities ($\dot{q_1}, \dot{q_2}, \dots$). For example, the state of a pendulum at any time can be described by the vector
+For lots of systems, the state can be described by generalized positions ($q_1, q_2, \dots$) and generalized velocities ($\dot{q_1}, \dot{q_2}, \dots$). For example, the state of a pendulum at any time can be described by the vector
 \[ \begin{bmatrix}
     \theta \\
     \dot{\theta}
@@ -31,11 +31,11 @@ and if we know the state, we can calculate the rate of change of the state. That
     \dot{\theta} \\
     \ddot{\theta}
 \end{bmatrix} \]
-is a function of the state. We can visualize this as a vector field, where $x = \theta$ and $y = \dot{\theta}$. One amazing tool for drawing vector fields is
+is a function of the state. We can visualize this as a vector field, where $x = \theta$ and $y = \dot{\theta}$. One amazing tool for animating vector fields is
 \url{https://anvaka.github.io/fieldplay/}
 \par
 For the pendulum example, copy this code:
-\begin{lstlisting}[language=C]
+\begin{lstlisting}[language=C,frame=single]
 // p.x and p.y are current coordinates
 // v.x and v.y is a velocity at point p
 vec2 get_velocity(vec2 p) {
@@ -48,13 +48,10 @@ vec2 get_velocity(vec2 p) {
 \fig{pendulum.png}
 
 For a Van der Pol oscillator, copy in this code, and experiment with changing $\mu$ (mu):
-\begin{lstlisting}[language=C]
+\begin{lstlisting}[language=C,frame=single]
 float mu = 1.;
 vec2 get_velocity(vec2 p) {
-  vec2 v = vec2(0., 0.);
-  v.x = p.y;
-  v.y = mu * (1. - p.x * p.x) * p.y - p.x;
-  return v;
+  return vec2(p.y, mu*(1.-p.x*p.x)*p.y-p.x);
 }
 \end{lstlisting}
 Here is a Van der Pol oscillator with $\mu = 1$:
@@ -68,5 +65,16 @@ Include links to and screenshots of synchronizing oscillators from the ``Explora
 
 \section{Moment of inertia tensor}
 Compare the off-diagonal elements (``products of inertia") to the formula for Pearson's correlation coefficient, which measures how much stuff is on a diagonal line between the $x$ and $y$ axes. Use this to give an intuitive explanation of what diagonalizing $I$ represents.
+\subsection{Stress tensor}
+A lot of your intuition for the moment of inertial tensor can be applied to the stress tensor $\sigma$, which is another contravariant, symmetric, second-order tensor. It represents the forces on each point in a material. Thinking of it as a 3 by 3 matrix, the diagonal elements represent the tensile stress along each axis. So for example, $\sigma_{1,1}$ would be positive if the material it being stretched along the $x$ axis at that point, and negative if it is being squished along the $x$ axis at that point.
+\par
+The off-diagonal elements of $\sigma$ represent shear forces. For example, if $\sigma_{1,2} = \sigma_{2,1} > 0$, then there is some shearing force in the $x,y$ plane. Such a force could also be treated as a pulling force in the direction of the unit vector $\pm \frac{1}{\sqrt{2}} (\hat{x} + \hat{y})$. By treating all of the shearing forces as pulling or squishing along some axis other than $\hat{x}$, $\hat{y}$, or $\hat{z}$, we can describe the stress tensor with just the tensile stress along those 3 axes, which we can ensure are orthogonal, because $\sigma$ is symmetric. This is equivalent to diagonalizing the stress tensor.
+\par
+To intuitively understand these off-diagonal elements, imagine a square pice of sheet metal lying in the $x,y$ plane, with one edge flushed to the $x$ axis and another flushed to the $y$ axis. Then apply a shear force $F \propto y \hat{x}$ to it, which points along the $x$ axis and is proportional to the $y$ coordinate. This force acts to stretch the square into a rhombus, effectively pulling (that is, applying tensile stress) in the $\frac{1}{\sqrt{2}} (\hat{x} + \hat{y})$ direction.
+\par
+Stress has units of force per area. One Pascal is a Newton per meter squared, and one atmosphere is about $101.3$ kilopascals. If the stress tensor is some scalar $\sigma_{1,1}$ times the identity tensor, then we can say that the pressure is $-\sigma_{1,1}$. Air pressure at sea level is very close to 1 atm, and air pressure pretty much decays exponentially with altitude.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{pressure.png}
+\end{center}
 
 \end{document}

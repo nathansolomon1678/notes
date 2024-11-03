@@ -1,0 +1,32 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 245 Homework \#5}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+\begin{align*}
+    \exp \left( \frac{i H_0 t}{\hbar} \right) a \exp \left( - \frac{i H_0 t}{\hbar} \right) &= \exp \left( \frac{i H_0 t}{\hbar} \right) \left( \exp \left( - \frac{i H_0 t}{\hbar} \right) a + \left[ a, \exp \left( - i \omega t \left( a^\dag a + \frac{1}{2} \right)  \right)  \right] \right) \\
+                                                                                    &= a + \exp \left( i\omega t a^\dag a \right) \cdot \sum_{n=0}^\infty \left[ a, \frac{(-i \omega t a^\dag a)^n}{n!} \right] \\
+\end{align*}
+
+\bigskip
+\begin{prob}
+\end{prob}
+See the jupyter notebook below.
+
+\bigskip
+\begin{prob}
+\end{prob}
+
+\includepdf[pages=-]{notebook.pdf}
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}

@@ -1,0 +1,82 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 245 Homework \#4}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+For parts (a) and (b), see the jupyter notebook. For part (c), note that the value of $\Omega$ I found ($6638152 s^{-1}$) times the pulse duration $500 ns$ is $3.319$, so this is approximately a $\pi$-pulse, meaning we have almost perfectly flipped the original state from $\ket{0}$ to $\ket{1}$. If we suppose that this was a pulse in the $y$ direction, the final state is
+\[ R_y(3.319) \ket{0} = \begin{bmatrix}
+    -0.0886253 \\
+    0.99606504
+\end{bmatrix}. \]
+
+\begin{prob}
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item \begin{align*}
+            F_x &= ma = m \ddot{x} \\
+            F_x &= -kx \\
+            \ddot{x} &= - \frac{k}{m} x
+    \end{align*}
+    If we let $\omega = \sqrt{k/m}$, then $\ddot{x}=-\omega^2 x$.
+\item The equation is satisfied by any $x$ of the form
+    \[ x(t) = A \sin \left( \omega t + \phi \right). \]
+    This has two degrees of freedom ($A$ and $\phi$), so it is the most general solution to the second-order differential equation.
+\item Kinetic energy at time $t$ is
+    \[ \frac{m\dot{x}^2}{2} = \frac{mA^2\omega^2}{2} \cos^2 \left( \omega t + \phi \right). \]
+\item The force on the spring is $-kx$ and the potential energy when $x=0$ is zero, so the potential energy is is
+    \[ \frac{kx^2}{2} = \frac{(m\omega^2)x^2}{2} = \frac{mA^2\omega^2}{2} \sin^2 \left( \omega t + \phi \right). \]
+    \item The sum of the kinetic and potential energies is $mA^2\omega^2/2$.
+    \item For parts (f) through (i), see the notebook at the end of this document.
+\end{enumerate}
+
+\begin{prob}
+\end{prob}
+Recall that \begin{align*}
+    x &= \sqrt{ \frac{\hbar}{2m\omega}} \left( a + a^\dag \right) \\
+    p &= -i\sqrt{ \frac{\hbar m\omega}{2}} \left( a - a^\dag \right)
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+    \item \begin{align*}
+            \mean{x} &= \bra{n} x \ket{n} \\
+                     &= \sqrt{ \frac{\hbar}{2m\omega}} \bra{n} \left( a + a^\dag \right) \ket{n} \\
+                     &\propto \bra{n} a \ket{n} + \bra{n} a^\dag \ket{n} \\
+                     &= \sqrt{n} \braket{n}{n-1} + \sqrt{n+1} \braket{n}{n+1} \\
+                     &= 0 \\
+            \mean{p} &= \bra{n} p \ket{n} \\
+                     &= -i\sqrt{ \frac{\hbar m\omega}{2}} \bra{n} \left( a - a^\dag \right) \ket{n} \\
+                     &\propto \bra{n} a \ket{n} - \bra{n} a^\dag \ket{n} \\
+                     &= \sqrt{n} \braket{n}{n-1} - \sqrt{n+1} \braket{n}{n+1} \\
+                     &= 0
+    \end{align*}
+\item \begin{align*}
+        \sigma_x^2 &= \mean{x^2} - \mean{x}^2 \\
+                   &= \bra{n} x^2 \ket{n} \\
+                   &= \frac{\hbar}{2m\omega} \bra{n} \left( aa + aa^\dag + a^\dag a + a^\dag a^\dag \right) \ket{n} \\
+                   &= \frac{\hbar}{2m\omega} \bra{n} \left( aa^\dag + a^\dag a\right) \ket{n} \\
+                   &= \frac{\hbar}{2m\omega} \bra{n} \left( 2a^\dag a + [a, a^\dag] \right) \ket{n} \\
+                   &= \frac{\hbar}{2m\omega} \left( 2n + 1 \right) \\
+        \sigma_x &= \sqrt{ \frac{(2n+1)\hbar}{2m \omega}} \\
+        \sigma_p^2 &= \mean{p^2} - \mean{p}^2 \\
+                   &= \bra{n} p^2 \ket{n} \\
+                   &= -\frac{\hbar m \omega}{2} \bra{n} \left( aa - a a^\dag - a^\dag a + a^\dag a^\dag \right) \ket{n} \\
+                   &= \frac{\hbar m \omega}{2} \bra{n} \left(a a^\dag + a^\dag a \right) \ket{n} \\
+        \sigma_x &= \sqrt{ \frac{(2n+1)\hbar m \omega}{2}} \\
+        \sigma_x \sigma_p &= \frac{\hbar}{2}(2n+1) \geq \frac{\hbar}{2}
+\end{align*}
+\item See jupyter notebook. Or don't bother, because I just plotted the expected values of $x$ and $p$. I considered adding error bars, but they all overlapped, so that graph wasn't interesting either.
+\end{enumerate}
+
+
+\includepdf[pages=-]{notebook.pdf}
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}
