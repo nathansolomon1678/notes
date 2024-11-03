@@ -5,5 +5,4 @@
 *.synctex.gz
 *.fls
 *.fdb_latexmk
-*/lec*.pdf
 *.out
