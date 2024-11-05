@@ -12,10 +12,26 @@
 
 \begin{prob}
 \end{prob}
-\begin{align*}
-    \exp \left( \frac{i H_0 t}{\hbar} \right) a \exp \left( - \frac{i H_0 t}{\hbar} \right) &= \exp \left( \frac{i H_0 t}{\hbar} \right) \left( \exp \left( - \frac{i H_0 t}{\hbar} \right) a + \left[ a, \exp \left( - i \omega t \left( a^\dag a + \frac{1}{2} \right)  \right)  \right] \right) \\
-                                                                                    &= a + \exp \left( i\omega t a^\dag a \right) \cdot \sum_{n=0}^\infty \left[ a, \frac{(-i \omega t a^\dag a)^n}{n!} \right] \\
-\end{align*}
+\begin{enumerate}[label=(\alph*)]
+    \item To show that both sides of the equation are equal, we just need to show that they act the same way on each $\ket{n}$ in the number basis:
+        \begin{align*}
+            \exp \left( \frac{i H_0 t}{\hbar} \right) a \exp \left( - \frac{i H_0 t}{\hbar} \right) \ket{n} &= \exp \left( i \omega t \left( N+ \frac{1}{2} \right) \right) a \exp \left( -i \omega t \left( N + \frac{1}{2} \right) \right) \ket{n} \\
+                                                                                                            &= \exp \left( i \omega t N \right) a \exp \left( -i \omega t N \right) \ket{n} \\
+                                                                                                            &= \exp \left( i \omega t N \right) a e^{-i \omega t n} \ket{n} \\
+                                                                                                            &= e^{-i \omega t n} \exp \left( i \omega t N \right) \sqrt{n} \ket{n-1} \\
+                                                                                                            &= \sqrt{n} e^{-i \omega t n} e^{i \omega t (n-1)} \ket{n-1} \\
+                                                                                                            &= e^{-i \omega t} \sqrt{n} \ket{n-1} \\
+                                                                                                            &= e^{-i \omega t} a \ket{n} \\
+            \exp \left( \frac{i H_0 t}{\hbar} \right) a \exp \left( - \frac{i H_0 t}{\hbar} \right) &=e^{-i \omega t} a.
+        \end{align*}
+\item Taking the adjoint of both sides of the equation from part (a):
+    \begin{align*}
+        \exp \left( \frac{i H_0 t}{\hbar} \right) a \exp \left( - \frac{i H_0 t}{\hbar} \right) &= a \exp \left( -i \omega t \right) \\
+        \exp \left( -\frac{i H_0 t}{\hbar} \right)^\dag a^\dag \exp \left( \frac{i H_0 t}{\hbar} \right)^\dag &= \exp \left( -i \omega t \right)^\dag a^\dag \\
+        \exp \left( \frac{i H_0 t}{\hbar} \right) a^\dag \exp \left( - \frac{i H_0 t}{\hbar} \right) &= \exp \left( i \omega t \right) a^\dag \\
+                                                                                                     &= a^\dag \exp \left( i \omega t \right).
+    \end{align*}
+\end{enumerate}
 
 \bigskip
 \begin{prob}
@@ -25,6 +41,7 @@ See the jupyter notebook below.
 \bigskip
 \begin{prob}
 \end{prob}
+See the jupyter notebook below.
 
 \includepdf[pages=-]{notebook.pdf}
 \includepdf[pages=-]{assignment.pdf}

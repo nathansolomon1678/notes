@@ -1,0 +1,111 @@
+\documentclass{article}
+\input{../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 245 Lecture Notes, Fall 2024}
+
+\begin{document}
+\maketitle
+\fig{quantum_computer_photo.jpg}
+
+\tableofcontents
+
+\section{9/26/2024 lecture}
+\noindent\fbox{\fbox{\parbox{6.5in}{
+            \begin{itemize}
+                \item Course professor: Eric Hudson
+                \item Grade is either (50\% homework, 25\% midterm, and 25\% final), or (50\% homework, 10\% midterm, and 40\% final).
+                \item The midterm and final will ask questions from discussion section. ALso, the midterm will be during discussion section (on November 8th).
+                \item Homeworks were going to be due every Tuesday before class (10:30 am), but this has been changed to Thursdays.
+    \end{itemize}
+}}}\bigskip\par
+All information is stored in physical systems. For example, a book stores information via the arrangement of ink on paper, and a hard drive stores memory by magnetizing regions of some material. Since information is physical, information processing is govered by physics. The goal of quantum computing is to take full advantage of that, by manipulating information in ways that is not possible with a classical computer.
+
+\section{10/1/2024 lecture}
+Remember to distinguish between Hilbert space and Banach space
+
+\section{10/3/2024 lecture}
+
+\section{10/8/2024 discussion/review}
+
+\section{10/10/2024 lecture}
+
+\section{10/15/2024 lecture}
+
+\section{10/17/2024 lecture}
+See Andrew's notes
+
+\section{10/22/2024 lecture}
+
+\section{10/24/2024 lecture}
+This lecture was recorded, see Bruinlearn/pages
+
+\section{10/29/2024 lecture}
+
+\section{10/31/2024 lecture}
+
+\section{11/5/2024 lecture}
+If we drive a harmonic oscillator with a force $F=-F_0\sin(\omega t + \phi)$, the Hamiltonian is
+\[ \frac{H}{\hbar} = \omega (a^\dag a + \frac{1}{2}) + \beta \sin (\omega t + \phi) (a + a^\dag). \]
+The corresponding time evolution operator is
+\[ D(\alpha) := U = \exp \left( \alpha a^\dag - \alpha^* a \right) \]
+where $\alpha \propto \beta t$. We label the coherent states as
+\[ \ket{\alpha} = D(\alpha) \ket{0}, \]
+but this is in the interaction picture. If we leave the interaction picture, we have
+\[ U_0 D(\alpha) \ket{0} = \ket{\alpha e^{-i \omega t}}. \]
+
+\subsection{Physically implementing a QHO}
+We have studied how to do quantum gates on a harmonic oscillator, but how do we actually implement a system like that? An LC circuit looks like a harmonic oscillator, where
+\[ H = \frac{\Phi}{2L} + \frac{L \omega^2 Q}{2}. \]
+We can also create a system of trapped ions by putting one ion or more in a line, then laser cooling them so that they remain on that line (instead of wiggling around).
+\fig{LIT - Geometry.png}
+
+\subsection{Composite systems}
+Suppose we have 2 qubits,
+\begin{align*}
+    \ket{\Psi_1} &= a \ket{0} + b \ket{1} \\
+    \ket{\Psi_2} &= c \ket{0} + d \ket{1}.
+\end{align*}
+Then the whole systems can be described by a tensor product,
+\begin{align*}
+    \ket{\Psi_{total}} &= \ket{\Psi_1} \otimes \ket{\Psi_2} \\
+                       &= ac \ket{00} + ad \ket{01} + bc \ket{10} +bd \ket{11} \\
+                       &= \begin{bmatrix}
+                           ac \\
+                           ad \\
+                           bc \\
+                           bd
+                       \end{bmatrix}.
+\end{align*}
+To use this notation, we need to know how to treat operators on the whole system as matrices. For example,
+\[ P_{01}=\ket{01}\bra{01}=P_0\otimes P_1 = \begin{bmatrix}
+    1 & 0 \\
+    0 & 0
+\end{bmatrix} \otimes \begin{bmatrix}
+    0 & 0 \\
+    0 & 1
+\end{bmatrix} = \begin{bmatrix}
+    0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0
+\end{bmatrix}. \]
+In other words, to get the operator on the composite system, we take the Kronecker product of the operator on the first qubit and the operator on the second qubit.
+\par
+If we have a system of $n$ qubits, the state of the system lives in
+\[ \mathcal{H}_{total} = \bigotimes_{i=1}^n \mathcal{H}^{(i)}. \]
+The state of the system can be ``disentangled" (factored) as a tensor product of elements of $\mathcal{H}^{(1)}, \mathcal{H}^{(2)}, \dots$ iff the qubits are not entangled. For example, the state
+\[ \frac{1}{\sqrt{2}} \left( \ket{00} + \ket{11} \right) \]
+is entangled, because if you measure the state of one qubit, you know the other qubit must be in the same state. This cannot be factored as
+\[ (a \ket{0} + b \ket{1}) \otimes (c \ket{0} + d \ket{1}) \]
+because $ad$ and $bc$ would be zero, which implies either $ac$ or $bd$ is zero.
+\section{Magnus expansion}
+\section{Rotation operator on Bloch sphere}
+\section{Interaction picture}
+\section{QuTiP}
+
+
+\end{document}
