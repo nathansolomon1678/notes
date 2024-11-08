@@ -102,10 +102,57 @@ The state of the system can be ``disentangled" (factored) as a tensor product of
 is entangled, because if you measure the state of one qubit, you know the other qubit must be in the same state. This cannot be factored as
 \[ (a \ket{0} + b \ket{1}) \otimes (c \ket{0} + d \ket{1}) \]
 because $ad$ and $bc$ would be zero, which implies either $ac$ or $bd$ is zero.
+\section{11/7/2024 lecture}
+If you have an atom inside a harmonic oscillator, and the atom can be either excited or unexcited (the excited state, $\ket{0}$, has $\omega_0$ more energy that the ground state, $\ket{1}$), the Hamiltonian for the system can be written as
+\[ \frac{H}{\hbar} = \frac{\omega_0}{2} \sigma_z \otimes I + \omega I \otimes \left( N + \frac{1}{2} I \right) + V, \]
+where the state of the atom is $\ket{\Psi_1}$, the state of the harmonic oscillator that the atom is trapped in (which has frequency $\omega$) is $\ket{\Psi_2}$, and the composite state is $\ket{\Psi_1} \otimes \ket{\Psi_2}$.
+\par
+The $V$ term is
+\[ V := \frac{g}{2} \sigma_x \left( a^\dag + a \right) = \frac{g}{2} \left( \sigma_- + \sigma_+ \right) \left( a^\dag + a \right). \]
+This term represets coupling between the atom and the harmonic oscillator. The motivation for this is that if the detuning $\delta = \omega - \omega_0$ is small, then the atom and the harmonic oscillator can exchange enrgy. I still don't understand exactly why we include it.
+\par
+To go to the interaction picture, we can define $H_0 = H - \hbar V$ and $U_0 = \exp \left( -i H_0 t/\hbar \right) $, so the Hamiltonian in the interaction picture is
+\begin{align*}
+    H_I &= U_0^\dag V U_0 \\
+        &= \frac{g}{2} \left( e^{i \omega_0 \sigma_z t / 2} \sigma_x e^{-i \omega_0 \sigma_z t / 2} \right) \left( e^{i \omega (a^\dag a + 1/2)t} (a+a^\dag) e^{- i \omega (a^\dag a + 1/2)t} \right) \\
+        &= \frac{g}{2} \left( e^{i \omega_0 t} \sigma_+ + e^{-i \omega_0 t} \sigma_- \right) \left( e^{-i \omega t} a + e^{i \omega t} a^\dag \right) \\
+        &= \frac{g}{2} \left( e^{i (\omega_0-\omega) t} \sigma_+ \otimes a + e^{i (\omega_0+\omega) t} \sigma_+ \otimes a^\dag + e^{i (-\omega_0-\omega) t} \sigma_- \otimes a + e^{i (-\omega_0+\omega) t} \sigma_- \otimes a^\dag \right) \\
+        &\approx \frac{g}{2} \left( e^{i (\omega_0-\omega) t} \sigma_+ \otimes a + e^{i (-\omega_0+\omega) t} \sigma_- \otimes a^\dag \right).
+\end{align*}
+That last step used the rotating wave approximation (RWA).
+\par
+Now if we go back from the interaction picture to the lab frame,
+\[ H = H_0 + \frac{g\hbar}{2} \left( \sigma_+ a + \sigma_- a^\dag \right).  \]
+It makes sense that we were able to ignore the terms $\sigma_+ \otimes a^\dag$ and $\sigma_- \otimes a$, because those operators represent the atom becoming excited while the harmonic oscillator gains energy, and the atom becoming unexcited while the harmonic oscillator loses energy, respectively. The whole point of the $V$ term was to represent the atom and the oscillator exchanging energy, but since energy is conserved, neither of those operators are meaningful.
+\par
+This new Hamiltonian is very important, so we call it the Jaynes-Cummings Hamiltonian:
+\[ \frac{H}{\hbar} = \frac{\omega_0}{2} \sigma_z \otimes I + I \otimes \omega \left( N + \frac{1}{2} I \right) + \frac{g}{2} \left( \sigma_+ \otimes a + \sigma_- \otimes a^\dag \right). \]
+The eigenstates of this Hamiltonian are denoted $\ket{i,n}$, where $i \in \left\{ 0,1 \right\}$ and $n \in \N$. Note that the coupling term $V$ will only ``link" each state to at most one other state:
+\[ \bra{i,m} V \ket{j, n} = \begin{cases}
+    \frac{g}{2} \sqrt{n} & i=1, j=0, n=m+1 \\
+    \frac{g}{2} \sqrt{m} & i=0, j=1, n=m-1 \\
+    0 & \text{otherwise}
+\end{cases} \]
+Therefore the Hamiltonian can be written in the basis $ \left( \ket{1,0}, \ket{1,0}, \ket{1,1}, \ket{2,0},\dots \right)$ as a block-diagonal matrix, where each block is a symmetric $2 \times 2$ matrix. Note that I left $\ket{0,0}$ out of the basis, because the Hamiltonian is simpler that way -- if we wanted to include it, we would add another entry at the top left (with zeroes below and to the right of it).
+\[ H = \begin{bmatrix}
+    H^{0} & 0 & 0 & \cdots \\
+    0 & H^{1} & 0 & \cdots \\
+    0 & 0 & H^{2} & \cdots \\
+    \vdots & \vdots & \vdots & \ddots \\
+\end{bmatrix}, H^{(n)} = \begin{bmatrix}
+    \frac{\omega_0}{2} + \omega \left( n + \frac{1}{2} \right) & \frac{g}{2} \sqrt{n+1} \\
+    \frac{g}{2} \sqrt{n+1} & - \frac{\omega_0}{2} + \omega \left( n + \frac{3}{2} \right)
+\end{bmatrix} \]
+I need to double check all my formulas for these lecture notes, then get notes for the remainder of the lecture, where we solved for the eigenvectors and eigenvalues of each block matrix in order to find the new energy levels (as a function of the detuning $\delta$ and the coupling strength $g$). Also get notes for relating this to the Stark effect.
+
 \section{Magnus expansion}
 \section{Rotation operator on Bloch sphere}
 \section{Interaction picture}
-\section{QuTiP}
-
+\section{Baker-Campbell-Hausdorff formula}
+\section{Displacement operator}
+\[ D(\alpha) = \exp \left( \alpha a^\dag -\alpha^* a \right)  \]
+Note that the displacement operator takes the vacuum state to a coherent state, but it does not map every coherent state to another coherent state.
+\par
+Give definition of displacement operator and prove it's basic properties, like $D(\alpha)^\dag = D(-\alpha)$ and $D^\dag(\alpha)D(\alpha)=I$. Also talk about Kermack-McCrae identities, optical phase space, Wigner quasiprobability distribution, Husimi Q representation, and squeezed coherent states. For problem 3 on HW5, figure out explicit formula for probability as a function of $t_w$. For that, refer to \url{https://physics.stackexchange.com/questions/553225/representation-of-the-displacement-operator-in-number-basis}
 
 \end{document}

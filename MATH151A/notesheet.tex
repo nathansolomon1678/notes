@@ -135,6 +135,7 @@ If we want to interpolate between $n+1$ points, $ \left\{ x_0, x_1, \dots,x_n \r
          &= f[x_0] + \sum_{k=1}^n f[x_0, x_1, \dots, x_k]h^k s (s-1) \cdots (x-k+1) \\
          &= f[x_0] + \sum_{k=1}^n \binom{s}{k} h^k k! f[x_0, x_1, \dots, x_k].
 \end{align*}
+Neville's method is better for evaluating the LP at a point, but the method of divided differences is nicer for finding the coeffiecients of the full LP.
 
 \section{Lecture 13}
 From lecture 10, we have the theorem
