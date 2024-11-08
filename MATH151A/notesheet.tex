@@ -12,7 +12,7 @@
 
 \tableofcontents
 
-\section{Lecure 1}
+\section{Lecture 1}
 $f \in C([a, b])$ means that $f$ is continuous on $[a,b]$. $f \in C^n([a,b])$ means that $f$ is $n$ times continuously differentiable (that is, $f^{(n)}$ is continuous) on $[a, b]$.
 \par
 Intermediate Value Theorem (IVT) says that if $f \in C([a,b])$, and there exists $k \in \R$ such that either $f(a) \leq k \leq f(b)$ or $f(b) \leq k \leq f(a)$, then there exists at least one $c \in [a,b]$ such that $f(c)=k$. If $f$ is strictly increasing or strictly decreasing on $[a,b]$, then $c$ is unique.
@@ -23,7 +23,7 @@ Taylor's theorem says that if $f \in C^n([a,b])$ and $x_0 \in [a,b]$ and $f^{(n+
     R_n(x) &= \frac{(x-x_0)^{n+1}f^{(n+1)}(\xi_x)}{(n+1)!}.
 \end{align*}
 
-\section{Lecure 2}
+\section{Lecture 2}
 There are 3 types of error that we need to worry about:
 \begin{itemize}
     \item \textbf{Computational error} is any error that occurs because computers can only store a finite number of digits. Rounding, truncation, overflow, and underflow are all types of computational error.
@@ -36,7 +36,7 @@ When a computer does math, it will either round or chop after each step, so we w
 \par
 If $p^*$ is an approximation of $p$, then the absolute error is $\abs{p^*-p}$ and the relative error is $\abs{p^*-p}/\abs{p}$ (assuming $p \neq 0$).
 
-\section{Lecure 3}
+\section{Lecture 3}
 We say that $f(x)$ is $O(g(x))$ as $x \rightarrow +\infty$ iff there exist $M, x_0 \in \R$ such that $\abs{f(x)} \leq M \abs{g(x)}$ for any $x > x_0$. In other words, $f(x)$ is asymptotically bounded by (a scalar multiple of) $g(x)$.
 \par
 We say that $f(x)$ is $O(g(x))$ as $x \rightarrow a$ iff there exist $M, \delta \in \R$ such that $\abs{f(x)} \leq M \abs{g(x)}$ whenever $\abs{x-a}<\delta$.
@@ -49,10 +49,10 @@ $L$ is called the asymptotic error constant.
 \par
 If $\alpha=1$ and $L<1$, then we say $x_n$ converges linearly. If $1 < \alpha < 2$, we say it converges super-linearly, and if $\alpha=2$, we say it converges quadratically.
 
-\section{Lecure 4}
+\section{Lecture 4}
 Given a function $f \in C([a,b])$ such that $f(a)f(b)<0$, the bisection method will converge linearly to one root of $f$. You start by saying $a_1=1, b_1=b$, then at each step, define either $a_{n+1}$ or $b_{n+1}$ to be $(a_n+b_n)/2$, and leave the other endpoint unchanged. The error after $n$ steps is less than or equal to $(b-1)/2^n$, and the residual is $\abs{f(p_n)}$, where $p_n$ is our approximation of a root $p$
 
-\section{Lecure 5}
+\section{Lecture 5}
 A fixed point of a function $f$ is a point $p$ such that $f(p)=p$. Saying that $p$ is a fixed point of $f$ is equivalent to saying $p$ is a root of the function $x \mapsto f(x)-x$.
 \par
 If $f \in C([a,b])$ and $f(x) \in [a,b]$ for all $x \in [a,b]$, then $f$ has at least one fixed point in $[a,b]$. If those criteria are both true and $f'(x)$ is defined on $(a,b)$ and there exists $k \in (0,1)$ such that $\abs{f'(x)} \leq k$ for all $x \in (a,b)$, then the fixed point is unique.
@@ -63,7 +63,7 @@ for all $n$, and
 \[ \abs{p_n-p} \leq \frac{k^n}{1-k} \abs{p_1-p_0} \]
 for all $n \geq 1$. This implies that $p_n$ converges (at least) linearly to $p$.
 
-\section{Lecure 6}
+\section{Lecture 6}
 Newton and Rhapson's method (often just called Newton's method) converges to a root quadratically, so it can be much better than the bisection method or fixed point iteration (but it can also fail in some cases).
 \par
 If $f \in C^2([a,b])$ and we want to find some root $p$ of $f$, then we choose some initial guess $p_0$ such that $\abs{p_0 - p}$ is small, then define
@@ -77,7 +77,7 @@ Newton's method can be generalized to work for functions $f: \R^n \rightarrow \R
 where $J_f$ is the Jacobian matrix:
 \[ \left[ J_f(x) \right]_{i,j} := \frac{\partial f_i(x)}{\partial x_j}. \]
 
-\section{Lecure 7}
+\section{Lecture 7}
 Newton's method converges quadratically ($\alpha = 2$) and the secant method converges super-linearly ($\alpha =\phi = (1 + \sqrt{5})/2 \approx 1.618$, which we will not bother to prove).
 \par
 First, we want a general theorem for proving how fast FPI converges. If $g \in C^\alpha([a,b])$ for some integer $\alpha \geq 2$ and $p \in [a,b]$ is a point such that $g(p)=p$ and $g'(p)=g''(p)=\cdots = g^{(\alpha-1)}(p)=0$, but $g^{(\alpha)} \neq 0$, then the sequence defined by $p_{n+1}=g(p_n)$ converges to $p$ with order of convergence $\alpha$ for all $p_0$ sufficiently close to $p$. To prove this, write the Taylor series expansion for $g$ centered at $p$, evaluate it at $p_n$, and apply Taylor's theorem. You will see that $L = \frac{1}{\alpha!} \lim_{n \rightarrow \infty} \abs{g^{(\alpha)}(\xi_n)}$, where $\xi_n$ is between $p$ and $p_n$. Therefore $L = \frac{1}{\alpha!} \abs{g^{(\alpha)} (p)}$.
@@ -88,7 +88,7 @@ then
 \[ g'(x) = x - \frac{f(x)f''(x)}{(f'(x))^2}, \]
 which is only defined if $f'(x) \neq 0$. If $f'(x) \neq 0$, then by the above theorem, $p_n$ (defined by $p_{n+1} = g(p_n)$) converges to $p$ with order of convergence $\alpha \geq 2$ for $p_0$ sufficiently close to $p$.
 
-\section{Lecure 8}
+\section{Lecture 8}
 A point $p$ such that $f(p)=0$ is called a zero (of $f$) of multiplicity $m$ iff there exists a function $q$ such that $f(x) = (x-p)^m q(x)$ for any $x \neq m$, and $q$ is continuous in a neighborhood of $m$, and $q(p) \neq 0$.
 \par
 The point $p \in (a,b)$ is a zero of multiplicity $m$ of a function $f \in C^m([a,b])$ iff $0 = f(p) = f'(p) = \cdots = f^{(m-1)}(p)$, but $f^{(m)}(p) \neq 0$.
@@ -97,7 +97,7 @@ If $m \geq 1$ and $p$ is a zero of $f$ of multiplicity $m$, then the function $\
 \par
 Atkien's Acceleration Theorem says that if $p_n$ converges linearly to $p$, and $(p_{n+1}-p)(p_n-p)>0$ for sufficiently large $n$, then the sequence $\hat{p}_n := p_n - (p_{n+1}-p_n)^2/(p_{n+2}-2p_{n+1}+p_n)$ satisfies $\lim_{n \rightarrow \infty} \abs{\hat{p}_n-p}/\abs{p_n-p} = 0$, meaning $\hat{p}_n$ converges to $p$ faster than $p_n$ does.
 
-\section{Lecure 9}
+\section{Lecture 9}
 The Weierstrass approximation theorem (also called the Stone-Weierstrass theorem) says that if $f \in C([a,b])$, then for any $\varepsilon > 0$ there exists a polynomial $P(x)$ such that $\abs{f(x)-P(x)} < \varepsilon$ for all $x \in [a,b]$.
 \par
 Given $n+1$ data points (each data point is a pair $(x_i, f(x_i))$, and $x_i \neq x_j$ unless $i=j$), the Lagrange polynomial is the unique degree $n$ polynomial which goes through all of those points.
@@ -106,21 +106,68 @@ Here is an explicit formula for the Lagrange polynomial of degree $n$:
 \[ P(x) := \sum_{k=0}^n f(x_k)L_{n,k}(x), \hspace{1cm} L_{n,k}(x) := \prod_{i \in [0,n]\cap \Z - \{k\}} \frac{x-x_i}{x_k-x_i}. \]
 Note that $ \left\{ L_{n,k} \right\}$ is basis for the vector space of polynomials of degree $n$.
 
-\section{Lecure 10}
+\section{Lecture 10}
 If we have $ \left\{ x_0, x_1, \dots, x_n \right\} \subset [a,b]$ and $x_0 < x_1 < \cdots < x_n$, and $f \in C^{n+1}([a,b])$, and $P(x)$ is the $n$th degree Lagrange polynomial for $f$, then for all $x \in [a,b]$, there exists $\xi(x) \in [a,b]$ such that
 \[ f(x) = P(x) + R(x), R(x) := \frac{f^{(n+1)}(\xi(x))}{(n+1)!}(x-x_0)(x-x_1)\cdots (x-x_n). \]
 
-\section{Lecure 11}
-Neville's method
+\section{Lecture 11}
+Neville's method allows you to recursively construct a Lagrange polynomial. If you have a Lagrange polynomial $P_{0, 1, \dots, k}(x)$ which interpolates through points $x_0 < x_1 < \dots < x_k$, then for any $i \neq j$,
+\[ P_{0,\dots,k}(x) = \frac{(x-x_i)P_{0,\dots,i-1,i+1,\dots,k}(x)-(x-x_j)P_{0,\dots,j-1,j+1,\dots,k}(x)}{x_j-x_i}\]
+This polynomial can be constructed by filling in the lower-triangular matrix $Q$ from left to right and top to bottom, or top to bottom and left to right:
+\[ Q := \begin{bmatrix}
+    P_0(x) & 0 & 0 & \cdots \\
+    P_1(x) & P_{01}(x) & 0 & \cdots \\
+    P_2(x) & P_{12}(x) & P_{012}(x) & \cdots \\
+    \vdots & \vdots & \vdots & \ddots
+\end{bmatrix} \]
+$Q$ does not have to be evaluated at $x$, but if we want to use the Lagrange Polynomial to approximate $f(x)$, then it makes sense to calculate $P_0(x)$, then $P_{01}(x)$, then $P_{012}(x)$, and so on, until adding one more row or column doesn't change our current estimate much -- that is, until $\abs{Q_{i,i}=Q_{i+1,i+1}}$ is below our tolerance. It's good to stop before making the degree too high, because we don't want Runge phenomena -- that's when the Lagrange polynomial oscillates wildly near the endpoints.
 
-\section{Lecure 12}
+\section{Lecture 12}
+The method of divided differences is another way to recursively calculate the LP. This method ensures it has the form
+\[ P(x) = a_0 + a_1 (x-x_0) + a_2(x-x_0)(x-x_1)+ \cdots + a_n(x-x_0)\cdots (x-x_{n-1}). \]
+We define the $k$th ``divided difference" to be $a_k=f[x_0,x_1,\dots,x_k]$, and define a recursive formula for those constants:
+\par
+The 0th divided difference, denoted by $f[x_i]$, is defined by $f[x_i]=f(x_i)$. The first divided difference is $f[x_i,x_{i+1}] := (f[x_{i+1}]-f[x_i])/(x_{i+1}-x_i)$. The $k$th divided difference is
+\[ f[x_i,\dots,x_{i+k}] := \frac{f[x_{i+1},\dots,x_{i+k}] - f[x_i,\dots,x_{i+k-1}]}{x_{i+k}-x_i}. \]
+If we want to interpolate between $n+1$ points, $ \left\{ x_0, x_1, \dots,x_n \right\}$ which are equally spaced, with spacing $h := (x_n-x_0)/n$, let $x=x_0+sh$, so we get
+\begin{align*}
+    P(x) &= f[x_0] + \sum_{k=1}^n f[x_0, x_1, \dots, x_k] (x-x_0) \cdots (x-x_{k-1}) \\
+         &= f[x_0] + \sum_{k=1}^n f[x_0, x_1, \dots, x_k]h^k s (s-1) \cdots (x-k+1) \\
+         &= f[x_0] + \sum_{k=1}^n \binom{s}{k} h^k k! f[x_0, x_1, \dots, x_k].
+\end{align*}
 
-\section{Lecure 13}
+\section{Lecture 13}
+From lecture 10, we have the theorem
+\[ f(x)-P(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} \prod_{j=0}^n (x-x_j). \]
+If $M \geq \max_{x \in [a,b]} \abs{f^{(n+1)}(x)}$ and the interpolation nodes $ \left\{ x_0, x_0+h, x_0 + 2h, \dots, x_n \right\}$ are equally spaced, then
+\[ \abs{f(x)-P(x)} \leq \frac{M}{(n+1)!} \cdot \max_{x \in [a,b]} \prod_{j=0}^n \abs{x-x_j}. \]
+But if the $x_j$ are equally spaced, $\max_{x \in [a,b]} \prod_{j=0}^n \abs{x-x_j} \leq \frac{1}{4} h^{n+1}n!$, so
+\[ \abs{f(x)-P(x)} \leq \frac{Mh^{n+1}}{4(n+1)}. \]
+To avoid Runge phenomena, we can replace our equally spaced interpolation nodes $x_i$ with Chebyshev nodes, $\widetilde{x_i} := \cos \left( \frac{2i+1}{2n+2} \pi \right), i = 0, \dots, n$ which get denser closer to the boundary of the domain we are approximating $f$ on.
+\fig{chebyshev nodes.png}
+Of course, if we are interpolating between real data points, we can't choose where the nodes are.
 
-\section{Lecure 14}
+\section{Lecture 14}
+If you have a bunch of nonnegative integers $m_0 < m_1 < \cdots < m_n$, then the osculating polynomial approximating $f \in C^m([a,b])$ is the polynomial $P$ of least degree such that
+\[ \frac{\d^{k} P(x_i)}{\d x^k} = \frac{\d^{k} f(x_i)}{\d x^k} \]
+for any $i \in \left\{ 0, \dots, n \right\}$ and any $k \in \left\{ m_0, \dots, m_n \right\}$. The degree of $P$ is at most $M = n+ \sum_{i=0}^n m_i$. If $\{m_i\}=\{0,1\}$, then we get Hermite polynomials.
+\par
+Cubic splines are a function $S$ designed to approximate some function $f$ with domain $[a,b]$ by interpolating through nodes $a=x_0<x_1<\dots<x_n=b$.
+\[ S(x) = \begin{cases}
+    S_0(x) & x_0 \leq x \leq x_1 \\
+    S_1(x) & x_1 \leq x \leq x_2 \\
+    S_{n-1}(x) & x_{n-1} \leq x \leq x_n
+\end{cases} \]
+so on the subinterval $[x_j, x_{j+1}]$, $S(x) = S_j(x) = a_j + b_j(x-x_j)+c_j (x-x_j)^2 + d_j (x-x_j)^3$, but we need to solve now for $4n$ constants. We require that $S(x_j) = f(x_j)$ and that $S_j(x_{j+1})=S_{j+1}(x_{j+1})$. We also require that $S_j'(x_{j+1})=S_{j+1}'(x_{j+1})$ and $S_j''(x_{j+1})=S_{j+1}''(x_{j+1})$, but those last two equations are only valid for $j=0,1,\dots,n-1$. Therefore we need two more equations, and we have two options for how to get those:
+\begin{itemize}
+    \item \textbf{Natural/open/free boundary conditions:} $S''(x_0)=0=S''(x_n)$.
+    \item \textbf{Clamped/closed boundary conditions:} $S'(x_0)=f'(x_0)$ and $S'(x_n)=f'(x_n)$.
+\end{itemize}
 
-\section{Lecure 15}
+\section{Lecture 15}
+Nothing too interesting from this lecture.
 
-\section{Lecure 16}
+\section{Lecture 16}
+For either natural or clamped boundary conditions, spline interpolation exists and is unique. To find it, we can put all the coeffiecients in a matrix and solve. We are guaranteed to have a solution, because a ``strictly diagonally dominant" square matrix is invertible.
 
 \end{document}
