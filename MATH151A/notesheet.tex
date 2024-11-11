@@ -50,7 +50,7 @@ $L$ is called the asymptotic error constant.
 If $\alpha=1$ and $L<1$, then we say $x_n$ converges linearly. If $1 < \alpha < 2$, we say it converges super-linearly, and if $\alpha=2$, we say it converges quadratically.
 
 \section{Lecture 4}
-Given a function $f \in C([a,b])$ such that $f(a)f(b)<0$, the bisection method will converge linearly to one root of $f$. You start by saying $a_1=1, b_1=b$, then at each step, define either $a_{n+1}$ or $b_{n+1}$ to be $(a_n+b_n)/2$, and leave the other endpoint unchanged. The error after $n$ steps is less than or equal to $(b-1)/2^n$, and the residual is $\abs{f(p_n)}$, where $p_n$ is our approximation of a root $p$
+Given a function $f \in C([a,b])$ such that $f(a)f(b)<0$, the bisection method will converge linearly to one root of $f$. You start by saying $a_1=a, b_1=b$, then at each step, define either $a_{n+1}$ or $b_{n+1}$ to be $(a_n+b_n)/2$, and leave the other endpoint unchanged. The error after $n$ steps is less than or equal to $(b-1)/2^n$, and the residual is $\abs{f(p_n)}$, where $p_n$ is our approximation of a root $p$
 
 \section{Lecture 5}
 A fixed point of a function $f$ is a point $p$ such that $f(p)=p$. Saying that $p$ is a fixed point of $f$ is equivalent to saying $p$ is a root of the function $x \mapsto f(x)-x$.
@@ -89,7 +89,7 @@ then
 which is only defined if $f'(x) \neq 0$. If $f'(x) \neq 0$, then by the above theorem, $p_n$ (defined by $p_{n+1} = g(p_n)$) converges to $p$ with order of convergence $\alpha \geq 2$ for $p_0$ sufficiently close to $p$.
 
 \section{Lecture 8}
-A point $p$ such that $f(p)=0$ is called a zero (of $f$) of multiplicity $m$ iff there exists a function $q$ such that $f(x) = (x-p)^m q(x)$ for any $x \neq m$, and $q$ is continuous in a neighborhood of $m$, and $q(p) \neq 0$.
+A point $p$ such that $f(p)=0$ is called a zero (of $f$) of multiplicity $m$ iff there exists a function $q$ such that $f(x) = (x-p)^m q(x)$ for any $x \neq p$, and $q$ is continuous in a neighborhood of $m$, and $q(p) \neq 0$.
 \par
 The point $p \in (a,b)$ is a zero of multiplicity $m$ of a function $f \in C^m([a,b])$ iff $0 = f(p) = f'(p) = \cdots = f^{(m-1)}(p)$, but $f^{(m)}(p) \neq 0$.
 \par

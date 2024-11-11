@@ -127,7 +127,9 @@ Call those rotations $\lambda_\phi$, $\lambda_\theta$, and $\lambda_\psi$, respe
     0 & 0 & 1
 \end{bmatrix}. \]
 \[ x = \lambda_\psi x''', x''' = \lambda_\theta x'', x'' = \lambda_\phi x'. \]
-If we define $\omega_\phi = \dot{\phi}, \omega_\theta = \dot{\theta}, \omega_\psi=\dot{\psi}$, then observe that $\dot{phi}$ points along the fixed $x_3'$ axis, $\dot{\theta}$ points along the line of nodes -- that is, the line formed by the intersection of the $x_1,x_2$ plane and the $x_1',x_2'$ plane -- and $\dot{\psi}$ points along body's $x_3$ axis.
+If we define $\omega_\phi = \dot{\phi}, \omega_\theta = \dot{\theta}, \omega_\psi=\dot{\psi}$, then observe that $\dot{\phi}$ points along the fixed $x_3'$ axis, $\dot{\theta}$ points along the line of nodes -- that is, the line formed by the intersection of the $x_1,x_2$ plane and the $x_1',x_2'$ plane -- and $\dot{\psi}$ points along body's $x_3$ axis.
+\par
+The labels in this picture do not match the variable names I am using, but it illustrates the idea well:
 \fig{Euler angles.png}
 \begin{align*}
     \omega_1 &= \dot{\phi}_1 + \dot{\theta}_1 + \dot{\psi}_1 = \dot{\phi} \sin \theta \sin \psi + \dot{\theta} \cos \psi \\
@@ -140,8 +142,38 @@ If we let the body axes $x_1, x_2, x_3$ be the principal axes of a rigid body, t
     (I_3-I_1)\omega_3\omega_1 - I_2 \dot{\omega_2} &= 0 \\
     (I_1-I_2)\omega_1\omega_2 - I_3 \dot{\omega_3} &= 0.
 \end{align*}
+These equations are useful for describing precession.
 
 \section{Coupled oscillators (chapter 12)}
 If you have a bunch of atoms in a crystal, and you look at a one dimensional piece of it (along the right axis), it will look like a bunch of atoms in a line, each one bonded to its two neighbors. We can treat this as a bunch of masses joined by massless springs. This system is not chaotic, because the differential equation for the positions of each mass is linear. Instead of representing the state of the system by describing the position of each atom, we can change basis, and represent it in terms of normal modes, The dimension of the state space doesn't change -- if we had $n$ degrees of freedom before changing basis (we could say there are $n/d$ masses which are free to move in $d$ dimensions), there will be $n$ normal modes.
+\par
+If we have two masses of mass $M$ joined by a spring with spring constant $\kappa_{12}$, and each mass is joined to a wall by a spring of mass $\kappa$, then the equations of motion look something like:
+\begin{align*}
+    M \ddot{x_1} + (\kappa + \kappa_{12}) x_1 - \kappa_{12}x_2 &= 0 \\
+    M \ddot{x_2} + (\kappa + \kappa_{12}) x_2 - \kappa_{12}x_1 &= 0.
+\end{align*}
+We can guess that the solutions will be
+\begin{align*}
+    x_1(t) &= B_1 e^{i \omega t} \\
+    x_2(t) &= B_2 e^{i \omega t}.
+\end{align*}
+for some complex numbers $B_1, B_2$. When we solve for $\omega$, we get
+\[ \omega = \sqrt{ \frac{\kappa + \kappa_{12} \pm \kappa_{12}}{M}} \]
+which means the characteristic frequencies are
+\[ \omega_1 = \sqrt{ \frac{\kappa+2\kappa_{12}}{M}}, \omega_2 = \sqrt{ \frac{\kappa}{M}}. \]
+Since there are two characteristic frequencies, the number of constants in the general solution has doubled. There exists $\eta_1, \eta_2$ which are linear combinations of $x_1$ and $x_2$ (in this case, $\eta_1=x_1-x_2$ and $\eta_2=x_1+x_2$) such that
+\[ M \ddot{\eta_i} + \kappa_i \eta_i = 0, \]
+where $\kappa_i$ is some frequency that corresponds to the normal mode $\eta_i$. By finding these normal modes, we have uncoupled our equations.
+\par
+When we have several coupled oscillators, the equations of motion will have the form
+\[ \sum_j \left( A_{j,k} q_j + m_{j,k} \ddot{q_j} \right) =0 \]
+where $A_{j,k}$ and $m_{j,k}$ are the constants such that
+\begin{align*}
+    T &= \frac{1}{2} \sum_{j,k} m_{j,k} \dot{q_j} \dot{q_k} \\
+    U &= \frac{1}{2} \sum_{j,k} A_{j,k} q_j q_k.
+\end{align*}
+This becomes
+\[ \sum_j \left( A_{j,k} - \omega^2 m_{j,k} \right)a_j =0 \]
+when we guess that $q_j(t)$ is an imaginary exponential function of $t$. Then the normal modes are the eigenvectors of the matrix $A_{j,k}/m_{j,k}$ (that's elementwise division) and the eigenvalues $\omega$ are the characteristic frequencies. Once again, we have a symmetric matrix, so the eigenvectors can be made orthonormal.
 
 \end{document}
