@@ -1,0 +1,113 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{MATH 131B Homework \#6}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+    4.5.1. Prove proposition 4.5.2.
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item For any $x \in \R$, let $a_n = x^n/n!$. We want to show that $\sum_{n=0}^\infty a_n$ is absolutely convergent. One way to do this is with the ratio test:
+        \[ L := \lim_{n \rightarrow \infty} \abs{ \frac{a_{n+1}}{a_n} } = \lim_{n \rightarrow \infty} \abs{ \frac{x^{n+1}n!}{x^n(n+1)!} } = \lim_{n \rightarrow \infty} \abs{ \frac{x}{n+1} } = 0. \]
+        Since the limit $L$ exists and $L < 1$, the ratio test says that $\sum a_n$ converges absolutely.
+        \par
+        This implies that $\exp(x)$ exists and is real for any $x \in \R$, the power series has an infinite radius of convergence, and that $\exp$ is a real analytic function on $\R=(-\infty, \infty)$.
+    \item Since we have radius of convergence $R=\infty$, theorem 4.1.6(d) says that $\exp$ is differentiable on $(-\infty, \infty)$. For any $x \in \R$,
+        \[ \exp'(x) = \frac{d}{dx} \sum_{n=0}^\infty \frac{x^n}{n!} = \sum_{n=0}^\infty n \frac{x^{n-1}}{n!} = \sum_{n=1}^\infty \frac{x^{n-1}}{(n-1)!} = \sum_{n=0}^\infty \frac{x^n}{n!} = \exp(x). \]
+    \item By theorem 4.1.6(c), $\exp$ is continuous on $\R$, and by 4.1.6(e),
+        \[ \int_{[a,b]} \exp(x) = \sum_{n=0}^\infty \left( \frac{1}{n!} \cdot \frac{b^{n+1}-a^{n+1}}{n+1} \right) = \sum_{n=1}^\infty \left( \frac{b^n}{n!} - \frac{a^n}{n!} \right) = \exp(b) - \exp(a). \]
+    \item Despite what the hint says, theorem 4.4.1 doesn't really help here.
+        \par
+        The following steps are allowed, because $\exp(x)\exp(y)$ is absolutely convergent for any $x,y \in \R$. All I am doing is reindexing the terms, so that $l = n + m$.
+        \begin{align*}
+            \exp(x) \exp(y) &= \left( \sum_{n=0}^\infty \frac{x^n}{n!} \right) \left( \sum_{m=0}^\infty \frac{y^m}{m!} \right) \\
+                            &= \sum_{l=0}^\infty \sum_{n=0}^l \frac{x^n y^{l-n}}{n! (l-n)!} \\
+                            &= \sum_{l=0}^\infty \sum_{n=0}^l \binom{l}{n} \frac{x^n y^{l-n}}{l!} \\
+                            &= \sum_{l=0}^\infty \frac{(x+y)^l}{l!} \\
+                            &= \exp (x+y).
+        \end{align*}
+    \item
+        \[ \exp(0) = \frac{0^0}{0!} + \frac{0^1}{1!} + \cdots = 0^0 = 1. \]
+        Because of the result from part (d), we have
+        \[ \exp(x)\exp(-x) = \exp(0)=1 \]
+        for any $x \in \R$. That means $\exp(x)$ (and $\exp(-x)$) can never be zero. Since $\exp$ is a continuous function, and $\exp(0)=1$ is positive, $\exp(x)$ can never be negative, because if it were, the intermediate value theorem would imply there is a point where $\exp(x)=0$. Therefore $\exp(x)$ is always positive, and
+        \[ \exp(-x) = \frac{1}{\exp(x)}. \]
+    \item $\exp$ is real analytic everywhere, and its first derivative is $\exp$, which we just showed is always positive. Therefore $\exp$ is strictly monotone increasing.
+        \par
+        A more rigorous way to do this problem is to observe that whenever $x > 0$, $\exp(x) = 1 + \sum_{n=1}^\infty x^n/n! > 1$. So if $y > x$, then $\exp(y-x)>1$, which means $\exp(y)=\exp(x)\exp(y-x)>\exp(x)$. Alternatively, if $y < x$, then you can swap the symbols $x$ and $y$ to get that $\exp(x)>\exp(y)$.
+\end{enumerate}
+
+
+\bigskip
+\begin{prob}
+    4.5.3. Prove proposition 4.5.4.
+\end{prob}
+\fbox{If $x$ is a natural number (including zero),} we can prove this with induction. If $x=0$, then $\exp(x)$ and $e^x$ are both one. If $\exp(x)=e^x$ for some $x \in \N$, then $\exp(x+1)=\exp(x)\exp(1)=e^x\exp(1)=e\cdot e^x=e^{x+1}$. So by induction, the statement $\exp(x)=e^x$ is true for any $x \in \N$.
+\par
+\fbox{If $x$ is a negative integer,} then $-x$ is a natural number (or zero), so $\exp(x)=1/\exp(-x)=1/e^{-x}=e^x$. So the statement $\exp(x)=e^x$ works for any $x \in \Z$.
+\par
+\fbox{If $x$ is a rational number,} then $x=p/q$ for some $p,q \in \Z$ such that $q\neq 0$. $e^{p/q}$ can be defined as $\sqrt[q]{e^p}$ -- the unique positive number such that $\sqrt[q]{e^p}^q=e^p$. Also, $\exp(p/q)$ is the unique positive number such that
+\[ \prod_{n=1}^q \exp \left( \frac{p}{q} \right) = \exp \left( \sum_{n=1}^q \frac{p}{q} \right) = \exp(p) = e^p. \]
+Therefore, $\exp(x)=e^x$ when $x \in \Q$.
+\par
+\fbox{If $x$ is a real number,} then $e^x$ has no intuitive definition other than being the continuous function uniquely defined by its value when $x$ is rational. Since $\Q$ is a dense subset of $\R$, any continuous function on $\R$ can be uniquely defined by its value on $\Q$. Therefore, if $e^x$ and $\exp(x)$ are equal for any rational $x$, and since $\exp$ is also continuous, they must be equal on all of $\R$.
+
+\bigskip
+\begin{prob}
+    4.5.4
+\end{prob}
+The $n$th derivative of $f$ exists at $x=0$ iff $\lim_{x \rightarrow 0^-} f^{(n)}(x) = \lim_{x \rightarrow 0^+} f^{(n)}(x)$. The left-hand side of that equation will always be zero. The right-hand side, for $n=1,2,3,\dots$ is
+\begin{align*}
+    \lim_{x \rightarrow 0^+} f'(x) &= \lim_{x \rightarrow 0^+} \left( - \frac{1}{x^2} \right) \exp \left( - \frac{1}{x} \right) = \lim_{x \rightarrow 0^+} = 0 \\
+    \lim_{x \rightarrow 0^+} f^{(n)}(x) &= \lim_{x \rightarrow 0^+} \left( \text{some rational function} \right) \exp \left( - \frac{1}{x} \right) = 0.
+\end{align*}
+You can use induction to show that you will always get some rational function there. Specifically, you will get a polynomial function of $1/x$ times $\exp(-1/x)$. As $x \rightarrow 0$ from the positive side, $1/x \rightarrow +\infty$, which means a polynomial function of $1/x$ times $\exp(-1/x)$ will go to zero.
+\par
+Therefore $f$ is infinitely differentiable, and $f^{(k)}(0)=0$ for any $k \in \N$. However, $f$ is not real analytic at $x=0$, because if it were, there would be some $\varepsilon$ neighborhood of zero in which $f$ is equal to its own power series expansion (around zero). But since all derivatives of $f$ are zero, its power series expansion is the zero function. But for any $x>0$, $f(x)=\exp(-1/x)>0$.
+
+\bigskip
+\begin{prob}
+    4.5.5. Prove theorem 4.5.6.
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item The inverse function theorem says that if $f$ is differentiable at $x$, $f(x)=y$, $f'(x)\neq0$, and $f$ is invertible, then
+        \[ (f^{-1})'(y) = \frac{1}{f'(x)}. \]
+        If $f=\exp$, then $f^{-1}=\ln$, so $\ln'(y)=1/\exp'(x)=1/y$, which could also be written as $\ln'(x)=1/x$ for some $x$ in the image of $\exp$, which is $(0, \infty)$.
+        \par
+        The fundamental theorem of calculus says that
+        \[ \int_a^b \frac{1}{x} dx = \ln(b)-\ln(a). \]
+    \item If $x, y \in (0, \infty)$, then there exists some $a,b \in (0, \infty)$ such that $\exp(a)=x$ and $\exp(b)=y$. Thus,
+        \[ \ln(xy) = \ln \left( \exp(a)\exp(b) \right) =\ln \left( \exp(a+b) \right) = a + b = \ln(x)+\ln(y). \]
+    \item $\exp: \R \rightarrow (0, \infty)$ is a bijective map, so if we apply $\exp$ to both sides, and the equation is true, then it must have been true originally as well.
+        \begin{align*}
+            \exp(\ln(1))&=\exp(0) \\
+            1 &= \exp(0) \\
+            \exp \left( \ln \left( \frac{1}{x} \right) \right) &= \exp \left( -\ln(x) \right) \\
+            \frac{1}{x} &= \frac{1}{x}.
+        \end{align*}
+        Therefore, both of the equations were true to begin with.
+    \item Let $z = \ln(x^y)$, so that $e^z=x^y$. Then $e^{z/y}=\sqrt[y]{e^z}=x$, and taking the log of both sides of that, $z/y=\ln(x)$, so $z=y\ln(x)$. Therefore
+        \[ \ln(x^y)=y\ln(x). \]
+    \item The $n$th derivative of $\ln(x)$ (for $x > 0$ and $n > 0$) is
+        \[ f^{(n)}(x) = \frac{(-1)^{n-1}(n-1)!}{x^n}, \]
+        which you can prove by induction of by just noticing the pattern. Therefore
+        \[ f^{(n)}(1) = - (-1)^n(n-1)!, \]
+        and $f(1)=0$, so the Taylor series expansion of $\ln$ around $a=1$ is
+        \[ \ln(1+x) = \sum_{n=1}^\infty \left( - (-1)^n (n-1)! \right) \frac{(x-1)^n}{n!} = \sum_{n=1}^\infty -\frac{(-1)^nx^n}{n}, \]
+        which can also be written as
+        \[ \ln(1-x) = - \sum_{n=1}^\infty \frac{x^n}{n}. \]
+        That series converges iff $\abs{x}<1$, so that equation is true iff $x \in (-1, 1)$. Substituting in $y=1-x$ to that equation, we get
+        \[ \ln(y) = - \sum_{n=1}^\infty \frac{(1-y)^n}{n} = \sum_{n=1}^\infty \frac{(-1)^{n+1}}{n} (y-1)^n \]
+        for any $y \in (0,2)$.
+\end{enumerate}
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}
