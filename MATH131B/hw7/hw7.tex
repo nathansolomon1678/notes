@@ -1,0 +1,125 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{MATH 131B Homework \#7}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+    Exercise 4.7.1: prove theorem 4.7.2.
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item \begin{align*}
+            \sin(x)^2+\cos(x)^2 &= \left( \frac{e^{ix}-e^{-ix}}{2i} \right)^2 + \left( \frac{e^{ix}+e^{-ix}}{2} \right)^2 \\
+                                &= \left( \frac{e^{2ix}-2e^0+e^{-2ix}}{-4} \right) + \left( \frac{e^{2ix}+2e^0+e^{-2ix}}{4} \right) \\
+                                &= \frac{-(e^{2ix}-2+e^{-2ix})+(e^{2ix}+2+e^{-2ix})}{4} \\
+                                &= 1.
+    \end{align*}
+    Since $x \in \R$, $\sin(x)$ and $\cos(x)$ are also real numbers, so $\sin(x)^2$ and $\cos(x)^2$ are both positive. That means $\sin(x)^2$ and $\cos(x)^2$ are both less than or equal to one, so $\sin(x), \cos(x) \in [-1, 1]$.
+\item \begin{align*}
+        \sin'(x) &= \frac{d}{dx} \left( \frac{e^{ix}-e^{-ix}}{2i} \right) \\
+                 &= \frac{ie^{ix}+ie^{-ix}}{2i} \\
+                 &= \cos(x). \\
+        \cos'(x) &= \frac{d}{dx} \left( \frac{e^{ix}+e^{-ix}}{2} \right) \\
+                 &= \frac{ie^{ix}-ie^{-ix}}{2} \\
+                 &= - \sin(x).
+\end{align*}
+\item \begin{align*}
+        \sin(-x) &= \frac{e^{i(-x)}-e^{-i(-x)}}{2i} \\
+                 &= \frac{e^{-ix}-e^{ix}}{2i} \\
+                 &= - \sin(x). \\
+        \cos(-x) &= \frac{e^{i(-x)}+e^{-i(-x)}}{2} \\
+                 &= \cos(x).
+\end{align*}
+\item \begin{align*}
+        \cos(x+y) &= \frac{e^{i(x+y)}+e^{-i(x+y)}}{2} \\
+                  &= \frac{(e^{ix}+e^{-ix})(e^{iy}+e^{-iy})}{4} + \frac{(e^{ix}-e^{-ix})(e^{iy}-e^{-iy})}{4} \\
+                  &= \cos(x)\cos(y) - \sin(x)\sin(y). \\
+        \sin(x+y) &= \frac{e^{i(x+y)}-e^{-i(x+y)}}{2i} \\
+                  &= \frac{(e^{ix}+e^{-ix})(e^{iy}-e^{-iy})}{4i} + \frac{(e^{ix}-e^{-ix})(e^{iy}+e^{-iy})}{4i} \\
+                  &= \cos(x)\sin(y) + \sin(x)\cos(y).
+\end{align*}
+\item \begin{align*}
+        \sin(0) &= \frac{e^{0i}-e^{-0i}}{2i} \\
+                &= \frac{1-1}{2i} \\
+                &= 0. \\
+        \cos(0) &= \frac{e^{0i}+e^{-0i}}{2} \\
+                &= \frac{1+1}{2} \\
+                &= 1.
+\end{align*}
+\item \begin{align*}
+        \cos(x) + i \sin(x) &= \frac{e^{ix}+e^{-ix}}{2} + i \cdot \frac{e^{ix}-e^{-ix}}{2i} \\
+                            &= \frac{(e^{ix}+e^{-ix}) + (e^{ix}-e^{-ix})}{2} \\
+                            &= e^{ix}. \\
+        e^{-ix} &= \overline{e^{ix}} \\
+                &= \overline{\cos(x)+i\sin(x)} \\
+                &= \cos(x) - i \sin(x). \\
+        \cos(x) &= \Re(e^{ix}). \\
+        \sin(x) &= \Im(e^{ix}).
+\end{align*}
+\end{enumerate}
+
+
+\bigskip
+\begin{prob}
+    Exercise 4.7.3: prove theorem 4.7.5.
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item From the problem above, we have
+\[ \cos(x+y) = \cos(x)\cos(y) - \sin(x)\sin(y) \]
+and
+\[ \sin(x+y) = \cos(x)\sin(y) + \sin(x)\cos(y). \]
+Plugging in $y=\pi$, this becomes
+\begin{align*}
+    \cos(x+\pi) &= \cos(x)(-1) - \sin(x)(0) &= -\cos(x) \\
+    \sin(x+\pi) &= \cos(x)(0) + \sin(x)(-1) &= -\sin(x).
+\end{align*}
+Applying that first formula twice will give you $\cos(x+2\pi)=\cos(x)$, and applying that second formula twice will give you $\sin(x + 2\pi) = \sin(x)$.
+\item I am going to use the lemma that if $n \in \Z$, then $\sin(n \pi) = 0$.
+\begin{proof}
+    \textbf{Base case:} If $n=0$, then $\sin(n\pi)=\sin(0)=0$.
+    \par
+    \textbf{Inductive step $P(n) \Rightarrow P(n+1)$:} If $\sin(n\pi)=0$, then $\sin((n+1)\pi) = \sin(n\pi + \pi) = -\sin(n \pi) = -0=0$.
+    \bigskip
+    \par
+    So by induction, this statement is true for any nonnegative integer $n$. If $n$ is a negative integer, then $\sin(n \pi) = \sin(-(-n)\pi) = -\sin((-n)\pi)=-0=0$, so this statement is actually true for any $n \in \Z$.
+\end{proof}
+Let $x$ be any real number. Then we can write $x/\pi=n+a$, for some $n \in \Z, a \in [0, 1)$. If $a=0$, then $x=n\pi$, so $\sin(x)=\sin(n\pi)=0$. If $a \neq 0$, then $\sin(x)=\sin(n\pi+a\pi)=\pm \sin(a\pi)$ (also by induction), which is nonzero because $a \in (0, \pi)$. Therefore $\sin(x)=0$ iff $x/\pi$ is an integer.
+\item Using those same angle-addition identities with $x=y=\pi/2$, we get
+    \begin{align*}
+        -1 = \cos(\pi) &= \cos(\pi/2)^2 - \sin(\pi/2)^2 \\
+        0 = \sin(\pi) &= 2 \cos(\pi/2) \sin(\pi/2).
+    \end{align*}
+    We also know that for any real number $\sin(x)^2$ and $\cos(x)^2$ are both in $[0, 1]$, so that first equation can only be true if $\cos(\pi/2)=0$ and $\sin(\pi/2)=\pm 1$. But we already proved that $\sin(x)$ is positive when $x \in (0, \pi)$, so $\sin(\pi/2)=1$. Now we can use the angle-addition identity again with $y=\pi/2$ and any $x \in \R$:
+\[ \sin(x + \pi/2) = \cos(x)\sin(\pi/2) - \sin(x)\cos(\pi/2) = \cos(x). \]
+So the cosine of $x$ is zero iff $\sin(x+\pi/2)=0$ which we just showed occurs iff $(x+\pi/2)/\pi$ is an integer. Therefore $\cos(x)=0$ iff $x/\pi$ is an integer plus $1/2$.
+\end{enumerate}
+
+\bigskip
+\begin{prob}
+    Exercise 4.7.5
+\end{prob}
+If $re^{i \theta}=se^{i \alpha}$, then $\norm{re^{i \theta}}=\norm{se^{i \alpha}}$, which simplifies to $r = s$.
+\par
+Now that we know $r=s$, we can divide both sides by $r$ to get $e^{i \theta}=e^{i \alpha}$, which is equivalent to $e^{i(\theta - \alpha)}=1$. That becomes
+\[ \cos(\theta - \alpha) + i \sin(\theta - \alpha) = 1, \]
+which is true iff $\sin(\theta - \alpha)=0$ and $\cos(\theta - \alpha)= 1$. We showed that $\sin(x)=0$ iff $x$ is an integer multiple of $\pi$, so $\theta - \alpha$ is an integer multiple of $\pi$. However, if $\theta - \alpha$ is an odd multiple of $\pi$, then $\cos(\theta-\alpha)=\cos(2 \pi n + \pi)$ for some $n \in \Z$, and $\cos(2 \pi n + \pi) = \cos(\pi) = -1 \neq 1$. Therefore $\theta - \alpha$ can only be an even multiple of $2 \pi$. That is, $\theta = \alpha + 2 \pi k $ for some $k \in \Z$.
+
+\bigskip
+\begin{prob}
+    Exercise 4.7.6
+\end{prob}
+First, I will find one value of $(r, \theta)$ which works, then I will prove it is unique.
+\par
+Let $r = \norm{z}$, so then $\Re(z/r)^2+\Im(z/r)^2=1$. By the result from exercise 4.7.4, there is a unique $\theta \in (-\pi, \pi]$ such that $\sin(\theta)=\Im(z/r)$ and $\cos(\theta)=\Re(z/r)$. Then
+\[ z = r \left( \cos(\theta) + i \sin(\theta) \right) = re^{i \theta}. \]
+If there was some other $(r', \theta')$ such that $z = r' e^{i \theta'}$, then $\norm{z} = \norm{r'} \cdot \norm{e^{i \theta'}} = \norm{r'} = r'$, so $r=r'$. Also, by the result from exercise 4.7.5, $\theta$ and $\theta'$ must differ by an integer multiple of $2 \pi$, but since they are both in $(-\pi, \pi]$, $\theta=\theta'$. Therefore $(r, \theta)$ is the only pair that works.
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}

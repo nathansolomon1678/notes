@@ -22,21 +22,131 @@
                 \item Homeworks were going to be due every Tuesday before class (10:30 am), but this has been changed to Thursdays.
     \end{itemize}
 }}}\bigskip\par
-All information is stored in physical systems. For example, a book stores information via the arrangement of ink on paper, and a hard drive stores memory by magnetizing regions of some material. Since information is physical, information processing is govered by physics. The goal of quantum computing is to take full advantage of that, by manipulating information in ways that is not possible with a classical computer.
+All information is stored in physical systems. For example, a book stores information via the arrangement of ink on paper, and a hard drive stores memory by magnetizing regions of some material. \textbf{Since information is physical, information processing is govered by physics.} The goal of quantum computing is to take full advantage of that, by manipulating information in ways that is not possible with a classical computer.
+\bigskip
+\begin{thm}
+    The Hamiltonian operator on a quantum wavefunction $\Psi(x, t)$ is defined as
+    \[ H := \left( V(x, t) - \frac{\hbar^2}{2m} \nabla^2 \right). \]
+    The Schrödinger equation says that the eigenvalues of $H$ are energy values, and that
+    \[ H\Psi(x, t) = i \hbar \frac{\partial}{\partial t} \Psi(x, t). \]
+\end{thm}
+\begin{example}
+    The ``infinite square well" is a 1-dimensional system in which a particle is trapped in a potential
+    \[ V(x) := \begin{cases}
+        0 & x \in [0, L] \\
+        +\infty & x \not\in [0, L]
+    \end{cases}. \]
+    Any solution to the Schrödinger equation is a linear combination of basis states $\Psi_n(x, t), n \in \N$:
+    \[ \Psi_n(x, t) = \sqrt{ \frac{2}{L}} \sin \left( \frac{n \pi x}{L} \right) e^{-i E_n t / \hbar}. \]
+    where the energy of the $n$th state is
+    \[ E_n = \frac{\hbar^2 n^2 \pi^2}{2 m L^2}. \]
+\end{example}
+The infinite square well is pretty much the simplest example of a situation where we can solve the Schrödinger equation. For a slightly more interesting version of that, want to see what happens when we start with a wavefunction of the form
+\[ \Psi(x,t) = \sum_{n \in \N} a_n(t) \Psi_n(x, t), a_n \in \C \]
+and then suddenly turn on a potential
+\[ V(x) = \begin{cases}
+    \Omega \cos (\pi x /L) & x \in [0, L] \\
+    +\infty & x \not\in [0, L]
+\end{cases}. \]
+Plugging in our wavefunction and Hamiltonian to the Schrödinger equation, we get
+\begin{align*}
+    H(x, t) \sum_{n \in \N} a_n \Psi_n(x, 0) e^{-i E_n t / \hbar} &= i \hbar \frac{\partial}{\partial t} \left( \sum_{n \in \N} a_n \Psi_n(x, 0) e^{-i E_n t / \hbar} \right) \\
+\Omega \cos \left( \frac{\pi x}{L} \right)  \sum_{n \in \N} a_n \Psi_n(x, 0) e^{-i E_n t / \hbar} &= i \hbar \sum_{n \in \N} \dot{a_n} \Psi_n(x, 0) e^{-i E_n t / \hbar} \\
+\end{align*}
+FINISH THESE NOTES
 
 \section{10/1/2024 lecture}
-Remember to distinguish between Hilbert space and Banach space
+An ideal qubit is a perfectly isolated 2-level system, but in reality, the 2 states will always be couples to states of an external system. For example, if our qubit is an electron in a magnetic field whose available states are spin-up and spin-down, then any electric field nearby will cause Stark shifting of the energy levels. Also, unless we can force the electron to be in the ground state, its own spatial wavefunction will create electromagnetic effects that interact with spin.
+\bigskip
+\par
+A vector space $V$ over a field $\F$ is a non-empty set $V$ with vector addition ($+ : V \times V \rightarrow V$) and scalar multiplication $\cdot : \F \times V \rightarrow V$) such that for any $u,v,w \in V$ and any $a,b \in \F$,
+\begin{itemize}
+    \item $u+(v+w)=(u+v)+w$
+    \item $u+v=v+u$
+    \item There exists $0 \in V$ such that $v+0=v$
+    \item There exists $(-v) \in V$ such that $v+(-v)=0$
+    \item $a(bv)=(ab)v$
+    \item If $1 \in \F$ is the multiplicative identity, then $1v=v$
+    \item $a(u+v)=au+av$
+    \item $(a+b)v=av+bv$
+\end{itemize}
+A  normed vector space $V$ over some field $\F$ also has a norm $\norm{\cdot} : V \rightarrow \R$ such that for any $u,v \in V, a \in \F$,
+\begin{itemize}
+    \item $V$ satisfies the axioms of a vector space over $\F$
+    \item $\norm{u} \geq 0$, and $\norm{u}=0$ iff $u=0$
+    \item $\F$ is a subfield of $\C$, and $\norm{au}=\abs{a} \cdot \norm{u}$. Technically, there may be some other fields that would work, like the $p$-adic numbers, but we don't care about those. In fact, some definitions of a normed vector space would require that $\F$ is either $\R$ or $\C$
+    \item $\norm{x+y}\leq \norm{x}+\norm{y}$
+\end{itemize}
+Note that a normed vector space is also a metric space, because if we define $d: V \times V \rightarrow V$ by $d(u,v)=\norm{u-v}$, then $(V, d)$ satisfies the metric space axioms. We call $V$ a Banach space $V$ iff it is complete in that metric.
+\par
+An inner product space $X$ is a vector space over $\F$, where $\F$ is either $\R$ or $\C$, with an inner product $\mean{\cdot, \cdot}: X \times X \rightarrow X$ such that for any $x,y,z \in X, a,b \in \F$,
+\begin{itemize}
+    \item $\mean{y,x} = \overline{\mean{x, y}}$
+    \item $\mean{ax+by, z} = a \mean{x,z}+b\mean{y,z}$
+    \item $\mean{x, x} \geq 0$, and $\mean{x,x}=0$ iff $x=0$
+\end{itemize}
+\begin{note}
+    Mathematicians define the inner product to be linear in the first argument ($\mean{ax,y}=a\mean{x,y}$) and conjugate-linear in the second argument ($\mean{x,ay}=\overline{a}\mean{x,y}$). However, in Dirac's bra-ket notation, which physicsts use, the inner product is conjugate linear in the first argument ($ \braket{ax}{y} = a^* \braket{x}{y}$) and linear in the second argument ($ \braket{x}{ay} =a \braket{x}{y}$). We can clarify this by using different notation, and by assuming that if you are reading about quantum mechanics, you will see the physicists' notation. But if there is any ambiguity, specify which you are using.
+\end{note}
+\par
+We call $V$ a Hilbert space iff it is a Banach space, and it is an inner product space, and $\norm{x}^2=\mean{x,x}$ for any $x \in V$.
+\begin{thm}
+    ``A Hilbert space is a safe space -- it's where physicists like to be" -- prof. Hudson.
+\end{thm}
 
 \section{10/3/2024 lecture}
 
 \section{10/8/2024 discussion/review}
+If the Hamiltonian does not depend on time, then the time evolution operator $U(t, t_0)$ can be defined as
+\[ U(t, t_0) := \exp \left( - \frac{i (t - t_0) H}{\hbar} \right), \]
+and it is useful because
+\[ \ket{\Psi(t)} = U(t, t_0) \ket{\Psi(t_0)}. \]
+If $H$ is diagonal then $U$ is as well.
+\par
+\begin{lem}
+    The exponential of a skew-Hermitian matrix is unitary, and the determinant of the exponential of a traceless matrix is one.
+\end{lem}
+\begin{proof}
+    If $A$ is skew-Hermitian, then $-A=A^\dag$, so
+    \[ \exp(A)^{-1}=\exp(-A)=\exp(A^\dag)=\exp(A)^\dag, \]
+    therefore $\exp(A)$ is unitary.
+    \par
+    If $A$ is traceless, then
+    \[ \det(\exp(A)) = \exp(\Tr(A)) = \exp(0) = 1. \]
+\end{proof}
+Since $H$ is an $n \times n$ Hermitian matrix ($n$ could be infinity), then $i H t / \hbar \in \mathfrak{u}(n)$ is skew-Hermitian (also called anti-Hermitian, meaning its adjoint is its negative). Therefore its exponential, $\exp(iHt/\hbar) \in U(n) = (SU(n) \oplus U(1)) / \Z_n$, is unitary. By going into the interaction picture, we could also ensure $H$ is traceless, so $i H t /\hbar \in \mathfrak{su}(n)$ is traceless, so $\exp(iHt/\hbar) \in SU(n)$.
 
 \section{10/10/2024 lecture}
+The energy of a magnetic moment $\mu$ in a magnetic field is $E = - \mu \cdot B$. For most of this class, we will think of a 2-state qubit as an electron in a magnetic field, but in reality, any Two-Level System (TLS) is a qubit, and the physics is the same for any TLS.
+\par
+The spin state of the qubit can be written as
+\[ \ket{\Psi} = c_0 \ket{\uparrow} + c_1 \ket{\downarrow}, \]
+which can also be written as
+\[ \ket{\Psi} = c_0 \ket{0} + c_1 \ket{1} = \begin{bmatrix}
+    c_0 \\
+    c_1
+\end{bmatrix}, \]
+where $c_0, c_1 \in \C$ satisfy $\norm{c_0}^2+\norm{c_1}^2 = 1$.
+\begin{note}
+    $\ket{0}$ represents the ``up"/``excited" state and $\ket{1}$ is the ``down"/``ground" state. This can be confusing because we are used to indexing states like $\ket{n}$ for the harmonic oscillator, where energy increases as $n$ increases. However, in this case, the $\ket{0}$ state has positive energy and the $\ket{1}$ state has negative energy.
+\end{note}
+The Hamiltonian for our electron is
+\[ H = -\mu \cdot B = \frac{g \mu_B}{\hbar} S \cdot B, \]
+where $g = -2.002319 \approx 2$ is the gyromagnetic ratio for the electron and
+\[ \mu_B = \frac{e \hbar}{2 m_e} = 9.274 \times 10^{-24} J/T \]
+is the ``Bohr magneton".
+\par
+If $B_x$ and $B_y$ are both zero, then
+\[ H = \frac{g \mu_B B_z}{\hbar} S_z = \frac{g \mu_B B_z}{\hbar} \cdot \frac{\hbar \sigma_z}{2} \approx \mu_B B_z \sigma_z = \mu_B B_z \begin{bmatrix}
+    1 & 0 \\
+    0 & -1
+\end{bmatrix}. \]
+
 
 \section{10/15/2024 lecture}
 
 \section{10/17/2024 lecture}
-See Andrew's notes
+The \textbf{interaction picture} is an extremely useful tool for simplifying problems. The main idea is that we can factor a unitary matrix out of the time evolution operator, and this is sort of like changing to a moving reference frame.
 
 \section{10/22/2024 lecture}
 

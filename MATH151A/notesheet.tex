@@ -171,4 +171,55 @@ Nothing too interesting from this lecture.
 \section{Lecture 16}
 For either natural or clamped boundary conditions, spline interpolation exists and is unique. To find it, we can put all the coeffiecients in a matrix and solve. We are guaranteed to have a solution, because a ``strictly diagonally dominant" square matrix is invertible.
 
+\section{Lecture 17}
+If we want to approximate the derivative of $f$ at $x_0$, and the only data we have is $f(x_0)$ and $f(x_0+h)$, then
+\[ f'(x_0) = \frac{f(x_0+h) - f(x_0)}{h} - \frac{f''(\xi)h}{2}. \]
+We know that $f''(\xi)$ is bounded as $h$ goes to zero, so the error term is $O(h)$. If $h > 0$, then the ``forward difference formula" is
+\[ f'(x_0) \approx \frac{f(x_0+h)-f(x_0)}{h} \]
+and the ``backward difference formula" is
+\[ f'(x_0) \approx \frac{f(x_0)-f(x_0-h)}{h}. \]
+The error for both of those formulas is $h \abs{f''(\xi)}/2$ (for some $\xi \in [x_0, x_0+h]$ or $\xi \in [x_0-h, x_0]$, respectively), which is $O(h)$.
+\par
+We can combine these to get the ``center difference formula":
+\[ f'(x_0) = \frac{f(x_0+h)-f(x_0-h)}{2h} - \frac{h^2}{6} f'''(\xi_x). \]
+The error term there depends on some $\xi_x \in [x_0-h,x_0+h]$ which was obtained from $\xi_1 \in [x_0-h,x_0]$ and $\xi_2 \in [x_0, x_0+h]$ using IVT. The error term is $O(h^2)$.
+
+\section{Lecture 18}
+The formulas we are trying to derive for $f^{(n)}(x_0)$ in terms of $f(x)$ at various values of $x \in [x_0 - h, x_0 + h]$ appear to get better as $h$ goes to zero. But in reality, we will have some rounding/truncation error while computing $f(x)$, which makes the method work worse for very small $h$. If $\varepsilon \geq \abs{f(x)-\widetilde{f}(x)}$ is an upper bound on the error in computing $f(x)$ (for $x$ in that interval), then
+\[ \abs{f'(x_0) - \frac{\widetilde{f}(x_0+h)-\widetilde{f}(x_0-h)}{2h}} \leq \abs{ \frac{h^2M}{6}} + \abs{ \frac{\varepsilon}{h} }. \]
+\par
+If we have a formula for $f^{(n)}(x_0)$ like the ones described above, we can use Richardson extrapolation to generate another, higher order formula for the same thing. Here's how to do it: take your original formula, and expand it to slightly higher order. Create another version of that formula by replacing every instance of $h$ with $h/2$. Then there is a linear combination of the new formula and the original formula for which the order of the error term is higher than it was before.
+
+\section{Lecture 19}
+One way to numerically integrate a function $f$ is to approximate $f$ with a Taylor polynomial, Lagrange polynomial, or interpolating spline, then integrate the result. Another method is to use Riemann sums. There are several variations of Riemann sums, such as the trapezoidal rule and Simpson's rule. We can generalize those rules with a quadrature formula $Q[f]$. If we want to approximate $\int_{x=a}^b f(x) dx$ and we can only evaluate $f$ at the evaluation nodes $a=x_0 < x_1 < \cdots < x_n=b$, then a quadrature formula $Q[f]$ is defined as
+\[ Q[f] := \sum_{i=0}^n w_i f(x_i), \]
+where $w_i$ are weights. We want to choose nodes $x_i$ and weights $w_i$ such that the error,
+\[ E[f] := \left( \int_a^b f(x)dx \right) -Q[f] \]
+is minimized.
+\par
+If we had computed the Lagrange polynomial for $f$ at the same interpolation nodes $x_i$, then integrated the Lagrange polynomial exactly, we would get the exact same result as if we had used a quadrature formula with
+\[ w_i := \int_a^b L_i(x) dx \]
+(where $L_i$ is the same as the $L_{i,n}$ defined in lecture 9), and
+\[ E[f]:= \int_a^b \left( \frac{f^{(n+1)}(\xi)}{(n+1)!} \prod_{i=0}^n (x-x_i) \right) dx\]
+for some $\xi \in [a,b]$. The formulas here for the weights are called the Newton-Cotes formulas. If there are $n+1$ interpolation nodes with equal spacing $(b-a)/n$, the trapezoidal rule gives weights $w_i = h/2, h, h, h \dots, h, h/2$ and has error $-h^3 f^{(2)}(\xi)/12$. If there are $2n+1$ interpolation nodes with equal spacing $(b-a)/(2n)$, Simpson's rule gives weights $w_i = h/3, 4h/3, 2h/3, 4h/3, 2h/3, \dots, 4h/3, h/3$ and has error $-h^5f^{(4)}(\xi)/90$.
+\par
+The degree of precision of a quadrature formula is defined as the largest positive integer $k$ such that it is exactly correct whenever $f(x)$ is a degree $k$ polynomial function of $x$. The degree of precision for the trapezoidal rule is one.
+
+\section{Lecture 20}
+
+
+\section{Lecture 21}
+
+\section{Lecture 22}
+
+\section{Lecture 23}
+
+\section{Lecture 24}
+
+\section{Lecture 25}
+
+\section{Lecture 26}
+
+\section{Lecture 27}
+
 \end{document}

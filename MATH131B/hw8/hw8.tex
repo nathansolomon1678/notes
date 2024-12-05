@@ -1,0 +1,179 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{MATH 131B Homework \#8}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+    Exercise 5.1.2: Prove lemma 5.1.5.
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item If $f \in C(\R/\Z, \C)$, define a function $g: [0, 1] \rightarrow \C$ such that $g(x) = f(x + \Z)$ for any $x \in \R$. Since $g$ is a continuous function on the compact interval $[0,1]$, it must be bounded, because continuous functions map compact sets to compact sets, and since $\C$ is isometric to $\R^2$, if the image of $g$ is compact, it is also bounded. Every element of the domain of $f$ can be written as $x + \Z$ for some $x \in [0, 1]$, so the image of $f$ is the same as the image of $g$, meaning $f$ is also bounded.
+    \item Ignore the notation I used above -- for the rest of this homework, I will treat functions $f,g \in C(\R/\Z, \C)$ as continuous, $\Z$-periodic functions from $\R$ to $\C$, instead of treating them as continuous functions from $\R/\Z$ to $\C$.
+        \par
+        If $f,g \in C(\R/\Z, \C)$, then $f$ and $g$ are continuous, so $f+g$, $f-g$, and $fg$ are also continuous. Also, for any $x \in \R$, the following are all true:
+        \begin{align*}
+            (f+g)(x+1) &= f(x+1)+g(x+1)=f(x)+g(x)=(f+g)(x) \\
+            (f-g)(x+1) &= f(x+1)-g(x+1)=f(x)-g(x)=(f-g)(x) \\
+            (fg)(x+1) &= f(x+1)g(x+1)=f(x)g(x)=(fg)(x).
+        \end{align*}
+        Therefore $f+x,f-g,fg \in C(\R/\Z, \C)$.
+        \par
+        For any $f \in C(\R/\Z,\C), c \in \C$, $cf$ is continuous and for any $x \in \R$,
+        \[ (cf)(x+1)=c \cdot f(x+1) = c \cdot f(x) = (cf)(x), \]
+        so $cf \in C(\R/\Z, \C)$.
+    \item We have already shown that if a sequence of continuous functions converges uniformly, that sequence converges to another continuous function, so I only need to show that the sequence converges to another $\Z$-periodic function.
+        \par
+        For any $\varepsilon > 0$, there is some $N \in \N$ such that whenever $n \geq N$, $d(f_n(x), f(x)) < \varepsilon / 2$ for every $x \in \R$. Since $f_n$ is $\Z$-periodic, $f_n(x+1)=f_n(x)$ for any $x \in \R$. By the triangle inequality, for any $x \in \R$,
+        \begin{align*}
+            d(f(x), f(x+1)) &\leq d(f(x), f_n(x)) + d(f_n(x+1), f(x+1)) \\
+                            &\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+        \end{align*}
+        $f$ is continuous, and the only way $d(f(x),f(x+1))$ can be less than $\varepsilon$ for any positive $\varepsilon$ is if $f(x)=f(x+1)$, so $f \in C(\R/\Z, \C)$.
+\end{enumerate}
+
+
+\bigskip
+\begin{prob}
+    Exercise 5.2.1: Prove lemma 5.2.5.
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item \begin{align*}
+            \mean{g,f} &= \int_{[0,1]} f(x) \overline{g(x)} \d x \\
+                       &= \overline{ \int_{[0,1]} g(x) \overline{f(x)} \d x } \\
+                       &= \overline{\mean{f,g}}.
+    \end{align*}
+\item The function $g(x) := \norm{f(x)}^2$ is continuous and nonnegative, and
+    \[ \mean{f,f} = \int_{[0,1]} g(x) \d x. \]
+    We can partition the interval $[0,1]$ into the disjoint subset of Lebesgue-measurable sets $A, B, C$, where
+    \begin{align*}
+        A &:= \left\{ x \in [0,1] : g(x)<0 \right\} \\
+        B &:= \left\{ x \in [0,1] : g(x)=0 \right\} \\
+        C &:= \left\{ x \in [0,1] : g(x)>0 \right\}, \\
+        \therefore \mean{f,f} &= \left( \int_A g(x) \d x \right) + \left( \int_B g(x) \d x \right) + \left( \int_C g(x) \d x \right).
+    \end{align*}
+    Clearly $A = \emptyset$ though, so I will ignore that first integral. The second integral is also obviously zero, so we only need to consider the integral over $C$.
+    \par
+    If $f \neq 0$, then $C$ is nonempty, so there is some $x_0 \in C$ such that $g(x_0)>0$, and since $g$ is continuous, that implies there is some interval contained in $C$ for which $g(x)\geq g(x_0)/2 > 0$. The integral of $g$ over that interval is positive, and the integral of $g$ over the remainder of $C$ is nonnegative, so $\mean{f,f}>0$.
+    \par
+    On the other hand, if $f=0$, then $\mean{f,f}=0$.
+\item \begin{align*}
+        \mean{f+g,h} &= \int_{[0,1]} (f+g)(x) \overline{h(x)} \d x \\
+                     &= \left( \int_{[0,1]} f(x) \overline{h(x)} \d x \right) + \left( \int_{[0,1]} g(x) \overline{h(x)} \d x \right) \\
+                     &= \mean{f,h} + \mean{g,h}. \\
+        \mean{cf,g} &= \int_{[0,1]} (cf)(x) \overline{h(x)} \d x \\
+                    &= c \cdot \int_{[0,1]} f(x) \overline{h(x)} \d x \\
+                    &= c \mean{f,g}.
+\end{align*}
+\item \begin{align*}
+        \mean{f,g+h} &= \int_{[0,1]} f(x) \overline{(g+h)(x)} \d x \\
+                     &= \left( \int_{[0,1]} f(x) \overline{g(x)} \d x \right) + \left( \int_{[0,1]} f(x) \overline{h(x)} \d x \right) \\
+                     &= \mean{f,g} + \mean{f,h}. \\
+        \mean{f,cg} &= \overline{\mean{cg,f}} = \overline{c\mean{g,f}} = \overline{c} \cdot \overline{\mean{g,f}} = \overline{c} \mean{f,g}.
+\end{align*}
+\end{enumerate}
+
+
+\bigskip
+\begin{prob}
+    Exercise 5.2.2
+\end{prob}
+\fbox{$d(f,f)=0$ for any $f \in C(\R/\Z, \C)$,} because
+\[ d(f,f)=\sqrt{\int_{[0,1]} (f-f)(x) \d x} = \sqrt{\int_{[0,1]} 0 \d x} = 0. \]
+\bigskip
+\par
+\fbox{$d(f,g)=d(g,f)$ for any $f,g \in C(\R/\Z, \C)$,} because
+\begin{align*}
+    d(f,g) &= \sqrt{\int_{[0,1]} \abs{f(x)-g(x)}^2 \d x} \\
+           &= \sqrt{ \int_{[0,1]} \abs{g(x)-f(x)}^2 \d x} \\
+           &= d(g,f).
+\end{align*}
+\bigskip
+\par
+\fbox{$d(f,g)>0$ whenever $f \neq g$,} because
+\[ d(f,g) = \sqrt{\int_{[0,1]} \abs{f(x)-g(x)}^2 \d x}, \]
+and the function $h(x)=\abs{f(x)-g(x)}^2$ is continuous, positive somewhere, and nonnegative everywhere. I showed in the previous problem that the integral of such a function must be positive, so $d(f,g)>0$.
+\bigskip
+\par
+\fbox{$d(f,g)+d(g,h)\geq d(f,h)$ for any $f,g,h \in C(\R/\Z, \C)$,} because
+\begin{align*}
+    d(f,h)^2 &= \mean{f-h,f-h} \\
+             &= \mean{(f-g)+(g-h),(f-g)+(g-h)} \\
+             &= \mean{f-g,f-g}+\mean{g-h,g-h}+\mean{f-g,g-h}+\overline{\mean{f-g,g-h}} \\
+             &= \norm{f-g}^2 + \norm{g-h}^2 + 2 \Re\left( \mean{f-g,g-h} \right) \\
+             &\leq \norm{f-g}^2 + \norm{g-h}^2 + 2 \abs{ \mean{f-g,g-h} } \\
+             &\leq \norm{f-g}^2 + \norm{g-h}^2 + 2 \cdot \norm{f-g} \cdot \norm{g-h} \\
+             &= (\norm{f-g} + \norm{g-h})^2 \\
+             &= \left( d(f,g)+d(g,h) \right)^2,
+\end{align*}
+which implies $d(f,h) \leq d(f,g)+d(g,h)$. Note that I used the Cauchy-Schwarz inequality, which says that
+\[ \abs{\mean{u,v}}^2\leq \norm{u}\cdot \norm{v} \]
+for any $u,v$ in some inner product space. In this case, $u=f-g$ and $v=g-h$.
+\bigskip
+\par
+\noindent\fbox{\fbox{\parbox{6.5in}{
+Here is a proof of the Cauchy-Schwarz inequality, which I copied from Wikipedia:
+\par
+If $v=0$, then we have $0 \leq \mean{u,u}+0$, which we already know is true, so we only need to consider the case where $v \neq 0$. Let
+\[ z := u - \frac{\mean{u,v}}{\mean{v,v}} v. \]
+Note that $v$ is orthogonal to $z$, so
+\[ \norm{u}^2 = \abs{ \frac{\mean{u,v}}{\mean{v,v}}}^2 + \norm{z}^2 = \frac{\abs{\mean{u,v}}^2}{\norm{v}^2} + \norm{z}^2 \geq \frac{\abs{\mean{u,v}}^2}{\norm{v}^2}. \]
+Therefore $\norm{v}^2 \cdot \norm{u}^2 \geq \abs{\mean{u,v}}^2$, so
+\[ \abs{\mean{u,v}} \leq \norm{u} \cdot \norm{v}. \]
+}}}\bigskip\par
+
+
+\bigskip
+\begin{prob}
+    Exercise 5.2.6
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item If $f_n$ converges uniformly to $f$, then for every $\varepsilon > 0$, there exists some $N \in \N$ such that for any $n \geq N, x \in \R$, $\abs{f_n(x)-f(x)} < \sqrt{\varepsilon}$. The $L^2$ distance between $f_n$ and $f$ can be written as
+        \[ d(f_n, f) = \int_{[0,1]} g(x) \d x, \]
+        where $g(x) := \abs{f_n(x)-f(x)}^2$.
+        \par
+        For any $x \in \R$, $0 \leq g(x) < \varepsilon$, so
+        \[ 0 \leq d(f_n,f) < \varepsilon. \]
+        Therefore $f_n$ converges to $f$ in the $L^2$ metric.
+    \item Let $f=0$, and let $f_n=\cos(\pi x)^n$. Then
+        \begin{align*}
+            d(f_n, f) &= \sqrt{\int_{[0,1]} \cos(\pi x)^{2n} \d x} \\
+                      &= \sqrt{\int_{[0,1]} \left( \frac{e^{i\pi x}+e^{-i \pi x}}{2} \right)^{2n} \d x} \\
+                      &= \sqrt{\int_{[0,1]} \left( \frac{1}{4^n} \sum_{k=0}^{2n} \binom{2n}{k} e^{2i\pi (k-n) x} \right) \d x} \\
+                      &= \sqrt{\int_{[0,1]} \frac{1}{4^n} \binom{2n}{n}  \d x} \\
+                      &= \sqrt{ \frac{(2n)!}{4^n(n!)^2} } \\
+                      &= \frac{\sqrt{(2n)!}}{2^n n!} \\
+                      &= \prod_{k=1}^n \frac{\sqrt{(2k-1)(2k)}}{2k} \\
+                      &= \prod_{k=1}^n \sqrt{ \frac{2k-1}{2k}} \\
+                      &= \exp\left( \frac{1}{2} \sum_{k=1}^n \left( \log(2k-1)-\log(2k) \right)  \right).
+        \end{align*}
+        This is useful because that summation goes to $-\infty$ (which you can prove by bounding the sum with an integral, evaluating the integral, and then taking the limit as $n \rightarrow \infty$), so as $n \rightarrow \infty$, $d(f_n, f) \rightarrow 0$.
+        \par
+        Therefore $f_n$ converges to $f$ in the $L^2$ metric, but it does ot converge uniformly, because $f_n(0)$ is always $\cos(0)^n=1$, and $f(0)$ is always zero.
+    \item My example from part (b) works here too.
+    \item Define $f_n$ by
+        \[ f_n(x) = \begin{cases}
+            n \sin(n \pi x) & 0 \leq x \leq \frac{1}{n} \\
+            0 & \frac{1}{n} \leq x \leq 1 \\
+            f(x-\floor{x}) & x \not\in [0,1]
+        \end{cases} \]
+        and let $f=0$. In the $L^2$ norm,
+        \begin{align*}
+        d(f_n, f) &= \sqrt{ \int_{[0,1]} \abs{f_n(x)-f(x)}^2 \d x } \\
+                  &= \sqrt{ \int_{[0,1/n]} n^2 \sin(n \pi x)^2 \d x } \\
+                  &= \sqrt{ \int_{u=0}^1 n \sin(\pi u)^2 \d u } \\
+                  &= \sqrt{ \frac{n}{2}},
+        \end{align*}
+        so $f_n$ does not converge to $f$. But $f_n$ does converge pointwise to $f$, because for any $x \in [0,1]$, either $x=0$, in which case $f_n(x)$ is always zero, or $f_n(x)=0$ for any $n \geq 1/x$.
+        
+\end{enumerate}
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}

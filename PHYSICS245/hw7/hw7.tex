@@ -1,0 +1,92 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 245 Homework \#7}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+See the Jupyter notebook at the end of this doc for the graphs. For parts (a) and (b), since $g$ is small, the Jaynes-Cummings Hamitlonian is almost exactly correct. In part (d), $g$ is higher, so the time evolution predicted by the JC Hamiltonian deviates a bit more from the actual time evolution. For part (c), that deviation is greater.
+
+\bigskip
+\begin{prob}
+\end{prob}
+This Hamiltonian predicts the states will evolve very little over one period of oscillation. That's also exactly what we would expect from the Hamiltonian we derived in class:
+\[ H = -\frac{g^2\hbar}{4 \delta} \left( \sigma_+ \otimes \sigma_- \otimes I + \sigma_- \otimes \sigma_+ \otimes I \right). \]
+
+
+\bigskip
+\begin{prob}
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item \begin{align*}
+            \frac{H_{eff}}{\hbar} &= \frac{g}{2} \sigma_x \otimes \sigma_x = \frac{g}{2} \cdot \begin{bmatrix}
+            0 & 0 & 0 & 1 \\
+            0 & 0 & 1 & 0 \\
+            0 & 1 & 0 & 0 \\
+            1 & 0 & 0 & 0
+        \end{bmatrix} \\
+                U(t) &= \exp \left( - \frac{i H_{eff} t}{\hbar} \right) \\
+                     &= \sum_{n=0}^\infty \left( \frac{(-itg/2)^{2n+1}}{(2n+1)!} \begin{bmatrix}
+            0 & 0 & 0 & 1 \\
+            0 & 0 & 1 & 0 \\
+            0 & 1 & 0 & 0 \\
+            1 & 0 & 0 & 0
+    \end{bmatrix} \right) + \sum_{n=0}^\infty \frac{(-itg/2)^{2n}}{(2n)!} \cdot I \\
+                     &= \cos \left( \frac{tg}{2} \right) I \otimes I - i \sin \left( \frac{tg}{2} \right) \sigma_x \otimes \sigma_x
+    \end{align*}
+\item \begin{align*}
+            & \left[ RY(-v\pi/2) \otimes I \right] \cdot \left[ RX(-s\pi/2) \otimes RX(-vs\pi/2) \right] \cdot \left[ XX(s\pi/4) \right] \cdot \left[ RY(v \pi/2) \otimes I \right] \\
+            &= \left( \frac{1}{\sqrt{2}} \begin{bmatrix}
+            1 & 0 & 1 & 0 \\
+            0 & 1 & 0 & 1 \\
+            -1 & 0 & 1 & 0 \\
+            0 & -1 & 0 & 1
+    \end{bmatrix} \right) \left( \frac{1}{2} \begin{bmatrix}
+            1 & i & i & -1 \\
+            i & 1 & -1 & i \\
+            i & -1 & 1 & i \\
+            -1 & i & i & 1
+    \end{bmatrix} \right) \left( \frac{1}{\sqrt{2}} \begin{bmatrix}
+            1 & 0 & 0 & -i \\
+            0 & 1 & -i & 0 \\
+            0 & -i & 1 & 0 \\
+            -i & 0 & 0 & 1
+    \end{bmatrix} \right) \left( \frac{1}{\sqrt{2}} \begin{bmatrix}
+            1 & 0 & -1 & 0 \\
+            0 & 1 & 0 & -1 \\
+            1 & 0 & 1 & 0 \\
+            0 & 1 & 0 & 1
+        \end{bmatrix} \right) \\
+            &= \frac{1}{4\sqrt{2}} \begin{bmatrix}
+                1+i & -1+i & 1+i & -1+i \\
+                -1+i & 1+i & -1+i & 1+i \\
+                -1+i & -1-i & 1-i & 1+i \\
+                -1-i & -1+i & 1+i & 1-i
+            \end{bmatrix} \begin{bmatrix}
+                1 & -i & -1 & -i \\
+                -i & 1 & -i & -1 \\
+                1 & -i & 1 & i \\
+                -i & 1 & i & 1
+            \end{bmatrix} \\
+            &= \frac{1}{4\sqrt{2}} \begin{bmatrix}
+                4+4i & 0 & 0 & 0 \\
+                0 & 4+4i & 0 & 0 \\
+                0 & 0 & 0 & 4+4i \\
+                0 & 0 & 4+4i & 0
+            \end{bmatrix} \\
+            &= e^{i \pi / 4} \cdot CNOT
+\end{align*}
+So up to a global phase, this method is equivalent to a CNOT gate when $s \pi / 4 = \chi = tg/2$, so $gt=\pi/2$.
+\end{enumerate}
+
+\includepdf[pages=-]{notebook.pdf}
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}

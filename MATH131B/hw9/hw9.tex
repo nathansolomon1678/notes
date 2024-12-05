@@ -1,0 +1,61 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{MATH 131B Homework \#9}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+    Exercise 5.3.3: prove corollary 5.3.6.
+\end{prob}
+If $-N \leq n \leq N$, then by the linearity (in the first argument) of the inner product,
+\[ \mean{f,e_n} = \sum_{m=-N}^N c_m \mean{e_m,e_n}. \]
+Lemma 5.3.5 tells us that
+\[ \mean{e_m,e_n} = \delta_{m,n} := \begin{cases}
+    1 & m=n \\
+    0 & m \neq n
+\end{cases}, \]
+so all of the terms except the one where $m=n$ are zero, and we are left with
+\[ \mean{f,e_n}=c_n. \]
+If $n<-N$ or $n>N$, then
+\[ \mean{f,e_n} = \sum_{m=-N}^N c_m \mean{e_m,e_n} = 0, \]
+because $m$ will never be equal to $n$.
+\par
+Lastly, we have the identity
+\begin{align*}
+    \norm{f}^2 &= \mean{f,f} \\
+               &= \mean{\sum_{n=-N}^N c_n e_n , \sum_{m=-N}^N c_m e_m} \\
+               &= \sum_{n=-N}^N c_n \sum_{m=-N}^N \overline{c_m} \mean{e_n, e_m} \\
+               &= \sum_{n=-N}^N c_n \sum_{m=-N}^N \overline{c_m} \delta_{n,m} \\
+               &= \sum_{n=-N}^N \norm{c_n}^2. \\
+\end{align*}
+
+\bigskip
+\begin{prob}
+    Exercise 5.4.2: prove lemma 5.4.4.
+\end{prob}
+
+\bigskip
+\begin{prob}
+    Exercise 5.5.2
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item
+    \item
+    \item
+\end{enumerate}
+
+
+\bigskip
+\begin{prob}
+    Exercise 5.5.4
+\end{prob}
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}
