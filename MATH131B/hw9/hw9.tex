@@ -39,15 +39,112 @@ Lastly, we have the identity
 \begin{prob}
     Exercise 5.4.2: prove lemma 5.4.4.
 \end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item Suppose $n \in \Z$ and $x \in \R$. Then \begin{align*}
+            (f*g)(x+n) &= \int_{[0,1]} f(y)g(x+n-y)\d y \\
+                       &= \int_{[0,1]} f(y)g(x-y)\d y \\
+                       &= (f*g)(x),
+    \end{align*}
+    so $(f*g)$ is $\Z$-periodic.
+    \par
+    Next, I want to show that $f*g$ is continuous. Since $f$ is continuous on the closed interval $[0,1]$, $f$ is also bounded on $[0,1]$, so there exists some $M \in \R$ such that $f(x)<M$ for any $x$. Similarly, $g$ is continuous on $[0, 1]$, so $g$ is uniformly continuous on $[0, 1]$, and since $g$ is $\Z$-periodic, that means $g$ in uniformly continuous everywhere.
+    \par
+    Therefore, for any $\varepsilon > 0$, there exists a $\delta > 0$ such that for any $x, y \in \R$, $d(x,y)<\delta$ implies $\abs{g(x) - g(y)} < \varepsilon / M$. Now consider the difference between $(f*g)(x)$ and $(f*g)(x')$ for some $x' \in (x-\delta,x+\delta)$: \begin{align*}
+        \abs{(f*g)(x')-(f*g)(x)} &= \abs{ \int_{[0,1]} \left( f(y)g(x'-y) - f(y)g(x-y) \right) \d y } \\
+                                 &\leq M \abs{ \int_{[0,1]} \left( g(x'-y)-g(x-y) \right) \d y }.
+    \end{align*}
+    But $\abs{g(x'-y)-g(x-y)} < \varepsilon/M$ because $g$ is uniformly continuous everywhere, so the value of that integral is less than $\varepsilon/M$ everywhere, so that entire expression is less than $\varepsilon$, meaning $f*g$ is (uniformly) continuous.
+\item The following steps substitute $u=x-y$, then use the facts that $f$ and $g$ are both $\Z$-periodic (so we can shift the interval we're integrating over by any integer amount) and that $x-1 < \floor{x} \leq x$ for any $x \in \R$.
+    \begin{align*}
+        (f*g)(x) &= \int_{y=0}^1 f(y) g(x-y) \d y \\
+                 &= \int_{u=x}^{x-1} f(x-u)g(u) (-\d u) \\
+                 &= \int_{[x-1,x]} g(u)f(x-u) \d u \\
+                 &= \left( \int_{[x-1,\floor{x}]} g(u)f(x-u) \d u \right) + \left( \int_{[\floor{x},x]} g(u)f(x-u) \d u \right) \\
+                 &= \left( \int_{[x-1,\floor{x}]} g(u)f(x-u) \d u \right) + \left( \int_{[\floor{x}-1,x-1]} g(u)f(x-u) \d u \right) \\
+                 &= \int_{[\floor{x}-1,\floor{x}]} g(u)f(x-u) \d u \\
+                 &= \int_{[0,1]} g(u)f(x-u) \d u \\
+                 &= (g*f)(x).
+    \end{align*}
+\item For any $f, g, h \in C(\R/\Z, \C)$ and any $c \in \C$, \begin{align*}
+        (f*(g+h))(x) &= \int_{[0,1]} f(y) (g+h)(x-y) \d y \\
+                &= \int_{[0,1]} f(y) \left( g(x-y)+h(x-y) \right) \d y \\
+                &= \left( \int_{[0,1]} f(y) g(x-y) \d y \right) \left( \int_{[0,1]} f(y) h(x-y) \d y \right) \\
+                &= (f*g+f*h)(x). \\
+        ((f+g)*h))(x) &= \int_{[0,1]} (f+g)(y) h(x-y) \d y \\
+                      &= \int_{[0,1]} \left( f(y) +g(y) \right) h(x-y) \d y \\
+                &= \left( \int_{[0,1]} f(y) h(x-y) \d y \right) \left( \int_{[0,1]} g(y) h(x-y) \d y \right) \\
+                &= (f*h+g*h)(x). \\
+        (cf)*g &= \int_{[0,1]} (cf)(y)g(x-y) \d y \\
+               &= c \int{[0,1]} f(y)g(x-y) \d y \\
+               &= c(f*g). \\
+        f*(cg) &= \int_{[0,1]} f(y)(cg)(x-y) \d y \\
+               &= c \int{[0,1]} f(y)g(x-y) \d y \\
+               &= c(f*g).
+\end{align*}
+\end{enumerate}
+
 
 \bigskip
 \begin{prob}
     Exercise 5.5.2
 \end{prob}
 \begin{enumerate}[label=(\alph*)]
-    \item
-    \item
-    \item
+    \item First, I will compute the $a_n$ and $b_n$ described in exercise 5.5.1:
+    \begin{align*}
+            b_n &= 2 \int_{[0,1]} (1-2x)^2 \sin(2\pi n x) \d x \\
+                &= \left( \int_{[0,1/2]} (1-2x)^2 \sin(2 \pi n x) \d x \right) + \left( \int_{x=1/2}^1 (1-2x)^2 \sin(2 \pi n x) \d x \right) \\
+                &= \left( \int_{[0,1/2]} (1-2x)^2 \sin(2 \pi n x) \d x \right) + \left( \int_{u=1/2}^0 (1-2(1-u))^2 \sin(2 \pi n (1-u)) (-\d u) \right) \\
+                &= \left( \int_{[0,1/2]} (1-2x)^2 \sin(2 \pi n x) \d x \right) + \left( \int_{[0, 1/2]} (2u-1)^2 \sin(2 \pi n (1-u)) \d u \right) \\
+                &= \left( \int_{[0,1/2]} (1-2x)^2 \sin(2 \pi n x) \d x \right) + \left( \int_{[0, 1/2]} (1-2u)^2 \sin(2 \pi n u) \d u \right) \\
+                &= 0.
+    \end{align*}
+    To get that, I substituted $u=1-x$, then used the fact that $x \mapsto \sin(2 \pi n x)$ is odd and $\Z$-periodic. Similarly, to find $a_n$, I will use the fact that $x \mapsto \cos(2 \pi n x)$ is even and $\Z$-periodic. If $n > 0$, then
+    \begin{align*}
+            a_n &= 2 \int_{[0,1]} (1-2x)^2 \cos(2\pi n x) \d x \\
+                &= \int_{[0,1]} \left( 2-8x+8x^2 \right) \cos \left( 2 \pi n x \right) \d x \\
+                &= \left( \int_{[0,1]} 2 \cos \left( 2 \pi n x \right) \d x \right) + \left( \int_{[0,1]} 8x \cos \left( 2 \pi n x \right) \d x \right) + \left( \int_{[0,1]} 8x^2 \cos \left( 2 \pi n x \right) \d x \right) \\
+                &= \left( \left[ \frac{1}{\pi n} \sin \left( 2 \pi n x \right)  \right]_{x=0}^1 \right) + \left( \int_{[0,1]} 8x \cos \left( 2 \pi n x \right) \d x \right) + \left( \int_{[0,1]} 8x^2 \cos \left( 2 \pi n x \right) \d x \right) \\
+                &= \left( \int_{[0,1]} 8x \cos \left( 2 \pi n x \right) \d x \right) + \left( \int_{[0,1]} 8x^2 \cos \left( 2 \pi n x \right) \d x \right) \\
+                &= \left( \left[ (8x) \left( \frac{1}{2 \pi n} \sin(2\pi n x) \right) \right]_{x=0}^1 - \int_{[0,1]} (8) \left( \frac{1}{2 \pi n} \sin(2\pi n x) \right) \d x \right) + \left( \int_{[0,1]} 8x^2 \cos \left( 2 \pi n x \right) \d x \right) \\
+                &= \left( 0 - \int_{[0,1]} \frac{4}{\pi n} \sin(2\pi n x) \d x \right) + \left( \int_{[0,1]} 8x^2 \cos \left( 2 \pi n x \right) \d x \right) \\
+                &= 0 + \int_{[0,1]} 8x^2 \cos \left( 2 \pi n x \right) \d x \\
+                &= \left[ (8x^2) \left( \frac{\sin(2\pi n x)}{2 \pi n} \right)  \right]_{x=0}^1 - \int_{[0,1]} (16x) \frac{\sin(2\pi n x)}{2 \pi n} \d x \\
+                &= 0 - \int_{[0,1]} \frac{8x}{\pi n} \sin(2\pi n x) \d x \\
+                &= -\left[ \left( \frac{8x}{\pi n} \right) \left( \frac{-\cos(2\pi n x)}{2 \pi n} \right) \right]_{x=0}^1 - \int_{[0,1]} \frac{8}{\pi n} \left( \frac{-\cos(2\pi n x)}{2 \pi n} \right) \d x \\
+                &= \left[ \frac{4x\cos(2\pi n x)}{\pi^2 n^2} \right]_{x=0}^1 + \int_{[0,1]} \frac{4}{\pi^2 n^2} \cos(2\pi n x) \d x \\
+                &= \frac{4}{\pi^2 n^2} + \left[ \left( \frac{4}{\pi^2 n^2} \right) \left( \frac{\sin(2\pi n x)}{2 \pi n} \right) \right]_{x=0}^1 \\
+                &= \frac{4}{\pi^2 n^2}.
+    \end{align*}
+    And in the case where $n=0$, we have \begin{align*}
+        b_0 &= 2 \int_{[0,1]} (1-2x)^2 \sin(0) \d x \\
+            &= 0. \\
+        a_0 &= 2 \int_{[0,1]} (1-2x)^2 \cos(0) \d x \\
+            &= \int_{[0,1]} (2-8x+8x^2) \d x \\
+            &= \left[ 2x- 4x^2 + \frac{8x^3}{3} \right]_{x=0}^1 \\
+            &= 2-4+ \frac{8}{3} \\
+            &= \frac{2}{3}.
+    \end{align*}
+    By the result from exercise 5.5.1, \begin{align*}
+        f(x) &= \frac{a_0}{2} + \sum_{n=1}^\infty \left( a_n \cos(2\pi nx) + b_n \sin(2\pi nx) \right) \\
+             &= \frac{1}{3} + \sum_{n=1}^\infty \frac{4}{\pi^2n^2} \cos(2\pi nx).
+    \end{align*}
+    \item At $x=0$, we have \begin{align*}
+            1 &= (1-2(0)^2 \\
+              &= f(0) \\
+              &= \frac{1}{3} + \sum_{n=1}^\infty \frac{4}{\pi^2n^2} \cos(0) \\
+            \frac{2}{3} &= \sum_{n=1}^\infty \frac{4}{\pi^2n^2} \\
+            \frac{\pi^2}{6} &= \sum_{n=1}^\infty \frac{1}{n^2}.
+    \end{align*}
+\item \begin{align*}
+        \norm{f}^2 &= \sum_{n=-\infty}^\infty \abs{\hat{f}(n)}^2 \\
+        \mean{f,f} &= \left( \sum_{n=-\infty}^{-1} \abs{\hat{f}(n)}^2 \right) + \abs{\hat{f}(0)}^2 + \left( \sum_{n=1}^{\infty} \abs{\hat{f}(n)}^2 \right) \\
+        \int_{[0,1]} (1-2x)^4 \d x &= \left( \sum_{n=-\infty}^{-1} \abs{\hat{f}(n)}^2 \right) + \frac{1}{9} + \left( \sum_{n=1}^{\infty} \abs{\hat{f}(n)}^2 \right) \\
+        \left[ \frac{(1-2x)^5}{-10} \right]_{x=0}^1 &= \left( \sum_{n=-\infty}^{-1} \left( \frac{a_{-n}}{2} \right)^2 \right) + \frac{1}{9} + \left( \sum_{n=1}^{\infty} \left(\frac{a_n}{2}\right)^2 \right) \\
+        \frac{1}{10} - \left( - \frac{1}{10} \right) &= \frac{1}{9} + 2 \sum_{n=1}^{\infty} \left( \frac{2}{\pi^2n^2} \right)^2 \\
+        \frac{2}{10} - \frac{1}{9} &= \sum_{n=1}^{\infty} \frac{8}{\pi^4n^4} \\
+        \frac{8}{90} &= \frac{8}{\pi^4} \sum_{n=1}^{\infty} \frac{1}{n^4} \\
+        \sum_{n=1}^{\infty} \frac{1}{n^4} &= \frac{\pi^4}{90}.
+\end{align*}
 \end{enumerate}
 
 
@@ -55,6 +152,20 @@ Lastly, we have the identity
 \begin{prob}
     Exercise 5.5.4
 \end{prob}
+We are given that $f'$ is continuous, and it is $\Z$-periodic because for any $k \in \Z, x \in \R$,
+\begin{align*}
+    f'(x+k) &= \lim_{\varepsilon \rightarrow 0} \frac{f(x+k+\varepsilon)-f(x+k)}{\varepsilon} \\
+            &= \lim_{\varepsilon \rightarrow 0} \frac{f(x+\varepsilon)-f(x)}{\varepsilon} \\
+            &= f'(x).
+\end{align*}
+This means that $f' \in C(\R/\Z, \C)$.
+\begin{align*}
+    \hat{f'}(n) &= \mean{f', e_n} \\
+                &= \int_{[0,1]} \left( \frac{\d}{\d x} f(x) \right) e^{-2i\pi n x} \d x \\
+                &= \left[ f(x)e^{-2i \pi nx} \right]_{x=0}^1 - \int_{[0,1]} f(x) (-2i\pi n e^{-2i\pi n x}) \d x \\
+                &= 0 + 2 i \pi n \int_{[0,1]} f(x) e^{-2i\pi n x} \d x \\
+                &= 2i\pi n \hat{f}(n).
+\end{align*}
 
 \includepdf[pages=-]{assignment.pdf}
 

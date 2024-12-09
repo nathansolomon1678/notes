@@ -51,16 +51,40 @@ and then suddenly turn on a potential
 Plugging in our wavefunction and Hamiltonian to the Schrödinger equation, we get
 \begin{align*}
     H(x, t) \sum_{n \in \N} a_n \Psi_n(x, 0) e^{-i E_n t / \hbar} &= i \hbar \frac{\partial}{\partial t} \left( \sum_{n \in \N} a_n \Psi_n(x, 0) e^{-i E_n t / \hbar} \right) \\
-\Omega \cos \left( \frac{\pi x}{L} \right)  \sum_{n \in \N} a_n \Psi_n(x, 0) e^{-i E_n t / \hbar} &= i \hbar \sum_{n \in \N} \dot{a_n} \Psi_n(x, 0) e^{-i E_n t / \hbar} \\
+\sum_{n \in \N} a_n \left( \Omega \cos \left( \frac{\pi x}{L} \right) + E_n \right) \Psi_n(x, 0) e^{-i E_n t / \hbar} &= i \hbar \sum_{n \in \N} \left( \dot{a}_n e^{-i E_n t / \hbar} - \frac{iE_na_n}{\hbar} e^{-iE_nt/\hbar} \right) \Psi_n(x, 0) \\
+\Omega \cos \left( \frac{\pi x}{L} \right) \sum_{n \in \N} a_n \Psi_n(x, 0) e^{-iE_nt/\hbar} &= i \hbar \sum_{n \in \N} \dot{a}_n \Psi_n(x, 0) e^{-iE_nt/\hbar} \\
+    \frac{\Omega}{2} \sum_{n \in \N} a_n \left( \Psi_{n-1}(x, 0) e^{-iE_nt/\hbar} + \Psi_{n+1}(x, 0) e^{-iE_nt/\hbar} \right) &= i \hbar \sum_{n \in \N} \dot{a}_n \Psi_n(x, 0) e^{-iE_nt/\hbar}.
 \end{align*}
-FINISH THESE NOTES
+If you continue working through this math, and you let $a_{-1}=0$ and let $\omega_m = (E_{m+1}-E_m)/\hbar$, then you get that for any $m \in \N$,
+\[ i \hbar \dot{a}_m = \frac{\Omega}{2} \left( a_{m+1} e^{-i\omega_m t} + a_{m-1} e^{i\omega_{m-1}t} \right).  \]
+Now suppose we make the potential time-dependent (with frequency $a_1$), so on $x \in [0,L]$, we have
+\[ V(x, t) = \Omega \cos(\omega_1 t) \cos \left( \frac{\pi x}{L} \right), \]
+which will give us a different equation for each $\dot{a}_n$, the first two of which are
+\begin{align*}
+    i\hbar \dot{a}_1 &= \frac{\Omega}{2} a_2 \frac{1+e^{-2i\omega_1t}}{2} \\
+    i\hbar \dot{a}_2 &= \frac{\Omega}{2} \left( a_3 e^{-i\omega_2t} \left( \frac{e^{i\omega_1t}-e^{-2i\omega_1t}}{2}\right) + a_1 \left( \frac{1+e^{2i\omega_1t}}{2} \right) \right).
+\end{align*}
+This looks messy to solve, but we can make use the Rotating Wave Approximation (RWA) to ignore the messy parts. See my solution to homework 1 for an explanation of the RWA.
+\par
+After applying the RWA, we just have two equations, which can be written as
+\[ \frac{\partial}{\partial t} \begin{bmatrix}
+    a_1 \\
+    a_2
+\end{bmatrix} = \frac{\Omega}{4i\hbar} \begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix} \begin{bmatrix}
+    a_1 \\
+    a_2
+\end{bmatrix}. \]
+One solution to this is $a_2 = \sin(\Omega t / 4 \hbar)$, and $a_2 = i\cos(\Omega t / 4 \hbar)$.
 
 \section{10/1/2024 lecture}
-An ideal qubit is a perfectly isolated 2-level system, but in reality, the 2 states will always be couples to states of an external system. For example, if our qubit is an electron in a magnetic field whose available states are spin-up and spin-down, then any electric field nearby will cause Stark shifting of the energy levels. Also, unless we can force the electron to be in the ground state, its own spatial wavefunction will create electromagnetic effects that interact with spin.
+An ideal qubit is a perfectly isolated 2-level system, but in reality, the 2 states will always be coupled to states of an external system. For example, if our qubit is an electron in a magnetic field whose available states are spin-up and spin-down, then any electric field nearby will cause Stark shifting of the energy levels. Also, unless we can force the electron to be in the ground state, its own spatial wavefunction will create electromagnetic effects that interact with its spin.
 \bigskip
 \par
 A vector space $V$ over a field $\F$ is a non-empty set $V$ with vector addition ($+ : V \times V \rightarrow V$) and scalar multiplication $\cdot : \F \times V \rightarrow V$) such that for any $u,v,w \in V$ and any $a,b \in \F$,
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item $u+(v+w)=(u+v)+w$
     \item $u+v=v+u$
     \item There exists $0 \in V$ such that $v+0=v$
@@ -71,7 +95,7 @@ A vector space $V$ over a field $\F$ is a non-empty set $V$ with vector addition
     \item $(a+b)v=av+bv$
 \end{itemize}
 A  normed vector space $V$ over some field $\F$ also has a norm $\norm{\cdot} : V \rightarrow \R$ such that for any $u,v \in V, a \in \F$,
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item $V$ satisfies the axioms of a vector space over $\F$
     \item $\norm{u} \geq 0$, and $\norm{u}=0$ iff $u=0$
     \item $\F$ is a subfield of $\C$, and $\norm{au}=\abs{a} \cdot \norm{u}$. Technically, there may be some other fields that would work, like the $p$-adic numbers, but we don't care about those. In fact, some definitions of a normed vector space would require that $\F$ is either $\R$ or $\C$
@@ -80,7 +104,7 @@ A  normed vector space $V$ over some field $\F$ also has a norm $\norm{\cdot} : 
 Note that a normed vector space is also a metric space, because if we define $d: V \times V \rightarrow V$ by $d(u,v)=\norm{u-v}$, then $(V, d)$ satisfies the metric space axioms. We call $V$ a Banach space $V$ iff it is complete in that metric.
 \par
 An inner product space $X$ is a vector space over $\F$, where $\F$ is either $\R$ or $\C$, with an inner product $\mean{\cdot, \cdot}: X \times X \rightarrow X$ such that for any $x,y,z \in X, a,b \in \F$,
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item $\mean{y,x} = \overline{\mean{x, y}}$
     \item $\mean{ax+by, z} = a \mean{x,z}+b\mean{y,z}$
     \item $\mean{x, x} \geq 0$, and $\mean{x,x}=0$ iff $x=0$
@@ -89,12 +113,33 @@ An inner product space $X$ is a vector space over $\F$, where $\F$ is either $\R
     Mathematicians define the inner product to be linear in the first argument ($\mean{ax,y}=a\mean{x,y}$) and conjugate-linear in the second argument ($\mean{x,ay}=\overline{a}\mean{x,y}$). However, in Dirac's bra-ket notation, which physicsts use, the inner product is conjugate linear in the first argument ($ \braket{ax}{y} = a^* \braket{x}{y}$) and linear in the second argument ($ \braket{x}{ay} =a \braket{x}{y}$). We can clarify this by using different notation, and by assuming that if you are reading about quantum mechanics, you will see the physicists' notation. But if there is any ambiguity, specify which you are using.
 \end{note}
 \par
-We call $V$ a Hilbert space iff it is a Banach space, and it is an inner product space, and $\norm{x}^2=\mean{x,x}$ for any $x \in V$.
+We call $V$ a Hilbert space iff it is a Banach space, and it is an inner product space, and $\norm{x}^2=\mean{x,x}$ for any $x \in V$. Any quantum wavefunction, inluding spatial wavefunctions, spin wavefunctions, and multiple-particle wavefunctions is an element of a complex Hilbert space.
 \begin{thm}
     ``A Hilbert space is a safe space -- it's where physicists like to be" -- prof. Hudson.
 \end{thm}
+Whenever we are working with a Hilbert space, we take for granted that there is a countable orthonormal basis, which we often index by nonnegative integers.
+\begin{thm}
+    Carleson's theorem: If $f$ is a periodic $L^2$ function (that is, a periodic function whose magnitude squared can be integrated over one period), its Fourier series converges to $f$ ``almost everywhere", meaning the set of points where the Fourier series for $f$ doesn't coverge to $f$ has measure zero.
+\end{thm}
+In bra-ket notation, the ket $\ket{\psi}$ is a vector in a Hilbert space $\mathcal{H}$, which represents some sort of quantum wavefunction. Complex conjugation is a bijection $^* : \C \rightarrow \C$ which maps $a+bi$ to $a-bi$, where $a,b \in \R$. The conjugate transpose (also called adjoint, dagger, Hermitian conjugate, or dual) of a ket is called a bra, and is written as $\ket{\psi}^\dag=\bra{\psi}$. A bra is an element of the dual space $\mathcal{H}^*$, which is naturally ``isometrically anti-isomorphic" to $\mathcal{H}$, according to the Riesz representation theorem. However, some mathematicians might be upset with me for saying a bra is the dual space, because it could lead to some confusion about whether the vectors transform covariantly or contravariantly.
+\par
+A matrix $A$ is called Hermitian iff $A=A^\dag$, and unitary iff $A^{-1}=A^\dag$.
+\begin{cor}
+    Being real and symmetric is the same as being real and Hermitian. Also, being real and orthogonal (aka orthonormal) is the same as being real and unitary.
+\end{cor}
 
 \section{10/3/2024 lecture}
+\begin{thm}
+    For any Hermitian operator $A$, there is an orthonormal basis of eigenvectors of $A$, and all eigenvalues of $A$ are real.
+\end{thm}
+\begin{proof}
+    This is an exercise for the reader. Note that in the case of degenerate eigenvalues, we can already assume each eigenspace has an orthonormal basis, so we just need to show that elements of different eigenspaces are orthogonal, then use the axiom of choice.
+\end{proof}
+The postulates of quantum mechanics say that any obesrvable operator $A$ (including the Hamiltonian) will always be Hermitian, so $A=\sum \lambda_k \ket{v_k}\bra{v_k}$ for some normalized eigenvectors $\ket{v_k}$ and corresponding eigenvalues $\lambda_k$. Furthermore, if $\ket{\psi} \in \mathcal{H}$ is normalized, then when you ``measure $A$", then for each $k$ there is probability $\abs{\braket{\psi}{v_k}}^2$ that the wavefunction will instantly collapse into state $\ket{v_k}$ and the value you measure will be $\lambda_k$. Therefore the expected value of $A$ is
+\[ \mean{A} = \sum_k \lambda_k \abs{\braket{\psi}{v_k}}^2. \]
+The standard deviation in measured values (assuming we can somehow reset the state to $\ket{\psi}$ after each measurement) is
+\[ \sigma_A := \sqrt{\mean{A^2}-\mean{A}^2}. \]
+
 
 \section{10/8/2024 discussion/review}
 If the Hamiltonian does not depend on time, then the time evolution operator $U(t, t_0)$ can be defined as
@@ -255,6 +300,70 @@ Therefore the Hamiltonian can be written in the basis $ \left( \ket{1,0}, \ket{1
 \end{bmatrix} \]
 I need to double check all my formulas for these lecture notes, then get notes for the remainder of the lecture, where we solved for the eigenvectors and eigenvalues of each block matrix in order to find the new energy levels (as a function of the detuning $\delta$ and the coupling strength $g$). Also get notes for relating this to the Stark effect.
 
+\section{12/3/2024 lecture}
+If we want to predict the time-evolution of a system in an environment, and the environment begins in a state $\ket{e_0}$ (it doesn't need to start in that state, that just makes the math way easier), then
+\[ \rho_{SE}(t) = U_{SE}(t) \rho_{SE}(t=0) U_{SE}(t)^\dag, \]
+so the state of the system after some time $t$ can be written as
+\[ \rho_S(t) = \tr_E \rho_{SE}(t) = \sum_{i \in B} K_i \rho_S(t=0) K_i^\dag \]
+where $B = \left\{ e_0, e_1. e_2, \dots \right\}$ is a basis for the environment states, and $K_i$ is the Kraus operator, defined as
+\[ K_i := \bra{e_i} U_{SE}(t) \ket{e_0}. \]
+Technically, that gives a dimension mismatch error, and Kraus operator should be defined as
+\[ K_i := (I_S \otimes \bra{e_i}) U_{SE}(t) (I_S \otimes \ket{e_0}), \]
+but we don't bother to write that all out.
+\begin{note}
+    There are a bunch of different names for the quantum channel description, but they all mean the same thing:
+    \begin{itemize}
+        \item
+    \end{itemize}
+\end{note}
+
+\section{12/5/2024 lecture}
+If $\rho_{SE}$ is a density matrix for a system in an envirorment, then taking the (partial) trace over the environment will give $\rho_S = \tr_E(\rho_{SE})$, which is the density matrix for just the system. If we want to make some measurement $M_S$ on the system, the ensemble average is $[M_S] =\tr (M_S \rho_S) = \tr \left( (M_S \otimes I_E) \rho_{SE} \right)$.
+\par
+The time evolution operator for an electron in an optical cavity (and magnetic field) is given by the exponential of the Jaynes-Cummings Hamiltonian (JCH):
+\[ U_{JC} = \ket{10}\bra{10} + \cos \frac{\Omega t}{2} \left( \ket{00}\bra{00} + \ket{11}\bra{11} \right) - i\sin \frac{\Omega t}{2} \left( \ket{00}\bra{11} + \ket{11}\bra{00} \right). \]
+This assumes the system begins in a superposition of only the $\ket{10}$, $\ket{00}$, and $\ket{11}$ states, because otherwise we would have an infinite-dimensional block-diagonal matrix. If we call the electron the ``system" and we call the QHO the ``environment", then we can compute the Kraus operators (I NEED TO REVIEW HOW TO ACTUALLY COMPUTE THESE BY HAND):
+\[ K_j = \begin{cases}
+    \ket{1}\bra{1} + \cos \frac{\Omega t}{2} \ket{0}\bra{0} & j = 0 \\
+    -i \sin \frac{\Omega t}{2} \ket{1}\bra{0} & j = 1 \\
+    0 & j > 1
+\end{cases} \]
+We can let $p$ (HOW DO WE DEFINE $p$ IN TERMS OF THE RABI FREQUENCY AND TIME???)be the probability of emitting a photon and then make a small-time approximation, to get
+\begin{align*}
+    K_0 &= \ket{1}\bra{1} + \sqrt{1-p} \ket{0}\bra{0} \\
+    K_1 &= \sqrt{p} \ket{1}\bra{1} \\
+    i > 1 \Rightarrow K_i &=0
+\end{align*}
+These new operators will not model unitary evolution. If we use them to predict the density matrix after time $t$, we get
+\[ \rho_S(t) = (1-p) \ket{0}\bra{0} + p \ket{1}\bra{1}. \]
+We call $K_0$ the ``jump operator", because it represents the qubit jumping from the excited state to the ground state, and we call $K_1$ the ``no-jump operator", because it represents the qubit not having jumped states. You might think that the no-jump operator does nothing, so it should be the identity, but that's not true -- if we see that the qubit has not jumped states after time $t$, that tells us that the qubit was more likely to have been in the ground state to begin with.
+\par
+The most general way to describe the time evolution of some quantum system is with density matrices $\rho$ and with operators $M_i$ \textbf{which are not necessarily unitary}:
+\[ \rho(t) = \sum_i M_i(t) \rho(0) M_i^\dag(t). \]
+That equation makes it easy to calculate $\rho(t)$ if you know what $M$ is for one specific $t$, but we may want to calculate $\rho(t)$ as a continuous function of $t$.
+\par
+We already know that
+\[ i\hbar \frac{\partial \rho_{SE}}{\partial t} = \left[ H, \rho_{SE} \right], \]
+but that's not practical because we never know the wavefunction of the environment. However, we an rewrite it to get the Lindbladian. ADD NOTES ABOUT LINDBLADIAN
+\par
+The \textbf{fidelity} $\mathcal{F} := \abs{\braket{\phi}{\psi}}^2$ is a measure of how similar the states $\ket{\phi}$ and $\ket{\psi}$ are. If $\ket{\phi}$ is the state that we want our system to be in, then $\mathcal{F}$ is a measure of how close we are to that goal. This is generally how we measure how good a quantum computer is. The best trapped-ion quantum computers can have fidelity around $0.999999$, but most quantum computers are worse. If our density matrix is $\rho := \ket{\psi}\bra{\psi}$, then $\mathcal{F} = \bra{\phi}\rho\ket{\phi}$.
+\begin{note}
+    WARNING: some people define the fidelity as $\mathcal{F} = \abs{\braket{\phi}{\psi}}$, but this isn't super common.
+\end{note}
+The \textbf{von Neumann entropy} of a system is
+\[ S(\rho) = \tr \left( \rho \log_2 \rho \right), \]
+where $\rho$ is the density matrix. Taking the logarithm of a matrix sucks, so you would want to find some orthonormal basis $v_i, i \in \N$ of eigenvectors of $\rho$ (with respective eigenvalues $\lambda_i$), because then
+\[ S(\rho) = \sum_{i \in \N} - \lambda_i \log_2 \lambda_i. \]
+For a pure state, this works out to zero. For a completely mixed state made up of $n$ qubits, it works out to $S(\rho)=n$.
+\par
+The \textbf{entanglement entropy} $S_E$ measures how entangled two systems $A$ and $B$ are by seeing how much the von Neumann entropy increases when you trace out $A$ (or equivalently, when you trace out $B$):
+\[ S_E(\rho_{AB}) := S(\rho_A) = S(\tr_B(\rho_{AB})). \]
+
+
+\section{Deferred measurement principle}
+
+\fig{deferred_measurement.png}
+Also talk about no-cloning theorem and no-communication theorem
 \section{Magnus expansion}
 \section{Rotation operator on Bloch sphere}
 \section{Interaction picture}
@@ -264,5 +373,6 @@ I need to double check all my formulas for these lecture notes, then get notes f
 Note that the displacement operator takes the vacuum state to a coherent state, but it does not map every coherent state to another coherent state.
 \par
 Give definition of displacement operator and prove it's basic properties, like $D(\alpha)^\dag = D(-\alpha)$ and $D^\dag(\alpha)D(\alpha)=I$. Also talk about Kermack-McCrae identities, optical phase space, Wigner quasiprobability distribution, Husimi Q representation, and squeezed coherent states. For problem 3 on HW5, figure out explicit formula for probability as a function of $t_w$. For that, refer to \url{https://physics.stackexchange.com/questions/553225/representation-of-the-displacement-operator-in-number-basis}
+\section{Mølmer-Sørenson gate}
 
 \end{document}

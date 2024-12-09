@@ -1,0 +1,102 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Math 151A Homework \#8}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item $x_1=x_2=1$
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{1a.png}
+    \end{center}
+\item The red and blue lines completely overlap, so there are infinitely many solutions.
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{1b.png}
+    \end{center}
+\end{enumerate}
+
+
+\bigskip
+\begin{prob}
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item
+    \item
+\end{enumerate}
+
+
+\bigskip
+\begin{prob}
+\end{prob}
+Let
+        \[ A := \begin{bmatrix}
+            2 & -6\alpha \\
+            3\alpha & -1
+        \end{bmatrix}. \]
+The determinant of this matrix is
+        \[ \det(A) = (2)(-1)-(-6\alpha)(3\alpha)=18\alpha^2-2. \]
+Therefore $A$ is singular iff $\alpha=\pm 1/3$. The equation
+\[ A \begin{bmatrix}
+    x_1 \\
+    x_2
+\end{bmatrix} = \begin{bmatrix}
+    3 \\
+    3/2
+\end{bmatrix} \]
+has exactly one solution if $A$ is nonsingular, so we just need to test two possible values of $\alpha$. If $\alpha=1/3$, the system of equations is equivalent to
+\begin{align*}
+    2 x_1 - 2 x_2 &= 3 \\
+    x_1 - x_2 = 3/2,
+\end{align*}
+which has infinitely many solutions because for any $x_1 \in \R$, $x_2=x_1-3/2$ is a solution. If $\alpha=-1/3$, the system of equations is
+\begin{align*}
+    2 x_1 + 2 x_2 &= 3 \\
+    -x_1 - x_2 = 3/2,
+\end{align*}
+which has no solutions, because doubling the second equation and adding it to the first gives $0=6$, which is never true.
+\par
+If $\alpha \not\in \left\{ -1/3,1/3 \right\}$, then
+\[ \begin{bmatrix}
+    x_1 \\
+    x_2
+\end{bmatrix} = A^{-1} \begin{bmatrix}
+    3 \\
+    3/2
+    \end{bmatrix} = \frac{1}{\det(A)} \begin{bmatrix}
+    -1 & 3\alpha \\
+    -6\alpha & 2
+\end{bmatrix} \begin{bmatrix}
+    3 \\
+    3/2
+\end{bmatrix} = \frac{1}{18\alpha^2-2} \begin{bmatrix}
+    4.5\alpha-3 \\
+    3-18\alpha
+\end{bmatrix}. \]
+
+\bigskip
+\begin{prob}
+\end{prob}
+
+
+\bigskip
+\begin{prob}
+\end{prob}
+By Sarrus' rule,
+\begin{align*}
+    \det(A) &= (1)(2)(-1.5)+(-1)(1)(0)+(\alpha)(2)(\alpha)-(\alpha)(2)(0)-(-1)(2)(-1.5)-(1)(1)(\alpha) \\
+            &= -3+2\alpha^2-3+\alpha \\
+            &= \alpha(2\alpha+1).
+\end{align*}
+So $A$ is singular iff $\alpha \in \left\{ 0, 1/2 \right\}$.
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}

@@ -206,7 +206,17 @@ for some $\xi \in [a,b]$. The formulas here for the weights are called the Newto
 The degree of precision of a quadrature formula is defined as the largest positive integer $k$ such that it is exactly correct whenever $f(x)$ is a degree $k$ polynomial function of $x$. The degree of precision for the trapezoidal rule is one.
 
 \section{Lecture 20}
-
+Suppose we want to integrate some function $f$, using only what we know about $f$ at equispaced nodes $x_0, x_1 = x_0+h, x_2+2h$. If we Taylor expand $f$ to order 3, then integrate from $x_0$ to $x_2$, we get
+\[ \int_{x_0}^{x_2} f(x) \d x = 2hf(x_1) + \frac{h^3}{3} f''(x_1) + \frac{1}{24} \int_{x_0}^{x_2} f^{(4)}(\xi(x))(x-x_1)^4 \d x. \]
+That last term is the error $E[f]$, and the rest of the expression is $Q[f]$. By the weighted IVT, the error can be rewritten as
+\[ E[f] = \frac{f^{(4)}(c)h^5}{60} \]
+for some $c \in [x_0, x_2]$. If we assume we only know the value of $f(x_0), f(x_1), f(x_2)$, and nothing else, we also have to substitute out $f''(x_1)$ using the centered distance formula:
+\[ f''(x_1) = \frac{f(x_0)-2f(x_1)+f(x_2)}{h^2} - \frac{h^2}{12} f^{(4)}(\eta) \]
+for some $\eta \in [x_0, x_2]$. Using IVT again, there is some $\gamma \in [c, \eta]$ such that
+\[ \int_{x_0}^{x_2} f(x)\d x = \frac{h}{3} \left( f(x_0) +4f(x_1) +f(x_2) \right) - \frac{h^5}{90} f^{(4)}(\gamma). \]
+Therefore $w_0=h/3, w_1=4h/3, w_2=h/3$. This method is called Simpson's rule, and it has order $O(h^5)$. It's a 3-point rule with degree of precision 3.
+\par
+A Newton-Cotes rule which uses the endpoints of each subinterval is called closed, and a Newton-Cotes rule which does not use either of the endpoints is called open. For example, the midpoint rule is open, because integrating $f$ from $x_0$ to $x_2$ would require $f(x_1)$, but not $f(x_0)$ or $f(x_2)$.
 
 \section{Lecture 21}
 
