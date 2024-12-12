@@ -10,6 +10,8 @@
 \begin{document}
 \maketitle
 
+These notes are meant to be a condensed version of the annotated lecture notes on Canvas for Elisa Negrini's math 151A (applied numerical methods) course. For more detailed notes that cover almost exactly the same content, also check out Kyle Chui's notes: \url{https://github.com/kylechui/latex/blob/main/05_Winter_2022/Math%20151A/notes.pdf}
+
 \tableofcontents
 
 \section{Lecture 1}
@@ -201,7 +203,7 @@ If we had computed the Lagrange polynomial for $f$ at the same interpolation nod
 \[ w_i := \int_a^b L_i(x) dx \]
 (where $L_i$ is the same as the $L_{i,n}$ defined in lecture 9), and
 \[ E[f]:= \int_a^b \left( \frac{f^{(n+1)}(\xi)}{(n+1)!} \prod_{i=0}^n (x-x_i) \right) dx\]
-for some $\xi \in [a,b]$. The formulas here for the weights are called the Newton-Cotes formulas. If there are $n+1$ interpolation nodes with equal spacing $(b-a)/n$, the trapezoidal rule gives weights $w_i = h/2, h, h, h \dots, h, h/2$ and has error $-h^3 f^{(2)}(\xi)/12$. If there are $2n+1$ interpolation nodes with equal spacing $(b-a)/(2n)$, Simpson's rule gives weights $w_i = h/3, 4h/3, 2h/3, 4h/3, 2h/3, \dots, 4h/3, h/3$ and has error $-h^5f^{(4)}(\xi)/90$.
+for some $\xi \in [a,b]$. The formulas here for the weights are called the Newton-Cotes formulas. If there are $n+1$ interpolation nodes with equal spacing $h=(b-a)/n$, the trapezoidal rule uses 2 nodes with weights $w_0 = h/2, w_1=h/2$, and has error $-h^3 f^{(2)}(\xi)/12$. Simpson's rule uses 3 nodes with weights $w_0 = h/3, w_1=4h/3, w_2=h/3$ and has error $-h^5f^{(4)}(\xi)/90$.
 \par
 The degree of precision of a quadrature formula is defined as the largest positive integer $k$ such that it is exactly correct whenever $f(x)$ is a degree $k$ polynomial function of $x$. The degree of precision for the trapezoidal rule is one.
 
@@ -219,17 +221,81 @@ Therefore $w_0=h/3, w_1=4h/3, w_2=h/3$. This method is called Simpson's rule, an
 A Newton-Cotes rule which uses the endpoints of each subinterval is called closed, and a Newton-Cotes rule which does not use either of the endpoints is called open. For example, the midpoint rule is open, because integrating $f$ from $x_0$ to $x_2$ would require $f(x_1)$, but not $f(x_0)$ or $f(x_2)$.
 
 \section{Lecture 21}
+The trapezoidal rule approximates an integrand with a degree 1 polynomial, and Simpson's rule approximates it with a degree 2 polynomial. Going to higher order would not really be helpful, because then we could get Runge's phenomenon. Instead, we use piecewise polynomials. If we have equally spaced nodes $a=x_0, x_1 = x_0+h,x_2=x_0+2h, \dots, x_n=x_0+nh=b$, then the composite trapezoidal rule uses weights $w_0= h/2, w_1=h, w_2=h, w_3 = h, \dots, w_{n-1}=h, w_n=h/2$. The error for the composite trapezoidal rule is $-h^2(b-a)f''(\mu)$ for some $\mu \in [a,b]$.
+\par
+For the composite Simpson's rule, we require $n$ to be even, and use $n/2$ ``subintervals. Therefore, the weights are
+\[ w_0 = \frac{h}{3}, w_1 = \frac{4h}{3}, w_2 = \frac{2h}{3}, w_3= \frac{4h}{3}, w_4= \frac{2h}{3}, \dots, w_{n-1}= \frac{4h}{3}, w_n = \frac{h}{3} \]
+and the error is $h^4 (b-a) f^{(4)}(\mu) / 180$ for some $\mu \in [a,b]$.
+\par
+In general, using a composite quadrature rule instead of a regular quadrature rule will appear to increase the error from $O(h^n)$ to $O(h^{n-1})$. However, for a composite rule, $h := (b-a)/n$, and for a regular quadrature rule, $h$ is $b-a$ divided by some natural number, so the composite rule is better (which is what we expect, it just looks misleading to write the error in terms of $h$ when the meaning of $h$ has changed).
 
 \section{Lecture 22}
+Gaussian quadrature is the idea that instead of optimizing the weights in order to numerically integrate with equally spaced nodes, we can optimize where to place the nodes and their weights. For this purpose, we will no longer zero-index the nodes and weights, so we will say there are $n$ nodes (labeled $x_1 < x_2 < \cdots < x_n$), and $n$ weights, for a total of $2n$ parameters to be optimized. Therefore it is possible to make the formula exact for any polynomial of degree $2n-1$. Let $GQ_n$ denote the unique quadrature formula which uses $n$ nodes and has degree of precision $2n-1$.
+\par
+The error for $GQ_n$ is
+\[ E[f] = \frac{(b-a)^{2n+1}(n!)^4}{(2n+1)((2n)!)^2} f^{(2n)}(\xi). \]
+Gaussian Quadrature is good at handling indefinite integrals.
+\par
+$GQ_1$ is equivalent to the midpoint rule, and $GQ_2$ has error comparable to Simpson's rule. This table gives the formulas for integrating over $[-1,1]$ -- if you want to integrate over $[a,b]$ instead, the transformation is pretty simple.
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Formula & $x_i$ & $w_i$ & Error bound \\
+        \hline
+        \hline
+        $GQ_1$ & $0$ & $2$ & $ \frac{2}{3} f''(\xi)$ \\
+        \hline
+        $GQ_2$ & $ - \frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}$ & $1, 1$ & $ \frac{8}{45} f^{(4)}(\xi)$ \\
+        \hline
+        $GQ_3$ & $- \sqrt{ \frac{3}{5}}, 0, \sqrt{ \frac{3}{5}}$ & $ \frac{5}{9}, \frac{8}{9}, \frac{5}{9}$ & $ \frac{8}{175} f^{(6)}(\xi)$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
 
 \section{Lecture 23}
+When you want to solve a matrix equation $Ax=b$, ``Gaussian elimination with backward substitution" is the method where you use elementary row operations to rewrite the equation as $Ux=y$, where $x$ is unchanged, and $U$ is upper-triangular. Then you can look at the system of equation described by that, and solve for elements of $x$ by going through those equations from bottom to top.
+\par
+Here is the algorithm we are expected to follow for Gaussian elimination:
+\begin{itemize}
+    \item Start with the augmented matrix $[A|b]$
+    \item For $i=1,2,\dots, n-1$, let $p$ be the smallest integer $i\leq p \leq n$ such that $a_{p,i} \neq 0$
+    \item If $p \neq i$, swap rows $i$ and $p$
+    \item For each $j$ in $i+1,i+2,\dots, n+1$, define $\lambda_{i,j}=-a_{j,i}/a_{i,i}$ and add $\lambda_{i,j}$ times row $i$ to row $j$.
+    \item Now you should be left with an upper triangular matrix, so you can use backwards substitution to solve for $x$
+\end{itemize}
 
 \section{Lecture 24}
+If $A$ is singular, $Ax=b$ has either zero or infinitely many solutions, and if it has infinitely many solutions, Gaussian elimination with backwards subsitution will find them one of them, although you will have to arbitrarily choose a free variable.
+\par
+That method runs in $O(n^3)$ time, and it can be very vulnerable to round-off error. The principle of partial pivoting tries to mitigate that, by making the ``pivots" (that is, the number $a_{i,i}$ in the algorithm description from the last lecture) as large as possible. Instead of letting $p$ be the smallest integer between $i$ and $n$ such that $a_{p,i}$ is nonzero, let $p$ be the integer between $i$ and $n$ which maximizes $a_{p,i}$.
 
 \section{Lecture 25}
+$LU$ decomposition is a trick that helps you solve $Ax=b$ for any $b$, for a given $A$. The goal is to find a lower-triangular matrix $L$ and an upper-triangular matrix $U$ such that $A=LU$. Once you have done that, you can let $y=Ux$, then use forward substitution to solve $Ly=b$ for $y$, then use backward substitution so solve $Ux=y$ for $x$. Forward and backward substitution take $O(n^2)$ time, so the hard part (that is, the $LU$ decomposition, which takes $O(n^3)$ time) only needs to be done once.
+\par
+To find the $LU$ decomposition, use Gaussian elimination to turn $A$ into $U$, but keep track of the elementary row operation needed to do that. The product of those row operations is $L^{-1}$. In other words, if you have an augmented matrix $[A|I]$, then row operations will turn it into $[U|L^{-1}]$.
+\par
+By convention, $L$ has ones on the diagonal.
 
 \section{Lecture 26}
-
-\section{Lecture 27}
+An $n \times n$ matrix $A$ is called ``diagonally dominant" iff
+\[ \abs{A_{ii}} \geq \sum_{j=1,j\neq i}^n \abs{A_{ij}} \]
+for every $i$, and ``strictly diagonally dominant" if that is still true when you replace $\geq$ with $>$.
+\par
+Any strictly diagonally dominant matrix $A$ is non-singular, because $Ax=b$ can always be solved without any row or column swaps.
+\par
+$A$ is called ``symmetric positive semi-definite" iff it is symmetric ($A=A^T$) and for amy $x \in \R^n, x \neq 0$, $x^T A x \geq 0$, and ``symmetric positive definite" if that is still true when you replace $\geq$ with $>$.
+\par
+The Cholesky factorization theorem says that $A$ is symmetric positive definite iff there exists a lower triangular matrix $L$ such that $A=LL^T$ (which is called the Cholesky factorization). Here is the algorithms to find $L$:
+\begin{itemize}
+    \item Let $L_{11}= \sqrt{A_{11}}$
+    \item For $j$ from $2$ to $n$, set $L_{j1}=A_{j1}/L_{11}$
+    \item For $i$ from $2$ to $n-1$, set
+        \[ L_{ii}= \sqrt{ A_{ii}-\sum_{k=1}^{i-1} L_{ik}^2 } \]
+        and for $j$ from $i+1$ to $n$, set
+        \[ L_{ji} = \left( A_{ji}-\sum_{k=1}^{i-1} L_{jk}L_{ik} \right) / L_{ii} \]
+    \item Set $L_nn = \sqrt{A_{nn} - \sum_{k=1}^{n-1} L_{nk}^2}$
+\end{itemize}
+If we know $A$ is tridiagonal, we can solve $Ax=b$ in $O(n)$ time.
 
 \end{document}
