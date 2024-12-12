@@ -144,7 +144,7 @@ If we let the body axes $x_1, x_2, x_3$ be the principal axes of a rigid body, t
 \end{align*}
 These equations are useful for describing precession.
 
-\section{Coupled oscillators (chapter 12)}
+\section{Coupled oscillators}
 If you have a bunch of atoms in a crystal, and you look at a one dimensional piece of it (along the right axis), it will look like a bunch of atoms in a line, each one bonded to its two neighbors. We can treat this as a bunch of masses joined by massless springs. This system is not chaotic, because the differential equation for the positions of each mass is linear. Instead of representing the state of the system by describing the position of each atom, we can change basis, and represent it in terms of normal modes, The dimension of the state space doesn't change -- if we had $n$ degrees of freedom before changing basis (we could say there are $n/d$ masses which are free to move in $d$ dimensions), there will be $n$ normal modes.
 \par
 If we have two masses of mass $M$ joined by a spring with spring constant $\kappa_{12}$, and each mass is joined to a wall by a spring of mass $\kappa$, then the equations of motion look something like:
@@ -175,5 +175,25 @@ where $A_{j,k}$ and $m_{j,k}$ are the constants such that
 This becomes
 \[ \sum_j \left( A_{j,k} - \omega^2 m_{j,k} \right)a_j =0 \]
 when we guess that $q_j(t)$ is an imaginary exponential function of $t$. Then the normal modes are the eigenvectors of the matrix $A_{j,k}/m_{j,k}$ (that's elementwise division) and the eigenvalues $\omega$ are the characteristic frequencies. Once again, we have a symmetric matrix, so the eigenvectors can be made orthonormal.
+
+\section{Waves on a 1D string}
+
+\section{Special relativity}
+\begin{note}
+    When studying special relativity, we use the Einstein dot notation for time derivatives ($\dot{x} = \frac{\partial}{\partial t} x$), and the apostrophe (e.g. ``x prime") to mean a change of coordinate system. For example, if we have an event whose coordinates are $(x,y,z,t)$ and we apply a Lorentz transform so the new coordinates are $(x',y'z',t')$, then those apostrophes do not mean to take the time derivative.
+\end{note}
+
+\section{Final review}
+The final exam will be almost entirely on chapter 13 (continuous systems \& waves) and chapter 14 (special theory of relativity). There may be some questions on the content from midterm 2 (moment of intertia tensor \& coupled oscillators), but we do not need to review content from midterm 1.
+\par
+It is definitely worthwhile to review the discussion section notes on Canvas. If you have spare time, also review all the other notes and sample problem solutions on Canvas.
+\par
+Definitely review:
+\begin{itemize}
+    \item Reflection and transmission coefficients
+    \item Boundary conditions for waves
+    \item ``Completing the square" in order to solve Gaussian integrals
+    \item Using Lorentz transformations to derive other formulas, like length contraction and time dilation
+\end{itemize}
 
 \end{document}

@@ -136,20 +136,33 @@
 \begin{prob}
 \end{prob}
 \begin{enumerate}[label=(\alph*)]
-    \item
-    \item
-    \item
+    \item \begin{align*}
+            K_0 =& \bra{e_0} U_{SE} \ket{e_0} \\
+            =& \sqrt{1-p} I_S \\
+            K_1 =& \bra{e_1} U_SE \ket{e_0} \\
+            =& \sqrt{p} X_S,
+    \end{align*}
+    and for any $i \not\in \{0,1\}$, $K_i=0$.
+\item \begin{align*}
+        \rho(t) =& \sum_{i=0}^1 K_i \rho(0) K_i^\dag \\
+        =& \sqrt{1-p} I_S \rho(0) I_S^\dag + \sqrt{p} X_S \rho(0) X_S^\dag \\
+        =& \sqrt{1-p} \ket{0}\bra{0} + \sqrt{p} (X_S \ket{0})(\bra{0} X_S^\dag) \\
+        =& \sqrt{1-p} \ket{0}\bra{0} + \sqrt{p} \ket{1}\bra{1}.
+\end{align*}
+    \item \begin{align*}
+            \rho(0) &= \ket{\psi}\bra{\psi} \\
+            \rho(t) &= \sum_{i=0}^1 (K_i \ket{\psi}) (K_i \ket{\psi})^\dag \\
+                    &= \left( \sqrt{1-p} I \ket{\psi} \right) \left( \sqrt{1-p} I \ket{\psi} \right)^\dag + \left( \sqrt{p} X \ket{\psi} \right) \left( \sqrt{p} X \ket{\psi} \right)^\dag \\
+                    &= (1-p) \ket{\psi}\bra{\psi} + p \ket{\psi}\bra{\psi} \\
+                    &= \ket{\psi}\bra{\psi}.
+    \end{align*}
 \end{enumerate}
 
 
 \bigskip
 \begin{prob}
 \end{prob}
-\begin{enumerate}[label=(\alph*)]
-    \item
-    \item
-    \item
-\end{enumerate}
+See Jupyter notebook.
 
 \includepdf[pages=-]{notebook.pdf}
 \includepdf[pages=-]{assignment.pdf}
