@@ -85,12 +85,12 @@ Suppose $X$ is not compact. Let $ \left\{ T_\alpha \right\}_{\alpha \in A}$ be a
     \item First, we want to find the derivative of $f$ using implicit differentiation. Let $y=f(x)$.
         \begin{align*}
             x &= \cot(y) \\
-            \frac{\partial x}{\partial y} &= \frac{1}{\sin^2(y)} = 1 + \cot^2(y) = 1+x^2 \\
-            f'(x) &= \left( \frac{\partial x}{\partial y} \right)^{-1} = \frac{1}{1+x^2} = \sum_{k=0}^\infty (-x^2)^k.
+            \frac{\partial x}{\partial y} &= -\frac{1}{\sin^2(y)} = -1 - \cot^2(y) = -1-x^2 \\
+            f'(x) &= \left( \frac{\partial x}{\partial y} \right)^{-1} = - \frac{1}{1+x^2} = -\sum_{k=0}^\infty (-x^2)^k.
         \end{align*}
         Therefore the radius of convergence for $f'$ is
         \[ R := \frac{1}{\limsup_{n \rightarrow \infty} \sqrt[n]{\abs{c_n}}}, \]
-        where $c_n = 0, 0, -1, 0, 1, 0, -1, 0, 1, \dots$, so the radius of convergence is 1.
+        where $c_n = 0, 0, 1, 0, -1, 0, 1, 0, -1, \dots$, so the radius of convergence is 1.
     \item The function
         \[ x \mapsto \int_{[0,x]} f'(y) \d y \]
         is real analytic with the same radius of convergence, so $f(x)$ is also real analytic at $x=0$.
@@ -138,7 +138,7 @@ Suppose $X$ is not compact. Let $ \left\{ T_\alpha \right\}_{\alpha \in A}$ be a
                              &\leq \varepsilon.
     \end{align*}
     Therefore $f_n*g$ converges uniformly (and therefore, also pointwise) to $f*g$.
-    \item \begin{align*}
+    \item There is definitely a nicer way to write out the solution to this problem: \begin{align*}
             (f_n*f)(x) &= \int_{[-1/2,1/2]} f_n(y)f(x-y) \d y \\
                        &= \left( \int_{[-1/2,-1/2n]\cup[1/2n,1/2]} f_n(y)f(x-y) \d y \right) + \left( \int_{[-1/2n,1/2n]} f_n(y)f(x-y) \d y \right).
     \end{align*}
