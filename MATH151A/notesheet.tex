@@ -221,7 +221,7 @@ Therefore $w_0=h/3, w_1=4h/3, w_2=h/3$. This method is called Simpson's rule, an
 A Newton-Cotes rule which uses the endpoints of each subinterval is called closed, and a Newton-Cotes rule which does not use either of the endpoints is called open. For example, the midpoint rule is open, because integrating $f$ from $x_0$ to $x_2$ would require $f(x_1)$, but not $f(x_0)$ or $f(x_2)$.
 
 \section{Lecture 21}
-The trapezoidal rule approximates an integrand with a degree 1 polynomial, and Simpson's rule approximates it with a degree 2 polynomial. Going to higher order would not really be helpful, because then we could get Runge's phenomenon. Instead, we use piecewise polynomials. If we have equally spaced nodes $a=x_0, x_1 = x_0+h,x_2=x_0+2h, \dots, x_n=x_0+nh=b$, then the composite trapezoidal rule uses weights $w_0= h/2, w_1=h, w_2=h, w_3 = h, \dots, w_{n-1}=h, w_n=h/2$. The error for the composite trapezoidal rule is $-h^2(b-a)f''(\mu)$ for some $\mu \in [a,b]$.
+The trapezoidal rule approximates an integrand with a degree 1 polynomial, and Simpson's rule approximates it with a degree 2 polynomial. Going to higher order would not really be helpful, because then we could get Runge's phenomenon. Instead, we use piecewise polynomials. If we have equally spaced nodes $a=x_0, x_1 = x_0+h,x_2=x_0+2h, \dots, x_n=x_0+nh=b$, then the composite trapezoidal rule uses weights $w_0= h/2, w_1=h, w_2=h, w_3 = h, \dots, w_{n-1}=h, w_n=h/2$. The error for the composite trapezoidal rule is $-h^2(b-a)f''(\mu)/12$ for some $\mu \in [a,b]$.
 \par
 For the composite Simpson's rule, we require $n$ to be even, and use $n/2$ ``subintervals. Therefore, the weights are
 \[ w_0 = \frac{h}{3}, w_1 = \frac{4h}{3}, w_2 = \frac{2h}{3}, w_3= \frac{4h}{3}, w_4= \frac{2h}{3}, \dots, w_{n-1}= \frac{4h}{3}, w_n = \frac{h}{3} \]
@@ -268,10 +268,10 @@ Here is the algorithm we are expected to follow for Gaussian elimination:
 \section{Lecture 24}
 If $A$ is singular, $Ax=b$ has either zero or infinitely many solutions, and if it has infinitely many solutions, Gaussian elimination with backwards subsitution will find them one of them, although you will have to arbitrarily choose a free variable.
 \par
-That method runs in $O(n^3)$ time, and it can be very vulnerable to round-off error. The principle of partial pivoting tries to mitigate that, by making the ``pivots" (that is, the number $a_{i,i}$ in the algorithm description from the last lecture) as large as possible. Instead of letting $p$ be the smallest integer between $i$ and $n$ such that $a_{p,i}$ is nonzero, let $p$ be the integer between $i$ and $n$ which maximizes $a_{p,i}$.
+That method runs in $O(n^3)$ time, and it can be very vulnerable to round-off error. The principle of partial pivoting tries to mitigate that, by making the ``pivots" (that is, the number $a_{i,i}$ in the algorithm description from the last lecture) as large as possible. Instead of letting $p$ be the smallest integer between $i$ and $n$ such that $a_{p,i}$ is nonzero, let $p$ be the integer between $i$ and $n$ which maximizes $\abs{a_{p,i}}$.
 
 \section{Lecture 25}
-$LU$ decomposition is a trick that helps you solve $Ax=b$ for any $b$, for a given $A$. The goal is to find a lower-triangular matrix $L$ and an upper-triangular matrix $U$ such that $A=LU$. Once you have done that, you can let $y=Ux$, then use forward substitution to solve $Ly=b$ for $y$, then use backward substitution so solve $Ux=y$ for $x$. Forward and backward substitution take $O(n^2)$ time, so the hard part (that is, the $LU$ decomposition, which takes $O(n^3)$ time) only needs to be done once.
+$LU$ decomposition is a trick that helps you solve $Ax=b$ for any $b$, for a given $A$. The goal is to find a lower-triangular matrix $L$ and an upper-triangular matrix $U$ such that $A=LU$. Once you have done that, you can let $y=Ux$, then use forward substitution to solve $Ly=b$ for $y$, then use backward substitution to solve $Ux=y$ for $x$. Forward and backward substitution take $O(n^2)$ time, so the hard part (that is, the $LU$ decomposition, which takes $O(n^3)$ time) only needs to be done once.
 \par
 To find the $LU$ decomposition, use Gaussian elimination to turn $A$ into $U$, but keep track of the elementary row operation needed to do that. The product of those row operations is $L^{-1}$. In other words, if you have an augmented matrix $[A|I]$, then row operations will turn it into $[U|L^{-1}]$.
 \par
@@ -284,7 +284,7 @@ for every $i$, and ``strictly diagonally dominant" if that is still true when yo
 \par
 Any strictly diagonally dominant matrix $A$ is non-singular, because $Ax=b$ can always be solved without any row or column swaps.
 \par
-$A$ is called ``symmetric positive semi-definite" iff it is symmetric ($A=A^T$) and for amy $x \in \R^n, x \neq 0$, $x^T A x \geq 0$, and ``symmetric positive definite" if that is still true when you replace $\geq$ with $>$.
+$A$ is called ``symmetric positive semi-definite" iff it is symmetric ($A=A^T$) and for any $x \in \R^n, x \neq 0$, $x^T A x \geq 0$, and ``symmetric positive definite" if that is still true when you replace $\geq$ with $>$.
 \par
 The Cholesky factorization theorem says that $A$ is symmetric positive definite iff there exists a lower triangular matrix $L$ such that $A=LL^T$ (which is called the Cholesky factorization). Here is the algorithms to find $L$:
 \begin{itemize}

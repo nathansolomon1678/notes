@@ -1,0 +1,100 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{MATH 131B practice final}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $E$ be a subset of a compact metric space $(X, d_X)$. Show that if $E$ is open in $X$, then $E^c := X \backslash E$ is compact.
+        \item Let $f: X \rightarrow Y$, where $(X,d_X)$ and $(Y, d_Y)$ are metric spaces. Suppose $f$ is bijective and continuous, and $(X,d_X)$ is compact. Show that $f$ is an open map (that is, for any $E \subset X$ open, $f(E) \subset Y$ is open).
+    \end{enumerate}
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item Since $E$ is open, its complement is closed. Any closed subset of a compact space is compact, so $E^c$ is compact.
+    \item Since $E$ is open, $E^c$ is compact. Because $f$ is continuous, that also means $f(E^c)$ is compact, and since $f$ is bijective, $f(E^c)=f(E)^c$. Every compact space is closed, so $f(E)^c$ is closed, which means $f(E)$ is open.
+\end{enumerate}
+
+
+\bigskip
+\begin{prob}
+    Consider $(\R^2, d_{\ell^2})$.
+    \begin{enumerate}[label=(\alph*)]
+        \item What is $B_{(\R^2, d_{\ell^2})}((0,0), 1)$ as a set?
+        \item Denote $B = B_{(\R^2, d_{\ell^2})}((0,0),1)$. Let $f: \R^2 \rightarrow \R, f(x) = \inf \left\{ d(x,y) | y \in B \right\}$. Show that $f$ is continuous (with respect to the $\ell^2$ metric on $\R^2$ and the standard metric on $\R$).
+    \end{enumerate}
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item The set of points distance less than one from the origin can be written as
+        \[ B := \left\{ (x,y) \in \R^2 : x^2+y^2 < 1 \right\}. \]
+    \item $f$ can be written as $g \circ h$, where $h((x,y)) = \norm{(x,y)} = \sqrt{x^2+y^2}$ and $g(x)=\max(0, x-1)$. Since $g$ and $h$ are both continuous, so is $f$.\par
+        This is not a rigorous proof, a better way to do this would be to use the triangle inequality to show that for any $\varepsilon > 0, (x,y) \in \R^2$, there exists some $\delta > 0$ such that $f(B((x,y),\delta))\subset B(f((x,y)), \varepsilon)$. But I won't write that whole thing out because it's annoying to do.
+\end{enumerate}
+
+
+\bigskip
+\begin{prob}
+    Let $(X, d_X)$ be a metric space. Suppose for any collection of closed subsets $ \left\{ S_\alpha \right\}_{\alpha \in A}$ (i.e., for every $\alpha \in A$, $S_\alpha$ is a closed subset of $X$) such that $\cap_{\alpha \in F} S_\alpha \neq \emptyset$ for any finite subset $F$ of $A$, we have that $\cap_{\alpha \in A} S_\alpha \neq \emptyset$. Show that $X$ is compact.
+\end{prob}
+Suppose $X$ is not compact. Let $ \left\{ T_\alpha \right\}_{\alpha \in A}$ be any open cover of $X$. There is no finite subcover of that, so for any finite subset $F \subset A$, $ \cup_{\alpha \in F} T_\alpha \neq X$, which means $\cap_{\alpha \in F} T_\alpha^c \neq \emptyset$. Then $\cap_{\alpha \in A} T_\alpha^c \neq 0$, which means $ \cup_{\alpha \in A} T_\alpha \neq X$, so $ \left\{ T_\alpha \right\}_{\alpha \in A}$ does not cover $X$. This is a contradiction, so $X$ must be compact.
+
+\bigskip
+\begin{prob}
+    Let $(f_n)_{n=1}^\infty$ be a sequence of Riemann-integrable functions from $[a,b]$ to $\R$, and $f: [a,b] \rightarrow \R$ another Riemann-integrable function. Suppose $(f_n)_{n=1}^\infty$ converges uniformly to $f$ on $[a,b]$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Show that $\lim_{n \rightarrow \infty} \int_{[a,b]} f_n = \int_{[a,b]} f$.
+        \item For every $n$, define $F_n : [a,b] \rightarrow \R, F_n(x) = \int_[-{[a,x]} f_n$ and $F: [a,b] \rightarrow \R, F(x) = \int_{[a,b]} f$. Show that $F_n$ converges uniformly to $F$ on $[a,b]$.
+    \end{enumerate}
+\end{prob}
+
+\bigskip
+\begin{prob}
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $f: E \rightarrow \R$ where $E \subset \R$ and $a \in \operatorname{int}(E)$ (interior of $E$). State the definition of $f$ being real analytic at $x=a$.
+        \item Now let $f(x) = \operatorname{arccot}(x)$ (inverse cotangent, where $\cot(x) := \cos(x)/\sin(x)$). Show that $f'(x)$ is real analytic at $x=0$ using the geometric series formula
+            \[ \sum_{k=0}^\infty cr^k = \frac{c}{1-r}. \]
+            Find the radius of convergence $R$ for the power series expansion for $f'(x)$ at $x=0$.
+        \item Show that $f(x)$ is real analytic at $x=0$ (you can use $f(x) = \pi/2 + \int_{[0,x]} f'$ for all $x \in \R$).
+    \end{enumerate}
+\end{prob}
+
+\bigskip
+\begin{prob}
+    \begin{enumerate}[label=(\alph*)]
+        \item State the Fourier theorem for $f \in C(\R/\Z,\C)$.
+        \item Let $f$ be a function in $C(\R/\Z,\C)$. For $n \in \Z_{\geq 0}$, let \begin{align*}
+                a_n &= 2 \int_0^1 f(x) \cos(2\pi nx) \d x, \\
+                b_n &= 2 \int_0^1 f(x) \sin(2\pi nx) \d x.
+        \end{align*}
+        Use the Fourier series of $f$ to show that the series
+        \[ \frac{a_0}{2 + \sum_{n=1}^\infty} \left[ a_n \cos(2\pi nx) + b_n \sin(2\pi nx) \right] \]
+        converges to $f$ in the $L^2$ metric.
+    \end{enumerate}
+\end{prob}
+
+\bigskip
+\begin{prob}
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $(f_n)_n \subset C(\R/\Z, \C)$, and $f,g \in C(\R/\Z,\C)$ and $f_n \rightarrow f$ uniformly on $\R$. Show that $f_n * g \rightarrow f*g$ pointwise and uniformly.
+        \item Let $(f_n)_n \subset C(\R/\Z, \C)$, and $f \in C(\R/\Z,\C)$. Suppose for each $n$, $f_n$ is a periodic $ \left( \frac{1}{n}, \frac{1}{2n} \right) $ approximation to the identity. Show that $f_n * f \rightarrow f$ uniformly.
+    \end{enumerate}
+\end{prob}
+There was a typo on this question???
+
+\bigskip
+\begin{prob}
+    Let $f \in C(\R/\Z,\C)$ and $g$ be a trigonometric polynomial. Show that $\hat{f * g}(n) = \hat{f}(n)\hat{g}(n)$ for all $n \in \Z$.
+\end{prob}
+
+\bigskip
+\begin{prob}
+    Let $f \in C(\R/\Z, \C)$. For each $N \in \N$, let $F_N = \sum_{n=-N}^N \hat{f}(n) e_n$, and $S_n$ be the collection of trigonometric polynomial $p = \sum_{n=-N}^N c_n e_n$ where $\sum_{n=-N}^N \abs{c_n}^2 \leq 1$ (recall $e_n(x) := e^{2\pi i n x}$ is the character with frequency $n$). For each $N$, show that $\abs{\mean{f,p}} \leq \norm{F_N}$ for all $p \in S_n$. Find an element $p \in S_N$ such that equality holds.
+\end{prob}
+
+\end{document}
