@@ -49,9 +49,26 @@ Suppose $X$ is not compact. Let $ \left\{ T_\alpha \right\}_{\alpha \in A}$ be a
     Let $(f_n)_{n=1}^\infty$ be a sequence of Riemann-integrable functions from $[a,b]$ to $\R$, and $f: [a,b] \rightarrow \R$ another Riemann-integrable function. Suppose $(f_n)_{n=1}^\infty$ converges uniformly to $f$ on $[a,b]$.
     \begin{enumerate}[label=(\alph*)]
         \item Show that $\lim_{n \rightarrow \infty} \int_{[a,b]} f_n = \int_{[a,b]} f$.
-        \item For every $n$, define $F_n : [a,b] \rightarrow \R, F_n(x) = \int_[-{[a,x]} f_n$ and $F: [a,b] \rightarrow \R, F(x) = \int_{[a,b]} f$. Show that $F_n$ converges uniformly to $F$ on $[a,b]$.
+        \item For every $n$, define $F_n : [a,b] \rightarrow \R, F_n(x) = \int_{[a,x]} f_n$ and $F: [a,b] \rightarrow \R, F(x) = \int_{[a,b]} f$. Show that $F_n$ converges uniformly to $F$ on $[a,b]$.
     \end{enumerate}
 \end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item For any $\varepsilon > 0$, there exists an $N$ such that $\abs{f(x)-f_n(x)}< \varepsilon/(b-a)$ for any $n\geq N, x \in [a,b]$. Then \begin{align*}
+            d \left( \int_{[a,b]} f_n, \int_{[a,b]} f \right) &\leq \abs{\int_{[a,b]} (f_n-f)(x) \d x} \\
+                                                              &= \int_{[a,b]} \abs{f_n(x)-f(x)} \d x \\
+                                                              &\leq \int_{[a,b]} \frac{\varepsilon}{b-a} \d x \\
+                                                              &= \varepsilon.
+    \end{align*}
+    Therefore $\int_{[a,b]} f_n$ converges to $\int_{[a,b]} f$ as $n$ goes to $\infty$.
+\item Define $N$ to be the same as in part (a). For any $x \in [a,b]$, \begin{align*}
+        d(F_N(x),F(x)) &\leq \abs{\int_{[a,x]} \left( f_n(x)-f(x) \right) \d x} \\
+                       &\leq \int_{[a,x]} \abs{f_n(x)-f(x)} \d x \\
+                       &\leq \int_{[a,x]} \frac{\varepsilon}{b-a} \d x \\
+                       &= \varepsilon \cdot \frac{x-a}{b-a} \\
+                       &\leq \varepsilon.
+\end{align*}
+\end{enumerate}
+
 
 \bigskip
 \begin{prob}
@@ -63,6 +80,22 @@ Suppose $X$ is not compact. Let $ \left\{ T_\alpha \right\}_{\alpha \in A}$ be a
         \item Show that $f(x)$ is real analytic at $x=0$ (you can use $f(x) = \pi/2 + \int_{[0,x]} f'$ for all $x \in \R$).
     \end{enumerate}
 \end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item $f$ is real analytic at $x=a$ iff there exists some $\delta > 0$ such that $f$ is equal to its power series expansion in $(a-\delta,a+\delta)$.
+    \item First, we want to find the derivative of $f$ using implicit differentiation. Let $y=f(x)$.
+        \begin{align*}
+            x &= \cot(y) \\
+            \frac{\partial x}{\partial y} &= \frac{1}{\sin^2(y)} = 1 + \cot^2(y) = 1+x^2 \\
+            f'(x) &= \left( \frac{\partial x}{\partial y} \right)^{-1} = \frac{1}{1+x^2} = \sum_{k=0}^\infty (-x^2)^k.
+        \end{align*}
+        Therefore the radius of convergence for $f'$ is
+        \[ R := \frac{1}{\limsup_{n \rightarrow \infty} \sqrt[n]{\abs{c_n}}}, \]
+        where $c_n = 0, 0, -1, 0, 1, 0, -1, 0, 1, \dots$, so the radius of convergence is 1.
+    \item The function
+        \[ x \mapsto \int_{[0,x]} f'(y) \d y \]
+        is real analytic with the same radius of convergence, so $f(x)$ is also real analytic at $x=0$.
+\end{enumerate}
+
 
 \bigskip
 \begin{prob}
@@ -73,10 +106,22 @@ Suppose $X$ is not compact. Let $ \left\{ T_\alpha \right\}_{\alpha \in A}$ be a
                 b_n &= 2 \int_0^1 f(x) \sin(2\pi nx) \d x.
         \end{align*}
         Use the Fourier series of $f$ to show that the series
-        \[ \frac{a_0}{2 + \sum_{n=1}^\infty} \left[ a_n \cos(2\pi nx) + b_n \sin(2\pi nx) \right] \]
+    \[ \frac{a_0}{2} + \sum_{n=1}^\infty \left[ a_n \cos(2\pi nx) + b_n \sin(2\pi nx) \right] \]
         converges to $f$ in the $L^2$ metric.
     \end{enumerate}
 \end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item For any $f \in C(\R/\Z,\C)$, $\sum_{n=-\infty}^\infty \hat{f}(n)e_n$ converges to $f$ in the $L^2$ metric.
+    \item \begin{align*}
+            f &= \sum_{n=-\infty}^\infty \hat{f}(n)e_n \\
+              &= \sum_{n=0}^\infty \left( \hat{f}(n)e_n+\hat{f}(-n)e_{-n} \right) \\
+              &= \sum_{n=0}^\infty \left( \left( \int_{[0,1]} f(x)e_{-n}(x) \d x \right) e_n+ \left( \int_{[0,1]} f(x) e_n(x) \d x \right) e_{-n} \right) \\
+              &= \sum_{n=0}^\infty \left( \frac{a_n-ib_n}{2}\cdot e_n + \frac{a_n+ib_n}{2}\cdot e_{-n} \right) \\
+              &= \sum_{n=0}^\infty \left( a_n \cdot \frac{e_n+e_{-n}}{2} + b_n \cdot \frac{e_n-e_{-n}}{2i} \right) \\
+            f(x) &= \sum_{n=0}^\infty \left( a_n \cos(2\pi nx) + b_n \sin(2\pi nx) \right) \\
+            &= \frac{a_0}{2} + \sum_{n=1}^\infty \left( a_n \cos(2\pi nx) + b_n \sin(2\pi nx) \right).
+    \end{align*}
+\end{enumerate}
 
 \bigskip
 \begin{prob}
@@ -85,16 +130,80 @@ Suppose $X$ is not compact. Let $ \left\{ T_\alpha \right\}_{\alpha \in A}$ be a
         \item Let $(f_n)_n \subset C(\R/\Z, \C)$, and $f \in C(\R/\Z,\C)$. Suppose for each $n$, $f_n$ is a periodic $ \left( \frac{1}{n}, \frac{1}{2n} \right) $ approximation to the identity. Show that $f_n * f \rightarrow f$ uniformly.
     \end{enumerate}
 \end{prob}
-There was a typo on this question???
+\begin{enumerate}[label=(\alph*)]
+    \item $g$ is bounded by $\norm{g}_\infty$, and for any $\varepsilon > 0$, there exists $N$ such that for any $x \in \R$ and any $n \geq N$, $\abs{f_n(x)-f(x)} < \frac{\varepsilon}{\norm{g}_\infty}$. Then \begin{align*}
+            \norm{f_n*g-f*g} &= \abs{\int_{[0,1]} f_n(y)-f(y))g(x-y) \d y} \\
+                             &\leq \int_{[0,1]} \abs{f_n(y)-f(y)} g(x-y) \d y \\
+                             &\leq \frac{\varepsilon}{\norm{g}_\infty} \int_{[0,1]} g(x-y) \d y \\
+                             &\leq \varepsilon.
+    \end{align*}
+    Therefore $f_n*g$ converges uniformly (and therefore, also pointwise) to $f*g$.
+    \item \begin{align*}
+            (f_n*f)(x) &= \int_{[-1/2,1/2]} f_n(y)f(x-y) \d y \\
+                       &= \left( \int_{[-1/2,-1/2n]\cup[1/2n,1/2]} f_n(y)f(x-y) \d y \right) + \left( \int_{[-1/2n,1/2n]} f_n(y)f(x-y) \d y \right).
+    \end{align*}
+    Now, use the facts that $0 \leq f_n(y) < \frac{1}{n}$ and that $f$ is bounded by $\norm{f}_\infty$ (the magnitude of $f$ in the supremum norm), so for any $\varepsilon > 0$, there exists $N_1$ such that $f_n(y) < \frac{\varepsilon}{3 \norm{f}_\infty}$ whenever $n \geq N_1$. Therefore that first term can be bounded as follows:
+    \begin{align*}
+        \int_{[-1/2,-1/2n]\cup[1/2n,1/2]} f_n(y)f(x-y) \d y &\leq \int_{[-1/2,1/2]} f_n(y) f(x-y) \d y \\
+                                                            &\leq \int_{[-1/2,1/2]} \left( \frac{\varepsilon}{3 \norm{f}_\infty} \right) \left( \norm{f}_\infty \right) \d y \\
+                                                            &\leq \frac{\varepsilon}{3}.
+    \end{align*}
+    \par
+    Also, $f$ is uniformly continuous, so there exists $N_2 \in \N$ such that $\abs{f(x-y)-f(x)} < \varepsilon / 3$ for any $y \in (- \frac{1}{2n}, \frac{1}{2n})$. Therefore \begin{align*}
+        \int_{[-1/2n,1/2n]} f_n(y)\abs{f(x-y)-f(x)} \d y &\leq \frac{\varepsilon}{3} \int_{[-1/2n,1/2n]} f_n(y) \d y \\
+                                                         &\leq \frac{\varepsilon}{3}.
+    \end{align*}
+    Lastly, there exists $N_3 \in \N$ such that whenever $n \geq N_3$,
+    \[ \abs{1 - \int_{[-1/2n,1/2n]} f_n(y) \d y} < \frac{\varepsilon}{3 \norm{f}_\infty}. \]
+    This implies \begin{align*}
+        \abs{f(x)-\int_{[-1/2n,1/2n]} f_n(y)f(x-y) \d y} &\leq \abs{f(x) \left( 1- \int_{[-1/2n,1/2n]} f_n(y) \d y \right) } + \abs{\int_{[-1/2n,1/2n]} f_n(y)(f(x-y)-f(x)) \d y} \\
+                                                         &\leq \norm{f}_\infty \cdot \frac{\varepsilon}{3 \norm{f}_\infty} + \int_{[-1/2n,1/2n]} f_n(y)\abs{f(x-y)-f(x)} \d y \\
+                                                         &\leq \frac{\varepsilon}{3} + \frac{\varepsilon}{3}.
+    \end{align*}
+    If we let
+    \[ N := \max (N_1, N_2, N_3), \]
+    then by the triangle inequality, \begin{align*}
+        \abs{f(x)-(f_n*f)(x)} &\leq \varepsilon,
+    \end{align*}
+    so $f_n*f$ converges to $f$, and since the choice of $N$ did not depend on $x$, that convergence is uniform.
+\end{enumerate}
+
 
 \bigskip
 \begin{prob}
-    Let $f \in C(\R/\Z,\C)$ and $g$ be a trigonometric polynomial. Show that $\hat{f * g}(n) = \hat{f}(n)\hat{g}(n)$ for all $n \in \Z$.
+    Let $f \in C(\R/\Z,\C)$ and $g$ be a trigonometric polynomial. Show that $\widehat{f * g}(n) = \widehat{f}(n)\widehat{g}(n)$ for all $n \in \Z$.
 \end{prob}
+\begin{align*}
+    \widehat{f*g}(n) &= \mean{f*g,e_n} \\
+                     &= \int_{[0,1]} (f*g)(x) e_n^*(x) \d x \\
+                     &= \int_{[0,1]} \left( \int_{[0,1]} f(y)g(x-y) \d y \right) e_n^*(x) \d x \\
+                     &= \int_{[0,1]} \left( \int_{[0,1]} f(y)\sum_{k=-\infty}^\infty \hat{g}(k) e_k(x-y) \d y \right) e_n^*(x) \d x \\
+                     &= \int_{[0,1]} \sum_{k=-\infty}^\infty \hat{g}(k)e_k(x) \left( \int_{[0,1]} f(y) e_k^*(y) \d y \right) e_n^*(x) \d x \\
+                     &= \int_{[0,1]} \sum_{k=-\infty}^\infty \hat{g}(k)e_k(x) \hat{f}(k) e_n^*(x) \d x \\
+                     &= \sum_{k=-\infty}^\infty \hat{g}(k)e_k(x) \hat{f}(k) \delta_{k,n} \\
+                     &=\hat{f}(n) \hat{g}(n).
+\end{align*}
 
 \bigskip
 \begin{prob}
-    Let $f \in C(\R/\Z, \C)$. For each $N \in \N$, let $F_N = \sum_{n=-N}^N \hat{f}(n) e_n$, and $S_n$ be the collection of trigonometric polynomial $p = \sum_{n=-N}^N c_n e_n$ where $\sum_{n=-N}^N \abs{c_n}^2 \leq 1$ (recall $e_n(x) := e^{2\pi i n x}$ is the character with frequency $n$). For each $N$, show that $\abs{\mean{f,p}} \leq \norm{F_N}$ for all $p \in S_n$. Find an element $p \in S_N$ such that equality holds.
+    
+    Let $f \in C(\R/\Z, \C)$. For each $N \in \N$, let $F_N = \sum_{n=-N}^N \hat{f}(n) e_n$, and $S_N$ be the collection of trigonometric polynomial $p = \sum_{n=-N}^N c_n e_n$ where $\sum_{n=-N}^N \abs{c_n}^2 \leq 1$ (recall $e_n(x) := e^{2\pi i n x}$ is the character with frequency $n$). For each $N$, show that $\abs{\mean{f,p}} \leq \norm{F_N}$ for all $p \in S_N$. Find an element $p \in S_N$ such that equality holds.
 \end{prob}
+\begin{align*}
+    \mean{f,p} &= \int_{[0,1]} f(x) p^*(x) \d x \\
+               &= \int_{[0,1]} \left( f(x) \sum_{n=-N}^N c_n^* e_n^*(x) \right) \d x \\
+               &= \sum_{n=-N}^N \mean{f, c_n e_n} \\
+               &= \sum_{n=-N}^N c_n^* \hat{f}(n) \\
+               &= \sum_{n=-N}^N \hat{f}(n)\mean{e_n,c_ne_n} \\
+               &= \mean{F_N,p}.
+\end{align*}
+Now that we know $\mean{f,p}=\mean{F_N,p}$, we can use the Cauchy-Shwarz inequality and the fact that $\norm{p} \leq 1$:
+\begin{align*}
+    \abs{\mean{f,p}} &= \abs{\mean{F_N,p}} \\
+                     &\leq \norm{F_N} \cdot \norm{p} \\
+                     &\leq \norm{F_N}.
+\end{align*}
+Now we want to find some $p$ such that $\abs{\mean{f,p}}=\norm{F_N}$. If $F_N=0$, then $p$ can be anything, otherwise, let
+\[ p= \frac{F_N}{\norm{F_N}}. \]
 
 \end{document}

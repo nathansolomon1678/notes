@@ -13,12 +13,12 @@
 \begin{prob}
     Exercises 1.5.6, 1.5.7, 1.5.8, 2.1.1, 2.1.2, 2.3.3, 2.3.4, and 2.4.4 from the textbook.
 \end{prob}
-\textbf{Exercise 1.5.6.}
+\textbf{Exercise 1.5.6: prove corollary 1.5.9.}
 \par
 For every $n \in \N$, let $V_n = K_1 - K_n$, so that $V_n$ is open in $K_1$. Suppose for the sake of contradiction that $\cap_{n=1}^\infty K_n = \emptyset$. That is equivalent to saying $\cup_{n=1}^\infty V_n = K_1$, so by theorem 1.5.8, there is a finite subset $\{ V_i \}_{i \in I}$ which covers $K_1$ -- that is, $\cup_{i\in I} V_i = K_1$. Applying De Morgan's law again, $\cap_{i \in I} K_i = \emptyset$. Since $I$ is finite, we can let $j = \max(I)$. $K_j$ is nonempty, and $K_j$ is a subset of $K_i$ for any $i \in I$. Therefore the intersection $\cap_{i \in I} K_i$ must contain $K_j$, which contradicts our earlier statement that that intersection is empty. Since we have reached a contradiction, $\cap_{n \in \N} K_n$ is nonempty.
 \bigskip
 \par
-\textbf{Exercise 1.5.7.}
+\textbf{Exercise 1.5.7: prove theorem 1.5.10.}
 \begin{enumerate}[label=(\alph*)]
     \item If $Z$ is closed, then let $\{U_i\}_{i \in I}$ be an open cover of $Z$. The complement of $Z$ is open, so $ \left\{ X-Z \right\} \cup \left\{ U_i \right\}_{i \in I}$ is an open cover of $Y$, which we know is compact. Therefore there exists some finite $I' \subset I$ such that $ \left\{ X-Z \right\} \cup \left\{ U_i \right\}_{i \in I'}$ is an open cover of $Y$, which means $\{U_i\}_{i \in I'}$ is a finite subset of $\{U_i\}_{i \in I}$ which still covers $Z$. That implies that if $Z$ is closed, it is also compact.
         \par
@@ -38,7 +38,7 @@ Also, for any $f \in X - E$, since all elements of $E$ are distance 2 apart, the
 However, $E$ is not compact. Since every element of $E$ is a distance of 2 apart, no sequence in $E$ can be Cauchy, therefore no sequence in $E$ can have a convergent subsequence (because the convergent subsequence would have to be Cauchy).
 \bigskip
 \par
-\textbf{Exercise 2.1.1.}
+\textbf{Exercise 2.1.1: prove theorem 2.1.4.}
 \par
 \fbox{$(a) \Rightarrow (c)$} For any $V \subset Y$ which contains $f(x_0)$, there exists some $\varepsilon > 0$ such that $B(f(x_0), \varepsilon) \subset V$. Since $f$ is continuous at $x_0$, there exists $\delta$ such that whenever $d(x, x_0) < \delta$, $d(f(x), f(x_0)) < \varepsilon$. Define $U := B(x_0, \delta)$. Then $f(U) \subset B(f(x_0), \varepsilon) \subset V$.
 \par
@@ -49,7 +49,7 @@ However, $E$ is not compact. Since every element of $E$ is a distance of 2 apart
 \fbox{$(c) \Rightarrow (a)$} For any $\varepsilon > 0$, let $V = B(f(x_0), \varepsilon)$. Then there exists some open set $U \subset X$ containing $x_0$ such that $f(U) \subset V$. Since $U$ is open, there exists $\delta > 0$ such that $B(x_0, \delta) \subset U$. Whenever $d(x, x_0) < \delta$, $d(f(x), f(x_0)) < \varepsilon$, so $f$ is continuous at $x_0$.
 \bigskip
 \par
-\textbf{Exercise 2.1.2.}
+\textbf{Exercise 2.1.2: prove theorem 2.1.5.}
 \par
 \fbox{$(a) \Rightarrow (b)$} This is proven in the previous problem.
 \par

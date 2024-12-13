@@ -294,7 +294,7 @@ The Cholesky factorization theorem says that $A$ is symmetric positive definite 
         \[ L_{ii}= \sqrt{ A_{ii}-\sum_{k=1}^{i-1} L_{ik}^2 } \]
         and for $j$ from $i+1$ to $n$, set
         \[ L_{ji} = \left( A_{ji}-\sum_{k=1}^{i-1} L_{jk}L_{ik} \right) / L_{ii} \]
-    \item Set $L_nn = \sqrt{A_{nn} - \sum_{k=1}^{n-1} L_{nk}^2}$
+    \item Set $L_{nn} = \sqrt{A_{nn} - \sum_{k=1}^{n-1} L_{nk}^2}$
 \end{itemize}
 If we know $A$ is tridiagonal, we can solve $Ax=b$ in $O(n)$ time.
 

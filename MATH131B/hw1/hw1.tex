@@ -15,7 +15,7 @@
 \end{prob}
 \textbf{Exercise 1.1.13. Prove Proposition 1.1.19.}
 \par
-If there exists $N \geq m$ such that $x^{(n)}=x$ for all $n \geq N$, then in the discrete metric, the the distance from $x^{(n)}$ to $x$ in the discrete metric is zero for all $n \geq N$, which means for any $\varepsilon > 0$ and any $n \geq N$, $d(x^{(n)}, x) \leq \varepsilon$, so the sequence converges to $x$.
+If there exists $N \geq m$ such that $x^{(n)}=x$ for all $n \geq N$, then the distance from $x^{(n)}$ to $x$ in the discrete metric is zero for all $n \geq N$, which means for any $\varepsilon > 0$ and any $n \geq N$, $d(x^{(n)}, x) \leq \varepsilon$, so the sequence converges to $x$.
 \par
 If the sequence converges to $x$ in the discrete metric, then let $\varepsilon$ be a positive number less than 1. By definition 1.1.14, there exists some $N \geq m$ such that for any $n \geq N$, $d(x^{(n)}, x) \leq \varepsilon < 1$. But in the discrete metric, $d(x^{(n)},x)$ can only be less than one if $x^{(n)}=x$, so for all $n \geq N$, $x^{(n)}=x$.
 \bigskip
@@ -29,9 +29,9 @@ If the sequence converges to $x$ in the discrete metric, then let $\varepsilon$ 
 If $x_0$ is a boundary point of $E$, and we assume the axiom of choice, then for any $n \in \N$, we can define $x_n$ to be some point in $B(x_0, \frac{1}{n}) \cap E$. We know that $B(x_0, \frac{1}{n}) \cap E$ is nonempty because $x_0$ is not an exterior point of $E$, and we know this sequence converges to $x_0$ because $d(x_n, x_0) < \frac{1}{n}$.
 \par
 \fbox{($c \Rightarrow a$)} Let $x_n$ be a sequence in $E$ which converges to $x_0$. For any $r > 0$, there is some $N$ such that for any $n \geq N$, $d(x_n, x_0) < r$. This means $B(x_0, r)$ contains $\left\{ x_N, x_{N+1}, \dots \right\}$, which are all points in $E$, so $B(x_0, r) \cap E$ is nonempty. Therefore $x_0$ is an adherent point of $E$.
+\bigskip
 \par
 \textbf{Exercise 1.2.3. Prove Proposition 1.2.15. (Hint: you can use earlier parts of the proposition to prove later ones.)}
-\par
 \begin{enumerate}[label=(\alph*)]
     \item If $E$ is open, then $\partial E \cap E = \emptyset$. Let $x$ be any point in $E$. Then $x \not\in \partial E$. Since $x$ is not in the exterior of $E$ or in the boundary of $E$, it must be in the interior of $E$. Therefore $E$ is a subset of the interior of $E$. But of course, if $x$ is in the interior of $E$, there is some $r>0$ such that $B(x, r) \subset E$, which means $x \in E$. Therefore the interior of $E$ is also a subset of $E$, so $E$ is equal to its own interior.
         \par
@@ -43,19 +43,25 @@ If $x_0$ is a boundary point of $E$, and we assume the axiom of choice, then for
         \[ d(x', x_0) \leq d(x', x) + d(x, x_0) \leq r' + d(x_0, x) = \frac{r+d(x_0,x)}{2} \leq \frac{r+r}{2} = r. \]
         By proposition 1.2.15 part (a), this means $B(x_0, r)$ is open.
         \par
-        Suppose $x$ is some point a distance greater than $r$ from $x_0$. Then by the triangle inequality, $B(x, (d(x, x_0)-r)/2)$ (DO I EVEN NEED TO DIVIDE BY TWO HERE???) does not intersect with the closed ball of radius $r$ centered at $x_0$. Therefore $x$ is an exterior point of that closed ball. Every point a distance less than or equal to $r$ away from $x_0$ must then be either an interior point or a boundary point of $ \left\{ x\in X | d(x, x_0) \leq r \right\}$. Since that set contains all of its own boundary points, it is closed.
+        Suppose $x$ is some point a distance greater than $r$ from $x_0$. Then by the triangle inequality, $B(x, d(x, x_0)-r)$ does not intersect with the closed ball of radius $r$ centered at $x_0$. Therefore $x$ is an exterior point of that closed ball. Every point a distance less than or equal to $r$ away from $x_0$ must then be either an interior point or a boundary point of $ \left\{ x\in X | d(x, x_0) \leq r \right\}$. Since that set contains all of its own boundary points, it is closed.
     \item Take ``any" infinite sequence of points in $ \left\{ x_0 \right\}$ (there is only one such sequence). Every element in that sequence is the same point, so the sequence converges to that point, which is $x_0$. By proposition 1.2.15 part (b), this means $ \left\{ x_0 \right\}$ is closed.
-    \item
+    \item If $E$ is open, then $E \cap \partial E = \emptyset$, which means $\partial E \subset (X \backslash E)$. By the definition of a boundary, the boundary of $E$ is the same as the boundary of $X \backslash E$, so $X \backslash E$ contains all its boundary points, so it is closed.
+        \par
+        If $X \backslash E$ is closed, then it contains all of its boundary points, so it contains $\partial E$, so $E$ contains none of its boundary points, so $E$ is open.
     \item Let $x$ be any element of $x$. Then there exists some $r_1, \dots, r_n > 0$ such that $B(x, r_1) \subset E_1, \dots, B(x, r_n) \subset E_n$. Let $r$ be the minimum of $ \left\{ r_1, \dots, r_n \right\}$. Then $r>0$ and $B(x, r) \subset E_1 \cap E_2 \cap \cdots \cap E_n$, so that union is open.
         \par
         If $F_1, \dots, F_n$ is a finite collection of closed sets in $X$, then the complement of their union is the intersection of their complements (by De Morgan's law). Their complements are all open, so the intersection of their complements is open, so the complement of their union is open, so their union is closed.
-    \item
-    \item
+    \item For any $x \in \cup_{\alpha \in I} E_\alpha$, there exists some $\alpha \in I$ such that $x \in E_\alpha$. Since $E_\alpha$ is open, there exists $\varepsilon > 0$ such that $B(x, \varepsilon) \subset E_\alpha$, and that same ball is also contained in the union $\cup_{\alpha \in I} E_\alpha$, so that union is open.
+        \par
+        If $F_\alpha$ is a collection of closed sets in $X$, then $\cup_{\alpha \in I} (X \backslash F_\alpha)$ is the union of a collection of open sets, so it is open. That means its complement, $\cap_{\alpha \in I} F_\alpha$, is closed.
+    \item For any $x \in V$, there exists a ball around $x$ which is contained in $V$, and therefore also contained in $E$, so $x$ is in the interior of $E$. That means $V$ is contained in the interior of $E$.
+        \par
+        If $E$ is a subset of a closed set $K$, and $x \in E$ is an adherent point, then $x$ is not in the exterior of $E$, which means its not in the exterior of $K$, so it's in $K$. Therefore the closure of $E$ is a subset of $K$.
 \end{enumerate}
 
 \textbf{Exercise 1.4.7. Prove Proposition 1.4.12.}
 \begin{enumerate}[label=(\alph*)]
-    \item Suppose $Y$ is complete, and let $y$ be any boundary point of $Y$. For any $n$, let $y_n$ be any point in $B(y, \frac{1}{n}) \cap Y$. That intersection is nonempty by the definition of a boundary point, but I THINK CHOOSING ONE POINT EACH FROM INFINITELY MANY BALLS REQUIRES THE AXIOM OF CHOICE, IS IT POSSIBLE TO DO THIS PROBLEM WITHOUT THAT ASSUMPTION??? Then $y_n$ is a Cauchy sequence which clearly converges to $y$, and since $Y$ is complete, that means $y \in Y$. Therefore $Y$ contains all its boundary points, so $Y$ is closed.
+    \item Suppose $Y$ is complete, and let $y$ be any boundary point of $Y$. For any $n$, let $y_n$ be any point in $B(y, \frac{1}{n}) \cap Y$. That intersection is nonempty by the definition of a boundary point, and I am assuming the axiom of choice in order to choose a point from each. Then $y_n$ is a Cauchy sequence which clearly converges to $y$, and since $Y$ is complete, that means $y \in Y$. Therefore $Y$ contains all its boundary points, so $Y$ is closed.
     \item Let $y_n$ be a Cauchy sequence in $Y$. Since $X$ is complete, $y_n$ must converge to some $x \in X$. Suppose $x \not\in Y$. Since $Y$ is closed, that means $x$ is not an interior or boundary point of $Y$, so it's an exterior point. The definition of an exterior point is that there exists some $r$ such that $B(x, r) \cap Y = \emptyset$, but since $y_n$ converges to $x$, there must be infinitly many $n$ such that $d(y_n, x) < r$ (for any positive $r$). This is a contradiction, so $x$ (the point that $y_n$ converges to) must be in $Y$, which means $Y$ is complete.
 \end{enumerate}
 
