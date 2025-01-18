@@ -18,9 +18,19 @@
         When the pressure is 1 Torr, that works out to
         \[ \frac{N}{V} = \frac{1 \si{.Torr}}{ 4.142 \times 10^{-21} \si{.J}} \cdot \frac{133.32 \si{.Pa}}{\si{Torr}} = 3.219 \times 10^{22} \si{.m^{-3}}. \]
         So at 1 Torr, there are $3.219 \times 10^{22}$ atoms per meter cubed. At 100 mTorr, there are $3.219 \times 10^{21}$ atoms per meter cubed. At 10 mTorr, there are $3.219 \times 10^{20}$ atoms per meter cubed.
-    \item
-    \item
-    \item
+    \item The mean free path is $\lambda=1/(N \sigma)$. At 1 Torr, that's
+        \[ \lambda = \frac{1}{\left( 3.219 \times 10^{22}\si{.m^{-3}} \right) \left( 10^{-15} \si{.cm^{-2}} \right) } \cdot \frac{10^6 \si{.cm^3}}{\si{m^3}} = \frac{1 \si{.cm}}{32.19} = 0.03106 \si{.cm}. \]
+        Using that same formula, the mean free path will be $0.3106\si{.cm}$ at $100 \si{.mTorr}$ and $3.106 \si{.cm}$ at $10 \si{.mTorr}$.
+    \item Assuming the argon is an ideal gas, mean speed per atom is
+        \[ v = \sqrt{ \frac{8 k T}{\pi m_{Ar}}} = \sqrt{ \frac{8PV}{\pi N m_{Ar}}}. \]
+        We calculated in part (a) that $PV/N = 4.142 \times 10^{-21}\si{.J}$, and the mass of an argon atom is $6.63 \times 10^{-26} \si{.kg}$, so no matter what the pressure is,
+        \[ v = \sqrt{ \frac{8 \cdot (4.142 \times 10^{-21} \si{.m^2/s^2})}{\pi\cdot(6.63\times10^{-26})}} = 399 \si{.m/s}. \]
+        The collision frequency is the mean speed divided by the mean free path, which works out to
+        \[ \frac{399\si{.m/s}}{0.0311\si{.cm}} = 1.28\times 10^6 \si{.s^{-1}} \]
+        at $1 \si{.Torr}$. Therefore the collision frequency is $1.28\times 10^5$ collisions per second at $100\si{.mTorr}$ and $1.28\times 10^4$ collisions per second at $10\si{.mTorr}$.
+    \item My answers to parts (a) and (b) would not change, because for those, I did not use the fact that the gas was argon. But my answer for part (c) would change because collision frequency is proportional to mean velocity, which is inversely proportional to the square root of the atomic mass.
+        \par
+        Of course, that's assuming the cross section doesn't change. In reality though, if pressure and temperature (which were both given) are held constant, helium should have a lower collisional cross section than argon. That means the mean free path would be larger, but the mean speed would also be larger, so I'm not sure whether the collision frequency would increase or decrease.
 \end{enumerate}
 
 
@@ -28,8 +38,11 @@
 \begin{prob}
 \end{prob}
 \begin{enumerate}[label=(\alph*)]
-    \item
-    \item
+    \item Since the collisional cross section is the same, and the number density of neutral argon atoms is the same as it was at $100\si{.mTorr}$ in question 1(b), the mean free path of the electron is also $0.3106\si{.cm}$.
+    \item The speed of the electron is
+        \[ v_e = \sqrt{ \frac{2 \cdot (100\si{.eV})}{m_e}} = 5.93 \times 10^6 \si{.m/s}, \]
+        so the collision frequency is
+        \[ \frac{v_e}{\lambda} = \frac{5.93 \times 10^6 \si{.m/s}}{0.003106\si{m}} = 1.91\times10^9\si{.s^{-1}}. \]
 \end{enumerate}
 
 
@@ -37,17 +50,33 @@
 \begin{prob}
 \end{prob}
 \begin{enumerate}[label=(\alph*)]
-    \item
-    \item
-    \item
-    \item
-    \item
+    \item The given formula makes no sense, but the answer is
+        \[ \frac{1\si{.eV}}{k_B} = \frac{1\si{.eV}}{1.381 \si{.J/K}} \cdot \frac{1\si{.J}}{6.242\times 10^{18}\si{.eV}} = 11600\si{.K}, \]
+        where $k_B$ is the constant used to convert between temperatures and energies.
+    \item Room temperature is $300\si{.K}$, so the answer is
+        \[ (300\si{.K})(k_B) = \frac{300\si{.K}}{11600\si{.K/eV}}=0.0259\si{.eV}. \]
+    \item $1\si{.keV} = 1000 \cdot (11600\si{.K}) = 1.16 \times 10^7\si{.K}$.
+    \item $50\si{.keV} = 50000 \cdot (11600\si{.K}) = 5.80 \times 10^8\si{.K}$.
+    \item ``Thermal velocity" can have a few different meanings, so I'll guess it means the RMS speed. The electrons form an ideal non-relativistic gas, so the kinetic energy per electron is $ \frac{1}{2} m_e v_{RMS}^2 = \frac{3}{2} k_B T$ (where $T$ is temperature), which means the RMS kinetic energy is
+        \[ v_{RMS} = \sqrt{ \frac{3 k_B T}{m_e}} =  \sqrt{ \frac{3\si{.eV}}{m_e}} = \sqrt{ \frac{3\si{.eV}}{0.511\si{.MeV.c^{-2}}}} = 0.00587 c = 1.76 \times 10^6 \si{.m/s}. \]
 \end{enumerate}
-
 
 \bigskip
 \begin{prob}
 \end{prob}
+\begin{center}
+\begin{tabular}{ |c|c| } 
+ \hline
+ Atom type & First ionization potential \\ 
+ \hline
+ \hline
+ \ch{He} & $24.6\si{.eV}$ \\ 
+ \ch{Ne} & $21.6\si{.eV}$ \\ 
+ \ch{Ar} & $15.8\si{.eV}$ \\ 
+ \ch{N} & $14.6\si{.eV}$ \\ 
+ \hline
+\end{tabular}
+\end{center}
 
 \includepdf[pages=-]{assignment.pdf}
 

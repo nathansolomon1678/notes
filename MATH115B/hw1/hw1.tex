@@ -12,13 +12,30 @@
 
 \begin{prob}
 \end{prob}
+$T^{-1}$ is linear iff $T^{-1}(w_1+a w_2) = T^{-1}(w_1)+ aT^{-1}(w_2)$ for any $a \in k$ and $w_1, w_2 \in W$. By the definition of an inverse and by the linearity of $T$,
+\begin{align*}
+    T(T^{-1}(w_1+aw_2)) &= w_1+aw_2 \\
+                        &= T(T^{-1}(w_1))+a T(T^{-1}(w_2)) \\
+                        &= T(T^{-1}(w_1)+aT^{-1}(w_2)).
+\end{align*}
+Any invertible function has to be injective, so we can cancel $T$ from both sides, which leaves
+\[ T^{-1}(w_1+aw_2)=T^{-1}(w_1)+aT^{-1}(w_2). \]
+Therefore $T^{-1}$ is linear.
 
 \bigskip
 \begin{prob}
 \end{prob}
-That is not possible. If $v_1+v_2$, $v_2+v_3$, and $v_3+v_1$ are linearly dependent, then there exist constants $a_1, a_2, a_3$ which are not all zero, for which
+That is not possible. Suppose $v_1$, $v_2$, and $v_3$ are linearly independent, but $v_1+v_2$, $v_2+v_3$, and $v_3+v_1$ are linearly dependent. Then there exist constants $a_1, a_2, a_3$ which are not all zero, for which
 \[ a_1(v_1+v_2)+a_2(v_2+v_3)+a_3(v_3+v_1)=0. \]
-
+This can be rewritten as
+\[ (a_3+a_1)v_1+(a_1+a_2)v_2+(a_2+a_3)v_3=0, \]
+and since the vectors $v_1$, $v_2$, and $v_3$ are independent, that means $a_3+a_1$, $a_1+a_2$, and $a_2+a_3$ are all zero. However,
+\begin{align*}
+    a_1 &= (a_3+a_1)+(a_1+a_2)-(a_2+a_3)=0+0-0=0 \\
+    a_2 &= (a_1+a_2)+(a_2+a_3)-(a_3+a_1)=0+0-0=0 \\
+    a_3 &= (a_2+a_3)+(a_3+a_1)-(a_1+a_2)=0+0-0=0.
+\end{align*}
+This contradicts our earlier statement, that $a_1$, $a_2$, and $a_3$ are not all zero. Therefore it is not possible.
 
 \bigskip
 \begin{prob}
@@ -33,7 +50,7 @@ $V$ is isomorphic to $k^d$, for some nonnegative integer $d$, so $49=\abs{V}=\ab
     \item $W_1+W_2$ is clearly a subset of $V$, since $V$ is closed under addition and scalar multiplication, so I only need to show two things: that $W_1+W_2$ is closed under addition, and that it's closed under scalar multiplication. For any $u_1+u_2, v_1+v_2 \in W_1+W_2$, we have $(u_1+u_2)+(v_1+v_2) = (u_1+v_1)+(u_2+v_2)$, which is in $W_1+W_2$ because $u_1+v_1$ is in $W_1$ and $u_2+v_2$ is in $W_2$.
         \par
         $W_1+W_2$ is closed under scalar multiplication, because for any scalar $a$ and vector $w_1+w_2 \in W_1+W_2$, $a(w_1+w_2)=aw_1+aw_2$ is in $W_1+W_2$ because $aw_1 \in W_1$ and $aw_2 \in W_2$.
-    \item
+    \item $W$ is a subspace of $V$, so $W$ is also a vector space over $k$. That means you can just take my answer to part (b) and replace $V$ with $W$.
 \end{enumerate}
 
 
@@ -41,11 +58,43 @@ $V$ is isomorphic to $k^d$, for some nonnegative integer $d$, so $49=\abs{V}=\ab
 \begin{prob}
 \end{prob}
 \begin{enumerate}[label=(\alph*)]
-    \item
+    \item This is a functional, because if $k:=\R$ (or $V=k[x]$), then $f: V \rightarrow k$ and we also have
+        \begin{align*}
+            f(p+cq) &= 4(p+cq)'(0)+(p+cq)''(1) \\
+                    &= (4p'(0)+p''(1))+c(4q'(0)+q''(1)) \\
+                    &= f(p)+cf(q).
+        \end{align*}
+        for any $p, q \in \R[x], c \in \R$.
     \item Not a functional, because the output of $f$ is not an element of $k$.
-    \item
-    \item
-    \item
+    \item This is a functional, because $\tr$ is a function from $V$ to $k$, and for any $A,B \in k^{2 \times 2}$ and any $c \in k$,
+        \begin{align*}
+            f(A+cB) &= \tr(A+cB) \\
+                    &= (A+cB)_{1,1}+(A+cB)_{2,2} \\
+                    &= (A_{1,1}+A_{2,2})+c(B_{1,1}+B_{2,2}) \\
+                    &= \tr(A)+c\tr(B) \\
+                    &= f(A)+cf(B).
+        \end{align*}
+    \item This is a functional. Just like in part (a), I will assume $k := \R$(or $V=k[x]$), so $f: V \rightarrow k$. $f$ is linear because for any $p,q \in V, c \in k$,
+        \begin{align*}
+            f(p+cq) &= \int_0^1 (p+cq)(x) \d x \\
+                    &= \left( \int_0^1 p(x) \d x \right) + c \left( \int_0^1 q(x) \d x \right) \\
+                    &= f(p)+cf(q).
+        \end{align*}
+    \item Not a functional, because
+        \[ f \left( \begin{bmatrix}
+            1 \\
+            0 \\
+            0
+        \end{bmatrix} + \begin{bmatrix}
+            1 \\
+            0 \\
+            0
+    \end{bmatrix} \right) \neq f \left( \begin{bmatrix}
+        2 \\
+        0 \\
+        0
+    \end{bmatrix} \right). \]
+        
 \end{enumerate}
 
 
@@ -53,8 +102,24 @@ $V$ is isomorphic to $k^d$, for some nonnegative integer $d$, so $49=\abs{V}=\ab
 \begin{prob}
 \end{prob}
 \begin{enumerate}[label=(\alph*)]
-    \item
-    \item
+    \item Since we already know $\R[x]_{\leq n}$ is a vector space, we just need to show that $W$ is a subspace. If $f, g \in W$ and $c \in \R$, then for any $i \in \left\{ 1,2, \dots, m \right\}$,
+        \[ (f+cg)(x_i)=f(x_i)+cg(x_i)=0+0c=0. \]
+        By the definition of $W$ and the fact that $\R[x]_{\leq n}$ is a vector space, that means $f+cg \in W$. Since $W$ is a subspace of a vector space over $\R$, $W$ is also a vector space over $\R$.
+    \item Let $A: \R[x]_{\leq n} \rightarrow \R^m$ be the function defined by
+        \[ A(f) = \begin{bmatrix}
+            f(x_1) \\
+            f(x_2) \\
+            \vdots \\
+            f(x_m)
+        \end{bmatrix}. \]
+        This is clearly a linear map. Since $W := \ker(A)$, the rank-nullity theorem says
+        \[ \dim(W) = \dim(V) - \dim(\im(A)) = (n+1) - \dim(\im(A)). \]
+        The last step for this problem is to show when $A$ is surjective. For any basis element $e_i$ of $\R^m$, let
+        \[ f_i(x) = \prod_{j \in \left\{ 1,2,\dots,m \right\} \backslash \left\{ i \right\}} (x-x_j). \]
+        $f_i$ is a degree $m-1$ polynomial, so $f_i \in W$ iff $m-1 \leq n$. If $m > n+1$, then by the fundamental theorem of algebra, $W=\{0\}$, which means $\im(A)$ is also the zero vector space. If $m \leq n+1$, then $f_i \in W$, and $A(f_i)$ is a nonzero scalar multiple of the basis vector $e_i$. In this case, all basis vectors of $\R^m$ are in $\im(A)$, so $\im(A) \cong \R^m$.
+        \par
+        The image of $A$ is zero-dimensional if $m > n+1$ and $m$-dimensional if $m \leq n+1$, so
+        \[ \dim(W) = n+1-\dim(\im(A)) = \max(0, n+1-m). \]
 \end{enumerate}
 
 
