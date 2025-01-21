@@ -1,0 +1,79 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Math 182 Homework \#1}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item Suppose $a>0$ and $f(n) \in O(g(n))$. Then there exist positive numbers $C, N$ such that $f(n) \leq C g(n)$ whenever $n \geq N$. Since $a$ is positive, that means $f(n)^a \leq C^a g(n)^a$ whenever $n \geq N$, and $C^a$ is positive, so $f(n)^a \in O(g(n)^a)$.
+    \item \begin{align*}
+            \log(n!) &= \log \left( \prod_{k=1}^n k \right) \\
+                     &= \sum_{k=1}^n \log(k) \\
+                     &\leq \sum_{k=1}^n \log(n) \\
+                     &= n \log(n),
+    \end{align*}
+    so $\log(n!)$ is also in $O(n \log(n))$. I also need to show that $\log(n!) \in \Omega(n \log(n))$: \begin{align*}
+            \log(n!) &= \log \left( \prod_{k=1}^n k \right) \\
+                     &= \sum_{k=1}^n \log(k) \\
+                     &\geq \sum_{k=\ceil{n/2}}^n \log(k) \\
+                     &\geq \sum_{k=\ceil{n/2}}^n \log(\floor{n/2}) \\
+                     &= \floor{n/2} \log(\floor{n/2}) \\
+                     &\in \Omega \left( \frac{n}{2} \log \left( \frac{n}{2} \right) \right) \\
+                     &= \Omega \left( n (\log(n)-\log(2)) \right) \\
+                     &= \Omega \left( n \log(n) \right).
+    \end{align*}
+    Since $\log(n!)$ is in both $O(n \log(n))$ and $\Omega(n \log(n))$, it is in $\Theta(n \log(n))$.
+\item Suppose there is a degree $k$ polynomial $p(n)$ such that $n^{\log(n)} \in O(p(n))$. Then $n^{\log(n)} \in O(n^k)$, which means there is are positive constants $C, N$ such that $n^{\log(n)} \leq C n^k$ whenever $n \geq N$. This implies $\log(n) \leq k + \log_n(C)$ for all $n \geq N$, and that inequality can be rewritten as $\log(n)^2 \leq k \log(n) + \log(C)$. However, if $\log(n)$ is increased enough, that inequality will no longer be true, which contradicts my earlier statement that it is true for any $n \geq N$. Therefore $n \log(n) \not\in O(p(n))$.
+\end{enumerate}
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item If $n \leq 1$ then Foo(n) takes $f(1)=1$ step, otherwise it takes $f(n)=2f(n-1)+1$ steps. By induction, $f$ increases faster than $2^n$, which means for large $n$, the ``+1" in that formula becomes relatively insignificant. Therefore $f(n) \in \Theta(2^n)$.
+    \item Assigning $1 \rightarrow x$ is one step, then the for loop repeats $n$ times. After the for loop, $x = (n^2+n)/2 \in \Theta(n^2)$, so the while loop repeats $\ceil{(n^2+n)/4}$ times. That means the total number of steps is $\Theta(n^2)$.
+    \item The function $n \mapsto \floor{n/2}$ is equivalent to the right bitshift-by-one integer operator. The number of times you need to apply this to an integer in order to get to zero is equal to the number of digits in the binary representation of the integer, ignoring leading zeros, which is $\floor{\log_2(n)} \in \Theta(\log(n))$.
+\end{enumerate}
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item The only step that changes elements of the array is the swap command, so the integers in $A$ are only being reorganized, not changed. By induction, after running the inner ``for" loop, for each $k \leq i$, the $k$th element is less than or equal to all elements after it. Therefore, after the outer for loop is done, $A$ will be sorted in increasing order.
+    \item By induction, after each step of the inner ``for" loop, $A[j+1]$ as a maximum element out of $A[1], A[2], \dots, A[j+1]$. Therefore, after each step of the outer ``for" loop, $A[n-i+1]$ will be a maximum element out of $A[1], A[2], \dots, A[n-i+1]$. Running the inner ``for" loop will not change elements $A[n-i+2], A[n-i+3], \dots, A[n]$, each of those elements will still be larger or equal to each previous element. Therefore, when the outer ``for" loop has finished, every element of the array will be larger or equal to each previous element.
+\end{enumerate}
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+Note that I wrote my solution in Python, which is zero-indexed.
+\begin{verbatim}
+def bleh(A):
+    n = len(A)
+    r = 0
+    i = 0
+    j = 0
+    while i < n and j < n:
+        if A[i][j] == 0:
+            i += 1
+        else:
+            r = i
+            j += 1
+    return r
+\end{verbatim}
+Each step of the ``while" loop runs in constant time and increases either $i$ or $j$ by one, which means the entire algorithms runs in $\Theta(n)$ time.
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}
