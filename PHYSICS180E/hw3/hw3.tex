@@ -1,0 +1,44 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 180E Homework \#1}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+\fig{Figure_1.png}
+\begin{enumerate}[label=(\alph*)]
+    \item Air has the highest minimum breakdown voltage, and argon has the lowest minimum breakdown voltage. This makes sense because the first ionization energy for argon is fairly small, and the first ionization energy for diatomic nitrogen is fairly large. From Homework 2, we know that the minimum breakdown voltage is pretty much proportional to the first ionization energy.
+    \item Unfortunately, I have not gotten the curve fit to work yet. I spent hours fiddling with the ``initial guess" parameter for the curve fit function, but still have not gotten the curve fit to converge for any of the three gasses. My initial guesses (which were used to draw the curves above) have
+
+\begin{center}
+\begin{tabular}{ |c||c|c|c| } 
+    \hline
+    Gas & $A$ & $B$ & $\gamma$ \\
+    \hline
+    \hline
+    Argon & 0.00002 & 0.7 & 500 \\ 
+    Helium & 0.000015 & 1 & 500 \\ 
+    Air & 0.000005 & 0.14 & 270 \\ 
+    \hline
+\end{tabular}
+\end{center}
+
+\end{enumerate}
+
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+Juri submitted our experimental plan on my behalf.
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}

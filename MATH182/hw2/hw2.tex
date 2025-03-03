@@ -1,0 +1,80 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Math 182 Homework \#1}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+We showed in math 180 that a tree has Euler characteristic $\chi=1$, and that the Euler characteristic for any graph is $\chi=\abs{V}-\abs{E}$, where $\abs{V}$ is the number of vertices and $\abs{E}$ is the number of edges. If we let $N_i$ denote the number of vertices with $i$ children, then for a binary tree,
+\begin{align*}
+    \abs{V} &= \sum_i N_i = N_0 + N_1 + N_2 \\
+    \abs{E} &= \sum_i (i N_i) = N_1 + 2 N_2 \\
+    \Rightarrow \chi = 1 = \abs{V} - \abs{E} &= N_0 - N_2 \\
+    N_2 &= N_0 - 1.
+\end{align*}
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+Every connected graph $G$ contains a spanning tree (a tree which connects all its vertices) $T$ as a subgraph. Let $v$ be any leaf of that tree, and let $G-v$ denote the graph $G$ with $v$ removed, and with all edges adjacent to $v$ removed. Then $T-v$ is a tree which connects all vertices of $G$ except $v$, and $T-v$ is a subgraph of $G-v$, so $G-v$ is connected.
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+Let $G'$ be a copy of $G$ but with the edge $(x,y)$ removed. Then use DFS to see if a path exists between $x$ and $y$. We already showed in class that DFS on $G$ runs in $O(\abs{V}+\abs{E})$ time. $G'$ has the same number of vertices and one less edge, so DFS on $G'$ will also run in $O(\abs{V}+\abs{E})$ time.
+\par
+The pseudocode for DFS is goven in the class note:
+\begin{verbatim}
+DFS(u):
+    Mark u as "explored" and add u to R
+    For each edge (u, v) incident to u:
+        If v is not marked "explored":
+            DFS(v)
+\end{verbatim}
+The first and second lines of that are ran once per vertex. The third and fourth lines are ran once per edge. Since each time DFS is called, one more node is marked as ``explored" (and nodes are never changed back to ``unexplored"), the fifth line is also ran only once per vertex. Therefore, the entire program runs in $O(\abs{V}+\abs{E})$ time.
+\par
+$G'$ contains a path from $x$ to $y$ iff $G$ contains multiple paths from $x$ to $y$, which occurs iff $(x, y)$ is contained in a cycle in $G$.
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+Call each judgement an ``edge", and call two specimens ``adjacent" if they share an edge. 
+\begin{verbatim}
+CheckConsistency(n specimens, m judgements):
+    Label all specimens C
+    While there is at least one specimen labeled C:
+        Let L[0] be the singleton set containing one such specimen
+        Label the specimen in L[0] A
+        Let N = 0
+        While there is at least one specimen labeled C which is adjacent to an element of L[N]:
+            For each specimen X adjacent to an element Y of L[N]:
+                If that judgement is "same", add X to L[N]
+                If that judgement is "different", add X to L[N+1]
+                If X was just added to an even-numbered layer (L[2Z] for some integer Z), label X A
+                If X was just added to an odd-numbered layer, label X B
+            Increment N
+    For each judgement:
+        Return False if the labels do not satisfy the judgement
+    Return True
+\end{verbatim}
+Let $G$ be the graph where each vertex is a specimen and each edge is a judgement between them. Two vertices are connected iff knowing which group one specimen is in tells you which group the other is in (although it may tell you two different answers).
+\par
+The inner while loop identifies all vertices connected to the one element of $L[0]$ (``layer 0"). This is exactly the same as using BFS to find a 2-coloring (which we already showed is $O(m+n)$), except that if an edge (between $L[N]$ and an unexplored node) is labeled ``same", we add the unexplored node to the previous layer. That tweak will not affect the run time. If the judgements for this connected component are logically consistent, then the labels created in the inner while loop will not contradict each other, because they can all be deduced from the one element of $L[0]$ being labeled A. Of course, if that specimen is actually in group $B$, then we could swap all the labels for specimens in that connected component from A to B and vice versa, but that would not change whether the judgements are logically consistent, and it would not affect other connected components.
+\par
+The outer while loop repeats that process for each connected component of $G$. This whole thing runs in $O(m+n)$ time, for the same reason that the DFS in problem 3 runs in $O(\abs{V}+\abs{E})$ time. Since this whole process only guesses the label for one element of each connected component, if there is any logically consistent way to label the specimens, this will have found one such labeling (because the inner while loop did that same thing for each connected component).
+\par
+Lastly, the for loop checks in $O(m)$ times whether the labels are consistent. That means the entire algorithm takes $O(m+n)$ time.
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}

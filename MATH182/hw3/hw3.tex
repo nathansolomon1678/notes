@@ -1,0 +1,21 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Math 182 Homework \#3}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+This greedy algorithm is not correct. For example, if the coin values are 1, 5, and 6, it would try to represent 10 as $6+1+1+1+1$ instead of $5+5$.
+\par
+When the input is $A=[1,5,6],v=10$, the algorithm returns $result=[4,0,1]$, which is incorrect. The only correct output would be $result=[0,2,0]$.
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}

@@ -1,0 +1,52 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 180E Homework \#1}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item We derived in the first lecture that
+        \[ \alpha = A p \exp \left( - \frac{Bp}{E}\right). \]
+        Comparing that with the equation
+        \[ \alpha = \frac{C}{\lambda_{mfp}} \exp \left( - \frac{W_{ion}}{E\lambda_{mfp}} \right), \]
+        we see that $A p \lambda_{mfp} = C$ and $B p \lambda_{mfp} = W_{ion}$. In order to get the equation
+        \[ E = \frac{V_b}{d} = \frac{Bp}{\ln (Apd) - \ln(\ln(1+1/\gamma_{se}))}, \]
+        start by taking the log of both sides of
+        \[ \alpha d = \ln \left( 1 + \frac{1}{\gamma_{se}} \right) = Apd \exp \left( - \frac{Bp}{E} \right) \]
+        to get
+        \[ \ln ( \ln ( 1 + 1/\gamma_{se} ) ) = \ln(Apd) - \frac{Bp}{E} \]
+        which can be rewritten as
+        \[ E = \frac{Bp}{\ln (Apd) - \ln(\ln(1+1/\gamma_{se}))}. \]
+        So the answer is \begin{align*}
+            A &= \frac{C}{p \lambda_{mfp}} = \frac{Cn\sigma}{p} \\
+            B &= \frac{W_{ion}}{p \lambda_{mfp}} = \frac{W_{ion}n\sigma}{p}.
+        \end{align*}
+    \item Let $x=pd$. Then $V_b$ is a function of $x$, and the minimum occurs when
+        \begin{align*}
+            0 = \frac{\partial V_b}{\partial x} &= \frac{B (\ln(Ax)-\ln(\ln(1+1/\gamma_{se})))-Bx \left( \frac{A}{Ax} \right) }{(\ln(Ax)-\ln(\ln(1+1/\gamma_{se})))^2} \\
+            0 &= B (\ln(Ax)-\ln(\ln(1+1/\gamma_{se})))-Bx^2 \\
+        x &= \sqrt{\ln(Ax)-\ln(\ln(1+1/\gamma_{se}))}
+        \end{align*}
+        It seems I messed up, so I plugged the expression into Wolfram Alpha and got
+        \[ x = \frac{e \ln \left( 1 + 1/\gamma_{se} \right) }{A}. \]
+    
+\end{enumerate}
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+Here is the data for argon. I believe the curve fit will become much better once I account for systematic error in the distance measurement.
+\fig{argon_paschen_curve.png}
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}
