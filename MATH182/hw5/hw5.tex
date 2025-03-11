@@ -1,0 +1,33 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Math 182 Homework \#5}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+Given a price $p$ and a list of coin values $v = [v_1, v_2, \dots, v_n]$, we want to design a function $min\_coins(p, v)$ which finds the minimum number of coins needed to sum up to exactly $p$. One efficient way to do this is to calculate $min\_coins(q, v)$ for $q=0, q=1, q=2$, and so on, all the way to $q=p$, where $min\_coins(q, v) = \infty$ whenever there is no way to get the coins to add up to exactly $q$. The runtime of this algorithm is $O(nk)$, where $k=\abs{v}$.
+
+\begin{lstlisting}[language=Python, frame=single]
+>>> from functools import lru_cache
+>>> @lru_cache
+... # v must be a tuple (not list), because the @lru_cache decorator only
+... # works when parameters are all hashable types
+... def min_coins(p, v):
+...     if p == 0:
+...             return 0
+...     return 1 + min((min_coins(p - val, v) for val in v if p >= val))
+... 
+>>> min_coins(31, (1, 2, 7, 20))
+4
+\end{lstlisting}
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}

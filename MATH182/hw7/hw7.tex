@@ -1,0 +1,96 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Math 182 Homework \#7}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+My method is to find a min-cut, such that removing any edge across the cut decreases the maximum flow by 1 and removing any other edge will decrease the maximum flow by 0 or 1.
+\begin{lstlisting}[frame=single]
+Use Ford-Fulkerson to create a residual graph G
+Use BFS to visit every vertex in G that can be reached from the source s
+Let MinCut = []
+For each edge (u, v) in G:
+    If u has been visited but v hasn't or vice versa:
+        Append (u, v) to MinCut
+If MinCut has at least k elements:
+    Remove any k edges in MinCut from G
+Otherwise:
+    Remove every edge in MinCut from G
+    Remove any other edges until you've removed k edges in total
+\end{lstlisting}
+The run time of this algorithm is $O(\abs{V}\cdot \abs{E}^2)$, because that's how long Ford-Fulkerson takes, BFS takes $O(\abs{V}+\abs{E})$ time, the for-loop takes $O(\abs{E})$ time, and the if-otherwise statement takes $O(k)\subset O(\abs{E})$ time.
+\par
+The algorithm is correct because every time you remove an edge, the maximum flow of the network decreases by at most one (since each edge has capacity one), so we need to either decrease the maximum flow by $k$ or decrease the maximum flow to zero. We proved in class that the subgraph $A$ containing all vertices which we mark as ``visited" in the algorithm above and its complement $B$ for a minimum cut of $G$. We also showed that $s \in A$ and $t \in B$, and since every augmenting path connects $s$ to $t$, removing any edge between $A$ and $B$ will decrease the maximum flow of the graph by one. Once we have found all edges between $A$ and $B$, we simply need to either remove $k$ of them (to decrease the max flow by $k$) or remove all of them (to decrease the max flow to zero).
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+The claim is not true.
+\par
+Consider an $n \times n$ square grid graph made by taking the Cartesian product of two path graphs which each have $n$ vertices. Connect all $n$ nodes on the left side of the square to the source $s$, and all nodes on the right side of the triangle to the sink $t$. Make the edges all have weight $1$ and point either to the right or down. The maximum flow of this graph is clearly $n$, since one unit of flow can go through each row of the grid.
+\par
+With the greedy algorithm, if the first path found from $s$ to $t$ is a zig-zagging path like the one highlighted in the figure below, there will be no more paths from $s$ to $t$ found aftwerwards, so the max flow found by the greedy algorithm is only $1$.
+\par
+The ratio of max flow found by the greedy algorithm to actual max flow is $1/n$, which can be made arbitrarily small by increasing $n$.
+\begin{center}
+    \includegraphics[width=\textwidth]{Untitled drawing.png}
+\end{center}
+
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+This is similar to the ``circulations with demands" problem from the week 8 lecture notes. My approach will be to create a directed graph from a single source to each base station, then from each base station to the clients within range, then from every cliet to a single sink. By giving each edge the right weight, we can find a max flow network, and the max flow will be the max number of clients that can be connected. Here is some pseudocode:
+\begin{lstlisting}[frame=single]
+Create a directed weighted graph G with two vertices, s and t, and no edges
+For i from 1 to n:
+    Add a vertex to G representing the ith client
+    Add an edge to G with weight 1 from the ith client to t
+For j from 1 to k:
+    Add a vertex to G representing the jth base station
+    Add an edge to G with weight l from s to the jth base station
+    (^ That's a lowercase L, not the number one)
+    For i from 1 to n:
+        If the ith client is within distance r of the jth base station:
+            Add an edge to G with weight 1 from the jth base station to the ith client
+
+Run Edmonds-Karp on G to find the max flow f from s to t
+If f is equal to n, return true, otherwise return false
+\end{lstlisting}
+The first for-loop runs in $O(n)$ time. The second for-loop runs in $O(nk)$ time because it contains a nested for-loop which takes $O(n)$ time, and the if-statement inside that for-loop runs in $O(1)$ time. Edmonds-Karp runs in $O(\abs{V} \cdot \abs{E}^2)$. The number of vertices in $G$ when Edmonds-Karp is ran will be $n+k$, and the number of edges will be at most $n+nk+k$. I will assume that I do not need to take the magnitude of $l$ into consideration, so the run time for the whole algorithm will be
+\[ O(n)+O(nk)+O((n+k)(n+nk+k)^2) = O((n+k)n^2k^2). \]
+\par
+This algorithm is correct because every path from $s$ to $t$ in the max flow network contains exactly one edge from a base station to a client. Therefore there will be no more than $l$ edges going out of each base station, and the number of connections between clients and base stations will be equal to the maximum flow, $f$. That implies every client can be connected to a base station iff $f=n$.
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+My approach for this problem will be to take an existing residual graph and update the capacitites, then perform a single step of the Ford-Fulkerson algorithm.
+\begin{lstlisting}[frame=single]
+Assume we already have the residual graph G=(V,E,s,t,w) from yesterday's flow
+Let (u,v) represent the directed edge e
+Increase the weight of the edge (v,u) by one
+If BFS identifies a path of non-zero weight from s to t in G:
+    Decrease the weight of each edge in that path by E
+Delete any edges in G with weight zero
+\end{lstlisting}
+The runtime of this algorithm is $O(\abs{V} + \abs{E})$ because that's how long BFS takes. Decreasing the weights of any edges and deleting them if their weights have changed to zero cannot take more than $O(\abs{E})$ time.
+\par
+The algorithm is correct because when you increase the capacity of a single edge, either the maximum flow does not change, or the maximum flow increases by one because one more unit of flow can be sent through an augmenting path containing $e$. If such an augmeting path exists, doing BFS on on the updated residual graph (ignoring the edges with weight zero) will find it, and increment the maximum flow by one.
+\par
+Alternatively, we could use the fact that when edge capacities are integers, the maximum flow found by Ford-Fulkerson increases by at least one at each step of the algorithm, which we proved in class. We also proved that each step of Ford-Fulkerson takes $O(\abs{V}+\abs{E})$ time and will increase the maximum flow found if it is possible to do so, which means that it is sufficient for us to note that increasing the weight of one edge in the residual graph will not disturb the existing maximum flow network nor will it increase the maximum flow by more than one.
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}

@@ -2,21 +2,21 @@ template <typename T>
 class simple_set {
 public:
     simple_set() {}
-    void insert(T x) {
-        if (!find(x)) {
-            data.push_back(x);
-        }
-    }
-    size_t size() {
+    const size_t size() {
         return data.size();
     }
-    bool find(T x) {
+    const bool find(T x) {
         for (T& item : data) {
             if (item == x) {
                 return true;
             }
         }
         return false;
+    }
+    void insert(T x) {
+        if (!find(x)) {
+            data.push_back(x);
+        }
     }
     void erase(T x) {
         for (auto iter = data.begin(); iter != data.end(); ++iter) {
@@ -35,21 +35,21 @@ template <typename T>
 class simple_set<T*> {
 public:
     simple_set() {}
-    void insert(T* x) {
-        if (!find(*x)) {
-            data.push_back(x);
-        }
-    }
-    size_t size() {
+    const size_t size() {
         return data.size();
     }
-    bool find(T x) {
+    const bool find(T x) {
         for (T* item : data) {
             if (*item == x) {
                 return true;
             }
         }
         return false;
+    }
+    void insert(T* x) {
+        if (!find(*x)) {
+            data.push_back(x);
+        }
     }
     void erase(T x) {
         for (auto iter = data.begin(); iter != data.end(); ++iter) {
@@ -67,6 +67,14 @@ template <>
 class simple_set<bool> {
 public:
     simple_set() {}
+    const size_t size() {
+        if (has_true && has_false) { return 2; }
+        if (has_true || has_false) { return 1; }
+        return 0;
+    }
+    const bool find(bool b) {
+        return b && has_true || !b && has_false;
+    }
     void insert(bool b) {
         if (b) {
             has_true = true;
@@ -80,14 +88,6 @@ public:
         } else {
             has_false = false;
         }
-    }
-    bool find(bool b) {
-        return b && has_true || !b && has_false;
-    }
-    size_t size() {
-        if (has_true && has_false) { return 2; }
-        if (has_true || has_false) { return 1; }
-        return 0;
     }
 private:
     bool has_true = false;

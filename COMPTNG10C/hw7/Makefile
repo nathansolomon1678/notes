@@ -10,4 +10,4 @@ $(EXEC): $(OBJ)
 	$(COMPILER) $(CFLAGS) -c $< -o $@
 clean:
 	rm -f $(OBJ) $(EXEC)
-.PHONY: all clean test
+.PHONY: all clean
