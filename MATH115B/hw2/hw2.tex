@@ -47,7 +47,21 @@
 \begin{prob}
 \end{prob}
 \begin{enumerate}[label=(\alph*)]
-    \item For this part (a) of this problem, I will represent all transformations in the standard basis $\varepsilon$ and its dual, $\varepsilon^*$.
+    \item $T*f$ is the functional which maps $ \begin{bmatrix}
+        x \\
+        y
+    \end{bmatrix}$ to
+    \[ T*f \begin{bmatrix}
+        x \\
+        y
+    \end{bmatrix} = fT \begin{bmatrix}
+        x \\
+        y
+    \end{bmatrix} = f \begin{bmatrix}
+        3x+2y \\
+        x
+    \end{bmatrix} = 2(3x+2y)+(x) = 7x+4y. \]
+    \item For this problem, I will represent all transformations in the standard basis $\varepsilon$ and its dual, $\varepsilon^*$.
         \par
         You can think of $f$ as the row vector $ \begin{bmatrix}
             2 & 1
@@ -60,21 +74,8 @@
     \[ T^* = \begin{bmatrix}
         3 & 1 \\
         2 & 0
-    \end{bmatrix}, \]
-    which means
-    \[ T^*(f) = \begin{bmatrix}
-        2 & 1
-    \end{bmatrix} \begin{bmatrix}
-        3 & 1 \\
-        2 & 0
-    \end{bmatrix} = \begin{bmatrix}
-        8 & 2
-    \end{bmatrix}, \]
-    so $T^*(f)$ is the functional which maps $ \begin{bmatrix}
-        x \\
-        y
-    \end{bmatrix}$ to $8x+2y$.
-\item By looking at the matrix representation I already found for $T^*$ in the dual of the standard basis, we can see $a=3, b=1, c=2, d=0$.
+    \end{bmatrix} \]
+    By looking at the matrix representation I already found for $T^*$ in the dual of the standard basis, we can see $a=3, b=1, c=2, d=0$.
 \item \begin{align*}
         [T]_\varepsilon &= \begin{bmatrix}
             3 & 2 \\
@@ -94,7 +95,7 @@
 \begin{enumerate}[label=(\alph*)]
     \item Let $f,g$ be arbitrary elements of $S^0$, and let $c$ be an arbitrary element of $k$. Then $f+cg \in V^*$, and for all $x \in S$,
         \[ (f+cg)(x) = f(x)+cg(x) = 0+0c=0, \]
-        so $f+cg \in S^0$, which means $S^0$ is a subspace of $V^*$.
+        so $f+cg \in S^0$, and $S^0$ also contains the zero funcitonal, which means $S^0$ is a subspace of $V^*$.
     \item Since $V$ is finite dimensional and $x \neq 0$, there exists some basis $\mathcal{B}$ of $V$ which contains $x$ and contains a subset which spans $W$. Any vector $v \in V$ can be written as a finite sum of scalars in $k$ times basis vectors in $\mathcal{B}$, so there exists a linear functional $f$ which maps $v$ to the coefficient of $x$ in that sum. Since $f$ maps all basis vectors of $W$ to zero, $f$ is in $W^0$. Lastly, note that $f(x)=1\neq 0$.
     \item Let $(x_1, \dots, x_n, y_1, \dots, y_m)$ be a basis for $V$ such that $(x_1, \dots, x_n)$ is a basis for $S$. Then $(y_1^*, \dots, y_m^*)$ is a basis for $S^0$. By that same reasoning, $(x_1^{**}, \dots, x_n^{**})$ is a basis for $(S^0)^0$. The span of that last basis is equal to $\Span(\psi(S))$.
     \item If $W_1 \neq W_2$, then without loss of generality, there exists $x \in W_1$ such that $x \not\in W_2$. That implies there exists $f \in W_2^0$ such that $f(x) \neq 0$, but $f \not\in W_1^0$, so $W_1^0 \neq W_2^0$.
@@ -111,12 +112,13 @@
 \end{prob}
 Dimension is defined as the cardinality of a basis, so in order for that to be defined, I will assume for now that every vector space has a basis.
 \par
-Let $\mathcal{B}_W$ be a basis of $W$, and extend that to a basis $\mathcal{B}_V$ for $V$ -- in other words, when choosing a basis, make sure that $\mathcal{B}_W \subset \mathcal{B}_V$. Then each element of $\mathcal{B}_W^*$ will map the corresponding basis vector in $\mathcal{B}_W$ to a nonzero value, so none of the dual vectors in $\mathcal{B}_W^*$ are in $W^0$. However, every dual basis vector in $\mathcal{B}_V^* \backslash \mathcal{B}_W^*$ will map all elements of $\mathcal{B}_W$ to zero. Therefore, $\mathcal{B}_V^* \backslash \mathcal{B}_W^*$ is a basis for $W^0$. We now have
+Let $\mathcal{B}_W$ be a basis of $W$, and extend that to a basis $\mathcal{B}_V$ for $V$ -- in other words, when choosing a basis, make sure that $\mathcal{B}_W \subset \mathcal{B}_V$. Then each element of $\mathcal{B}_W^*$ will map the corresponding basis vector in $\mathcal{B}_W$ to a nonzero value, so none of the dual vectors in $\mathcal{B}_W^*$ are in $W^0$. However, every dual basis vector in $\mathcal{B}_V^* \backslash \mathcal{B}_W^*$ will map all elements of $\mathcal{B}_W$ to zero. If $\dim(W^0)$ is finite, then $\mathcal{B}_V^* \backslash \mathcal{B}_W^*$ is a basis for $W^0$. We now have
 \begin{align*}
     \dim(W) + \dim(W^0) &= \abs{\mathcal{B}_W} + \abs{\mathcal{B}_V^* \backslash \mathcal{B}_W^*} \\
                         &= \abs{\mathcal{B}_V} \\
                         &= \dim(V).
 \end{align*}
+If $\dim(W^0)$ is infinite, I'm not sure how to solve this problem.
 
 \bigskip
 \par
@@ -124,7 +126,7 @@ Let $\mathcal{B}_W$ be a basis of $W$, and extend that to a basis $\mathcal{B}_V
 \end{prob}
 If $g \in \ker(T^*)$, then for any $v \in V$, we have $T^*gv = 0$, but we also know $T^*(g) = g \circ T$, so $0 = (g \circ T)(v) = g(Tv)$. Every element of $R(T)$ can be written as $Tv$ for some $v \in V$, so $g$ maps every element of $R(T)$ to zero, which means $\ker(T^*) \subset R(T)^0$.
 \par
-This also works in reverse -- if $g \in R(T)^0$, then $g(u)=0$ for every element $u$ of $R(T)$. But since there exists $v$ such that $u=T(v)$, we know $(g \circ T)(v) = 0$, which means $(T^*(g))(v)=0$, so $g \in \ker(T^*)$. That means $R(T)^0 \subset \ker(T^*)$, so $R(T)^0 = \ker(T^*)$.
+This also works in reverse -- if $g \in R(T)^0$, then for any $v \in W$, we can let $u=Tv$, and since $u \in R(T)$, $g(u)=0$. Equivalently, $(g \circ T)(v) = 0$, which means $(T^*(g))(v)=0$, so $g \in \ker(T^*)$. That means $R(T)^0 \subset \ker(T^*)$, so $R(T)^0 = \ker(T^*)$.
 
 \bigskip
 \par
@@ -158,13 +160,13 @@ and the $\lambda=-1$ eigenspace is the nullspace of
 \end{bmatrix}, \]
 which is
 \[ \Span \left( \begin{bmatrix}
-    1 \\
-    1 \\
+    3 \\
+    -2 \\
     0
 \end{bmatrix}, \begin{bmatrix}
+    2 \\
     0 \\
-    0 \\
-    1
+    -1
 \end{bmatrix} \right). \]
 
 
@@ -198,8 +200,10 @@ This works because $Tv_1=3v_1$ and $Tv_2=2v_2$.
     \item This is $T$-invariant, because the derivative of any polynomial with degree less than or equal to 2 will be another polynomial with degree less than or equal to 2.
     \item This is not $T$-invariant, because $x^2 \in W$, but $T(x^2)=x^3 \not\in W$.
     \item This is $T$-invariant, because for any vector in the image of $T$, all 3 components of that vector are the same, which means the vector is in $W$.
-    \item This is not $T$-invariant, because if $f\in W$ is the function which maps $t$ to $1$, then $T(f)=t^2$ (that is, $T(f)$ is the function which maps $t$ to $t^2$), so $T(f) \not\in W$.
-    \item This is $T$-invariant, because any symmetric $2 \times 2$ matrix $A$ can be written as
+    \item This is $T$-invariant, because if $f\in W$ is the function which maps any $t \in [0,1]$ to $at+b$, then $Tf$ is the function which maps $t \in [0,1]$ to
+        \[ \left( \int_0^1 f(x) \d x \right) t = \left[ \frac{a}{2} x^2 + bx \right]_{x=0}^1 t = (b+a/2)t, \]
+        which is a linear function of $t$. Since $T$ maps any affine function $f(t)=at+b$ to another affine function $(Tf)(t)=(b+a/2)t$, $W$ is a $T$-invariant subspace.
+    \item This is not $T$-invariant, because any symmetric $2 \times 2$ matrix $A$ can be written as
         \[ A = \begin{bmatrix}
             a & b \\
             b & c
@@ -209,7 +213,7 @@ This works because $Tv_1=3v_1$ and $Tv_2=2v_2$.
             b & c \\
             a & b
         \end{bmatrix}, \]
-        which is also symmetric.
+        which is not symmetric when $a=0$ and $c=1$.
 \end{enumerate}
 
 
