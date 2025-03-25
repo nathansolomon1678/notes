@@ -12,11 +12,10 @@ import json
 import re
 
 path = "../../../Downloads/Langmuir probe data/Group A/"
-sample_rate = 1e8 # Hertz
-savgol_filter_window = 5000 # Corresponds to 50 microseconds
+savgol_filter_window = 2000
 
 def wgaussian(x, amplitude, mean, T):
-    return amplitude * np.exp(-np.abs(x - mean) / 2 / T)
+    return amplitude * np.exp(-np.abs(x - mean) / T)
 
 def offset_exponential(x, A, B, C):
     return np.exp(x * A) * B + C
@@ -59,8 +58,7 @@ def analyze_IV_curve(filepath, shot_num, plot=False):
         c2 = file["Acquisition/LeCroy_scope/Channel2"][shot_num] / 1.06
         t  = list(file["Acquisition/LeCroy_scope/time"])
     
-    assert len(t) in [20_000, 100_000]
-    assert relative_error(len(t) / (t[len(t)-1] - t[0]), sample_rate) < 1e-4
+    sample_rate = len(t) / (t[len(t)-1] - t[0])
     # Get parameters from file name
     characteristics["Magnetic field"] = int(re.compile("RF299V_([0-9]*)Guniform").search(filepath).group(1))
     characteristics["Trigger time (ms)"] = float(re.compile("_tt([0-9].[0-9])ms_").search(filepath).group(1))
@@ -107,7 +105,7 @@ def analyze_IV_curve(filepath, shot_num, plot=False):
     # Fit modified gaussian to dI/dV so that we can say everything to the left
     # of the peak of that bet fit curve is the exponential region
     dI_dV = np.gradient(c2_smooth, c1)
-    p0 = [.1, c1[np.argmax(dI_dV)], 1]
+    p0 = [.1, min(c1[np.argmax(dI_dV)], 3), 1]
     popt, cov = curve_fit(wgaussian, c1, dI_dV, p0=p0)
     best_fit = wgaussian(c1, *popt)
     amplitude, mean, T = popt
@@ -116,29 +114,38 @@ def analyze_IV_curve(filepath, shot_num, plot=False):
         plt.plot(c1, best_fit)
         plt.show()
     # Extract the exponential region of the IV curve
-    start = np.argmin(np.abs(c1 + 5))
+    start = np.abs(c1 - (mean - 5 * T)).argmin()
     end = np.abs(c1 - mean).argmin()
     p0 = [.1, .001, np.mean(c2[start:end])]
-    plt.plot(c1, c2)
-    plt.plot(c1[start:end], offset_exponential(c1[start:end], *p0))
-    plt.show()
+    #####plt.plot(c1, c2)
+    #####plt.plot(c1[start:end], offset_exponential(c1[start:end], *p0))
+    #####plt.show()
     popt, cov = curve_fit(offset_exponential, c1[start:end], c2[start:end], p0=p0)
     best_fit = offset_exponential(c1[start:end], *popt)
     if plot:
-        plt.plot(c1, c2)
-        plt.plot(c1, c2_smooth)
-        plt.plot(c1[:index], best_fit)
+        plt.plot(c1, c2_smooth, label="Probe data")
+        plt.plot(c1[start:end], best_fit, label="Best fit exponential")
+        plt.xlabel("Probe voltage (Volts)")
+        plt.ylabel("Net current flowing out of probe (Amps)")
+        port = characteristics["Port"]
+        x_coord = characteristics["X (cm)"]
+        y_coord = characteristics["Y (cm)"]
+        B = characteristics["Magnetic field"]
+        tt = characteristics["Trigger time (ms)"]
+        plt.title(f"Port {port}, X = {x_coord} cm, Y = {y_coord} cm, B = {B} Gauss, time = {tt} ms")
+        plt.legend()
         plt.show()
     A, B, C = popt
     assert A > 0 and B > 0
     # assert C < 0
     characteristics["Ion saturation current"] = -C
-    characteristics["Electron saturation current"] = float(np.max(c2_smooth))
+    # characteristics["Electron saturation current"] = float(np.max(c2_smooth))
     characteristics["Electron temperature"] = 1 / A
     # Find plasma potential -- the voltage which maximizes the current
     d2I_dV2 = savgol_filter(c2, savgol_filter_window, 4, deriv=2)
     index = np.argmin(d2I_dV2)
     characteristics["Plasma potential"] = float(c1[index])
+    characteristics["Electron saturation current"] = float(c2[index])
     print_json(characteristics)
     return characteristics
 
@@ -147,13 +154,19 @@ if ".cache" not in listdir("."):
 
 for directory in [path + "february18/", path + "february11/"]:
     for hdf5_file_name in listdir(directory):
+        print(f"Analyzing data from {hdf5_file_name}")
         if "interferometer" in hdf5_file_name:
+            continue
+        if hdf5_file_name == "xyplane_RF299V_60Guniform_1mTorr_1V_tt2.5ms_R100_Tsweep750us_2-12-2025.hdf5":
+            # This file had weird issues with the probe sweep voltage
             continue
         with h5py.File(directory + hdf5_file_name, "r") as file:
             num_shots = file["Acquisition/LeCroy_scope/Channel1"].shape[0]
         for i in range(num_shots):
             json_file_name = hdf5_file_name.split(".hdf5")[0] + f"_shot{i}.json"
             if json_file_name in listdir(".cache"):
+                ##### with open(".cache/" + json_file_name) as json_file:
+                #####     print(json_file.read())
                 continue
             characteristics = analyze_IV_curve(directory + hdf5_file_name, i, True)
             with open(".cache/" + json_file_name, "w+") as file:
