@@ -1,0 +1,107 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Math 132 Homework \#2}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+    Chapter I, section 6, exercise 2, parts a \& d
+\end{prob}
+\begin{center}
+    \includegraphics[width=\textwidth]{HW2 prob 1.png}
+\end{center}
+
+
+\bigskip
+\par
+\begin{prob}
+    Chapter I, section 7, exercise 2
+\end{prob}
+\begin{align*}
+    \log \left[ (1+i)^{2i} \right] &= \log \left[ \exp \left( 2i \log(1+i) \right) \right] \\
+                                   &= \log \left[ \exp \left( 2i \cdot \left( \log(\sqrt{2}) + \frac{\pi i}{4} + 2\pi i k_1 \right) \right) \right] & k_1 \in \Z \\
+                                   &= \left( 2i \cdot \left( \sqrt{2} + \frac{\pi i}{4} + 2\pi i k_1 \right) \right) +2\pi i k_2 & k_1, k_2 \in \Z \\
+                                   &= i \log(2) - \frac{\pi}{2} - 4\pi k_1 + 2\pi i k_2 & k_1, k_2 \in \Z \\
+                                   &= \left( - \frac{\pi}{2} 4\pi k_1 \right)  +i \left( \log(2)  + 2\pi k_2 \right)  & k_1, k_2 \in \Z.
+\end{align*}
+When you plot all possible values on the complex plane, you get one point (the ``principal value") at $z = -\pi/2 + 2 \log(2) i$, and infinitely many copies of that point in a grid with vertical spacing of $2 \pi$ and horizontal spacing of $4 \pi$.
+
+\bigskip
+\par
+\begin{prob}
+    Chapter I, section 8, exercise 1
+\end{prob}
+\begin{align*}
+    \cos z \cos w - \sin z \sin w &= \left( \frac{e^{iz}+e^{-iz}}{2} \right) \left( \frac{e^{iw}+e^{-iw}}{2} \right) - \left( \frac{e^{iz}-e^{-iz}}{2i} \right) \left( \frac{e^{iw}-e^{-iw}}{2i} \right) \\
+                                  &= \frac{1}{4} \left[ (e^{iz}+e^{-iz})(e^{iw}+e^{-iw})+(e^{iz}-e^{-iz})(e^{iw}-e^{-iw}) \right] \\
+                                  &= \frac{1}{4} \left[ 2e^{iz}e^{iw} + 2e^{-iz}e^{-iw} \right] \\
+                                  &= \cos (z+w). \\
+    \sin z \cos w + \cos z \sin w &= \left( \frac{e^{iz}-e^{-iz}}{2i} \right) \left( \frac{e^{iw}+e^{-iw}}{2} \right) - \left( \frac{e^{iz}+e^{-iz}}{2} \right) \left( \frac{e^{iw}-e^{-iw}}{2i} \right) \\
+                                  &= \frac{1}{4i} \left[ (e^{iz}-e^{-iz})(e^{iw}+e^{-iw})-(e^{iz}+e^{-iz})(e^{iw}-e^{-iw}) \right] \\
+                                  &= \frac{1}{4i} \left[ 2e^{iz}e^{iw} - 2e^{-iz}e^{-iw} \right] \\
+                                  &= \sin (z+w). \\
+    \cosh (z+w) &= \cos(iz+iw) \\
+                &= \cos(iz)\cos(iw)-\sin(iz)\sin(iw) \\
+                &= (\cosh z) (\cosh w) - (i \sinh z)(i \sinh w) \\
+                &= \cosh z \cosh w + \sinh z \sinh w. \\
+    \sinh(z+w) &= -i \sin(iz+iw) \\
+               &= -i \left( \sin(iz)\cos(iw) + \cos(iz)\sin(iw) \right) \\
+               &= -i \left( (i \sinh z)(\cosh w) + (\cosh z)(i \sinh w) \right) \\
+               &= \sinh z \cosh w + \cosh z \sinh w.
+\end{align*}
+
+\bigskip
+\par
+\begin{prob}
+    Chapter I, section 8, exercise 2
+\end{prob}
+If $z=x+iy$, where $x,y \in \R$, then
+\begin{align*}
+    \abs{\cos z}^2 &= \abs{\cos(x+iy)}^2 \\
+                   &= \abs{ \cos(x)\cos(iy)-\sin(x)\sin(iy) }^2 \\
+                   &= \abs{ (\cos x)(\cosh y) - (\sin x)(i \sinh y) }^2 \\
+                   &= \left( \cos x \cosh y \right)^2 + \left( \sin x \sinh y \right)^2 \\
+                   &= \cos^2 x \cosh^2 y + \sin^2 x \sinh^2 y \\
+                   &= \cos^2 x (\sinh^2 y + 1) + \sin^2 x \sinh^2 y \\
+                   &= \cos^2 x + (\cos^2 x + \sin^2 x) \sinh^2 y \\
+                   &= \cos^2 x + \sinh^2 y.
+\end{align*}
+
+\bigskip
+\par
+\begin{prob}
+    Chapter II, section 1, exercise 2
+\end{prob}
+The sequence $z^n$ is bounded iff $ \abs{z}\leq 1$, because then all powers of $z$ also lie in the open unit disk.
+\par
+The sequence $z^n$ converges to zero iff $\abs{z}<1$, because then $\abs{z^n}=\abs{z}^n$, and we know the sequence $r^n$ converges to zero whenever $r \in (-1, 1)$.
+
+\bigskip
+\par
+\begin{prob}
+    Chapter II, section 1, exercise 15
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item Open
+    \item Closed
+    \item Open
+    \item Neither open nor closed
+    \item Open
+    \item Neither open nor closed
+    \item Open and closed
+\end{enumerate}
+
+\begin{center}
+    \includegraphics[width=\textwidth]{HW2 prob 6.png}
+\end{center}
+
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}

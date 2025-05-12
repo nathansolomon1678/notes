@@ -1,0 +1,72 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 127 Homework \#5}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+The Faraday tensor is defined as
+\[ F_{\mu \nu} := \partial_\mu A_\nu - \partial_\nu A_\mu. \]
+So after the gauge transformation $A_\mu \rightarrow A_\mu + \partial_\mu \lambda$, that becomes
+\[ F_{\mu \nu} := \partial_\mu (A_\nu + \partial_\nu \lambda) - \partial_\nu (A_\mu + \partial_\mu \lambda), \]
+which simplifies to
+\[ F_{\mu \nu} = \partial_\mu A_\nu + \partial_\mu \partial_\nu \lambda - \partial_\nu A_\mu - \partial_\nu \partial_\mu \lambda = F_{\mu \nu} + (\partial_\mu \partial_\nu - \partial_\nu \partial_\mu) \lambda = F_{\mu \nu}, \]
+so $F_{\mu \nu}$ is invariant.
+\par
+Suppose we want to choose $\lambda(x)$ such that $A'_\mu = A_\mu + \partial_\mu \lambda$ satisfies $\partial_\mu A'^\mu = 0$. Then
+\[ \partial_\mu (A^\mu + \partial^\mu \lambda) = 0. \]
+Such a $\lambda(x)$ can always be constructed, so there is always a gauge in which $\partial_\mu A^\mu = 0$. In that gauge, the equation $\partial_\mu F^{\mu \nu} = 0$ becomes
+\begin{align*}
+    0 &= \partial_\mu (\partial^\mu A^\nu - \partial^\nu A^\mu) \\
+      &= \partial_\mu \partial^\mu A^\nu - \partial^\nu \partial_\mu A^\mu \\
+      &= \Box A^\nu - \partial^\nu 0 \\
+      &= \Box A^\mu.
+\end{align*}
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+The Lagrangian density is
+\begin{align*}
+    \mathcal{L} &= - \frac{1}{4} F^{\mu \nu} F_{\mu \nu} \\
+                &= - \frac{1}{4} \left( F^{00}F_{00} + F^{i0}F_{i0} + F^{0j}F_{0j} + F^{ij}F_{ij} \right) \\
+                &= - \frac{1}{4} \left( 0 \cdot 0 + F^{i0}F_{i0} + F^{0j}F_{0j} + F^{ij}F_{ij} \right)  \\
+                &= - \frac{1}{4} \left( (E^i) (E_i) + (-E^j)(-E_j) + (-\varepsilon^{ijk}B_k) (-\varepsilon_{ijk}B^k) \right)  \\
+                &= - \frac{1}{4} \left( -2 E \cdot E + (\varepsilon^{ijk} \varepsilon_{ijk})(B_k B^k) \right)  \\
+                &= - \frac{1}{4} \left( -2 E^2 + 2 B_k B^k \right)  \\
+                &= \frac{1}{2} \left( E^2 - B^2 \right).
+\end{align*}
+If $A^\mu$ changes by a small amount $\delta A^\mu$ (meaning terms containing $\delta^2$ can be ignored), then the action changes by
+\begin{align*}
+    \delta S &= \left( - \frac{1}{4} \int (\partial^\mu (A^\nu + \delta A^\nu) - \partial^\nu (A^\mu + \delta A^\mu)) (\partial_\mu (A_\nu + \delta A_\nu) - \partial_\nu (A_\mu + \delta A_\mu)) \d^4 x \right) - \left( - \frac{1}{4} \int F^{\mu \nu} F_{\mu \nu} \d^4 x \right) \\
+             &= - \frac{1}{4} \int \left( \partial^\mu \delta A^\nu F_{\mu \nu} - \partial^\nu \delta A^\mu F_{\mu \nu} + F^{\mu \nu} \partial_\mu \delta A_\nu - F^{\mu \nu} \partial_\nu \delta A_\mu \right) \d^4 x \\
+             &= \int \delta A_\nu \partial_\mu F^{\mu \nu} \d^4 x.
+\end{align*}
+The variational principle states that $\delta S = 0$ for any path we integrate along, which means $\delta A_\nu \partial_\mu F^{\mu \nu} = 0$, so we get Maxwell's equation $\partial_\mu F^{\mu \nu} = 0$.
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item This is symmetric because
+        \begin{align*}
+            T^{\mu \nu} &= F^{\mu \lambda} F_\lambda^\nu + \frac{1}{4} g^{\mu \nu} F_{\lambda \sigma} F^{\lambda \sigma} \\
+                        &= (F_\lambda^\nu) (F^{\mu \lambda}) + \frac{1}{4} g^{\nu \mu} F_{\lambda \sigma} F^{\lambda \sigma} \\
+                        &= (-F_\nu^\lambda) (-F^{\lambda \mu}) + \frac{1}{4} g^{\nu \mu} F_{\lambda \sigma} F^{\lambda \sigma} \\
+                        &= F^{\lambda \mu} F_\nu^\lambda + \frac{1}{4} g^{\nu \mu} F_{\lambda \sigma} F^{\lambda \sigma} \\
+        \end{align*}
+\end{enumerate}
+
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}

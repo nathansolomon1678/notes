@@ -1,0 +1,48 @@
+\documentclass{article}
+\input{../../preamble}
+
+\fancyhf{}
+\setlength{\headheight}{24pt}
+
+\date{\today}
+\title{Physics 127 Homework \#4}
+
+\begin{document}
+\maketitle
+
+\begin{prob}
+\end{prob}
+Since $\Lambda$ is a linear operator, it is equal to the Jacobian. So the new measure after the Lorentz transformation $y^\mu \rightarrow \Lambda_\nu^\mu x^\nu$ is given by
+\[ \d^4 x \rightarrow \d^4 y = J \d^4 x = \det \left( \frac{\partial y^i}{\partial x^j} \right) \d^4 x = \det \left( \frac{\partial (\Lambda x^i)}{\partial x^j} \right) = \det (\Lambda) \d^4 x.  \]
+By the definition of a Lorentz transformation, $\Lambda^T g \Lambda = g$. Taking the determinant of both sides gives $\det(\Lambda) \det(g) \det(\Lambda) = \det(g)$, so $\det(\Lambda)^2=1$, which means $\det(\Lambda) = \pm 1$. If we assume that $\Lambda$ is a proper Lorentz transformation, then by definition, it has determinant 1.
+\par
+For a 4-dimensional region $V$ of spacetime, since the Lorentz transformation maps $d^4 x$ to $\det(\Lambda) \d^4 x = \d^4 x$, and the Lagrangian density $\mathcal{L}$ is Lorentz invariant, the action
+\[ I = \int_V \mathcal{L} \d^4 x \]
+is Lorentz invariant. However, if we do not assume that $\Lambda$ is proper, then only $\abs{I}$ is invariant.
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+If $V_4$ is a 4-dimensional region of spacetime with boundary $\partial V_4$ = $\Sigma_3$, and $V^\mu$ is a conserved current with gradient $\partial_\mu V^\mu = 0$, then the following integral does not depend on what $\Sigma_3$ is, because it is always zero:
+\[ \int_{\Sigma_3} V^\mu \d \sigma_\mu = \int_{V_4} \partial_\mu V^\mu \d^4 x = \int_{V_4} 0 \cdot \d^4 x = 0. \]
+However, since we defined $\Sigma_3$ to be the boundary of $V_4$, $\Sigma_3 := \partial V_4$ must be a closed surface. Therefore, I'm not sure how to generalize this to work when $\Sigma_3$ is a timeslice, because a timeslice cannot be a closed surface.
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+
+\bigskip
+\par
+\begin{prob}
+\end{prob}
+
+\includepdf[pages=-]{assignment.pdf}
+
+\end{document}

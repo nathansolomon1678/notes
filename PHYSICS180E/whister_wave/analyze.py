@@ -208,5 +208,5 @@ for filename in xzplane_files:
         plt.colorbar(fig)
         plt.xlabel("$z$ coordinate (cm)")
         plt.ylabel("$\\theta$ coordinate (degrees)")
-        plt.title(f"RMS voltage measured from $\\dot{{B}}$ probe in mV\nover a 1.25ms period (f={int(freq/1e6)}MHz)")
+        plt.title(f"RMS voltage measured from $\\dot{{B}}$ probe in mV\nover a 0.0005 ms period (f={int(freq/1e6)}MHz)")
         plt.show()
